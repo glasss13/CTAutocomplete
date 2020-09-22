@@ -1,7 +1,6 @@
 // Type definitions for Chattriggers
 // Definitions by: Maxssho13, also a lot of credit to Matt for inspiration and reference
 
-// TODO make the schema for metadata.json work - not sure if this is 100% possible in a clean way
 /// <reference no-default-lib="true" />
 /// <reference lib="es2015" />
 export {}; // this line converts this into a module, allowing for importing and modifying global scope
