@@ -1,0 +1,8 @@
+{
+  "$schema": "../CTAutocomplete/schema.json",
+  "name": "CTAutocomplete",
+  "creator": "maxssho13",
+  "isRequired": true,
+  "version": "0.9",
+  "description": "A module that provides IntelliSense for the ChatTriggers API."
+}

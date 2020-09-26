@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Metadata.json",
+  "description": "Schema for Chattriggers metadata.json",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "The name of the module",
+      "type": "string"
+    },
+    "version": {
+      "description": "The version of the module",
+      "type": "string"
+    },
+    "entry": {
+      "description": "The entry point of the module",
+      "type": "string"
+    },
+    "asmEntry": {
+      "description": "The ASM entry point of the module",
+      "type": "string"
+    },
+    "asmExposedFunctions": {
+      "description": "The js functions that you are exposing to your ASM",
+      "type": "object",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tags": {
+      "description": "The tags of the module",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "pictureLink": {
+      "description": "The imgur link for the image of the module",
+      "type": "string"
+    },
+    "creator": {
+      "description": "The creator of the module",
+      "type": "string"
+    },
+    "description": {
+      "description": "The description of the module",
+      "type": "string"
+    },
+    "requires": {
+      "description": "The list of dependencies of the module",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ignored": {
+      "description": "Appears to do nothing",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "isRequired": {
+      "description": "States whether this module will be a dependancy",
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
