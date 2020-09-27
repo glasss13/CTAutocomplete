@@ -37,4 +37,4 @@ CTAutocomplete also comes with a JSON schema for the metadata.json file. To use 
 
 # Issues
 
-I can 100% personally guarantee there are issues with these typings, it is important to keep in mind this project is still very much a work in progress and there are many things I intend to keep working on. That being said, if you find any issues or have any suggestion I can be reached on discord at **maxssho13#5487**
+I can 100% personally guarantee there are issues with these typings, it is important to keep in mind this project is still very much a work in progress and there are many things I intend to keep working on. That being said, if you find any issues or have any suggestion I can be reached on discord at **maxssho13#5487** or you can open an issue or a PR on the [Github](https://github.com/Maxssho13/CTAutocomplete) page.
