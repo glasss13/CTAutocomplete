@@ -41,12 +41,21 @@ declare global {
 
     desc(returnType: string, ...args: string[]): string;
 
-    injectBuilder(className: string, methodName: string, descriptor: string, at: InjectionPoint): InjectBuilder;
+    injectBuilder(
+      className: string,
+      methodName: string,
+      descriptor: string,
+      at: InjectionPoint
+    ): InjectBuilder;
   }
 }
 
 declare interface AtHelper {
-  (injectionPoint: InjectionPoint, before?: boolean, shift?: number): InjectionPoint;
+  (
+    injectionPoint: InjectionPoint,
+    before?: boolean,
+    shift?: number
+  ): InjectionPoint;
 
   HEAD: InjectionPoint["HEAD"];
   RETURN: InjectionPoint["RETURN"];
@@ -68,7 +77,7 @@ declare enum JumpCondition {
   NON_NULL,
   GOTO,
   REFS_EQUAL,
-  REFS_NOT_EQUAL,
+  REFS_NOT_EQUAL
 }
 
 declare enum AccessType {
@@ -76,7 +85,7 @@ declare enum AccessType {
   PUBLIC,
   PROTECTED,
   STATIC,
-  FINAL,
+  FINAL
 }
 
 declare class InjectionPoint {
@@ -124,7 +133,12 @@ declare class Descriptor {
 }
 
 declare class InjectBuilder {
-  constructor(className: string, methodName: string, descriptor: string, at: InjectionPoint);
+  constructor(
+    className: string,
+    methodName: string,
+    descriptor: string,
+    at: InjectionPoint
+  );
 
   methodMaps(obj: object): InjectBuilder;
 
@@ -476,7 +490,11 @@ declare class WrappedInsnListBuilder {
   /**
    * Creates a new array of size #size and class #className
    */
-  array(size: number, className: string, code: ($: ArrayBuilder) => void): WrappedInsnListBuilder;
+  array(
+    size: number,
+    className: string,
+    code: ($: ArrayBuilder) => void
+  ): WrappedInsnListBuilder;
 
   /**
    * Gets an instance of a Kotlin Object.
@@ -489,7 +507,12 @@ declare class WrappedInsnListBuilder {
    * Behind the scenes, this produces bytecode that gets the Object instance, and
    * then calls the method.
    */
-  invokeKObjectFunction(objectClassName: string, methodName: string, methodDesc: string, arguments?: ($: WrappedInsnListBuilder) => void): WrappedInsnListBuilder;
+  invokeKObjectFunction(
+    objectClassName: string,
+    methodName: string,
+    methodDesc: string,
+    arguments?: ($: WrappedInsnListBuilder) => void
+  ): WrappedInsnListBuilder;
 
   /**
    * An abstraction over iconst, bipush, sipush, and ldc, picking the best one
@@ -528,18 +551,26 @@ declare class WrappedInsnListBuilder {
    *
    * NOTE: code completion will not be fully correct here due to limitation with rest parameters
    */
-  ifClause(conditions: JumpCondition, code: ($: WrappedInsnListBuilder) => void): WrappedInsnListBuilder;
+  ifClause(
+    conditions: JumpCondition[],
+    code: ($: WrappedInsnListBuilder) => void
+  ): WrappedInsnListBuilder;
 
   /**
    * A helper function to create a new instance of a class.
    *
    * This is simply a helper wrapper around the sequence of calls necessary to create a new object (new, dup, invokespecial)
    */
-  createInstance(className: string, constructorDescription: string, parameters: ($: WrappedInsnListBuilder) => void): WrappedInsnListBuilder;
-  /**
-   * NOTE: code completion will not be fully correct here due to limitation with rest parameters
-   */
-  ifElseClause(conditions: JumpCondition, builder: ($: IfElseBuilder) => void): WrappedInsnListBuilder;
+  createInstance(
+    className: string,
+    constructorDescription: string,
+    parameters: ($: WrappedInsnListBuilder) => void
+  ): WrappedInsnListBuilder;
+
+  ifElseClause(
+    conditions: JumpCondition[],
+    builder: ($: IfElseBuilder) => void
+  ): WrappedInsnListBuilder;
   /**
    * Get a static field value of a class, where the field is
    * identified by field reference in the constant pool index
@@ -575,35 +606,80 @@ declare class WrappedInsnListBuilder {
   /**
    * Wrapper over field methods, however it appears the enum FieldAction is never exposed so this function seems useless
    */
-  field(action: FieldAction, owner: string, name: string, desc: string): WrappedInsnListBuilder;
+  field(
+    action: FieldAction,
+    owner: string,
+    name: string,
+    desc: string
+  ): WrappedInsnListBuilder;
 
   getLocalField(descriptor: Descriptor): WrappedInsnListBuilder;
 
-  updateLocalField(descriptor: Descriptor, updater: ($: WrappedInsnListBuilder) => void): WrappedInsnListBuilder;
+  updateLocalField(
+    descriptor: Descriptor,
+    updater: ($: WrappedInsnListBuilder) => void
+  ): WrappedInsnListBuilder;
 
-  setLocalField(descriptor: Descriptor, newValue: ($: WrappedInsnListBuilder) => void): WrappedInsnListBuilder;
+  setLocalField(
+    descriptor: Descriptor,
+    newValue: ($: WrappedInsnListBuilder) => void
+  ): WrappedInsnListBuilder;
 
-  getLocalField(owner: string, name: string, desc: string): WrappedInsnListBuilder;
+  getLocalField(
+    owner: string,
+    name: string,
+    desc: string
+  ): WrappedInsnListBuilder;
 
-  updateLocalField(owner: string, name: string, desc: string, updater: ($: WrappedInsnListBuilder) => void): WrappedInsnListBuilder;
+  updateLocalField(
+    owner: string,
+    name: string,
+    desc: string,
+    updater: ($: WrappedInsnListBuilder) => void
+  ): WrappedInsnListBuilder;
 
-  setLocalField(owner: string, name: string, desc: string, newValue: ($: WrappedInsnListBuilder) => void): WrappedInsnListBuilder;
+  setLocalField(
+    owner: string,
+    name: string,
+    desc: string,
+    newValue: ($: WrappedInsnListBuilder) => void
+  ): WrappedInsnListBuilder;
   /**
    * Invoke a static method and puts the result on the stack (might be void); the method is identified by method reference index in constant pool (indexbyte1 << 8 | indexbyte2) In the case of ASMHelper the method is identified by the descriptor
    */
-  invokeStatic(owner: string, name: string, desc: string, arguments?: ($: WrappedInsnListBuilder) => void): WrappedInsnListBuilder;
+  invokeStatic(
+    owner: string,
+    name: string,
+    desc: string,
+    arguments?: ($: WrappedInsnListBuilder) => void
+  ): WrappedInsnListBuilder;
   /**
    * Invoke virtual method on object objectref and puts the result on the stack (might be void); the method is identified by method reference index in constant pool (indexbyte1 << 8 | indexbyte2) In the case of ASMHelper the method is identified by the descriptor
    */
-  invokeVirtual(owner: string, name: string, desc: string, arguments?: ($: WrappedInsnListBuilder) => void): WrappedInsnListBuilder;
+  invokeVirtual(
+    owner: string,
+    name: string,
+    desc: string,
+    arguments?: ($: WrappedInsnListBuilder) => void
+  ): WrappedInsnListBuilder;
   /**
    * Invoke instance method on object objectref and puts the result on the stack (might be void); the method is identified by method reference index in constant pool (indexbyte1 << 8 | indexbyte2) In the case of ASMHelper the method is identified by the descriptor
    */
-  invokeSpecial(owner: string, name: string, desc: string, arguments: ($: WrappedInsnListBuilder) => void): WrappedInsnListBuilder;
+  invokeSpecial(
+    owner: string,
+    name: string,
+    desc: string,
+    arguments: ($: WrappedInsnListBuilder) => void
+  ): WrappedInsnListBuilder;
   /**
    * Invokes an interface method on object objectref and puts the result on the stack (might be void); the interface method is identified by method reference index in constant pool (indexbyte1 << 8 | indexbyte2)In the case of ASMHelper the method is identified by the descriptor
    */
-  invokeInterface(owner: string, name: string, desc: string, arguments?: ($: WrappedInsnListBuilder) => void): WrappedInsnListBuilder;
+  invokeInterface(
+    owner: string,
+    name: string,
+    desc: string,
+    arguments?: ($: WrappedInsnListBuilder) => void
+  ): WrappedInsnListBuilder;
 
   /**
    * Calls a specified method.
@@ -612,13 +688,24 @@ declare class WrappedInsnListBuilder {
    * @param name the name of the method to call.
    * @param desc the method's signature. Ex. (F)Lnet/minecraft/util/Vec3;
    */
-  invoke(type: InvokeType, owner: string, name: string, desc: string, arguments?: ($: WrappedInsnListBuilder) => void): WrappedInsnListBuilder;
+  invoke(
+    type: InvokeType,
+    owner: string,
+    name: string,
+    desc: string,
+    arguments?: ($: WrappedInsnListBuilder) => void
+  ): WrappedInsnListBuilder;
 
   indyHandle(type: number, owner: string, name: string, desc: string): Handle;
   /**
    * Invokes a dynamic method and puts the result on the stack (might be void); the method is identified by method reference index in constant pool (indexbyte1 << 8 | indexbyte2) In the case of ASMHelper the method is identified by the descriptor
    */
-  invokeDynamic(name: string, desc: string, handle: Handle, ...bootstrapArgs: any[]): WrappedInsnListBuilder;
+  invokeDynamic(
+    name: string,
+    desc: string,
+    handle: Handle,
+    ...bootstrapArgs: any[]
+  ): WrappedInsnListBuilder;
   /**
    * store a reference value into the first available local variable
    */
@@ -665,14 +752,14 @@ declare enum FieldAction {
   GET_STATIC,
   PUT_STATIC,
   GET_FIELD,
-  PUT_FIELD,
+  PUT_FIELD
 }
 
 declare enum InvokeType {
   VIRTUAL,
   SPECIAL,
   STATIC,
-  INTERFACE,
+  INTERFACE
 }
 /**
  * A reference to a field or a method.
@@ -795,5 +882,5 @@ declare enum LocalType {
   FLOAT,
   INT,
   DOUBLE,
-  LONG,
+  LONG
 }

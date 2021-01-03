@@ -16,7 +16,20 @@ declare global {
   const ChatTriggers: Reference;
   const console: console;
 
-  function cancel(event: CancellableEvent | ForgeBlockEvent | ForgeClientChatReceivedEvent | ForgeDrawBlockHighlightEvent | ForgeEntityItemPickupEvent | ForgeGuiOpenEvent | ForgeNoteBlockEvent | ForgePlaySoundEvent | ForgePlayerInteractEvent | ForgeRenderGameOverlayEvent): void;
+  function cancel(
+    event:
+      | CancellableEvent
+      | ForgeBlockEvent
+      | (string | ForgeClientChatReceivedEvent)
+      | ForgeClientChatReceivedEvent
+      | ForgeDrawBlockHighlightEvent
+      | ForgeEntityItemPickupEvent
+      | ForgeGuiOpenEvent
+      | ForgeNoteBlockEvent
+      | ForgePlaySoundEvent
+      | ForgePlayerInteractEvent
+      | ForgeRenderGameOverlayEvent
+  ): void;
   // extend prototype
   interface String {
     addFormatting(): string;
@@ -860,8 +873,88 @@ declare global {
     getXPProgress(): float;
     static getXPProgress(): float;
 
-    getBiome(): "Ocean" | "Plains" | "Desert" | "Extreme Hills" | "Forest" | "Taiga" | "Swampland" | "River" | "Hell" | "The End" | "FrozenOcean" | "FrozenRiver" | "Ice Plains" | "Ice Mountains" | "MushroomIsland" | "MushroomIslandShore" | "Beach" | "DesertHills" | "ForestHills" | "TaigaHills" | "Extreme Hills Edge" | "Jungle" | "JungleHills" | "JungleEdge" | "Deep Ocean" | "Stone Beach" | "Cold Beach" | "Birch Forest" | "Birch Forest Hills" | "Roofed Forest" | "Cold Taiga" | "Cold Taiga Hills" | "Mega Taiga" | "Mega Taiga Hills" | "Extreme Hills+" | "Savanna" | "Savanna Plateau" | "Mesa" | "Mesa Plateau F" | "Mesa Plateau";
-    static getBiome(): "Ocean" | "Plains" | "Desert" | "Extreme Hills" | "Forest" | "Taiga" | "Swampland" | "River" | "Hell" | "The End" | "FrozenOcean" | "FrozenRiver" | "Ice Plains" | "Ice Mountains" | "MushroomIsland" | "MushroomIslandShore" | "Beach" | "DesertHills" | "ForestHills" | "TaigaHills" | "Extreme Hills Edge" | "Jungle" | "JungleHills" | "JungleEdge" | "Deep Ocean" | "Stone Beach" | "Cold Beach" | "Birch Forest" | "Birch Forest Hills" | "Roofed Forest" | "Cold Taiga" | "Cold Taiga Hills" | "Mega Taiga" | "Mega Taiga Hills" | "Extreme Hills+" | "Savanna" | "Savanna Plateau" | "Mesa" | "Mesa Plateau F" | "Mesa Plateau";
+    getBiome():
+      | "Ocean"
+      | "Plains"
+      | "Desert"
+      | "Extreme Hills"
+      | "Forest"
+      | "Taiga"
+      | "Swampland"
+      | "River"
+      | "Hell"
+      | "The End"
+      | "FrozenOcean"
+      | "FrozenRiver"
+      | "Ice Plains"
+      | "Ice Mountains"
+      | "MushroomIsland"
+      | "MushroomIslandShore"
+      | "Beach"
+      | "DesertHills"
+      | "ForestHills"
+      | "TaigaHills"
+      | "Extreme Hills Edge"
+      | "Jungle"
+      | "JungleHills"
+      | "JungleEdge"
+      | "Deep Ocean"
+      | "Stone Beach"
+      | "Cold Beach"
+      | "Birch Forest"
+      | "Birch Forest Hills"
+      | "Roofed Forest"
+      | "Cold Taiga"
+      | "Cold Taiga Hills"
+      | "Mega Taiga"
+      | "Mega Taiga Hills"
+      | "Extreme Hills+"
+      | "Savanna"
+      | "Savanna Plateau"
+      | "Mesa"
+      | "Mesa Plateau F"
+      | "Mesa Plateau";
+    static getBiome():
+      | "Ocean"
+      | "Plains"
+      | "Desert"
+      | "Extreme Hills"
+      | "Forest"
+      | "Taiga"
+      | "Swampland"
+      | "River"
+      | "Hell"
+      | "The End"
+      | "FrozenOcean"
+      | "FrozenRiver"
+      | "Ice Plains"
+      | "Ice Mountains"
+      | "MushroomIsland"
+      | "MushroomIslandShore"
+      | "Beach"
+      | "DesertHills"
+      | "ForestHills"
+      | "TaigaHills"
+      | "Extreme Hills Edge"
+      | "Jungle"
+      | "JungleHills"
+      | "JungleEdge"
+      | "Deep Ocean"
+      | "Stone Beach"
+      | "Cold Beach"
+      | "Birch Forest"
+      | "Birch Forest Hills"
+      | "Roofed Forest"
+      | "Cold Taiga"
+      | "Cold Taiga Hills"
+      | "Mega Taiga"
+      | "Mega Taiga Hills"
+      | "Extreme Hills+"
+      | "Savanna"
+      | "Savanna Plateau"
+      | "Mesa"
+      | "Mesa Plateau F"
+      | "Mesa Plateau";
 
     /**
      * Gets the light level at the player's current position.
@@ -1043,6 +1136,10 @@ declare global {
     }
   }
 
+  interface testSound {
+    (name: "ambient.cave.cave", volume: number, pitch: number): void;
+  }
+
   class World {
     readonly INSTANCE: World;
     /**
@@ -1060,7 +1157,6 @@ declare global {
 
     isLoaded(): boolean;
     static isLoaded(): boolean;
-
     /**
      * Play a sound at the player location.
      *
@@ -1068,15 +1164,253 @@ declare global {
      * @param volume the volume of the sound
      * @param pitch  the pitch of the sound
      */
-    playSound(name: string, volume: float, pitch: float): void;
-    /**
-     * Play a sound at the player location.
-     *
-     * @param name   the name of the sound
-     * @param volume the volume of the sound
-     * @param pitch  the pitch of the sound
-     */
-    static playSound(name: string, volume: float, pitch: float): void;
+    static playSound(name: string, volume: number, pitch: number): void;
+    static playSound(name: "ambient.cave.cave", volume: number, pitch: number): void;
+    static playSound(name: "ambient.weather.rain", volume: number, pitch: number): void;
+    static playSound(name: "ambient.weather.thunder", volume: number, pitch: number): void;
+    static playSound(name: "game.player.hurt.fall.big", volume: number, pitch: number): void;
+    static playSound(name: "game.neutral.hurt.fall.big", volume: number, pitch: number): void;
+    static playSound(name: "game.hostile.hurt.fall.big", volume: number, pitch: number): void;
+    static playSound(name: "game.player.hurt.fall.small", volume: number, pitch: number): void;
+    static playSound(name: "game.neutral.hurt.fall.small", volume: number, pitch: number): void;
+    static playSound(name: "game.hostile.hurt.fall.small", volume: number, pitch: number): void;
+    static playSound(name: "game.player.hurt", volume: number, pitch: number): void;
+    static playSound(name: "game.neutral.hurt", volume: number, pitch: number): void;
+    static playSound(name: "game.hostile.hurt", volume: number, pitch: number): void;
+    static playSound(name: "game.player.die", volume: number, pitch: number): void;
+    static playSound(name: "game.neutral.die", volume: number, pitch: number): void;
+    static playSound(name: "game.hostile.die", volume: number, pitch: number): void;
+    static playSound(name: "dig.cloth", volume: number, pitch: number): void;
+    static playSound(name: "dig.glass", volume: number, pitch: number): void;
+    static playSound(name: "game.potion.smash", volume: number, pitch: number): void;
+    static playSound(name: "dig.grass", volume: number, pitch: number): void;
+    static playSound(name: "dig.gravel", volume: number, pitch: number): void;
+    static playSound(name: "dig.sand", volume: number, pitch: number): void;
+    static playSound(name: "dig.snow", volume: number, pitch: number): void;
+    static playSound(name: "dig.stone", volume: number, pitch: number): void;
+    static playSound(name: "dig.wood", volume: number, pitch: number): void;
+    static playSound(name: "fire.fire", volume: number, pitch: number): void;
+    static playSound(name: "fire.ignite", volume: number, pitch: number): void;
+    static playSound(name: "item.fireCharge.use", volume: number, pitch: number): void;
+    static playSound(name: "fireworks.blast", volume: number, pitch: number): void;
+    static playSound(name: "fireworks.blast_far", volume: number, pitch: number): void;
+    static playSound(name: "fireworks.largeBlast", volume: number, pitch: number): void;
+    static playSound(name: "fireworks.largeBlast_far", volume: number, pitch: number): void;
+    static playSound(name: "fireworks.launch", volume: number, pitch: number): void;
+    static playSound(name: "fireworks.twinkle", volume: number, pitch: number): void;
+    static playSound(name: "fireworks.twinkle_far", volume: number, pitch: number): void;
+    static playSound(name: "game.player.swim.splash", volume: number, pitch: number): void;
+    static playSound(name: "game.neutral.swim.splash", volume: number, pitch: number): void;
+    static playSound(name: "game.hostile.swim.splash", volume: number, pitch: number): void;
+    static playSound(name: "game.player.swim", volume: number, pitch: number): void;
+    static playSound(name: "game.neutral.swim", volume: number, pitch: number): void;
+    static playSound(name: "game.hostile.swim", volume: number, pitch: number): void;
+    static playSound(name: "liquid.lava", volume: number, pitch: number): void;
+    static playSound(name: "liquid.lavapop", volume: number, pitch: number): void;
+    static playSound(name: "liquid.water", volume: number, pitch: number): void;
+    static playSound(name: "minecart.base", volume: number, pitch: number): void;
+    static playSound(name: "minecart.inside", volume: number, pitch: number): void;
+    static playSound(name: "note.bass", volume: number, pitch: number): void;
+    static playSound(name: "note.bassattack", volume: number, pitch: number): void;
+    static playSound(name: "note.bd", volume: number, pitch: number): void;
+    static playSound(name: "note.harp", volume: number, pitch: number): void;
+    static playSound(name: "note.hat", volume: number, pitch: number): void;
+    static playSound(name: "note.pling", volume: number, pitch: number): void;
+    static playSound(name: "note.snare", volume: number, pitch: number): void;
+    static playSound(name: "portal.portal", volume: number, pitch: number): void;
+    static playSound(name: "portal.travel", volume: number, pitch: number): void;
+    static playSound(name: "portal.trigger", volume: number, pitch: number): void;
+    static playSound(name: "random.anvil_break", volume: number, pitch: number): void;
+    static playSound(name: "random.anvil_land", volume: number, pitch: number): void;
+    static playSound(name: "random.anvil_use", volume: number, pitch: number): void;
+    static playSound(name: "random.bow", volume: number, pitch: number): void;
+    static playSound(name: "random.bowhit", volume: number, pitch: number): void;
+    static playSound(name: "random.break", volume: number, pitch: number): void;
+    static playSound(name: "random.burp", volume: number, pitch: number): void;
+    static playSound(name: "random.chestclosed", volume: number, pitch: number): void;
+    static playSound(name: "random.chestopen", volume: number, pitch: number): void;
+    static playSound(name: "gui.button.press", volume: number, pitch: number): void;
+    static playSound(name: "random.click", volume: number, pitch: number): void;
+    static playSound(name: "random.door_open", volume: number, pitch: number): void;
+    static playSound(name: "random.door_close", volume: number, pitch: number): void;
+    static playSound(name: "random.drink", volume: number, pitch: number): void;
+    static playSound(name: "random.eat", volume: number, pitch: number): void;
+    static playSound(name: "random.explode", volume: number, pitch: number): void;
+    static playSound(name: "random.fizz", volume: number, pitch: number): void;
+    static playSound(name: "game.tnt.primed", volume: number, pitch: number): void;
+    static playSound(name: "creeper.primed", volume: number, pitch: number): void;
+    static playSound(name: "random.levelup", volume: number, pitch: number): void;
+    static playSound(name: "random.orb", volume: number, pitch: number): void;
+    static playSound(name: "random.pop", volume: number, pitch: number): void;
+    static playSound(name: "random.splash", volume: number, pitch: number): void;
+    static playSound(name: "random.successful_hit", volume: number, pitch: number): void;
+    static playSound(name: "random.wood_click", volume: number, pitch: number): void;
+    static playSound(name: "step.cloth", volume: number, pitch: number): void;
+    static playSound(name: "step.grass", volume: number, pitch: number): void;
+    static playSound(name: "step.gravel", volume: number, pitch: number): void;
+    static playSound(name: "step.ladder", volume: number, pitch: number): void;
+    static playSound(name: "step.sand", volume: number, pitch: number): void;
+    static playSound(name: "step.snow", volume: number, pitch: number): void;
+    static playSound(name: "step.stone", volume: number, pitch: number): void;
+    static playSound(name: "step.wood", volume: number, pitch: number): void;
+    static playSound(name: "tile.piston.in", volume: number, pitch: number): void;
+    static playSound(name: "tile.piston.out", volume: number, pitch: number): void;
+    static playSound(name: "mob.bat.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.bat.hurt", volume: number, pitch: number): void;
+    static playSound(name: "mob.bat.idle", volume: number, pitch: number): void;
+    static playSound(name: "mob.bat.loop", volume: number, pitch: number): void;
+    static playSound(name: "mob.bat.takeoff", volume: number, pitch: number): void;
+    static playSound(name: "mob.blaze.breathe", volume: number, pitch: number): void;
+    static playSound(name: "mob.blaze.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.blaze.hit", volume: number, pitch: number): void;
+    static playSound(name: "mob.cat.hiss", volume: number, pitch: number): void;
+    static playSound(name: "mob.cat.hitt", volume: number, pitch: number): void;
+    static playSound(name: "mob.cat.meow", volume: number, pitch: number): void;
+    static playSound(name: "mob.cat.purr", volume: number, pitch: number): void;
+    static playSound(name: "mob.cat.purreow", volume: number, pitch: number): void;
+    static playSound(name: "mob.chicken.hurt", volume: number, pitch: number): void;
+    static playSound(name: "mob.chicken.plop", volume: number, pitch: number): void;
+    static playSound(name: "mob.chicken.say", volume: number, pitch: number): void;
+    static playSound(name: "mob.chicken.step", volume: number, pitch: number): void;
+    static playSound(name: "mob.cow.hurt", volume: number, pitch: number): void;
+    static playSound(name: "mob.cow.say", volume: number, pitch: number): void;
+    static playSound(name: "mob.cow.step", volume: number, pitch: number): void;
+    static playSound(name: "mob.creeper.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.creeper.say", volume: number, pitch: number): void;
+    static playSound(name: "mob.enderdragon.end", volume: number, pitch: number): void;
+    static playSound(name: "mob.enderdragon.growl", volume: number, pitch: number): void;
+    static playSound(name: "mob.enderdragon.hit", volume: number, pitch: number): void;
+    static playSound(name: "mob.enderdragon.wings", volume: number, pitch: number): void;
+    static playSound(name: "mob.endermen.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.endermen.hit", volume: number, pitch: number): void;
+    static playSound(name: "mob.endermen.idle", volume: number, pitch: number): void;
+    static playSound(name: "mob.endermen.portal", volume: number, pitch: number): void;
+    static playSound(name: "mob.endermen.scream", volume: number, pitch: number): void;
+    static playSound(name: "mob.endermen.stare", volume: number, pitch: number): void;
+    static playSound(name: "mob.ghast.affectionate_scream", volume: number, pitch: number): void;
+    static playSound(name: "mob.ghast.charge", volume: number, pitch: number): void;
+    static playSound(name: "mob.ghast.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.ghast.fireball", volume: number, pitch: number): void;
+    static playSound(name: "mob.ghast.moan", volume: number, pitch: number): void;
+    static playSound(name: "mob.ghast.scream", volume: number, pitch: number): void;
+    static playSound(name: "mob.guardian.hit", volume: number, pitch: number): void;
+    static playSound(name: "mob.guardian.idle", volume: number, pitch: number): void;
+    static playSound(name: "mob.guardian.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.guardian.elder.hit", volume: number, pitch: number): void;
+    static playSound(name: "mob.guardian.elder.idle", volume: number, pitch: number): void;
+    static playSound(name: "mob.guardian.elder.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.guardian.land.hit", volume: number, pitch: number): void;
+    static playSound(name: "mob.guardian.land.idle", volume: number, pitch: number): void;
+    static playSound(name: "mob.guardian.land.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.guardian.curse", volume: number, pitch: number): void;
+    static playSound(name: "mob.guardian.attack", volume: number, pitch: number): void;
+    static playSound(name: "mob.guardian.flop", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.angry", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.armor", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.breathe", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.donkey.angry", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.donkey.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.donkey.hit", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.donkey.idle", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.gallop", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.hit", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.idle", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.jump", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.land", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.leather", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.skeleton.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.skeleton.hit", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.skeleton.idle", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.soft", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.wood", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.zombie.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.zombie.hit", volume: number, pitch: number): void;
+    static playSound(name: "mob.horse.zombie.idle", volume: number, pitch: number): void;
+    static playSound(name: "mob.irongolem.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.irongolem.hit", volume: number, pitch: number): void;
+    static playSound(name: "mob.irongolem.throw", volume: number, pitch: number): void;
+    static playSound(name: "mob.irongolem.walk", volume: number, pitch: number): void;
+    static playSound(name: "mob.magmacube.big", volume: number, pitch: number): void;
+    static playSound(name: "mob.magmacube.jump", volume: number, pitch: number): void;
+    static playSound(name: "mob.magmacube.small", volume: number, pitch: number): void;
+    static playSound(name: "mob.pig.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.pig.say", volume: number, pitch: number): void;
+    static playSound(name: "mob.pig.step", volume: number, pitch: number): void;
+    static playSound(name: "mob.rabbit.hurt", volume: number, pitch: number): void;
+    static playSound(name: "mob.rabbit.idle", volume: number, pitch: number): void;
+    static playSound(name: "mob.rabbit.hop", volume: number, pitch: number): void;
+    static playSound(name: "mob.rabbit.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.sheep.say", volume: number, pitch: number): void;
+    static playSound(name: "mob.sheep.shear", volume: number, pitch: number): void;
+    static playSound(name: "mob.sheep.step", volume: number, pitch: number): void;
+    static playSound(name: "mob.silverfish.hit", volume: number, pitch: number): void;
+    static playSound(name: "mob.silverfish.kill", volume: number, pitch: number): void;
+    static playSound(name: "mob.silverfish.say", volume: number, pitch: number): void;
+    static playSound(name: "mob.silverfish.step", volume: number, pitch: number): void;
+    static playSound(name: "mob.skeleton.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.skeleton.hurt", volume: number, pitch: number): void;
+    static playSound(name: "mob.skeleton.say", volume: number, pitch: number): void;
+    static playSound(name: "mob.skeleton.step", volume: number, pitch: number): void;
+    static playSound(name: "mob.slime.attack", volume: number, pitch: number): void;
+    static playSound(name: "mob.slime.big", volume: number, pitch: number): void;
+    static playSound(name: "mob.slime.small", volume: number, pitch: number): void;
+    static playSound(name: "mob.spider.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.spider.say", volume: number, pitch: number): void;
+    static playSound(name: "mob.spider.step", volume: number, pitch: number): void;
+    static playSound(name: "mob.villager.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.villager.haggle", volume: number, pitch: number): void;
+    static playSound(name: "mob.villager.hit", volume: number, pitch: number): void;
+    static playSound(name: "mob.villager.idle", volume: number, pitch: number): void;
+    static playSound(name: "mob.villager.no", volume: number, pitch: number): void;
+    static playSound(name: "mob.villager.yes", volume: number, pitch: number): void;
+    static playSound(name: "mob.wither.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.wither.hurt", volume: number, pitch: number): void;
+    static playSound(name: "mob.wither.idle", volume: number, pitch: number): void;
+    static playSound(name: "mob.wither.shoot", volume: number, pitch: number): void;
+    static playSound(name: "mob.wither.spawn", volume: number, pitch: number): void;
+    static playSound(name: "mob.wolf.bark", volume: number, pitch: number): void;
+    static playSound(name: "mob.wolf.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.wolf.growl", volume: number, pitch: number): void;
+    static playSound(name: "mob.wolf.howl", volume: number, pitch: number): void;
+    static playSound(name: "mob.wolf.hurt", volume: number, pitch: number): void;
+    static playSound(name: "mob.wolf.panting", volume: number, pitch: number): void;
+    static playSound(name: "mob.wolf.shake", volume: number, pitch: number): void;
+    static playSound(name: "mob.wolf.step", volume: number, pitch: number): void;
+    static playSound(name: "mob.wolf.whine", volume: number, pitch: number): void;
+    static playSound(name: "mob.zombie.death", volume: number, pitch: number): void;
+    static playSound(name: "mob.zombie.hurt", volume: number, pitch: number): void;
+    static playSound(name: "mob.zombie.infect", volume: number, pitch: number): void;
+    static playSound(name: "mob.zombie.metal", volume: number, pitch: number): void;
+    static playSound(name: "mob.zombie.remedy", volume: number, pitch: number): void;
+    static playSound(name: "mob.zombie.say", volume: number, pitch: number): void;
+    static playSound(name: "mob.zombie.step", volume: number, pitch: number): void;
+    static playSound(name: "mob.zombie.unfect", volume: number, pitch: number): void;
+    static playSound(name: "mob.zombie.wood", volume: number, pitch: number): void;
+    static playSound(name: "mob.zombie.woodbreak", volume: number, pitch: number): void;
+    static playSound(name: "mob.zombiepig.zpig", volume: number, pitch: number): void;
+    static playSound(name: "mob.zombiepig.zpigangry", volume: number, pitch: number): void;
+    static playSound(name: "mob.zombiepig.zpigdeath", volume: number, pitch: number): void;
+    static playSound(name: "mob.zombiepig.zpighurt", volume: number, pitch: number): void;
+    static playSound(name: "records.11", volume: number, pitch: number): void;
+    static playSound(name: "records.13", volume: number, pitch: number): void;
+    static playSound(name: "records.blocks", volume: number, pitch: number): void;
+    static playSound(name: "records.cat", volume: number, pitch: number): void;
+    static playSound(name: "records.chirp", volume: number, pitch: number): void;
+    static playSound(name: "records.far", volume: number, pitch: number): void;
+    static playSound(name: "records.mall", volume: number, pitch: number): void;
+    static playSound(name: "records.mellohi", volume: number, pitch: number): void;
+    static playSound(name: "records.stal", volume: number, pitch: number): void;
+    static playSound(name: "records.strad", volume: number, pitch: number): void;
+    static playSound(name: "records.wait", volume: number, pitch: number): void;
+    static playSound(name: "records.ward", volume: number, pitch: number): void;
+    static playSound(name: "music.menu", volume: number, pitch: number): void;
+    static playSound(name: "music.game", volume: number, pitch: number): void;
+    static playSound(name: "music.game.creative", volume: number, pitch: number): void;
+    static playSound(name: "music.game.end", volume: number, pitch: number): void;
+    static playSound(name: "music.game.end.dragon", volume: number, pitch: number): void;
+    static playSound(name: "music.game.end.credits", volume: number, pitch: number): void;
+    static playSound(name: "music.game.nether", volume: number, pitch: number): void;
 
     /**
      * Play a record at location x, y, and z.<br></br>
@@ -2899,14 +3233,13 @@ declare global {
      * Creates a new Message object in parts of TextComponents or Strings.
      * @param messageParts the list of TextComponents or Strings
      */
-    constructor(messageParts: any[]);
+    constructor(messageParts: (string | TextComponent | Item)[]);
 
     /**
      * Creates a new Message object in parts of TextComponents or Strings.
      * @param components the TextComponents or Strings
      */
-    constructor(...components: any[]);
-
+    constructor(...components: string[] | TextComponent[] | Item[]);
     /**
      * @return the parsed message as an ITextComponent
      */
@@ -4521,6 +4854,8 @@ declare interface Java {
 // obfuscated classes //
 ////////////////////////
 //#region
+
+// TODO probalby should be extending from base object, need to fix issue with static members
 declare class MCBlock {
   class: JavaClass<MCBlock>;
   static class: JavaClass<typeof MCBlock>;
@@ -6533,7 +6868,21 @@ declare class Config {
 
   consoleFontSize: string;
 
-  consoleTheme: "default.dark" | "ashes.dark" | "atelierforest.dark" | "isotope.dark" | "codeschool.dark" | "gotham" | "hybrid" | "3024.light" | "chalk.light" | "blue" | "slate" | "red" | "green" | "aids";
+  consoleTheme:
+    | "default.dark"
+    | "ashes.dark"
+    | "atelierforest.dark"
+    | "isotope.dark"
+    | "codeschool.dark"
+    | "gotham"
+    | "hybrid"
+    | "3024.light"
+    | "chalk.light"
+    | "blue"
+    | "slate"
+    | "red"
+    | "green"
+    | "aids";
 
   consoleForegroundColor: JavaColor;
 
@@ -7318,7 +7667,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerSoundPlay(method: (position: Vector3f, name: string, vol: float, pitch: float, category: MCSoundCategory, event: ForgePlaySoundEvent) => void): OnSoundPlayTrigger;
+  registerSoundPlay(
+    method: (position: Vector3f, name: string, vol: float, pitch: float, category: MCSoundCategory, event: ForgePlaySoundEvent) => void
+  ): OnSoundPlayTrigger;
   /**
    * Registers a new trigger that runs before a noteblock is played.
    *
@@ -7334,7 +7685,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerNoteBlockPlay(method: (position: Vector3f, name: string, octave: ForgeNoteBlockEvent.Octave, event: ForgeNoteBlockEvent.Play) => void): OnRegularTrigger;
+  registerNoteBlockPlay(
+    method: (position: Vector3f, name: string, octave: ForgeNoteBlockEvent.Octave, event: ForgeNoteBlockEvent.Play) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before a noteblock is changed.
    *
@@ -7350,7 +7703,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerNoteBlockChange(method: (position: Vector3f, name: string, octave: ForgeNoteBlockEvent.Octave, event: ForgeNoteBlockEvent.Change) => void): OnRegularTrigger;
+  registerNoteBlockChange(
+    method: (position: Vector3f, name: string, octave: ForgeNoteBlockEvent.Octave, event: ForgeNoteBlockEvent.Change) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before every game tick.
    *
@@ -8154,7 +8509,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "soundPlay", method: (position: Vector3f, name: string, vol: float, pitch: float, category: MCSoundCategory, event: ForgePlaySoundEvent) => void): OnSoundPlayTrigger;
+  (
+    triggerType: "soundPlay",
+    method: (position: Vector3f, name: string, vol: float, pitch: float, category: MCSoundCategory, event: ForgePlaySoundEvent) => void
+  ): OnSoundPlayTrigger;
 
   /**
    * Registers a new trigger that runs before a noteblock is played.
@@ -8171,7 +8529,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "noteBlockPlay", method: (position: Vector3f, name: string, octave: ForgeNoteBlockEvent.Octave, event: ForgeNoteBlockEvent.Play) => void): OnRegularTrigger;
+  (
+    triggerType: "noteBlockPlay",
+    method: (position: Vector3f, name: string, octave: ForgeNoteBlockEvent.Octave, event: ForgeNoteBlockEvent.Play) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs before a noteblock is changed.
@@ -8188,7 +8549,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "noteBlockChange", method: (position: Vector3f, name: string, octave: ForgeNoteBlockEvent.Octave, event: ForgeNoteBlockEvent.Change) => void): OnRegularTrigger;
+  (
+    triggerType: "noteBlockChange",
+    method: (position: Vector3f, name: string, octave: ForgeNoteBlockEvent.Octave, event: ForgeNoteBlockEvent.Change) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs before every game tick.
@@ -8537,7 +8901,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "pickupItem", method: (item: Item, player: PlayerMP, position: Vector3f, motion: Vector3f, event: ForgeEntityItemPickupEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "pickupItem",
+    method: (item: Item, player: PlayerMP, position: Vector3f, motion: Vector3f, event: ForgeEntityItemPickupEvent) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs before an item is dropped.
@@ -8632,7 +8999,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "playerInteract", method: (action: ClientListener.PlayerInteractAction, position: Vector3f, event: ForgePlayerInteractEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "playerInteract",
+    method: (action: ClientListener.PlayerInteractAction, position: Vector3f, event: ForgePlayerInteractEvent) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs before the player breaks a block
