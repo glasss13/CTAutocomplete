@@ -5271,13 +5271,14 @@ declare class MCScore {
 // Java Classes //
 //////////////////
 //#region
-declare interface char extends Number {}
-declare interface short extends Number {}
-declare interface byte extends Number {}
-declare interface int extends Number {}
-declare interface float extends Number {}
-declare interface long extends Number {}
-declare interface double extends Number {}
+declare type char = number;
+declare type short = number;
+declare type byte = number;
+declare type int = number;
+declare type float = number;
+declare type long = number;
+declare type double = number;
+
 //TODO
 declare class JavaColor {}
 
