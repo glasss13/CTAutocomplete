@@ -53,6 +53,10 @@
         "type": "string"
       }
     },
+    "helpMessage": {
+      "description": "The chat message to be sent on import",
+      "type": "string"
+    },
     "ignored": {
       "description": "Appears to do nothing",
       "type": "array",
