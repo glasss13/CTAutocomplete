@@ -16,6 +16,79 @@ declare global {
   const ChatTriggers: Reference;
   const console: console;
 
+  // obfuscated type types
+  type MCTBlock = MCBlock;
+  type MCTBlockPos = MCBlockPos;
+  type MCTItem = MCItem;
+  type MCTItemStack = MCItemStack;
+  type MCTEntityItem = MCEntityItem;
+  type MCTIBlockState = MCIBlockState;
+  type MCTIInventory = MCIInventory;
+  type MCTContainer = MCContainer;
+  type MCTEntity = MCEntity;
+  type MCTIChatComponent = MCIChatComponent;
+  type MCTNBTBase = MCNBTBase;
+  type MCTNBTTagCompound = MCNBTTagCompound;
+  type MCTChunk = MCChunk;
+  type MCTEnumFacing = MCEnumFacing;
+  type MCTNBTTagList = MCNBTTagList;
+  type MCTMinecraft = MCMinecraft;
+  type MCTNetHandlerPlayClient = MCNetHandlerPlayClient;
+  type MCTGuiNewChat = MCGuiNewChat;
+  type MCTGuiPlayerTabOverlay = MCGuiPlayerTabOverlay;
+  type MCTINetHandler = MCINetHandler;
+  type MCTPacket<T extends MCINetHandler> = MCPacket<T>; 
+  type MCTGuiScreen = MCGuiScreen
+  type MCTGameSettings = MCGameSettings;
+  type MCTEntityPlayer = MCEntityPlayer;
+  type MCTEntityPlayerSP = MCEntityPlayerSP;
+  type MCTKeyBinding = MCKeyBinding;
+  type MCTGuiButton = MCGuiButton;
+  type MCTDynamicTexture = MCDynamicTexture;
+  type MCTAbstractTexture = MCAbstractTexture;
+  type MCTSoundCategory = MCSoundCategory;
+  type MCTPotionEffect = MCPotionEffect;
+  type MCTWorld = MCWorld;
+  type MCTEntityFX = MCEntityFX;
+  type MCTEnumParticleTypes = MCEnumParticleTypes;
+  type MCTFontRenderer = MCFontRenderer;
+  type MCTRenderManager = MCRenderManager;
+  type MCTEntityLivingBase = MCEntityLivingBase;
+  type MCTWorldClient = MCWorldClient;
+  type MCTScore = MCScore;
+  // forge paths
+  type ForgeTClientChatReceivedEvent = ForgeClientChatReceivedEvent;
+  type ForgeTRenderGameOverlayEvent = ForgeRenderGameOverlayEvent;
+  type ForgeTMouseEvent = ForgeMouseEvent;
+  type ForgeTPlaySoundEvent = ForgePlaySoundEvent;
+  type ForgeTConfigChangedEvent = ForgeConfigChangedEvent;
+  type ForgeTTickEvent = ForgeTickEvent;
+  type ForgeTNoteBlockEvent = ForgeNoteBlockEvent;
+  type ForgeTDrawBlockHighlightEvent = ForgeDrawBlockHighlightEvent;
+  type ForgeTGuiOpenEvent = ForgeGuiOpenEvent;
+  type ForgeTEntityItemPickupEvent = ForgeEntityItemPickupEvent;
+  type ForgeTPlayerInteractEvent = ForgePlayerInteractEvent;
+  type ForgeTGuiScreenEvent = ForgeGuiScreenEvent;
+  type ForgeTBlockEvent = ForgeBlockEvent;
+  // java paths
+  type JavaTUUID = JavaUUID;
+  type JavaTFile = JavaFile;
+  type JavaTPath = JavaPath;
+  type JavaTFileNameFilter = JavaFileNameFilter;
+  type JavaTClass<T> = JavaClass<T>;
+  type JavaTURL = JavaURL;
+  type JavaTURI = JavaURI;
+  type JavaTURLStreamHandlerFactory = JavaURLStreamHandlerFactory;
+  type JavaTInputStream = JavaInputStream;
+  type JavaTURLConnection = JavaURLConnection;
+  type JavaTProxy = JavaProxy;
+  type JavaTSocketAddress = JavaSocketAddress;
+  type JavaTURLStreamHandler = JavaURLStreamHandler;
+  type JavaTField = JavaField;
+  type JavaTMethod = JavaMethod;
+  type JavaTBufferedImage = JavaBufferedImage;
+  type JavaTColor = JavaColor;
+
   function cancel(
     event:
       | CancellableEvent
@@ -5280,7 +5353,267 @@ declare type long = number;
 declare type double = number;
 
 //TODO
-declare class JavaColor {}
+declare class JavaColor {
+  /**
+   * The color black.
+   */
+  static black: JavaColor;
+  /**
+   * The color black.
+   */
+  static BLACK: JavaColor;
+  /**
+   * The color blue.
+   */
+  static blue: JavaColor;
+  /**
+   * The color blue.
+   */
+  static BLUE: JavaColor;
+  /**
+   * The color cyan.
+   */
+  static cyan: JavaColor;
+  /**
+   * The color cyan.
+   */
+  static CYAN: JavaColor;
+  /**
+   * The color dark gray.
+   */
+  static darkGray: JavaColor;
+  /**
+   * The color dark gray.
+   */
+  static DARK_GRAY: JavaColor;
+  /**
+   * The color gray.
+   */
+  static gray: JavaColor;
+  /**
+   * The color gray.
+   */
+  static GRAY: JavaColor;
+  /**
+   * The color green.
+   */
+  static green: JavaColor;
+  /**
+   * The color green.
+   */
+  static GREEN: JavaColor;
+  /**
+   * The color light gray.
+   */
+  static LIGHT_GRAY: JavaColor;
+  /**
+   * The color light gray.
+   */
+  static lightGray: JavaColor;
+  /**
+   * The color magenta.
+   */
+  static magenta: JavaColor;
+  /**
+   * The color magenta.
+   */
+  static MAGENTA: JavaColor;
+  /**
+   * The color orange.
+   */
+  static orange: JavaColor;
+  /**
+   * The color orange.
+   */
+  static ORANGE: JavaColor;
+  /**
+   * The color pink.
+   */
+  static pink: JavaColor;
+  /**
+   * The color pink.
+   */
+  static PINK: JavaColor;
+  /**
+   * The color red.
+   */
+  static red: JavaColor;
+  /**
+   * The color red.
+   */
+  static RED: JavaColor;
+  /**
+   * The color white.
+   */
+  static white: JavaColor;
+  /**
+   * The color white.
+   */
+  static WHITE: JavaColor;
+  /**
+   * The color yellow.
+   */
+  static yellow: JavaColor;
+  /**
+   * The color yellow.
+   */
+  static YELLOW: JavaColor;
+
+  /**
+   * Creates a color in the specified ColorSpace with the color components specified in the float array and the specified alpha.
+   */
+  constructor(cspace: any, components: float[], alpha: float);
+  /**
+   * Creates an opaque sRGB color with the specified red, green, and blue values in the range (0.0 - 1.0).
+   */
+  constructor(r: float, g: float, b: float);
+  /**
+   * Creates an opaque sRGB color with the specified combined RGB value consisting of the red component in bits 16-23, the green component in bits 8-15, and the blue component in bits 0-7.
+   */
+  constructor(rgb: int);
+  /**
+   * Creates an sRGB color with the specified combined RGBA value consisting of the alpha component in bits 24-31, the red component in bits 16-23, the green component in bits 8-15, and the blue component in bits 0-7.
+   */
+  constructor(rgb: int, hasalpha: boolean);
+  /**
+   * Creates an opaque sRGB color with the specified red, green, and blue values in the range (0 - 255).
+   */
+  constructor(r: int, g: int, b: int);
+  /**
+   * Creates an sRGB color with the specified red, green, blue, and alpha values in the range (0 - 255).
+   */
+  constructor(r: int, g: int, b: int, a: int);
+
+  /**
+   * Creates a new Color that is a brighter version of this Color.
+   */
+  brighter(): JavaColor;
+
+  /**
+   * Creates and returns a PaintContext used to generate a solid color field pattern.
+   */
+  createContext(cm: any, r: any, r2d: any, xform: any, hints: any): any;
+
+  /**
+   * Creates a new Color that is a darker version of this Color.
+   */
+  darker(): JavaColor;
+
+  /**
+   * Converts a String to an integer and returns the specified opaque Color.
+   */
+  static decode(nm: string): JavaColor;
+
+  /**
+   * Determines whether another object is equal to this Color.
+   */
+  equals(obj: object): boolean;
+
+  /**
+   * Returns the alpha component in the range 0-255.
+   */
+  getAlpha(): int;
+
+  /**
+   * Returns the blue component in the range 0-255 in the default sRGB space.
+   */
+  getBlue(): int;
+
+  /**
+   * Finds a color in the system properties.
+   */
+  static getColor(nm: string): JavaColor;
+
+  /**
+   * Finds a color in the system properties.
+   */
+  static getColor(nm: string, v: JavaColor): JavaColor;
+
+  /**
+   * Finds a color in the system properties.
+   */
+  static getColor(nm: string, v: int): JavaColor;
+
+  /**
+   * Returns a float array containing only the color components of the Color in the ColorSpace specified by the cspace parameter.
+   */
+  getColorComponents(cspace: any, compArray: float[]): float[];
+
+  /**
+   * Returns a float array containing only the color components of the Color, in the ColorSpace of the Color.
+   */
+  getColorComponents(compArray: float[]): float[];
+
+  /**
+   * Returns the ColorSpace of this Color.
+   */
+  getColorSpace(): any;
+
+  /**
+   * Returns a float array containing the color and alpha components of the Color, in the ColorSpace specified by the cspace parameter.
+   */
+  getComponents(cspace: any, compArray: float[]): float[];
+
+  /**
+   * Returns a float array containing the color and alpha components of the Color, in the ColorSpace of the Color.
+   */
+  getComponents(compArray: float[]): float[];
+
+  /**
+   * Returns the green component in the range 0-255 in the default sRGB space.
+   */
+  getGreen(): int;
+
+  /**
+   * Creates a Color object based on the specified values for the HSB color model.
+   */
+  static getHSBColor(h: float, s: float, b: float): JavaColor;
+
+  /**
+   * Returns the red component in the range 0-255 in the default sRGB space.
+   */
+  getRed(): int;
+
+  /**
+   * Returns the RGB value representing the color in the default sRGB ColorModel.
+   */
+  getRGB(): int;
+
+  /**
+   * Returns a float array containing only the color components of the Color, in the default sRGB color space.
+   */
+  getRGBColorComponents(compArray: float[]): float[];
+
+  /**
+   * Returns a float array containing the color and alpha components of the Color, as represented in the default sRGB color space.
+   */
+  getRGBComponents(compArray: float[]): float[];
+
+  /**
+   * Returns the transparency mode for this Color.
+   */
+  getTransparency(): int;
+
+  /**
+   * Computes the hash code for this Color.
+   */
+  hashCode(): int;
+
+  /**
+   * Converts the components of a color, as specified by the HSB model, to an equivalent set of values for the default RGB model.
+   */
+  static HSBtoRGB(hue: float, saturation: float, brightness: float): int;
+
+  /**
+   * Converts the components of a color, as specified by the default RGB model, to an equivalent set of values for hue, saturation, and brightness that are the three components of the HSB model.
+   */
+  static RGBtoHSB(r: int, g: int, b: int, hsbvals: float[]): float[];
+
+  /**
+   * Returns a string representation of this Color.
+   */
+  toString(): string;
+}
 
 declare class Vector3f {
   x: float;
