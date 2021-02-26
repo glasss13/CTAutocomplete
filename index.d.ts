@@ -3126,6 +3126,8 @@ declare global {
     getUUID(): JavaUUID;
 
     toString(): string;
+    
+    getEntity(): MCEntity;
   }
 
   class TextComponent {
