@@ -3664,7 +3664,7 @@ declare global {
      *
      * @return The GuiNewChat object for the chat gui
      */
-    static getChatGui(): MCGuiNewChat;
+    static getChatGUI(): MCGuiNewChat;
 
     static isInChat(): boolean;
 
