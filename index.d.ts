@@ -37,8 +37,8 @@ declare global {
   type MCTGuiNewChat = MCGuiNewChat;
   type MCTGuiPlayerTabOverlay = MCGuiPlayerTabOverlay;
   type MCTINetHandler = MCINetHandler;
-  type MCTPacket<T extends MCINetHandler> = MCPacket<T>; 
-  type MCTGuiScreen = MCGuiScreen
+  type MCTPacket<T extends MCINetHandler> = MCPacket<T>;
+  type MCTGuiScreen = MCGuiScreen;
   type MCTGameSettings = MCGameSettings;
   type MCTEntityPlayer = MCEntityPlayer;
   type MCTEntityPlayerSP = MCEntityPlayerSP;
@@ -217,11 +217,34 @@ declare global {
     drawShape(color: long, ...vertexes: float[][]): void;
     static drawShape(color: long, ...vertexes: float[][]): void;
 
-    drawLine(color: long, x1: float, y1: float, x2: float, y2: float, thickness: float, drawMode?: int): void;
-    static drawLine(color: long, x1: float, y1: float, x2: float, y2: float, thickness: float, drawMode?: int): void;
+    drawLine(
+      color: long,
+      x1: float,
+      y1: float,
+      x2: float,
+      y2: float,
+      thickness: float,
+      drawMode?: int
+    ): void;
+    static drawLine(
+      color: long,
+      x1: float,
+      y1: float,
+      x2: float,
+      y2: float,
+      thickness: float,
+      drawMode?: int
+    ): void;
 
     drawCircle(color: long, x: float, y: float, radius: float, steps: int, drawMode?: int): void;
-    static drawCircle(color: long, x: float, y: float, radius: float, steps: int, drawMode?: int): void;
+    static drawCircle(
+      color: long,
+      x: float,
+      y: float,
+      radius: float,
+      steps: int,
+      drawMode?: int
+    ): void;
 
     drawString(text: string, x: float, y: float): void;
     static drawString(text: string, x: float, y: float): void;
@@ -232,8 +255,18 @@ declare global {
     drawImage(image: Image, x: double, y: double, width: double, height: double): void;
     static drawImage(image: Image, x: double, y: double, width: double, height: double): void;
 
-    drawPlayer(player: PlayerMP | MCEntityPlayer | MCEntityLivingBase, x: int, y: int, rotate?: boolean): void;
-    static drawPlayer(player: PlayerMP | MCEntityPlayer | MCEntityLivingBase, x: int, y: int, rotate?: boolean): void;
+    drawPlayer(
+      player: PlayerMP | MCEntityPlayer | MCEntityLivingBase,
+      x: int,
+      y: int,
+      rotate?: boolean
+    ): void;
+    static drawPlayer(
+      player: PlayerMP | MCEntityPlayer | MCEntityLivingBase,
+      x: int,
+      y: int,
+      rotate?: boolean
+    ): void;
 
     finishDraw(): void;
     static finishDraw(): void;
@@ -557,7 +590,16 @@ declare global {
      * @param scale          the scale of the text
      * @param increase       whether or not to scale the text up as the player moves away
      */
-    drawString(text: string, x: float, y: float, z: float, color?: int, renderBlackBox?: boolean, scale?: float, increase?: boolean): void;
+    drawString(
+      text: string,
+      x: float,
+      y: float,
+      z: float,
+      color?: int,
+      renderBlackBox?: boolean,
+      scale?: float,
+      increase?: boolean
+    ): void;
     /**
      * Renders floating lines of text in the 3D world at a specific position.
      *
@@ -570,7 +612,16 @@ declare global {
      * @param scale          the scale of the text
      * @param increase       whether or not to scale the text up as the player moves away
      */
-    static drawString(text: string, x: float, y: float, z: float, color?: int, renderBlackBox?: boolean, scale?: float, increase?: boolean): void;
+    static drawString(
+      text: string,
+      x: float,
+      y: float,
+      z: float,
+      color?: int,
+      renderBlackBox?: boolean,
+      scale?: float,
+      increase?: boolean
+    ): void;
   }
 
   class MathLib {
@@ -750,7 +801,16 @@ declare global {
      * CONFIGURABLE (can be set in config object, or changed later, but MAKE SURE THE WORLD HAS LOADED)
      * which category this sound should be a part of, see {@link #setCategory(String)}
      */
-    category?: "MASTER" | "MUSIC" | "RECORDS" | "WEATHER" | "BLOCKS" | "MOBS" | "ANIMALS" | "PLAYERS" | "AMBIENT";
+    category?:
+      | "MASTER"
+      | "MUSIC"
+      | "RECORDS"
+      | "WEATHER"
+      | "BLOCKS"
+      | "MOBS"
+      | "ANIMALS"
+      | "PLAYERS"
+      | "AMBIENT";
     /**
      * CONFIGURABLE (can be set in config object, or changed later, but MAKE SURE THE WORLD HAS LOADED)
      * volume of the sound, see {@link #setVolume(float)}
@@ -1070,14 +1130,32 @@ declare global {
      *
      * @return The direction the player is facing, one of the four cardinal directions
      */
-    facing(): "South" | "South West" | "West" | "North West" | "North" | "North East" | "East" | "South East" | "";
+    facing():
+      | "South"
+      | "South West"
+      | "West"
+      | "North West"
+      | "North"
+      | "North East"
+      | "East"
+      | "South East"
+      | "";
     /**
      * Gets the direction the player is facing.
      * Example: "South West"
      *
      * @return The direction the player is facing, one of the four cardinal directions
      */
-    static facing(): "South" | "South West" | "West" | "North West" | "North" | "North East" | "East" | "South East" | "";
+    static facing():
+      | "South"
+      | "South West"
+      | "West"
+      | "North West"
+      | "North"
+      | "North East"
+      | "East"
+      | "South East"
+      | "";
 
     getActivePotionEffects(): PotionEffect[];
     static getActivePotionEffects(): PotionEffect[];
@@ -1524,8 +1602,22 @@ declare global {
     getSeed(): long;
     static getSeed(): long;
 
-    getType(): "default" | "flat" | "largeBiomes" | "amplified" | "customized" | "debug_all_block_states" | "default_1_1";
-    static getType(): "default" | "flat" | "largeBiomes" | "amplified" | "customized" | "debug_all_block_states" | "default_1_1";
+    getType():
+      | "default"
+      | "flat"
+      | "largeBiomes"
+      | "amplified"
+      | "customized"
+      | "debug_all_block_states"
+      | "default_1_1";
+    static getType():
+      | "default"
+      | "flat"
+      | "largeBiomes"
+      | "amplified"
+      | "customized"
+      | "debug_all_block_states"
+      | "default_1_1";
 
     /**
      * Gets the [Block] at a location in the world.
@@ -1742,7 +1834,15 @@ declare global {
        * @param zSpeed the motion the particle should have in the z direction
        * @return the newly spawned particle for further configuration
        */
-      spawnParticle(particle: string, x: double, y: double, z: double, xSpeed: double, ySpeed: double, zSpeed: double): Particle;
+      spawnParticle(
+        particle: string,
+        x: double,
+        y: double,
+        z: double,
+        xSpeed: double,
+        ySpeed: double,
+        zSpeed: double
+      ): Particle;
       /**
        * Spawns a particle into the world with the given attributes,
        * which can be configured further with the returned [Particle]
@@ -1756,7 +1856,15 @@ declare global {
        * @param zSpeed the motion the particle should have in the z direction
        * @return the newly spawned particle for further configuration
        */
-      static spawnParticle(particle: string, x: double, y: double, z: double, xSpeed: double, ySpeed: double, zSpeed: double): Particle;
+      static spawnParticle(
+        particle: string,
+        x: double,
+        y: double,
+        z: double,
+        xSpeed: double,
+        ySpeed: double,
+        zSpeed: double
+      ): Particle;
 
       spawnParticle(particle: MCEntityFX): void;
       static spawnParticle(particle: MCEntityFX): void;
@@ -2042,13 +2150,28 @@ declare global {
 
     static getPrivateValue<T, E>(classToAccess: JavaClass<T>, instance: T, fieldIndex: int): E;
 
-    static setPrivateValue<T, E>(classToAccess: JavaClass<T>, instance: T, value: E, fieldIndex: int): void;
+    static setPrivateValue<T, E>(
+      classToAccess: JavaClass<T>,
+      instance: T,
+      value: E,
+      fieldIndex: int
+    ): void;
 
-    static setPrivateValue<T, E>(classToAccess: JavaClass<T>, instance: T, value: E, ...fieldNames: string[]): void;
+    static setPrivateValue<T, E>(
+      classToAccess: JavaClass<T>,
+      instance: T,
+      value: E,
+      ...fieldNames: string[]
+    ): void;
 
     static getClass(loader: any, ...classNames: string[]): JavaClass<any>;
 
-    static findMethod<E>(clazz: JavaClass<E>, instance: E, methodNames: string[], ...methodTypes: JavaClass<any>[]): JavaMethod;
+    static findMethod<E>(
+      clazz: JavaClass<E>,
+      instance: E,
+      methodNames: string[],
+      ...methodTypes: JavaClass<any>[]
+    ): JavaMethod;
   }
 
   class Thread {
@@ -3704,7 +3827,11 @@ declare global {
      * @return the [KeyBind] from a Minecraft KeyBinding, or null if one doesn't exist
      * @see [Keyboard](http://legacy.lwjgl.org/javadoc/org/lwjgl/input/Keyboard.html)
      */
-    static getKeyBindFromKey(keyCode: int | Keyboard, description: string, category?: string): KeyBind;
+    static getKeyBindFromKey(
+      keyCode: int | Keyboard,
+      description: string,
+      category?: string
+    ): KeyBind;
 
     /**
      * Get the [KeyBind] from an already existing
@@ -3904,13 +4031,38 @@ declare global {
     getBackgroundColor(): long;
     setBackgroundColor(color: long): DisplayLine;
 
-    registerClicked(method: (mouseX: number, mouseY: number, button: int, pressed: boolean) => void): OnTrigger;
+    registerClicked(
+      method: (mouseX: number, mouseY: number, button: int, pressed: boolean) => void
+    ): OnTrigger;
     registerHovered(method: (mouseX: number, mouseY: number) => void): OnTrigger;
-    registerDragged(method: (xDist: number, yDist: number, mouseX: number, mouseY: number, button: int) => void): OnTrigger;
+    registerDragged(
+      method: (xDist: number, yDist: number, mouseX: number, mouseY: number, button: int) => void
+    ): OnTrigger;
 
-    drawLeft(x: float, y: float, maxWidth: float, background: DisplayHandler.Background, backgroundColor: long, textColor: long): void;
-    drawRight(x: float, y: float, maxWidth: float, background: DisplayHandler.Background, backgroundColor: long, textColor: long): void;
-    drawCenter(x: float, y: float, maxWidth: float, background: DisplayHandler.Background, backgroundColor: long, textColor: long): void;
+    drawLeft(
+      x: float,
+      y: float,
+      maxWidth: float,
+      background: DisplayHandler.Background,
+      backgroundColor: long,
+      textColor: long
+    ): void;
+    drawRight(
+      x: float,
+      y: float,
+      maxWidth: float,
+      background: DisplayHandler.Background,
+      backgroundColor: long,
+      textColor: long
+    ): void;
+    drawCenter(
+      x: float,
+      y: float,
+      maxWidth: float,
+      background: DisplayHandler.Background,
+      backgroundColor: long,
+      textColor: long
+    ): void;
 
     toString(): string;
   }
@@ -4389,7 +4541,9 @@ declare global {
      * @param method the method to run
      * @return the trigger
      */
-    registerMouseDragged(method: (mouseX: int, mouseY: int, clickedMouseButton: int, timeSinceLastClick: long) => void): OnRegularTrigger;
+    registerMouseDragged(
+      method: (mouseX: int, mouseY: int, clickedMouseButton: int, timeSinceLastClick: long) => void
+    ): OnRegularTrigger;
 
     /**
      * Registers a method to be ran while gui is open.<br></br>
@@ -4402,7 +4556,9 @@ declare global {
      * @param method the method to run
      * @return the trigger
      */
-    registerMouseReleased(method: (mouseX: int, mouseY: int, button: int) => void): OnRegularTrigger;
+    registerMouseReleased(
+      method: (mouseX: int, mouseY: int, button: int) => void
+    ): OnRegularTrigger;
 
     /**
      * Registers a method to be ran while gui is open.<br></br>
@@ -4433,7 +4589,12 @@ declare global {
     /**
      * Internal method to run trigger. Not meant for public use
      */
-    mouseClickMove(mouseX: int, mouseY: int, clickedMouseButton: int, timeSinceLastClick: long): void;
+    mouseClickMove(
+      mouseX: int,
+      mouseY: int,
+      clickedMouseButton: int,
+      timeSinceLastClick: long
+    ): void;
 
     /**
      * Internal method to run trigger. Not meant for public use
@@ -4884,17 +5045,27 @@ declare interface javaTypePath {
   (path: "net.minecraft.client.multiplayer.WorldClient"): typeof MCWorldClient;
   (path: "net.minecraft.scoreboard.Score"): typeof MCScore;
   // forge paths
-  (path: "net.minecraftforge.client.event.ClientChatReceivedEvent"): typeof ForgeClientChatReceivedEvent;
-  (path: "net.minecraftforge.client.event.RenderGameOverlayEvent"): typeof ForgeRenderGameOverlayEvent;
+  (
+    path: "net.minecraftforge.client.event.ClientChatReceivedEvent"
+  ): typeof ForgeClientChatReceivedEvent;
+  (
+    path: "net.minecraftforge.client.event.RenderGameOverlayEvent"
+  ): typeof ForgeRenderGameOverlayEvent;
   (path: "net.minecraftforge.client.event.MouseEvent"): typeof ForgeMouseEvent;
   (path: "net.minecraftforge.client.event.sound.PlaySoundEvent"): typeof ForgePlaySoundEvent;
   (path: "net.minecraftforge.fml.client.event.ConfigChangedEvent"): typeof ForgeConfigChangedEvent;
   (path: "net.minecraftforge.fml.common.gameevent.TickEvent"): typeof ForgeTickEvent;
   (path: "net.minecraftforge.event.world.NoteBlockEvent"): typeof ForgeNoteBlockEvent;
-  (path: "net.minecraftforge.client.event.DrawBlockHighlightEvent"): typeof ForgeDrawBlockHighlightEvent;
+  (
+    path: "net.minecraftforge.client.event.DrawBlockHighlightEvent"
+  ): typeof ForgeDrawBlockHighlightEvent;
   (path: "net.minecraftforge.client.event.GuiOpenEvent"): typeof ForgeGuiOpenEvent;
-  (path: "net.minecraftforge.event.entity.player.EntityItemPickupEvent"): typeof ForgeEntityItemPickupEvent;
-  (path: "net.minecraftforge.event.entity.player.PlayerInteractEvent"): typeof ForgePlayerInteractEvent;
+  (
+    path: "net.minecraftforge.event.entity.player.EntityItemPickupEvent"
+  ): typeof ForgeEntityItemPickupEvent;
+  (
+    path: "net.minecraftforge.event.entity.player.PlayerInteractEvent"
+  ): typeof ForgePlayerInteractEvent;
   (path: "net.minecraftforge.client.event.GuiScreenEvent"): typeof ForgeGuiScreenEvent;
   (path: "net.minecraftforge.event.world.BlockEvent"): typeof ForgeBlockEvent;
   // java paths
@@ -5279,7 +5450,13 @@ declare class ForgePlayerInteractEvent {
   readonly pos: MCBlockPos;
   readonly face: MCEnumFacing;
 
-  constructor(player: MCEntityPlayer, action: ForgePlayerInteractEvent.Action, pos: MCBlockPos, face: MCEnumFacing, world: MCWorld);
+  constructor(
+    player: MCEntityPlayer,
+    action: ForgePlayerInteractEvent.Action,
+    pos: MCBlockPos,
+    face: MCEnumFacing,
+    world: MCWorld
+  );
 }
 declare namespace ForgePlayerInteractEvent {
   enum Action {
@@ -6457,7 +6634,13 @@ declare class JavaURL {
   /**
    * Creates a URL object from the specified protocol, host, port number, file, and handler.
    */
-  constructor(protocol: string, host: string, port: int, file: string, handler: JavaURLStreamHandler);
+  constructor(
+    protocol: string,
+    host: string,
+    port: int,
+    file: string,
+    handler: JavaURLStreamHandler
+  );
 
   /**
    * Creates a URL from the specified protocol name, host name, and file name.
@@ -6599,7 +6782,15 @@ declare class JavaURI {
   /**
    * Constructs a hierarchical URI from the given components.
    */
-  constructor(scheme: string, userInfo: string, host: string, port: int, path: string, query: string, fragment: string);
+  constructor(
+    scheme: string,
+    userInfo: string,
+    host: string,
+    port: int,
+    path: string,
+    query: string,
+    fragment: string
+  );
 
   /**
    * Constructs a hierarchical URI from the given components.
@@ -7374,7 +7565,10 @@ declare class NBTTagList extends NBTBase {
 
   get(index: int): MCNBTBase;
 
-  get(index: int, type: NBTTagCompound["NBTDataType"]): float | double | string | int[] | MCNBTTagCompound | NBTBase;
+  get(
+    index: int,
+    type: NBTTagCompound["NBTDataType"]
+  ): float | double | string | int[] | MCNBTTagCompound | NBTBase;
 }
 
 declare class CancellableEvent {
@@ -7913,7 +8107,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerActionBar(method: (...params: (string | ForgeClientChatReceivedEvent)[]) => void): OnChatTrigger;
+  registerActionBar(
+    method: (...params: (string | ForgeClientChatReceivedEvent)[]) => void
+  ): OnChatTrigger;
 
   /**
    * Registers a trigger that runs before the world loads.
@@ -7950,7 +8146,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerClicked(method: (mouseX: float, mouseY: float, button: int, isButtonDown: boolean) => void): OnRegularTrigger;
+  registerClicked(
+    method: (mouseX: float, mouseY: float, button: int, isButtonDown: boolean) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before the mouse is scrolled.
    *
@@ -7965,7 +8163,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerScrolled(method: (mouseX: float, mouseY: float, direction: int) => void): OnRegularTrigger;
+  registerScrolled(
+    method: (mouseX: float, mouseY: float, direction: int) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs while a mouse button is being held down.
    *
@@ -7982,7 +8182,15 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerDragged(method: (mouseDeltaX: float, mouseDeltaY: float, mouseX: float, mouseY: float, button: int) => void): OnRegularTrigger;
+  registerDragged(
+    method: (
+      mouseDeltaX: float,
+      mouseDeltaY: float,
+      mouseX: float,
+      mouseY: float,
+      button: int
+    ) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before a sound is played.
    *
@@ -8002,7 +8210,14 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerSoundPlay(
-    method: (position: Vector3f, name: string, vol: float, pitch: float, category: MCSoundCategory, event: ForgePlaySoundEvent) => void
+    method: (
+      position: Vector3f,
+      name: string,
+      vol: float,
+      pitch: float,
+      category: MCSoundCategory,
+      event: ForgePlaySoundEvent
+    ) => void
   ): OnSoundPlayTrigger;
   /**
    * Registers a new trigger that runs before a noteblock is played.
@@ -8020,7 +8235,12 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerNoteBlockPlay(
-    method: (position: Vector3f, name: string, octave: ForgeNoteBlockEvent.Octave, event: ForgeNoteBlockEvent.Play) => void
+    method: (
+      position: Vector3f,
+      name: string,
+      octave: ForgeNoteBlockEvent.Octave,
+      event: ForgeNoteBlockEvent.Play
+    ) => void
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before a noteblock is changed.
@@ -8038,7 +8258,12 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerNoteBlockChange(
-    method: (position: Vector3f, name: string, octave: ForgeNoteBlockEvent.Octave, event: ForgeNoteBlockEvent.Change) => void
+    method: (
+      position: Vector3f,
+      name: string,
+      octave: ForgeNoteBlockEvent.Octave,
+      event: ForgeNoteBlockEvent.Change
+    ) => void
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before every game tick.
@@ -8109,7 +8334,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerRenderPlayerList(method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  registerRenderPlayerList(
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the crosshair is being drawn.
    *
@@ -8123,7 +8350,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerRenderCrosshair(method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  registerRenderCrosshair(
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
   /**
    * Registers a trigger that runs before the debug screen is being drawn.
    *
@@ -8137,7 +8366,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerRenderDebug(method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  registerRenderDebug(
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the boss health bar is being drawn.
    *
@@ -8151,7 +8382,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerRenderBossHealth(method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  registerRenderBossHealth(
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the player's health is being drawn.
    *
@@ -8165,7 +8398,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerRenderHealth(method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  registerRenderHealth(
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the player's armor bar is drawn.
    *
@@ -8179,7 +8414,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerRenderArmor(method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  registerRenderArmor(
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the player's food is being drawn.
    *
@@ -8193,7 +8430,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerRenderFood(method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  registerRenderFood(
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the player's mount's health is being drawn.
    *
@@ -8207,7 +8446,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerRenderMountHealth(method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  registerRenderMountHealth(
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the player's experience is being drawn.
    *
@@ -8222,7 +8463,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerRenderExperience(method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  registerRenderExperience(
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the player's hotbar is drawn.
    *
@@ -8236,7 +8479,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerRenderHotbar(method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  registerRenderHotbar(
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the player's air level is drawn.
    *
@@ -8250,7 +8495,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerRenderAir(method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  registerRenderAir(
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the block highlight box is drawn.
    *
@@ -8264,7 +8511,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerDrawBlockHighlight(method: (position: Vector3f, event: ForgeDrawBlockHighlightEvent) => void): OnRegularTrigger;
+  registerDrawBlockHighlight(
+    method: (position: Vector3f, event: ForgeDrawBlockHighlightEvent) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs after the game loads.
    *
@@ -8365,7 +8614,15 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerPickupItem(method: (item: Item, player: PlayerMP, position: Vector3f, motion: Vector3f, event: ForgeEntityItemPickupEvent) => void): OnRegularTrigger;
+  registerPickupItem(
+    method: (
+      item: Item,
+      player: PlayerMP,
+      position: Vector3f,
+      motion: Vector3f,
+      event: ForgeEntityItemPickupEvent
+    ) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before an item is dropped.
    *
@@ -8382,7 +8639,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerDropItem(method: (item: Item, player: PlayerMP, event: CancellableEvent) => void): OnRegularTrigger;
+  registerDropItem(
+    method: (item: Item, player: PlayerMP, event: CancellableEvent) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before a screenshot is taken.
    *
@@ -8396,7 +8655,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerScreenshotTaken(method: (name: string, event: CancellableEvent) => void): OnRegularTrigger;
+  registerScreenshotTaken(
+    method: (name: string, event: CancellableEvent) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before a message is sent in chat.
    *
@@ -8427,7 +8688,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerItemTooltip(method: (lore: string[], item: Item, event: CancellableEvent) => void): OnRegularTrigger;
+  registerItemTooltip(
+    method: (lore: string[], item: Item, event: CancellableEvent) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before the player interacts.
    *
@@ -8455,7 +8718,13 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerPlayerInteract(method: (action: ClientListener.PlayerInteractAction, position: Vector3f, event: ForgePlayerInteractEvent) => void): OnRegularTrigger;
+  registerPlayerInteract(
+    method: (
+      action: ClientListener.PlayerInteractAction,
+      position: Vector3f,
+      event: ForgePlayerInteractEvent
+    ) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before the player breaks a block
    *
@@ -8470,7 +8739,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerBlockBreak(method: (block: Block, player: PlayerMP, event: ForgeBlockEvent.BreakEvent) => void): OnRegularTrigger;
+  registerBlockBreak(
+    method: (block: Block, player: PlayerMP, event: ForgeBlockEvent.BreakEvent) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before an entity is damaged
    *
@@ -8522,7 +8793,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerGuiKey(method: (char: string, keyCode: int, gui: MCGuiScreen, event: CancellableEvent) => void): OnRegularTrigger;
+  registerGuiKey(
+    method: (char: string, keyCode: int, gui: MCGuiScreen, event: CancellableEvent) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever the mouse is clicked with a
    * gui open
@@ -8540,7 +8813,15 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerGuiMouseClick(method: (mouseX: int, mouseY: int, mouseButton: int, gui: MCGuiScreen, event: CancellableEvent) => void): OnRegularTrigger;
+  registerGuiMouseClick(
+    method: (
+      mouseX: int,
+      mouseY: int,
+      mouseButton: int,
+      gui: MCGuiScreen,
+      event: CancellableEvent
+    ) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever a mouse button is released
    * with a gui open
@@ -8558,7 +8839,15 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerGuiMouseRelease(method: (mouseX: int, mouseY: int, mouseButton: int, gui: MCGuiScreen, event: CancellableEvent) => void): OnRegularTrigger;
+  registerGuiMouseRelease(
+    method: (
+      mouseX: int,
+      mouseY: int,
+      mouseButton: int,
+      gui: MCGuiScreen,
+      event: CancellableEvent
+    ) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever a mouse button held and dragged
    * with a gui open
@@ -8576,7 +8865,15 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerGuiMouseDrag(method: (mouseX: int, mouseY: int, mouseButton: int, gui: MCGuiScreen, event: CancellableEvent) => void): OnRegularTrigger;
+  registerGuiMouseDrag(
+    method: (
+      mouseX: int,
+      mouseY: int,
+      mouseButton: int,
+      gui: MCGuiScreen,
+      event: CancellableEvent
+    ) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever a packet is sent from the client to the server
    *
@@ -8590,7 +8887,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerPacketSent(method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void): OnRegularTrigger;
+  registerPacketSent(
+    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever a packet is sent to the client from the server
    *
@@ -8604,7 +8903,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerPacketReceived(method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void): OnRegularTrigger;
+  registerPacketReceived(
+    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever the user clicks on a clickable
    * chat component
@@ -8619,7 +8920,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerChatComponentClicked(method: (component: TextComponent, event: CancellableEvent) => void): OnRegularTrigger;
+  registerChatComponentClicked(
+    method: (component: TextComponent, event: CancellableEvent) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever the user hovers over a
    * hoverable chat component
@@ -8634,7 +8937,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerChatComponentHovered(method: (component: TextComponent, event: CancellableEvent) => void): OnRegularTrigger;
+  registerChatComponentHovered(
+    method: (component: TextComponent, event: CancellableEvent) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever an entity is rendered
    *
@@ -8650,7 +8955,14 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerRenderEntity(method: (entity: MCEntity, position: Vector3f, partialTicks: float, event: CancellableEvent) => void): OnRegularTrigger;
+  registerRenderEntity(
+    method: (
+      entity: MCEntity,
+      position: Vector3f,
+      partialTicks: float,
+      event: CancellableEvent
+    ) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs after the current screen is rendered
    *
@@ -8665,7 +8977,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerPostGuiRender(method: (gui: MCGuiScreen, mouseX: int, mouseY: int) => void): OnRegularTrigger;
+  registerPostGuiRender(
+    method: (gui: MCGuiScreen, mouseX: int, mouseY: int) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever a particle is spawned
    *
@@ -8680,7 +8994,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerSpawnParticle(method: (particle: Particle, type: MCEnumParticleTypes, event: CancellableEvent) => void): OnRegularTrigger;
+  registerSpawnParticle(
+    method: (particle: Particle, type: MCEnumParticleTypes, event: CancellableEvent) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever the player has left clicked on an entity
    *
@@ -8712,7 +9028,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerHitBlock(method: (block: Block, blockFace: BlockFace, event: CancellableEvent) => void): OnRegularTrigger;
+  registerHitBlock(
+    method: (block: Block, blockFace: BlockFace, event: CancellableEvent) => void
+  ): OnRegularTrigger;
 
   register: IRegister;
 }
@@ -8736,7 +9054,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "chat", method: (...args: (string | ForgeClientChatReceivedEvent)[]) => void): OnChatTrigger;
+  (
+    triggerType: "chat",
+    method: (...args: (string | ForgeClientChatReceivedEvent)[]) => void
+  ): OnChatTrigger;
 
   /**
    * Registers a new trigger that runs before an action bar message is received.
@@ -8756,7 +9077,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "actionBar", method: (...params: (string | ForgeClientChatReceivedEvent)[]) => void): OnChatTrigger;
+  (
+    triggerType: "actionBar",
+    method: (...params: (string | ForgeClientChatReceivedEvent)[]) => void
+  ): OnChatTrigger;
   /**
    * Registers a trigger that runs before the world loads.
    *
@@ -8792,7 +9116,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "clicked", method: (mouseX: float, mouseY: float, button: int, isButtonDown: boolean) => void): OnRegularTrigger;
+  (
+    triggerType: "clicked",
+    method: (mouseX: float, mouseY: float, button: int, isButtonDown: boolean) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before the mouse is scrolled.
    *
@@ -8807,7 +9134,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "scrolled", method: (mouseX: float, mouseY: float, direction: int) => void): OnRegularTrigger;
+  (
+    triggerType: "scrolled",
+    method: (mouseX: float, mouseY: float, direction: int) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs while a mouse button is being held down.
    *
@@ -8824,7 +9154,16 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "dragged", method: (mouseDeltaX: float, mouseDeltaY: float, mouseX: float, mouseY: float, button: int) => void): OnRegularTrigger;
+  (
+    triggerType: "dragged",
+    method: (
+      mouseDeltaX: float,
+      mouseDeltaY: float,
+      mouseX: float,
+      mouseY: float,
+      button: int
+    ) => void
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before a sound is played.
    *
@@ -8845,7 +9184,14 @@ declare interface IRegister {
    */
   (
     triggerType: "soundPlay",
-    method: (position: Vector3f, name: string, vol: float, pitch: float, category: MCSoundCategory, event: ForgePlaySoundEvent) => void
+    method: (
+      position: Vector3f,
+      name: string,
+      vol: float,
+      pitch: float,
+      category: MCSoundCategory,
+      event: ForgePlaySoundEvent
+    ) => void
   ): OnSoundPlayTrigger;
 
   /**
@@ -8865,7 +9211,12 @@ declare interface IRegister {
    */
   (
     triggerType: "noteBlockPlay",
-    method: (position: Vector3f, name: string, octave: ForgeNoteBlockEvent.Octave, event: ForgeNoteBlockEvent.Play) => void
+    method: (
+      position: Vector3f,
+      name: string,
+      octave: ForgeNoteBlockEvent.Octave,
+      event: ForgeNoteBlockEvent.Play
+    ) => void
   ): OnRegularTrigger;
 
   /**
@@ -8885,7 +9236,12 @@ declare interface IRegister {
    */
   (
     triggerType: "noteBlockChange",
-    method: (position: Vector3f, name: string, octave: ForgeNoteBlockEvent.Octave, event: ForgeNoteBlockEvent.Change) => void
+    method: (
+      position: Vector3f,
+      name: string,
+      octave: ForgeNoteBlockEvent.Octave,
+      event: ForgeNoteBlockEvent.Change
+    ) => void
   ): OnRegularTrigger;
 
   /**
@@ -8946,7 +9302,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "renderOverlay", method: (event: ForgeRenderGameOverlayEvent) => void): OnRenderTrigger;
+  (
+    triggerType: "renderOverlay",
+    method: (event: ForgeRenderGameOverlayEvent) => void
+  ): OnRenderTrigger;
 
   /**
    * Registers a new trigger that runs before the player list is being drawn.
@@ -8961,7 +9320,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "renderPlayerList", method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  (
+    triggerType: "renderPlayerList",
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
 
   /**
    * Registers a new trigger that runs before the crosshair is being drawn.
@@ -8976,7 +9338,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "renderCrosshair", method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  (
+    triggerType: "renderCrosshair",
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
 
   /**
    * Registers a trigger that runs before the debug screen is being drawn.
@@ -8991,7 +9356,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "renderDebug", method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  (
+    triggerType: "renderDebug",
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
 
   /**
    * Registers a new trigger that runs before the boss health bar is being drawn.
@@ -9006,7 +9374,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "renderBossHealth", method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  (
+    triggerType: "renderBossHealth",
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
 
   /**
    * Registers a new trigger that runs before the player's health is being drawn.
@@ -9021,7 +9392,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "renderHealth", method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  (
+    triggerType: "renderHealth",
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
 
   /**
    * Registers a new trigger that runs before the player's armor bar is drawn.
@@ -9036,7 +9410,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "renderArmor", method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  (
+    triggerType: "renderArmor",
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
 
   /**
    * Registers a new trigger that runs before the player's food is being drawn.
@@ -9051,7 +9428,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "renderFood", method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  (
+    triggerType: "renderFood",
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
 
   /**
    * Registers a new trigger that runs before the player's mount's health is being drawn.
@@ -9066,7 +9446,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "renderMountHealth", method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  (
+    triggerType: "renderMountHealth",
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
 
   /**
    * Registers a new trigger that runs before the player's experience is being drawn.
@@ -9082,7 +9465,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "renderExperience", method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  (
+    triggerType: "renderExperience",
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
 
   /**
    * Registers a new trigger that runs before the player's hotbar is drawn.
@@ -9097,7 +9483,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "renderHotbar", method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  (
+    triggerType: "renderHotbar",
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
 
   /**
    * Registers a new trigger that runs before the player's air level is drawn.
@@ -9112,7 +9501,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "renderAir", method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void): OnRenderTrigger;
+  (
+    triggerType: "renderAir",
+    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+  ): OnRenderTrigger;
 
   /**
    * Registers a new trigger that runs before the block highlight box is drawn.
@@ -9127,7 +9519,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "drawBlockHighlight", method: (position: Vector3f, event: ForgeDrawBlockHighlightEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "drawBlockHighlight",
+    method: (position: Vector3f, event: ForgeDrawBlockHighlightEvent) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs after the game loads.
@@ -9237,7 +9632,13 @@ declare interface IRegister {
    */
   (
     triggerType: "pickupItem",
-    method: (item: Item, player: PlayerMP, position: Vector3f, motion: Vector3f, event: ForgeEntityItemPickupEvent) => void
+    method: (
+      item: Item,
+      player: PlayerMP,
+      position: Vector3f,
+      motion: Vector3f,
+      event: ForgeEntityItemPickupEvent
+    ) => void
   ): OnRegularTrigger;
 
   /**
@@ -9256,7 +9657,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "dropItem", method: (item: Item, player: PlayerMP, event: CancellableEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "dropItem",
+    method: (item: Item, player: PlayerMP, event: CancellableEvent) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs before a screenshot is taken.
@@ -9271,7 +9675,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "screenshotTaken", method: (name: string, event: CancellableEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "screenshotTaken",
+    method: (name: string, event: CancellableEvent) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs before a message is sent in chat.
@@ -9286,7 +9693,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "messageSent", method: (message: string, event: CancellableEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "messageSent",
+    method: (message: string, event: CancellableEvent) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs when a tooltip is being rendered.
@@ -9304,7 +9714,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "itemTooltip", method: (lore: string[], item: Item, event: CancellableEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "itemTooltip",
+    method: (lore: string[], item: Item, event: CancellableEvent) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs before the player interacts.
@@ -9335,7 +9748,11 @@ declare interface IRegister {
    */
   (
     triggerType: "playerInteract",
-    method: (action: ClientListener.PlayerInteractAction, position: Vector3f, event: ForgePlayerInteractEvent) => void
+    method: (
+      action: ClientListener.PlayerInteractAction,
+      position: Vector3f,
+      event: ForgePlayerInteractEvent
+    ) => void
   ): OnRegularTrigger;
 
   /**
@@ -9352,7 +9769,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "blockBreak", method: (block: Block, player: PlayerMP, event: ForgeBlockEvent.BreakEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "blockBreak",
+    method: (block: Block, player: PlayerMP, event: ForgeBlockEvent.BreakEvent) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs before an entity is damaged
@@ -9364,7 +9784,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "entityDamage", method: (target: Entity, attacker: PlayerMP) => void): OnRegularTrigger;
+  (
+    triggerType: "entityDamage",
+    method: (target: Entity, attacker: PlayerMP) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs before an entity dies
@@ -9391,7 +9814,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "guiRender", method: (mouseX: int, mouseY: int, gui: MCGuiScreen) => void): OnRegularTrigger;
+  (
+    triggerType: "guiRender",
+    method: (mouseX: int, mouseY: int, gui: MCGuiScreen) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs whenever a key is typed with a gui open
@@ -9408,7 +9834,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "guiKey", method: (char: string, keyCode: int, gui: MCGuiScreen, event: CancellableEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "guiKey",
+    method: (char: string, keyCode: int, gui: MCGuiScreen, event: CancellableEvent) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs whenever the mouse is clicked with a
@@ -9427,7 +9856,16 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "guiMouseClick", method: (mouseX: int, mouseY: int, mouseButton: int, gui: MCGuiScreen, event: CancellableEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "guiMouseClick",
+    method: (
+      mouseX: int,
+      mouseY: int,
+      mouseButton: int,
+      gui: MCGuiScreen,
+      event: CancellableEvent
+    ) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs whenever a mouse button is released
@@ -9446,7 +9884,16 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "guiMouseRelease", method: (mouseX: int, mouseY: int, mouseButton: int, gui: MCGuiScreen, event: CancellableEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "guiMouseRelease",
+    method: (
+      mouseX: int,
+      mouseY: int,
+      mouseButton: int,
+      gui: MCGuiScreen,
+      event: CancellableEvent
+    ) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs whenever a mouse button held and dragged
@@ -9465,7 +9912,16 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "guiMouseDrag", method: (mouseX: int, mouseY: int, mouseButton: int, gui: MCGuiScreen, event: CancellableEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "guiMouseDrag",
+    method: (
+      mouseX: int,
+      mouseY: int,
+      mouseButton: int,
+      gui: MCGuiScreen,
+      event: CancellableEvent
+    ) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs whenever a packet is sent from the client to the server
@@ -9480,7 +9936,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "packetSent", method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "packetSent",
+    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs whenever a packet is sent to the client from the server
@@ -9495,7 +9954,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "packetReceived", method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "packetReceived",
+    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs whenever the user clicks on a clickable
@@ -9511,7 +9973,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "chatComponentClicked", method: (component: TextComponent, event: CancellableEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "chatComponentClicked",
+    method: (component: TextComponent, event: CancellableEvent) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs whenever the user hovers over a
@@ -9527,7 +9992,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "chatComponentHovered", method: (component: TextComponent, event: CancellableEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "chatComponentHovered",
+    method: (component: TextComponent, event: CancellableEvent) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs whenever an entity is rendered
@@ -9544,7 +10012,15 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "renderEntity", method: (entity: MCEntity, position: Vector3f, partialTicks: float, event: CancellableEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "renderEntity",
+    method: (
+      entity: MCEntity,
+      position: Vector3f,
+      partialTicks: float,
+      event: CancellableEvent
+    ) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs after the current screen is rendered
@@ -9560,7 +10036,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "postGuiRender", method: (gui: MCGuiScreen, mouseX: int, mouseY: int) => void): OnRegularTrigger;
+  (
+    triggerType: "postGuiRender",
+    method: (gui: MCGuiScreen, mouseX: int, mouseY: int) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs whenever a particle is spawned
@@ -9576,7 +10055,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "spawnParticle", method: (particle: Particle, type: MCEnumParticleTypes, event: CancellableEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "spawnParticle",
+    method: (particle: Particle, type: MCEnumParticleTypes, event: CancellableEvent) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs whenever the player has left clicked on an entity
@@ -9591,7 +10073,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "attackEntity", method: (entity: Entity, event: CancellableEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "attackEntity",
+    method: (entity: Entity, event: CancellableEvent) => void
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs whenever a block is left clicked
@@ -9610,5 +10095,8 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "hitBlock", method: (block: Block, blockFace: BlockFace, event: CancellableEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "hitBlock",
+    method: (block: Block, blockFace: BlockFace, event: CancellableEvent) => void
+  ): OnRegularTrigger;
 }
