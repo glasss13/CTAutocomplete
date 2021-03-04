@@ -2724,6 +2724,78 @@ declare global {
     static KEY_YEN: int;
     static KEY_Z: int;
     static KEYBOARD_SIZE: int;
+
+    /**
+     * Check whether repeat events are currently reported or not.
+     */
+    static areRepeatEventsEnabled(): boolean;
+
+    /**
+     * "Create" the keyboard.
+     */
+    static create(): void;
+
+    /**
+     * "Destroy" the keyboard.
+     */
+    static destroy(): void;
+
+    /**
+     * Controls whether repeat events are reported or not.
+     */
+    static enableRepeatEvents(enable: boolean): void;
+
+    static getEventCharacter(): char;
+    /**
+     * Please not that the key code returned is NOT valid against the current keyboard layout.
+     */
+    static getEventKey(): int;
+
+    /**
+     * Gets the state of the key that generated the current event
+     */
+    static getEventKeyState(): boolean;
+
+    /**
+     * Gets the time in nanoseconds of the current event.
+     */
+    static getEventNanoseconds(): long;
+
+    static getKeyCount(): int;
+
+    /**
+     * Get's a key's index.
+     */
+    static getKeyIndex(keyName: string): int;
+
+    /**
+     * Gets a key's name
+     */
+    static getKeyName(key: int): string;
+
+    /**
+     * Gets the number of keyboard events waiting after doing a buffer enabled poll().
+     */
+    static getNumKeyboardEvents(): int;
+
+    static isCreated(): boolean;
+
+    /**
+     * Checks to see if a key is down.
+     */
+    static isKeyDown(key: int): boolean;
+
+    static isRepeatEvent(): boolean;
+
+    /**
+     * Gets the next keyboard event.
+     */
+    static next(): boolean;
+
+    /**
+     * Polls the keyboard for its current state.
+     */
+    static poll(): void;
   }
 
   class Action {
