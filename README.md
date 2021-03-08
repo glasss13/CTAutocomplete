@@ -2,31 +2,34 @@ A module that provides IntelliSense for the ChatTriggers API.
 
 # Installation
 
-Installation is split into two parts, ASM files, and non-ASM files.
+Installation is split into two parts, ASM files, and non-ASM files. In order for the typescript definitions to work, you need an editor that supports typescript. As I personally only use Visual Studio Code I can only confirm that it works for this but it is likely that other editors also have support.
 
 #### Non-ASM Files
 
-![alt](https://i.imgur.com/eNcgB40.png)
+![alt](https://i.imgur.com/MNFHAMs.png)
 
-For normal JS files, to get CTAutcomplete is as simple as 3 lines at the top of the file.
+For normal JS files, to get CTAutcomplete is as simple as 2 lines at the top of the file.
 ```js
 /// <reference types="../CTAutocomplete" />
 /// <reference lib="es2015" />
-module.exports = {};
 ```
-The first 2 lines are just to load in the CTAutocomplete library and then base js library, and the `module.exports` line is unfortunately required to tell your editor that the global scope should be contained in the file. **If your module has any imports or exports, however, you can safely delete the `module.exports` line.**
+The 2 lines are just to load in the CTAutocomplete definitions and then the base js library.
 
 #### ASM Files
 ![alt](https://i.imgur.com/mYFnLT4.png)
-The process for getting IntelliSense is slightly more involved but is still very simple.
+
+IF YOU DONT KNOW WHAT ASM IS, THEN YOU DONT NEED THIS.
+
+The process for getting IntelliSense in an ASM file is slightly more involved but is still very simple.
 ```js
 /// <reference types="../CTAutocomplete/asm" />
 /// <reference lib="es2015" />
+
 /**@param {IASM} ASM */
 export default ASM => {}
 ```
 
-The first 2 lines should look familiar except the reference to CTAutocomplete/asm to get access to the ASM library. The JSDoc signature is required to give typings to the ASM argument.
+The first 2 lines should look familiar except the reference to CTAutocomplete/asm to get access to the ASM definitions. The JSDoc signature is required to give typings to the ASM argument.
 
 # Metadata.json
 
