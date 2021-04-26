@@ -45,7 +45,7 @@ declare global {
       className: string,
       methodName: string,
       descriptor: string,
-      at: InjectionPoint
+      at: InjectionPoint,
     ): InjectBuilder;
   }
 }
@@ -54,7 +54,7 @@ declare interface AtHelper {
   (
     injectionPoint: InjectionPoint,
     before?: boolean,
-    shift?: number
+    shift?: number,
   ): InjectionPoint;
 
   HEAD: InjectionPoint["HEAD"];
@@ -77,7 +77,7 @@ declare enum JumpCondition {
   NON_NULL,
   GOTO,
   REFS_EQUAL,
-  REFS_NOT_EQUAL
+  REFS_NOT_EQUAL,
 }
 
 declare enum AccessType {
@@ -85,7 +85,7 @@ declare enum AccessType {
   PUBLIC,
   PROTECTED,
   STATIC,
-  FINAL
+  FINAL,
 }
 
 declare class InjectionPoint {
@@ -137,7 +137,7 @@ declare class InjectBuilder {
     className: string,
     methodName: string,
     descriptor: string,
-    at: InjectionPoint
+    at: InjectionPoint,
   );
 
   methodMaps(obj: object): InjectBuilder;
@@ -493,7 +493,7 @@ declare class WrappedInsnListBuilder {
   array(
     size: number,
     className: string,
-    code: ($: ArrayBuilder) => void
+    code: ($: ArrayBuilder) => void,
   ): WrappedInsnListBuilder;
 
   /**
@@ -511,7 +511,7 @@ declare class WrappedInsnListBuilder {
     objectClassName: string,
     methodName: string,
     methodDesc: string,
-    arguments?: ($: WrappedInsnListBuilder) => void
+    arguments?: ($: WrappedInsnListBuilder) => void,
   ): WrappedInsnListBuilder;
 
   /**
@@ -553,7 +553,7 @@ declare class WrappedInsnListBuilder {
    */
   ifClause(
     conditions: JumpCondition[],
-    code: ($: WrappedInsnListBuilder) => void
+    code: ($: WrappedInsnListBuilder) => void,
   ): WrappedInsnListBuilder;
 
   /**
@@ -564,12 +564,12 @@ declare class WrappedInsnListBuilder {
   createInstance(
     className: string,
     constructorDescription: string,
-    parameters: ($: WrappedInsnListBuilder) => void
+    parameters: ($: WrappedInsnListBuilder) => void,
   ): WrappedInsnListBuilder;
 
   ifElseClause(
     conditions: JumpCondition[],
-    builder: ($: IfElseBuilder) => void
+    builder: ($: IfElseBuilder) => void,
   ): WrappedInsnListBuilder;
   /**
    * Get a static field value of a class, where the field is
@@ -610,39 +610,39 @@ declare class WrappedInsnListBuilder {
     action: FieldAction,
     owner: string,
     name: string,
-    desc: string
+    desc: string,
   ): WrappedInsnListBuilder;
 
   getLocalField(descriptor: Descriptor): WrappedInsnListBuilder;
 
   updateLocalField(
     descriptor: Descriptor,
-    updater: ($: WrappedInsnListBuilder) => void
+    updater: ($: WrappedInsnListBuilder) => void,
   ): WrappedInsnListBuilder;
 
   setLocalField(
     descriptor: Descriptor,
-    newValue: ($: WrappedInsnListBuilder) => void
+    newValue: ($: WrappedInsnListBuilder) => void,
   ): WrappedInsnListBuilder;
 
   getLocalField(
     owner: string,
     name: string,
-    desc: string
+    desc: string,
   ): WrappedInsnListBuilder;
 
   updateLocalField(
     owner: string,
     name: string,
     desc: string,
-    updater: ($: WrappedInsnListBuilder) => void
+    updater: ($: WrappedInsnListBuilder) => void,
   ): WrappedInsnListBuilder;
 
   setLocalField(
     owner: string,
     name: string,
     desc: string,
-    newValue: ($: WrappedInsnListBuilder) => void
+    newValue: ($: WrappedInsnListBuilder) => void,
   ): WrappedInsnListBuilder;
   /**
    * Invoke a static method and puts the result on the stack (might be void); the method is identified by method reference index in constant pool (indexbyte1 << 8 | indexbyte2) In the case of ASMHelper the method is identified by the descriptor
@@ -651,7 +651,7 @@ declare class WrappedInsnListBuilder {
     owner: string,
     name: string,
     desc: string,
-    arguments?: ($: WrappedInsnListBuilder) => void
+    arguments?: ($: WrappedInsnListBuilder) => void,
   ): WrappedInsnListBuilder;
   /**
    * Invoke virtual method on object objectref and puts the result on the stack (might be void); the method is identified by method reference index in constant pool (indexbyte1 << 8 | indexbyte2) In the case of ASMHelper the method is identified by the descriptor
@@ -660,7 +660,7 @@ declare class WrappedInsnListBuilder {
     owner: string,
     name: string,
     desc: string,
-    arguments?: ($: WrappedInsnListBuilder) => void
+    arguments?: ($: WrappedInsnListBuilder) => void,
   ): WrappedInsnListBuilder;
   /**
    * Invoke instance method on object objectref and puts the result on the stack (might be void); the method is identified by method reference index in constant pool (indexbyte1 << 8 | indexbyte2) In the case of ASMHelper the method is identified by the descriptor
@@ -669,7 +669,7 @@ declare class WrappedInsnListBuilder {
     owner: string,
     name: string,
     desc: string,
-    arguments: ($: WrappedInsnListBuilder) => void
+    arguments: ($: WrappedInsnListBuilder) => void,
   ): WrappedInsnListBuilder;
   /**
    * Invokes an interface method on object objectref and puts the result on the stack (might be void); the interface method is identified by method reference index in constant pool (indexbyte1 << 8 | indexbyte2)In the case of ASMHelper the method is identified by the descriptor
@@ -678,7 +678,7 @@ declare class WrappedInsnListBuilder {
     owner: string,
     name: string,
     desc: string,
-    arguments?: ($: WrappedInsnListBuilder) => void
+    arguments?: ($: WrappedInsnListBuilder) => void,
   ): WrappedInsnListBuilder;
 
   /**
@@ -693,7 +693,7 @@ declare class WrappedInsnListBuilder {
     owner: string,
     name: string,
     desc: string,
-    arguments?: ($: WrappedInsnListBuilder) => void
+    arguments?: ($: WrappedInsnListBuilder) => void,
   ): WrappedInsnListBuilder;
 
   indyHandle(type: number, owner: string, name: string, desc: string): Handle;
@@ -752,14 +752,14 @@ declare enum FieldAction {
   GET_STATIC,
   PUT_STATIC,
   GET_FIELD,
-  PUT_FIELD
+  PUT_FIELD,
 }
 
 declare enum InvokeType {
   VIRTUAL,
   SPECIAL,
   STATIC,
-  INTERFACE
+  INTERFACE,
 }
 /**
  * A reference to a field or a method.
@@ -882,5 +882,5 @@ declare enum LocalType {
   FLOAT,
   INT,
   DOUBLE,
-  LONG
+  LONG,
 }

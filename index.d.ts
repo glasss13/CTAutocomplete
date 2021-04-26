@@ -101,7 +101,7 @@ declare global {
       | ForgeNoteBlockEvent
       | ForgePlaySoundEvent
       | ForgePlayerInteractEvent
-      | ForgeRenderGameOverlayEvent
+      | ForgeRenderGameOverlayEvent,
   ): void;
   // extend prototype
   interface String {
@@ -114,9 +114,19 @@ declare global {
     replaceFormatting(): string;
   }
 
-  function easeOut(start: number, finish: number, speed: number, jump: number): number;
+  function easeOut(
+    start: number,
+    finish: number,
+    speed: number,
+    jump: number,
+  ): number;
 
-  function easeColor(start: number, finish: number, speed: number, jump: number): number;
+  function easeColor(
+    start: number,
+    finish: number,
+    speed: number,
+    jump: number,
+  ): number;
 
   function sync(func: Function, lock: any): object;
 
@@ -211,8 +221,20 @@ declare global {
     fixAlpha(color: long): long;
     static fixAlpha(color: long): long;
 
-    drawRect(color: long, x: float, y: float, width: float, height: float): void;
-    static drawRect(color: long, x: float, y: float, width: float, height: float): void;
+    drawRect(
+      color: long,
+      x: float,
+      y: float,
+      width: float,
+      height: float,
+    ): void;
+    static drawRect(
+      color: long,
+      x: float,
+      y: float,
+      width: float,
+      height: float,
+    ): void;
 
     drawShape(color: long, ...vertexes: float[][]): void;
     static drawShape(color: long, ...vertexes: float[][]): void;
@@ -224,7 +246,7 @@ declare global {
       x2: float,
       y2: float,
       thickness: float,
-      drawMode?: int
+      drawMode?: int,
     ): void;
     static drawLine(
       color: long,
@@ -233,17 +255,24 @@ declare global {
       x2: float,
       y2: float,
       thickness: float,
-      drawMode?: int
+      drawMode?: int,
     ): void;
 
-    drawCircle(color: long, x: float, y: float, radius: float, steps: int, drawMode?: int): void;
+    drawCircle(
+      color: long,
+      x: float,
+      y: float,
+      radius: float,
+      steps: int,
+      drawMode?: int,
+    ): void;
     static drawCircle(
       color: long,
       x: float,
       y: float,
       radius: float,
       steps: int,
-      drawMode?: int
+      drawMode?: int,
     ): void;
 
     drawString(text: string, x: float, y: float): void;
@@ -252,20 +281,32 @@ declare global {
     drawStringWithShadow(text: string, x: float, y: float): void;
     static drawStringWithShadow(text: string, x: float, y: float): void;
 
-    drawImage(image: Image, x: double, y: double, width: double, height: double): void;
-    static drawImage(image: Image, x: double, y: double, width: double, height: double): void;
+    drawImage(
+      image: Image,
+      x: double,
+      y: double,
+      width: double,
+      height: double,
+    ): void;
+    static drawImage(
+      image: Image,
+      x: double,
+      y: double,
+      width: double,
+      height: double,
+    ): void;
 
     drawPlayer(
       player: PlayerMP | MCEntityPlayer | MCEntityLivingBase,
       x: int,
       y: int,
-      rotate?: boolean
+      rotate?: boolean,
     ): void;
     static drawPlayer(
       player: PlayerMP | MCEntityPlayer | MCEntityLivingBase,
       x: int,
       y: int,
-      rotate?: boolean
+      rotate?: boolean,
     ): void;
 
     finishDraw(): void;
@@ -323,7 +364,13 @@ declare global {
     /**
      * Sets the shape as a line pointing from [x1, y1] to [x2, y2] with a thickness
      */
-    setLine(x1: float, y1: float, x2: float, y2: float, thickness: float): Shape;
+    setLine(
+      x1: float,
+      y1: float,
+      x2: float,
+      y2: float,
+      thickness: float,
+    ): Shape;
 
     /**
      * Sets the shape as a circle with a center at [x, y]
@@ -447,7 +494,12 @@ declare global {
      * @param alpha the alpha value between 0 and 1
      * @return the Tessellator to allow for method chaining
      */
-    static colorize(red: float, green: float, blue: float, alpha?: float): Tessellator;
+    static colorize(
+      red: float,
+      green: float,
+      blue: float,
+      alpha?: float,
+    ): Tessellator;
 
     /**
      * Rotates the Tessellator in 3d space.
@@ -598,7 +650,7 @@ declare global {
       color?: int,
       renderBlackBox?: boolean,
       scale?: float,
-      increase?: boolean
+      increase?: boolean,
     ): void;
     /**
      * Renders floating lines of text in the 3D world at a specific position.
@@ -620,7 +672,7 @@ declare global {
       color?: int,
       renderBlackBox?: boolean,
       scale?: float,
-      increase?: boolean
+      increase?: boolean,
     ): void;
   }
 
@@ -635,7 +687,13 @@ declare global {
      * @param out_max the final range max
      * @return the re-mapped number
      */
-    map(number: float, in_min: float, in_max: float, out_min: float, out_max: float): float;
+    map(
+      number: float,
+      in_min: float,
+      in_max: float,
+      out_min: float,
+      out_max: float,
+    ): float;
     /**
      * Maps a number from one range to another.
      *
@@ -646,7 +704,13 @@ declare global {
      * @param out_max the final range max
      * @return the re-mapped number
      */
-    static map(number: float, in_min: float, in_max: float, out_min: float, out_max: float): float;
+    static map(
+      number: float,
+      in_min: float,
+      in_max: float,
+      out_min: float,
+      out_max: float,
+    ): float;
 
     /**
      * Clamps a floating number between two values.
@@ -1316,24 +1380,88 @@ declare global {
      * @param pitch  the pitch of the sound
      */
     static playSound(name: string, volume: number, pitch: number): void;
-    static playSound(name: "ambient.cave.cave", volume: number, pitch: number): void;
-    static playSound(name: "ambient.weather.rain", volume: number, pitch: number): void;
-    static playSound(name: "ambient.weather.thunder", volume: number, pitch: number): void;
-    static playSound(name: "game.player.hurt.fall.big", volume: number, pitch: number): void;
-    static playSound(name: "game.neutral.hurt.fall.big", volume: number, pitch: number): void;
-    static playSound(name: "game.hostile.hurt.fall.big", volume: number, pitch: number): void;
-    static playSound(name: "game.player.hurt.fall.small", volume: number, pitch: number): void;
-    static playSound(name: "game.neutral.hurt.fall.small", volume: number, pitch: number): void;
-    static playSound(name: "game.hostile.hurt.fall.small", volume: number, pitch: number): void;
-    static playSound(name: "game.player.hurt", volume: number, pitch: number): void;
-    static playSound(name: "game.neutral.hurt", volume: number, pitch: number): void;
-    static playSound(name: "game.hostile.hurt", volume: number, pitch: number): void;
-    static playSound(name: "game.player.die", volume: number, pitch: number): void;
-    static playSound(name: "game.neutral.die", volume: number, pitch: number): void;
-    static playSound(name: "game.hostile.die", volume: number, pitch: number): void;
+    static playSound(
+      name: "ambient.cave.cave",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "ambient.weather.rain",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "ambient.weather.thunder",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "game.player.hurt.fall.big",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "game.neutral.hurt.fall.big",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "game.hostile.hurt.fall.big",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "game.player.hurt.fall.small",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "game.neutral.hurt.fall.small",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "game.hostile.hurt.fall.small",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "game.player.hurt",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "game.neutral.hurt",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "game.hostile.hurt",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "game.player.die",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "game.neutral.die",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "game.hostile.die",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "dig.cloth", volume: number, pitch: number): void;
     static playSound(name: "dig.glass", volume: number, pitch: number): void;
-    static playSound(name: "game.potion.smash", volume: number, pitch: number): void;
+    static playSound(
+      name: "game.potion.smash",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "dig.grass", volume: number, pitch: number): void;
     static playSound(name: "dig.gravel", volume: number, pitch: number): void;
     static playSound(name: "dig.sand", volume: number, pitch: number): void;
@@ -1342,60 +1470,208 @@ declare global {
     static playSound(name: "dig.wood", volume: number, pitch: number): void;
     static playSound(name: "fire.fire", volume: number, pitch: number): void;
     static playSound(name: "fire.ignite", volume: number, pitch: number): void;
-    static playSound(name: "item.fireCharge.use", volume: number, pitch: number): void;
-    static playSound(name: "fireworks.blast", volume: number, pitch: number): void;
-    static playSound(name: "fireworks.blast_far", volume: number, pitch: number): void;
-    static playSound(name: "fireworks.largeBlast", volume: number, pitch: number): void;
-    static playSound(name: "fireworks.largeBlast_far", volume: number, pitch: number): void;
-    static playSound(name: "fireworks.launch", volume: number, pitch: number): void;
-    static playSound(name: "fireworks.twinkle", volume: number, pitch: number): void;
-    static playSound(name: "fireworks.twinkle_far", volume: number, pitch: number): void;
-    static playSound(name: "game.player.swim.splash", volume: number, pitch: number): void;
-    static playSound(name: "game.neutral.swim.splash", volume: number, pitch: number): void;
-    static playSound(name: "game.hostile.swim.splash", volume: number, pitch: number): void;
-    static playSound(name: "game.player.swim", volume: number, pitch: number): void;
-    static playSound(name: "game.neutral.swim", volume: number, pitch: number): void;
-    static playSound(name: "game.hostile.swim", volume: number, pitch: number): void;
+    static playSound(
+      name: "item.fireCharge.use",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "fireworks.blast",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "fireworks.blast_far",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "fireworks.largeBlast",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "fireworks.largeBlast_far",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "fireworks.launch",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "fireworks.twinkle",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "fireworks.twinkle_far",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "game.player.swim.splash",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "game.neutral.swim.splash",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "game.hostile.swim.splash",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "game.player.swim",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "game.neutral.swim",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "game.hostile.swim",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "liquid.lava", volume: number, pitch: number): void;
-    static playSound(name: "liquid.lavapop", volume: number, pitch: number): void;
+    static playSound(
+      name: "liquid.lavapop",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "liquid.water", volume: number, pitch: number): void;
-    static playSound(name: "minecart.base", volume: number, pitch: number): void;
-    static playSound(name: "minecart.inside", volume: number, pitch: number): void;
+    static playSound(
+      name: "minecart.base",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "minecart.inside",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "note.bass", volume: number, pitch: number): void;
-    static playSound(name: "note.bassattack", volume: number, pitch: number): void;
+    static playSound(
+      name: "note.bassattack",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "note.bd", volume: number, pitch: number): void;
     static playSound(name: "note.harp", volume: number, pitch: number): void;
     static playSound(name: "note.hat", volume: number, pitch: number): void;
     static playSound(name: "note.pling", volume: number, pitch: number): void;
     static playSound(name: "note.snare", volume: number, pitch: number): void;
-    static playSound(name: "portal.portal", volume: number, pitch: number): void;
-    static playSound(name: "portal.travel", volume: number, pitch: number): void;
-    static playSound(name: "portal.trigger", volume: number, pitch: number): void;
-    static playSound(name: "random.anvil_break", volume: number, pitch: number): void;
-    static playSound(name: "random.anvil_land", volume: number, pitch: number): void;
-    static playSound(name: "random.anvil_use", volume: number, pitch: number): void;
+    static playSound(
+      name: "portal.portal",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "portal.travel",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "portal.trigger",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "random.anvil_break",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "random.anvil_land",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "random.anvil_use",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "random.bow", volume: number, pitch: number): void;
-    static playSound(name: "random.bowhit", volume: number, pitch: number): void;
+    static playSound(
+      name: "random.bowhit",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "random.break", volume: number, pitch: number): void;
     static playSound(name: "random.burp", volume: number, pitch: number): void;
-    static playSound(name: "random.chestclosed", volume: number, pitch: number): void;
-    static playSound(name: "random.chestopen", volume: number, pitch: number): void;
-    static playSound(name: "gui.button.press", volume: number, pitch: number): void;
+    static playSound(
+      name: "random.chestclosed",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "random.chestopen",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "gui.button.press",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "random.click", volume: number, pitch: number): void;
-    static playSound(name: "random.door_open", volume: number, pitch: number): void;
-    static playSound(name: "random.door_close", volume: number, pitch: number): void;
+    static playSound(
+      name: "random.door_open",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "random.door_close",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "random.drink", volume: number, pitch: number): void;
     static playSound(name: "random.eat", volume: number, pitch: number): void;
-    static playSound(name: "random.explode", volume: number, pitch: number): void;
+    static playSound(
+      name: "random.explode",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "random.fizz", volume: number, pitch: number): void;
-    static playSound(name: "game.tnt.primed", volume: number, pitch: number): void;
-    static playSound(name: "creeper.primed", volume: number, pitch: number): void;
-    static playSound(name: "random.levelup", volume: number, pitch: number): void;
+    static playSound(
+      name: "game.tnt.primed",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "creeper.primed",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "random.levelup",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "random.orb", volume: number, pitch: number): void;
     static playSound(name: "random.pop", volume: number, pitch: number): void;
-    static playSound(name: "random.splash", volume: number, pitch: number): void;
-    static playSound(name: "random.successful_hit", volume: number, pitch: number): void;
-    static playSound(name: "random.wood_click", volume: number, pitch: number): void;
+    static playSound(
+      name: "random.splash",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "random.successful_hit",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "random.wood_click",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "step.cloth", volume: number, pitch: number): void;
     static playSound(name: "step.grass", volume: number, pitch: number): void;
     static playSound(name: "step.gravel", volume: number, pitch: number): void;
@@ -1404,164 +1680,708 @@ declare global {
     static playSound(name: "step.snow", volume: number, pitch: number): void;
     static playSound(name: "step.stone", volume: number, pitch: number): void;
     static playSound(name: "step.wood", volume: number, pitch: number): void;
-    static playSound(name: "tile.piston.in", volume: number, pitch: number): void;
-    static playSound(name: "tile.piston.out", volume: number, pitch: number): void;
-    static playSound(name: "mob.bat.death", volume: number, pitch: number): void;
+    static playSound(
+      name: "tile.piston.in",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "tile.piston.out",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.bat.death",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "mob.bat.hurt", volume: number, pitch: number): void;
     static playSound(name: "mob.bat.idle", volume: number, pitch: number): void;
     static playSound(name: "mob.bat.loop", volume: number, pitch: number): void;
-    static playSound(name: "mob.bat.takeoff", volume: number, pitch: number): void;
-    static playSound(name: "mob.blaze.breathe", volume: number, pitch: number): void;
-    static playSound(name: "mob.blaze.death", volume: number, pitch: number): void;
-    static playSound(name: "mob.blaze.hit", volume: number, pitch: number): void;
+    static playSound(
+      name: "mob.bat.takeoff",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.blaze.breathe",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.blaze.death",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.blaze.hit",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "mob.cat.hiss", volume: number, pitch: number): void;
     static playSound(name: "mob.cat.hitt", volume: number, pitch: number): void;
     static playSound(name: "mob.cat.meow", volume: number, pitch: number): void;
     static playSound(name: "mob.cat.purr", volume: number, pitch: number): void;
-    static playSound(name: "mob.cat.purreow", volume: number, pitch: number): void;
-    static playSound(name: "mob.chicken.hurt", volume: number, pitch: number): void;
-    static playSound(name: "mob.chicken.plop", volume: number, pitch: number): void;
-    static playSound(name: "mob.chicken.say", volume: number, pitch: number): void;
-    static playSound(name: "mob.chicken.step", volume: number, pitch: number): void;
+    static playSound(
+      name: "mob.cat.purreow",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.chicken.hurt",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.chicken.plop",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.chicken.say",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.chicken.step",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "mob.cow.hurt", volume: number, pitch: number): void;
     static playSound(name: "mob.cow.say", volume: number, pitch: number): void;
     static playSound(name: "mob.cow.step", volume: number, pitch: number): void;
-    static playSound(name: "mob.creeper.death", volume: number, pitch: number): void;
-    static playSound(name: "mob.creeper.say", volume: number, pitch: number): void;
-    static playSound(name: "mob.enderdragon.end", volume: number, pitch: number): void;
-    static playSound(name: "mob.enderdragon.growl", volume: number, pitch: number): void;
-    static playSound(name: "mob.enderdragon.hit", volume: number, pitch: number): void;
-    static playSound(name: "mob.enderdragon.wings", volume: number, pitch: number): void;
-    static playSound(name: "mob.endermen.death", volume: number, pitch: number): void;
-    static playSound(name: "mob.endermen.hit", volume: number, pitch: number): void;
-    static playSound(name: "mob.endermen.idle", volume: number, pitch: number): void;
-    static playSound(name: "mob.endermen.portal", volume: number, pitch: number): void;
-    static playSound(name: "mob.endermen.scream", volume: number, pitch: number): void;
-    static playSound(name: "mob.endermen.stare", volume: number, pitch: number): void;
-    static playSound(name: "mob.ghast.affectionate_scream", volume: number, pitch: number): void;
-    static playSound(name: "mob.ghast.charge", volume: number, pitch: number): void;
-    static playSound(name: "mob.ghast.death", volume: number, pitch: number): void;
-    static playSound(name: "mob.ghast.fireball", volume: number, pitch: number): void;
-    static playSound(name: "mob.ghast.moan", volume: number, pitch: number): void;
-    static playSound(name: "mob.ghast.scream", volume: number, pitch: number): void;
-    static playSound(name: "mob.guardian.hit", volume: number, pitch: number): void;
-    static playSound(name: "mob.guardian.idle", volume: number, pitch: number): void;
-    static playSound(name: "mob.guardian.death", volume: number, pitch: number): void;
-    static playSound(name: "mob.guardian.elder.hit", volume: number, pitch: number): void;
-    static playSound(name: "mob.guardian.elder.idle", volume: number, pitch: number): void;
-    static playSound(name: "mob.guardian.elder.death", volume: number, pitch: number): void;
-    static playSound(name: "mob.guardian.land.hit", volume: number, pitch: number): void;
-    static playSound(name: "mob.guardian.land.idle", volume: number, pitch: number): void;
-    static playSound(name: "mob.guardian.land.death", volume: number, pitch: number): void;
-    static playSound(name: "mob.guardian.curse", volume: number, pitch: number): void;
-    static playSound(name: "mob.guardian.attack", volume: number, pitch: number): void;
-    static playSound(name: "mob.guardian.flop", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.angry", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.armor", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.breathe", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.death", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.donkey.angry", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.donkey.death", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.donkey.hit", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.donkey.idle", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.gallop", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.hit", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.idle", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.jump", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.land", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.leather", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.skeleton.death", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.skeleton.hit", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.skeleton.idle", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.soft", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.wood", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.zombie.death", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.zombie.hit", volume: number, pitch: number): void;
-    static playSound(name: "mob.horse.zombie.idle", volume: number, pitch: number): void;
-    static playSound(name: "mob.irongolem.death", volume: number, pitch: number): void;
-    static playSound(name: "mob.irongolem.hit", volume: number, pitch: number): void;
-    static playSound(name: "mob.irongolem.throw", volume: number, pitch: number): void;
-    static playSound(name: "mob.irongolem.walk", volume: number, pitch: number): void;
-    static playSound(name: "mob.magmacube.big", volume: number, pitch: number): void;
-    static playSound(name: "mob.magmacube.jump", volume: number, pitch: number): void;
-    static playSound(name: "mob.magmacube.small", volume: number, pitch: number): void;
-    static playSound(name: "mob.pig.death", volume: number, pitch: number): void;
+    static playSound(
+      name: "mob.creeper.death",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.creeper.say",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.enderdragon.end",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.enderdragon.growl",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.enderdragon.hit",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.enderdragon.wings",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.endermen.death",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.endermen.hit",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.endermen.idle",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.endermen.portal",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.endermen.scream",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.endermen.stare",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.ghast.affectionate_scream",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.ghast.charge",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.ghast.death",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.ghast.fireball",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.ghast.moan",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.ghast.scream",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.guardian.hit",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.guardian.idle",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.guardian.death",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.guardian.elder.hit",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.guardian.elder.idle",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.guardian.elder.death",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.guardian.land.hit",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.guardian.land.idle",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.guardian.land.death",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.guardian.curse",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.guardian.attack",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.guardian.flop",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.angry",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.armor",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.breathe",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.death",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.donkey.angry",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.donkey.death",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.donkey.hit",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.donkey.idle",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.gallop",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.hit",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.idle",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.jump",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.land",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.leather",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.skeleton.death",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.skeleton.hit",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.skeleton.idle",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.soft",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.wood",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.zombie.death",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.zombie.hit",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.horse.zombie.idle",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.irongolem.death",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.irongolem.hit",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.irongolem.throw",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.irongolem.walk",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.magmacube.big",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.magmacube.jump",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.magmacube.small",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.pig.death",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "mob.pig.say", volume: number, pitch: number): void;
     static playSound(name: "mob.pig.step", volume: number, pitch: number): void;
-    static playSound(name: "mob.rabbit.hurt", volume: number, pitch: number): void;
-    static playSound(name: "mob.rabbit.idle", volume: number, pitch: number): void;
-    static playSound(name: "mob.rabbit.hop", volume: number, pitch: number): void;
-    static playSound(name: "mob.rabbit.death", volume: number, pitch: number): void;
-    static playSound(name: "mob.sheep.say", volume: number, pitch: number): void;
-    static playSound(name: "mob.sheep.shear", volume: number, pitch: number): void;
-    static playSound(name: "mob.sheep.step", volume: number, pitch: number): void;
-    static playSound(name: "mob.silverfish.hit", volume: number, pitch: number): void;
-    static playSound(name: "mob.silverfish.kill", volume: number, pitch: number): void;
-    static playSound(name: "mob.silverfish.say", volume: number, pitch: number): void;
-    static playSound(name: "mob.silverfish.step", volume: number, pitch: number): void;
-    static playSound(name: "mob.skeleton.death", volume: number, pitch: number): void;
-    static playSound(name: "mob.skeleton.hurt", volume: number, pitch: number): void;
-    static playSound(name: "mob.skeleton.say", volume: number, pitch: number): void;
-    static playSound(name: "mob.skeleton.step", volume: number, pitch: number): void;
-    static playSound(name: "mob.slime.attack", volume: number, pitch: number): void;
-    static playSound(name: "mob.slime.big", volume: number, pitch: number): void;
-    static playSound(name: "mob.slime.small", volume: number, pitch: number): void;
-    static playSound(name: "mob.spider.death", volume: number, pitch: number): void;
-    static playSound(name: "mob.spider.say", volume: number, pitch: number): void;
-    static playSound(name: "mob.spider.step", volume: number, pitch: number): void;
-    static playSound(name: "mob.villager.death", volume: number, pitch: number): void;
-    static playSound(name: "mob.villager.haggle", volume: number, pitch: number): void;
-    static playSound(name: "mob.villager.hit", volume: number, pitch: number): void;
-    static playSound(name: "mob.villager.idle", volume: number, pitch: number): void;
-    static playSound(name: "mob.villager.no", volume: number, pitch: number): void;
-    static playSound(name: "mob.villager.yes", volume: number, pitch: number): void;
-    static playSound(name: "mob.wither.death", volume: number, pitch: number): void;
-    static playSound(name: "mob.wither.hurt", volume: number, pitch: number): void;
-    static playSound(name: "mob.wither.idle", volume: number, pitch: number): void;
-    static playSound(name: "mob.wither.shoot", volume: number, pitch: number): void;
-    static playSound(name: "mob.wither.spawn", volume: number, pitch: number): void;
-    static playSound(name: "mob.wolf.bark", volume: number, pitch: number): void;
-    static playSound(name: "mob.wolf.death", volume: number, pitch: number): void;
-    static playSound(name: "mob.wolf.growl", volume: number, pitch: number): void;
-    static playSound(name: "mob.wolf.howl", volume: number, pitch: number): void;
-    static playSound(name: "mob.wolf.hurt", volume: number, pitch: number): void;
-    static playSound(name: "mob.wolf.panting", volume: number, pitch: number): void;
-    static playSound(name: "mob.wolf.shake", volume: number, pitch: number): void;
-    static playSound(name: "mob.wolf.step", volume: number, pitch: number): void;
-    static playSound(name: "mob.wolf.whine", volume: number, pitch: number): void;
-    static playSound(name: "mob.zombie.death", volume: number, pitch: number): void;
-    static playSound(name: "mob.zombie.hurt", volume: number, pitch: number): void;
-    static playSound(name: "mob.zombie.infect", volume: number, pitch: number): void;
-    static playSound(name: "mob.zombie.metal", volume: number, pitch: number): void;
-    static playSound(name: "mob.zombie.remedy", volume: number, pitch: number): void;
-    static playSound(name: "mob.zombie.say", volume: number, pitch: number): void;
-    static playSound(name: "mob.zombie.step", volume: number, pitch: number): void;
-    static playSound(name: "mob.zombie.unfect", volume: number, pitch: number): void;
-    static playSound(name: "mob.zombie.wood", volume: number, pitch: number): void;
-    static playSound(name: "mob.zombie.woodbreak", volume: number, pitch: number): void;
-    static playSound(name: "mob.zombiepig.zpig", volume: number, pitch: number): void;
-    static playSound(name: "mob.zombiepig.zpigangry", volume: number, pitch: number): void;
-    static playSound(name: "mob.zombiepig.zpigdeath", volume: number, pitch: number): void;
-    static playSound(name: "mob.zombiepig.zpighurt", volume: number, pitch: number): void;
+    static playSound(
+      name: "mob.rabbit.hurt",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.rabbit.idle",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.rabbit.hop",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.rabbit.death",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.sheep.say",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.sheep.shear",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.sheep.step",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.silverfish.hit",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.silverfish.kill",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.silverfish.say",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.silverfish.step",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.skeleton.death",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.skeleton.hurt",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.skeleton.say",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.skeleton.step",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.slime.attack",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.slime.big",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.slime.small",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.spider.death",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.spider.say",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.spider.step",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.villager.death",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.villager.haggle",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.villager.hit",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.villager.idle",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.villager.no",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.villager.yes",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.wither.death",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.wither.hurt",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.wither.idle",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.wither.shoot",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.wither.spawn",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.wolf.bark",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.wolf.death",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.wolf.growl",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.wolf.howl",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.wolf.hurt",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.wolf.panting",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.wolf.shake",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.wolf.step",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.wolf.whine",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.zombie.death",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.zombie.hurt",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.zombie.infect",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.zombie.metal",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.zombie.remedy",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.zombie.say",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.zombie.step",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.zombie.unfect",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.zombie.wood",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.zombie.woodbreak",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.zombiepig.zpig",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.zombiepig.zpigangry",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.zombiepig.zpigdeath",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "mob.zombiepig.zpighurt",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "records.11", volume: number, pitch: number): void;
     static playSound(name: "records.13", volume: number, pitch: number): void;
-    static playSound(name: "records.blocks", volume: number, pitch: number): void;
+    static playSound(
+      name: "records.blocks",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "records.cat", volume: number, pitch: number): void;
-    static playSound(name: "records.chirp", volume: number, pitch: number): void;
+    static playSound(
+      name: "records.chirp",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "records.far", volume: number, pitch: number): void;
     static playSound(name: "records.mall", volume: number, pitch: number): void;
-    static playSound(name: "records.mellohi", volume: number, pitch: number): void;
+    static playSound(
+      name: "records.mellohi",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "records.stal", volume: number, pitch: number): void;
-    static playSound(name: "records.strad", volume: number, pitch: number): void;
+    static playSound(
+      name: "records.strad",
+      volume: number,
+      pitch: number,
+    ): void;
     static playSound(name: "records.wait", volume: number, pitch: number): void;
     static playSound(name: "records.ward", volume: number, pitch: number): void;
     static playSound(name: "music.menu", volume: number, pitch: number): void;
     static playSound(name: "music.game", volume: number, pitch: number): void;
-    static playSound(name: "music.game.creative", volume: number, pitch: number): void;
-    static playSound(name: "music.game.end", volume: number, pitch: number): void;
-    static playSound(name: "music.game.end.dragon", volume: number, pitch: number): void;
-    static playSound(name: "music.game.end.credits", volume: number, pitch: number): void;
-    static playSound(name: "music.game.nether", volume: number, pitch: number): void;
+    static playSound(
+      name: "music.game.creative",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "music.game.end",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "music.game.end.dragon",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "music.game.end.credits",
+      volume: number,
+      pitch: number,
+    ): void;
+    static playSound(
+      name: "music.game.nether",
+      volume: number,
+      pitch: number,
+    ): void;
 
     /**
      * Play a record at location x, y, and z.<br></br>
@@ -1841,7 +2661,7 @@ declare global {
         z: double,
         xSpeed: double,
         ySpeed: double,
-        zSpeed: double
+        zSpeed: double,
       ): Particle;
       /**
        * Spawns a particle into the world with the given attributes,
@@ -1863,7 +2683,7 @@ declare global {
         z: double,
         xSpeed: double,
         ySpeed: double,
-        zSpeed: double
+        zSpeed: double,
       ): Particle;
 
       spawnParticle(particle: MCEntityFX): void;
@@ -2148,13 +2968,17 @@ declare global {
   class ReflectionHelper {
     static findField(clazz: JavaClass<any>, ...fieldNames: string[]): JavaField;
 
-    static getPrivateValue<T, E>(classToAccess: JavaClass<T>, instance: T, fieldIndex: int): E;
+    static getPrivateValue<T, E>(
+      classToAccess: JavaClass<T>,
+      instance: T,
+      fieldIndex: int,
+    ): E;
 
     static setPrivateValue<T, E>(
       classToAccess: JavaClass<T>,
       instance: T,
       value: E,
-      fieldIndex: int
+      fieldIndex: int,
     ): void;
 
     static setPrivateValue<T, E>(
@@ -2476,7 +3300,10 @@ declare global {
     /**
      * If the value for the specified key is present and non-null, attempts to compute a new mapping given the key and its current mapped value.
      */
-    computeIfPresent(key: any, remappingFunction: (arg1: any, arg2: any) => any): any;
+    computeIfPresent(
+      key: any,
+      remappingFunction: (arg1: any, arg2: any) => any,
+    ): any;
 
     /**
      * Returns true if this map contains a mapping for the specified key.
@@ -2521,7 +3348,11 @@ declare global {
     /**
      * If the specified key is not already associated with a value or is associated with null, associates it with the given non-null value.
      */
-    merge(key: any, value: any, remappingFunction: (arg1: any, arg2: any) => any): any;
+    merge(
+      key: any,
+      value: any,
+      remappingFunction: (arg1: any, arg2: any) => any,
+    ): any;
 
     /**
      * Associates the specified value with the specified key in this map.
@@ -3321,7 +4152,7 @@ declare global {
     getUUID(): JavaUUID;
 
     toString(): string;
-    
+
     getEntity(): MCEntity;
   }
 
@@ -3748,7 +4579,10 @@ declare global {
      * @param toReplace the "comparator" function
      * @param replacements the replacement messages
      */
-    static editChat(toReplace: (message: Message) => boolean, ...replacements: Message[]): void;
+    static editChat(
+      toReplace: (message: Message) => boolean,
+      ...replacements: Message[]
+    ): void;
 
     /**
      * Gets the previous 1000 lines of chat
@@ -3766,7 +4600,10 @@ declare global {
      * unformatted text
      * @return The text of the event
      */
-    static getChatMessage(event: ForgeClientChatReceivedEvent, formatted?: boolean): string;
+    static getChatMessage(
+      event: ForgeClientChatReceivedEvent,
+      formatted?: boolean,
+    ): string;
 
     /**
      * Replaces the easier to type '&amp;' color codes with proper color codes in a string.
@@ -3904,7 +4741,7 @@ declare global {
     static getKeyBindFromKey(
       keyCode: int | Keyboard,
       description: string,
-      category?: string
+      category?: string,
     ): KeyBind;
 
     /**
@@ -3961,7 +4798,13 @@ declare global {
      * @param time     time to stay on screen
      * @param fadeOut  time to fade out
      */
-    static showTitle(title: string, subtitle: string, fadeIn: int, time: int, fadeOut: int): void;
+    static showTitle(
+      title: string,
+      subtitle: string,
+      fadeIn: int,
+      time: int,
+      fadeOut: int,
+    ): void;
   }
   namespace Client {
     class currentGui {
@@ -3999,7 +4842,11 @@ declare global {
      * @param keyCode     the keycode which the key bind will respond to, see Keyboard below. Ex. Keyboard.KEY_A
      * @see [Keyboard](http://legacy.lwjgl.org/javadoc/org/lwjgl/input/Keyboard.html)
      */
-    constructor(description: string, keyCode: int | Keyboard, category?: string);
+    constructor(
+      description: string,
+      keyCode: int | Keyboard,
+      category?: string,
+    );
 
     constructor(keyBinding: MCKeyBinding);
 
@@ -4106,11 +4953,24 @@ declare global {
     setBackgroundColor(color: long): DisplayLine;
 
     registerClicked(
-      method: (mouseX: number, mouseY: number, button: int, pressed: boolean) => void
+      method: (
+        mouseX: number,
+        mouseY: number,
+        button: int,
+        pressed: boolean,
+      ) => void,
     ): OnTrigger;
-    registerHovered(method: (mouseX: number, mouseY: number) => void): OnTrigger;
+    registerHovered(
+      method: (mouseX: number, mouseY: number) => void,
+    ): OnTrigger;
     registerDragged(
-      method: (xDist: number, yDist: number, mouseX: number, mouseY: number, button: int) => void
+      method: (
+        xDist: number,
+        yDist: number,
+        mouseX: number,
+        mouseY: number,
+        button: int,
+      ) => void,
     ): OnTrigger;
 
     drawLeft(
@@ -4119,7 +4979,7 @@ declare global {
       maxWidth: float,
       background: DisplayHandler.Background,
       backgroundColor: long,
-      textColor: long
+      textColor: long,
     ): void;
     drawRight(
       x: float,
@@ -4127,7 +4987,7 @@ declare global {
       maxWidth: float,
       background: DisplayHandler.Background,
       backgroundColor: long,
-      textColor: long
+      textColor: long,
     ): void;
     drawCenter(
       x: float,
@@ -4135,7 +4995,7 @@ declare global {
       maxWidth: float,
       background: DisplayHandler.Background,
       backgroundColor: long,
-      textColor: long
+      textColor: long,
     ): void;
 
     toString(): string;
@@ -4360,7 +5220,9 @@ declare global {
     static getName(event: ForgePlaySoundEvent): string;
 
     getModId(event: ForgeConfigChangedEvent.OnConfigChangedEvent): string;
-    static getModId(event: ForgeConfigChangedEvent.OnConfigChangedEvent): string;
+    static getModId(
+      event: ForgeConfigChangedEvent.OnConfigChangedEvent,
+    ): string;
 
     /**
      * Cancel an event. Automatically used with `cancel(event)`.
@@ -4566,7 +5428,9 @@ declare global {
      * @param method the method to run
      * @return the trigger
      */
-    registerDraw(method: (mouseX: int, mouseY: int, partialTicks: float) => void): OnRegularTrigger;
+    registerDraw(
+      method: (mouseX: int, mouseY: int, partialTicks: float) => void,
+    ): OnRegularTrigger;
 
     /**
      * Registers a method to be ran while gui is open.<br></br>
@@ -4579,7 +5443,9 @@ declare global {
      * @param method the method to run
      * @return the trigger
      */
-    registerClicked(method: (mouseX: int, mouseY: int, button: int) => void): OnRegularTrigger;
+    registerClicked(
+      method: (mouseX: int, mouseY: int, button: int) => void,
+    ): OnRegularTrigger;
 
     /**
      * Registers a method to be ran while the gui is open.<br></br>
@@ -4589,7 +5455,9 @@ declare global {
      * int mouseY<br></br>
      * int scroll direction
      */
-    registerScrolled(method: (mouseX: int, mouseY: int, scroll: int) => void): OnRegularTrigger;
+    registerScrolled(
+      method: (mouseX: int, mouseY: int, scroll: int) => void,
+    ): OnRegularTrigger;
 
     /**
      * Registers a method to be ran while gui is open.<br></br>
@@ -4601,7 +5469,9 @@ declare global {
      * @param method the method to run
      * @return the trigger
      */
-    registerKeyTyped(method: (typed: string, key: int) => void): OnRegularTrigger;
+    registerKeyTyped(
+      method: (typed: string, key: int) => void,
+    ): OnRegularTrigger;
 
     /**
      * Registers a method to be ran while gui is open.<br></br>
@@ -4616,7 +5486,12 @@ declare global {
      * @return the trigger
      */
     registerMouseDragged(
-      method: (mouseX: int, mouseY: int, clickedMouseButton: int, timeSinceLastClick: long) => void
+      method: (
+        mouseX: int,
+        mouseY: int,
+        clickedMouseButton: int,
+        timeSinceLastClick: long,
+      ) => void,
     ): OnRegularTrigger;
 
     /**
@@ -4631,7 +5506,7 @@ declare global {
      * @return the trigger
      */
     registerMouseReleased(
-      method: (mouseX: int, mouseY: int, button: int) => void
+      method: (mouseX: int, mouseY: int, button: int) => void,
     ): OnRegularTrigger;
 
     /**
@@ -4643,7 +5518,9 @@ declare global {
      * @param method the method to run
      * @return the trigger
      */
-    registerActionPerformed(method: (button: MCGuiButton) => void): OnRegularTrigger;
+    registerActionPerformed(
+      method: (button: MCGuiButton) => void,
+    ): OnRegularTrigger;
 
     /**
      * Internal method to run trigger. Not meant for public use
@@ -4667,7 +5544,7 @@ declare global {
       mouseX: int,
       mouseY: int,
       clickedMouseButton: int,
-      timeSinceLastClick: long
+      timeSinceLastClick: long,
     ): void;
 
     /**
@@ -4712,7 +5589,14 @@ declare global {
      * @param height     the height of the button
      * @param buttonText the label of the button
      */
-    addButton(buttonId: int, x: int, y: int, width: int, height: int, buttonText: string): void;
+    addButton(
+      buttonId: int,
+      x: int,
+      y: int,
+      width: int,
+      height: int,
+      buttonText: string,
+    ): void;
 
     setButtonVisibility(buttonId: int, visible: boolean): void;
 
@@ -4936,7 +5820,9 @@ declare global {
      * @param parameters the chat parameters to set
      * @return the trigger object for method chaining
      */
-    setParameters(...parameters: ("contains" | "start" | "end")[]): OnChatTrigger;
+    setParameters(
+      ...parameters: ("contains" | "start" | "end")[]
+    ): OnChatTrigger;
 
     /**
      * Adds chat parameter for [Parameter].
@@ -4950,7 +5836,9 @@ declare global {
      * @param parameters the chat parameters to add
      * @return the trigger object for method chaining
      */
-    addParameters(...parameters: ("contains" | "start" | "end")[]): OnChatTrigger;
+    addParameters(
+      ...parameters: ("contains" | "start" | "end")[]
+    ): OnChatTrigger;
 
     /**
      * Adds the "start" parameter
@@ -5095,7 +5983,9 @@ declare interface javaTypePath {
   (path: "net.minecraft.util.EnumFacing"): typeof MCEnumFacing;
   (path: "net.minecraft.nbt.NBTTagList"): typeof MCNBTTagList;
   (path: "net.minecraft.client.Minecraft"): typeof MCMinecraft;
-  (path: "net.minecraft.client.network.NetHandlerPlayClient"): typeof MCNetHandlerPlayClient;
+  (
+    path: "net.minecraft.client.network.NetHandlerPlayClient",
+  ): typeof MCNetHandlerPlayClient;
   (path: "net.minecraft.client.gui.GuiNewChat"): typeof MCGuiNewChat;
   (path: "net.minecraft.client.gui.GuiNewChat"): typeof MCGuiPlayerTabOverlay;
   (path: "net.minecraft.network.INetHandler"): typeof MCINetHandler;
@@ -5106,41 +5996,59 @@ declare interface javaTypePath {
   (path: "net.minecraft.client.entity.EntityPlayerSP"): typeof MCEntityPlayerSP;
   (path: "net.minecraft.client.settings.KeyBinding"): typeof MCKeyBinding;
   (path: "net.minecraft.client.gui.GuiButton"): typeof MCGuiButton;
-  (path: "net.minecraft.client.renderer.texture.DynamicTexture"): typeof MCDynamicTexture;
-  (path: "net.minecraft.client.renderer.texture.AbstractTexture"): typeof MCAbstractTexture;
+  (
+    path: "net.minecraft.client.renderer.texture.DynamicTexture",
+  ): typeof MCDynamicTexture;
+  (
+    path: "net.minecraft.client.renderer.texture.AbstractTexture",
+  ): typeof MCAbstractTexture;
   (path: "net.minecraft.client.audio.SoundCategory"): typeof MCSoundCategory;
   (path: "net.minecraft.potion.PotionEffect"): typeof MCPotionEffect;
   (path: "net.minecraft.world.World"): typeof MCWorld;
   (path: "net.minecraft.client.particle.EntityFX"): typeof MCEntityFX;
   (path: "net.minecraft.util.EnumParticleTypes"): typeof MCEnumParticleTypes;
   (path: "net.minecraft.client.gui.FontRenderer"): typeof MCFontRenderer;
-  (path: "net.minecraft.client.renderer.entity.RenderManager"): typeof MCRenderManager;
+  (
+    path: "net.minecraft.client.renderer.entity.RenderManager",
+  ): typeof MCRenderManager;
   (path: "net.minecraft.entity.EntityLivingBase"): typeof MCEntityLivingBase;
   (path: "net.minecraft.client.multiplayer.WorldClient"): typeof MCWorldClient;
   (path: "net.minecraft.scoreboard.Score"): typeof MCScore;
   // forge paths
   (
-    path: "net.minecraftforge.client.event.ClientChatReceivedEvent"
+    path: "net.minecraftforge.client.event.ClientChatReceivedEvent",
   ): typeof ForgeClientChatReceivedEvent;
   (
-    path: "net.minecraftforge.client.event.RenderGameOverlayEvent"
+    path: "net.minecraftforge.client.event.RenderGameOverlayEvent",
   ): typeof ForgeRenderGameOverlayEvent;
   (path: "net.minecraftforge.client.event.MouseEvent"): typeof ForgeMouseEvent;
-  (path: "net.minecraftforge.client.event.sound.PlaySoundEvent"): typeof ForgePlaySoundEvent;
-  (path: "net.minecraftforge.fml.client.event.ConfigChangedEvent"): typeof ForgeConfigChangedEvent;
-  (path: "net.minecraftforge.fml.common.gameevent.TickEvent"): typeof ForgeTickEvent;
-  (path: "net.minecraftforge.event.world.NoteBlockEvent"): typeof ForgeNoteBlockEvent;
   (
-    path: "net.minecraftforge.client.event.DrawBlockHighlightEvent"
+    path: "net.minecraftforge.client.event.sound.PlaySoundEvent",
+  ): typeof ForgePlaySoundEvent;
+  (
+    path: "net.minecraftforge.fml.client.event.ConfigChangedEvent",
+  ): typeof ForgeConfigChangedEvent;
+  (
+    path: "net.minecraftforge.fml.common.gameevent.TickEvent",
+  ): typeof ForgeTickEvent;
+  (
+    path: "net.minecraftforge.event.world.NoteBlockEvent",
+  ): typeof ForgeNoteBlockEvent;
+  (
+    path: "net.minecraftforge.client.event.DrawBlockHighlightEvent",
   ): typeof ForgeDrawBlockHighlightEvent;
-  (path: "net.minecraftforge.client.event.GuiOpenEvent"): typeof ForgeGuiOpenEvent;
   (
-    path: "net.minecraftforge.event.entity.player.EntityItemPickupEvent"
+    path: "net.minecraftforge.client.event.GuiOpenEvent",
+  ): typeof ForgeGuiOpenEvent;
+  (
+    path: "net.minecraftforge.event.entity.player.EntityItemPickupEvent",
   ): typeof ForgeEntityItemPickupEvent;
   (
-    path: "net.minecraftforge.event.entity.player.PlayerInteractEvent"
+    path: "net.minecraftforge.event.entity.player.PlayerInteractEvent",
   ): typeof ForgePlayerInteractEvent;
-  (path: "net.minecraftforge.client.event.GuiScreenEvent"): typeof ForgeGuiScreenEvent;
+  (
+    path: "net.minecraftforge.client.event.GuiScreenEvent",
+  ): typeof ForgeGuiScreenEvent;
   (path: "net.minecraftforge.event.world.BlockEvent"): typeof ForgeBlockEvent;
   // java paths
   (path: "java.util.UUID"): typeof JavaUUID;
@@ -5150,7 +6058,9 @@ declare interface javaTypePath {
   (path: "java.lang.Class"): typeof JavaClass;
   (path: "java.net.URL"): typeof JavaURL;
   (path: "java.net.URI"): typeof JavaURI;
-  (path: "java.net.URLStreamHandlerFactory"): typeof JavaURLStreamHandlerFactory;
+  (
+    path: "java.net.URLStreamHandlerFactory",
+  ): typeof JavaURLStreamHandlerFactory;
   (path: "java.io.InputStream"): typeof JavaInputStream;
   (path: "java.net.URLConnection"): typeof JavaURLConnection;
   (path: "java.net.Proxy"): typeof JavaProxy;
@@ -5438,7 +6348,9 @@ declare class ForgeConfigChangedEvent {
 declare namespace ForgeConfigChangedEvent {
   class OnConfigChangedEvent extends ForgeConfigChangedEvent {
     class: JavaClass<ForgeConfigChangedEvent.OnConfigChangedEvent>;
-    static class: JavaClass<typeof ForgeConfigChangedEvent.OnConfigChangedEvent>;
+    static class: JavaClass<
+      typeof ForgeConfigChangedEvent.OnConfigChangedEvent
+    >;
   }
 }
 
@@ -5529,7 +6441,7 @@ declare class ForgePlayerInteractEvent {
     action: ForgePlayerInteractEvent.Action,
     pos: MCBlockPos,
     face: MCEnumFacing,
-    world: MCWorld
+    world: MCWorld,
   );
 }
 declare namespace ForgePlayerInteractEvent {
@@ -5556,15 +6468,30 @@ declare namespace ForgeGuiScreenEvent {
     readonly mouseX: int;
     readonly mouseY: int;
     readonly renderPartialTicks: float;
-    constructor(gui: MCGuiScreen, mouseX: int, mouseY: int, renderPartialTicks: float);
+    constructor(
+      gui: MCGuiScreen,
+      mouseX: int,
+      mouseY: int,
+      renderPartialTicks: float,
+    );
   }
 }
 declare namespace ForgeGuiScreenEvent.DrawScreenEvent {
   class Post extends ForgeGuiScreenEvent.DrawScreenEvent {
-    constructor(gui: MCGuiScreen, mouseX: int, mouseY: int, renderPartialTicks: float);
+    constructor(
+      gui: MCGuiScreen,
+      mouseX: int,
+      mouseY: int,
+      renderPartialTicks: float,
+    );
   }
   class Pre extends ForgeGuiScreenEvent.DrawScreenEvent {
-    constructor(gui: MCGuiScreen, mouseX: int, mouseY: int, renderPartialTicks: float);
+    constructor(
+      gui: MCGuiScreen,
+      mouseX: int,
+      mouseY: int,
+      renderPartialTicks: float,
+    );
   }
 }
 
@@ -5575,7 +6502,12 @@ declare class ForgeBlockEvent {
 
 declare namespace ForgeBlockEvent {
   class BreakEvent extends ForgeBlockEvent {
-    constructor(world: MCWorld, pos: MCBlockPos, state: MCIBlockState, player: MCEntityPlayer);
+    constructor(
+      world: MCWorld,
+      pos: MCBlockPos,
+      state: MCIBlockState,
+      player: MCEntityPlayer,
+    );
 
     getPlayer(): MCEntityPlayer;
 
@@ -6229,7 +7161,11 @@ declare class JavaFile {
   /**
    * Creates a new empty file in the specified directory, using the given prefix and suffix strings to generate its name.
    */
-  static createTempFile(prefix: string, suffix: string, directory: JavaFile): JavaFile;
+  static createTempFile(
+    prefix: string,
+    suffix: string,
+    directory: JavaFile,
+  ): JavaFile;
 
   /**
    * Deletes the file or directory denoted by this abstract pathname.
@@ -6531,7 +7467,10 @@ declare class JavaClass<T> {
   /**
    * Returns a Method object that reflects the specified declared method of the class or interface represented by this Class object.
    */
-  getDeclaredMethod(name: string, ...parameterTypes: JavaClass<any>[]): JavaMethod;
+  getDeclaredMethod(
+    name: string,
+    ...parameterTypes: JavaClass<any>[]
+  ): JavaMethod;
 
   /**
    * Returns an array containing Method objects reflecting all the declared methods of the class or interface represented by this Class object, including public, protected, default (package) access, and private methods, but excluding inherited methods.
@@ -6713,7 +7652,7 @@ declare class JavaURL {
     host: string,
     port: int,
     file: string,
-    handler: JavaURLStreamHandler
+    handler: JavaURLStreamHandler,
   );
 
   /**
@@ -6863,7 +7802,7 @@ declare class JavaURI {
     port: int,
     path: string,
     query: string,
-    fragment: string
+    fragment: string,
   );
 
   /**
@@ -6874,7 +7813,13 @@ declare class JavaURI {
   /**
    * Constructs a hierarchical URI from the given components.
    */
-  constructor(scheme: string, authority: string, path: string, query: string, fragment: string);
+  constructor(
+    scheme: string,
+    authority: string,
+    path: string,
+    query: string,
+    fragment: string,
+  );
 
   /**
    * Compares this URI to another object, which must be a URI.
@@ -7641,7 +8586,7 @@ declare class NBTTagList extends NBTBase {
 
   get(
     index: int,
-    type: NBTTagCompound["NBTDataType"]
+    type: NBTTagCompound["NBTDataType"],
   ): float | double | string | int[] | MCNBTTagCompound | NBTBase;
 }
 
@@ -7877,7 +8822,9 @@ declare class chat {
   getVisibility(): MCEntityPlayer["EnumChatVisibility"];
   static getVisibility(): MCEntityPlayer["EnumChatVisibility"];
   setVisibility(visibility: "hidden" | "commands" | "system" | "full"): void;
-  static setVisibility(visibility: "hidden" | "commands" | "system" | "full"): void;
+  static setVisibility(
+    visibility: "hidden" | "commands" | "system" | "full",
+  ): void;
 
   getCcolors(): boolean;
   static getCcolors(): boolean;
@@ -8136,7 +9083,11 @@ declare interface ILoader {
    * @param outputFile file to save to
    * @param replace whether or not to replace the file being saved to
    */
-  saveResource(resourceName: string, outputFile: JavaFile, replace: boolean): string;
+  saveResource(
+    resourceName: string,
+    outputFile: JavaFile,
+    replace: boolean,
+  ): string;
 }
 
 //#endregion
@@ -8161,7 +9112,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerChat(method: (...args: (string | ForgeClientChatReceivedEvent)[]) => void): OnChatTrigger;
+  registerChat(
+    method: (...args: (string | ForgeClientChatReceivedEvent)[]) => void,
+  ): OnChatTrigger;
 
   /**
    * Registers a new trigger that runs before an action bar message is received.
@@ -8182,7 +9135,7 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerActionBar(
-    method: (...params: (string | ForgeClientChatReceivedEvent)[]) => void
+    method: (...params: (string | ForgeClientChatReceivedEvent)[]) => void,
   ): OnChatTrigger;
 
   /**
@@ -8221,7 +9174,12 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerClicked(
-    method: (mouseX: float, mouseY: float, button: int, isButtonDown: boolean) => void
+    method: (
+      mouseX: float,
+      mouseY: float,
+      button: int,
+      isButtonDown: boolean,
+    ) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before the mouse is scrolled.
@@ -8238,7 +9196,7 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerScrolled(
-    method: (mouseX: float, mouseY: float, direction: int) => void
+    method: (mouseX: float, mouseY: float, direction: int) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs while a mouse button is being held down.
@@ -8262,8 +9220,8 @@ declare interface ITriggerRegister {
       mouseDeltaY: float,
       mouseX: float,
       mouseY: float,
-      button: int
-    ) => void
+      button: int,
+    ) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before a sound is played.
@@ -8290,8 +9248,8 @@ declare interface ITriggerRegister {
       vol: float,
       pitch: float,
       category: MCSoundCategory,
-      event: ForgePlaySoundEvent
-    ) => void
+      event: ForgePlaySoundEvent,
+    ) => void,
   ): OnSoundPlayTrigger;
   /**
    * Registers a new trigger that runs before a noteblock is played.
@@ -8313,8 +9271,8 @@ declare interface ITriggerRegister {
       position: Vector3f,
       name: string,
       octave: ForgeNoteBlockEvent.Octave,
-      event: ForgeNoteBlockEvent.Play
-    ) => void
+      event: ForgeNoteBlockEvent.Play,
+    ) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before a noteblock is changed.
@@ -8336,8 +9294,8 @@ declare interface ITriggerRegister {
       position: Vector3f,
       name: string,
       octave: ForgeNoteBlockEvent.Octave,
-      event: ForgeNoteBlockEvent.Change
-    ) => void
+      event: ForgeNoteBlockEvent.Change,
+    ) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before every game tick.
@@ -8394,7 +9352,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerRenderOverlay(method: (event: ForgeRenderGameOverlayEvent) => void): OnRenderTrigger;
+  registerRenderOverlay(
+    method: (event: ForgeRenderGameOverlayEvent) => void,
+  ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the player list is being drawn.
    *
@@ -8409,7 +9369,9 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerRenderPlayerList(
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the crosshair is being drawn.
@@ -8425,7 +9387,9 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerRenderCrosshair(
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
   /**
    * Registers a trigger that runs before the debug screen is being drawn.
@@ -8441,7 +9405,9 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerRenderDebug(
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the boss health bar is being drawn.
@@ -8457,7 +9423,9 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerRenderBossHealth(
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the player's health is being drawn.
@@ -8473,7 +9441,9 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerRenderHealth(
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the player's armor bar is drawn.
@@ -8489,7 +9459,9 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerRenderArmor(
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the player's food is being drawn.
@@ -8505,7 +9477,9 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerRenderFood(
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the player's mount's health is being drawn.
@@ -8521,7 +9495,9 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerRenderMountHealth(
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the player's experience is being drawn.
@@ -8538,7 +9514,9 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerRenderExperience(
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the player's hotbar is drawn.
@@ -8554,7 +9532,9 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerRenderHotbar(
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the player's air level is drawn.
@@ -8570,7 +9550,9 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerRenderAir(
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
   /**
    * Registers a new trigger that runs before the block highlight box is drawn.
@@ -8586,7 +9568,7 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerDrawBlockHighlight(
-    method: (position: Vector3f, event: ForgeDrawBlockHighlightEvent) => void
+    method: (position: Vector3f, event: ForgeDrawBlockHighlightEvent) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs after the game loads.
@@ -8639,7 +9621,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerGuiOpened(method: (event: ForgeGuiOpenEvent) => void): OnRegularTrigger;
+  registerGuiOpened(
+    method: (event: ForgeGuiOpenEvent) => void,
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs when a player joins the world.
    *
@@ -8694,8 +9678,8 @@ declare interface ITriggerRegister {
       player: PlayerMP,
       position: Vector3f,
       motion: Vector3f,
-      event: ForgeEntityItemPickupEvent
-    ) => void
+      event: ForgeEntityItemPickupEvent,
+    ) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before an item is dropped.
@@ -8714,7 +9698,7 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerDropItem(
-    method: (item: Item, player: PlayerMP, event: CancellableEvent) => void
+    method: (item: Item, player: PlayerMP, event: CancellableEvent) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before a screenshot is taken.
@@ -8730,7 +9714,7 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerScreenshotTaken(
-    method: (name: string, event: CancellableEvent) => void
+    method: (name: string, event: CancellableEvent) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before a message is sent in chat.
@@ -8745,7 +9729,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerMessageSent(method: (message: string, event: CancellableEvent) => void): OnRegularTrigger;
+  registerMessageSent(
+    method: (message: string, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs when a tooltip is being rendered.
    * This allows for the user to modify what text is in the tooltip, and even the
@@ -8763,7 +9749,7 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerItemTooltip(
-    method: (lore: string[], item: Item, event: CancellableEvent) => void
+    method: (lore: string[], item: Item, event: CancellableEvent) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before the player interacts.
@@ -8796,8 +9782,8 @@ declare interface ITriggerRegister {
     method: (
       action: ClientListener.PlayerInteractAction,
       position: Vector3f,
-      event: ForgePlayerInteractEvent
-    ) => void
+      event: ForgePlayerInteractEvent,
+    ) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before the player breaks a block
@@ -8814,7 +9800,11 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerBlockBreak(
-    method: (block: Block, player: PlayerMP, event: ForgeBlockEvent.BreakEvent) => void
+    method: (
+      block: Block,
+      player: PlayerMP,
+      event: ForgeBlockEvent.BreakEvent,
+    ) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before an entity is damaged
@@ -8826,7 +9816,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerEntityDamage(method: (target: Entity, attacker: PlayerMP) => void): OnRegularTrigger;
+  registerEntityDamage(
+    method: (target: Entity, attacker: PlayerMP) => void,
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before an entity dies
    *
@@ -8851,7 +9843,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerGuiRender(method: (mouseX: int, mouseY: int, gui: MCGuiScreen) => void): OnRegularTrigger;
+  registerGuiRender(
+    method: (mouseX: int, mouseY: int, gui: MCGuiScreen) => void,
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever a key is typed with a gui open
    *
@@ -8868,7 +9862,12 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerGuiKey(
-    method: (char: string, keyCode: int, gui: MCGuiScreen, event: CancellableEvent) => void
+    method: (
+      char: string,
+      keyCode: int,
+      gui: MCGuiScreen,
+      event: CancellableEvent,
+    ) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever the mouse is clicked with a
@@ -8893,8 +9892,8 @@ declare interface ITriggerRegister {
       mouseY: int,
       mouseButton: int,
       gui: MCGuiScreen,
-      event: CancellableEvent
-    ) => void
+      event: CancellableEvent,
+    ) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever a mouse button is released
@@ -8919,8 +9918,8 @@ declare interface ITriggerRegister {
       mouseY: int,
       mouseButton: int,
       gui: MCGuiScreen,
-      event: CancellableEvent
-    ) => void
+      event: CancellableEvent,
+    ) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever a mouse button held and dragged
@@ -8945,8 +9944,8 @@ declare interface ITriggerRegister {
       mouseY: int,
       mouseButton: int,
       gui: MCGuiScreen,
-      event: CancellableEvent
-    ) => void
+      event: CancellableEvent,
+    ) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever a packet is sent from the client to the server
@@ -8962,7 +9961,7 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerPacketSent(
-    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void
+    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever a packet is sent to the client from the server
@@ -8978,7 +9977,7 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerPacketReceived(
-    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void
+    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever the user clicks on a clickable
@@ -8995,7 +9994,7 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerChatComponentClicked(
-    method: (component: TextComponent, event: CancellableEvent) => void
+    method: (component: TextComponent, event: CancellableEvent) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever the user hovers over a
@@ -9012,7 +10011,7 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerChatComponentHovered(
-    method: (component: TextComponent, event: CancellableEvent) => void
+    method: (component: TextComponent, event: CancellableEvent) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever an entity is rendered
@@ -9034,8 +10033,8 @@ declare interface ITriggerRegister {
       entity: MCEntity,
       position: Vector3f,
       partialTicks: float,
-      event: CancellableEvent
-    ) => void
+      event: CancellableEvent,
+    ) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs after the current screen is rendered
@@ -9052,7 +10051,7 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerPostGuiRender(
-    method: (gui: MCGuiScreen, mouseX: int, mouseY: int) => void
+    method: (gui: MCGuiScreen, mouseX: int, mouseY: int) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever a particle is spawned
@@ -9069,7 +10068,11 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerSpawnParticle(
-    method: (particle: Particle, type: MCEnumParticleTypes, event: CancellableEvent) => void
+    method: (
+      particle: Particle,
+      type: MCEnumParticleTypes,
+      event: CancellableEvent,
+    ) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever the player has left clicked on an entity
@@ -9084,7 +10087,9 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerAttackEntity(method: (entity: Entity, event: CancellableEvent) => void): OnRegularTrigger;
+  registerAttackEntity(
+    method: (entity: Entity, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever a block is left clicked
    *
@@ -9103,7 +10108,11 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerHitBlock(
-    method: (block: Block, blockFace: BlockFace, event: CancellableEvent) => void
+    method: (
+      block: Block,
+      blockFace: BlockFace,
+      event: CancellableEvent,
+    ) => void,
   ): OnRegularTrigger;
 
   register: IRegister;
@@ -9130,7 +10139,7 @@ declare interface IRegister {
    */
   (
     triggerType: "chat",
-    method: (...args: (string | ForgeClientChatReceivedEvent)[]) => void
+    method: (...args: (string | ForgeClientChatReceivedEvent)[]) => void,
   ): OnChatTrigger;
 
   /**
@@ -9153,7 +10162,7 @@ declare interface IRegister {
    */
   (
     triggerType: "actionBar",
-    method: (...params: (string | ForgeClientChatReceivedEvent)[]) => void
+    method: (...params: (string | ForgeClientChatReceivedEvent)[]) => void,
   ): OnChatTrigger;
   /**
    * Registers a trigger that runs before the world loads.
@@ -9192,7 +10201,12 @@ declare interface IRegister {
    */
   (
     triggerType: "clicked",
-    method: (mouseX: float, mouseY: float, button: int, isButtonDown: boolean) => void
+    method: (
+      mouseX: float,
+      mouseY: float,
+      button: int,
+      isButtonDown: boolean,
+    ) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before the mouse is scrolled.
@@ -9210,7 +10224,7 @@ declare interface IRegister {
    */
   (
     triggerType: "scrolled",
-    method: (mouseX: float, mouseY: float, direction: int) => void
+    method: (mouseX: float, mouseY: float, direction: int) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs while a mouse button is being held down.
@@ -9235,8 +10249,8 @@ declare interface IRegister {
       mouseDeltaY: float,
       mouseX: float,
       mouseY: float,
-      button: int
-    ) => void
+      button: int,
+    ) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before a sound is played.
@@ -9264,8 +10278,8 @@ declare interface IRegister {
       vol: float,
       pitch: float,
       category: MCSoundCategory,
-      event: ForgePlaySoundEvent
-    ) => void
+      event: ForgePlaySoundEvent,
+    ) => void,
   ): OnSoundPlayTrigger;
 
   /**
@@ -9289,8 +10303,8 @@ declare interface IRegister {
       position: Vector3f,
       name: string,
       octave: ForgeNoteBlockEvent.Octave,
-      event: ForgeNoteBlockEvent.Play
-    ) => void
+      event: ForgeNoteBlockEvent.Play,
+    ) => void,
   ): OnRegularTrigger;
 
   /**
@@ -9314,8 +10328,8 @@ declare interface IRegister {
       position: Vector3f,
       name: string,
       octave: ForgeNoteBlockEvent.Octave,
-      event: ForgeNoteBlockEvent.Change
-    ) => void
+      event: ForgeNoteBlockEvent.Change,
+    ) => void,
   ): OnRegularTrigger;
 
   /**
@@ -9362,7 +10376,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "renderWorld", method: (partialTicks: long) => void): OnRegularTrigger;
+  (
+    triggerType: "renderWorld",
+    method: (partialTicks: long) => void,
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs before the overlay is drawn.
@@ -9378,7 +10395,7 @@ declare interface IRegister {
    */
   (
     triggerType: "renderOverlay",
-    method: (event: ForgeRenderGameOverlayEvent) => void
+    method: (event: ForgeRenderGameOverlayEvent) => void,
   ): OnRenderTrigger;
 
   /**
@@ -9396,7 +10413,9 @@ declare interface IRegister {
    */
   (
     triggerType: "renderPlayerList",
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
 
   /**
@@ -9414,7 +10433,9 @@ declare interface IRegister {
    */
   (
     triggerType: "renderCrosshair",
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
 
   /**
@@ -9432,7 +10453,9 @@ declare interface IRegister {
    */
   (
     triggerType: "renderDebug",
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
 
   /**
@@ -9450,7 +10473,9 @@ declare interface IRegister {
    */
   (
     triggerType: "renderBossHealth",
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
 
   /**
@@ -9468,7 +10493,9 @@ declare interface IRegister {
    */
   (
     triggerType: "renderHealth",
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
 
   /**
@@ -9486,7 +10513,9 @@ declare interface IRegister {
    */
   (
     triggerType: "renderArmor",
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
 
   /**
@@ -9504,7 +10533,9 @@ declare interface IRegister {
    */
   (
     triggerType: "renderFood",
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
 
   /**
@@ -9522,7 +10553,9 @@ declare interface IRegister {
    */
   (
     triggerType: "renderMountHealth",
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
 
   /**
@@ -9541,7 +10574,9 @@ declare interface IRegister {
    */
   (
     triggerType: "renderExperience",
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
 
   /**
@@ -9559,7 +10594,9 @@ declare interface IRegister {
    */
   (
     triggerType: "renderHotbar",
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
 
   /**
@@ -9577,7 +10614,9 @@ declare interface IRegister {
    */
   (
     triggerType: "renderAir",
-    method: (event: ForgeRenderGameOverlayEvent & CancellableEventHelper) => void
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
   ): OnRenderTrigger;
 
   /**
@@ -9595,7 +10634,7 @@ declare interface IRegister {
    */
   (
     triggerType: "drawBlockHighlight",
-    method: (position: Vector3f, event: ForgeDrawBlockHighlightEvent) => void
+    method: (position: Vector3f, event: ForgeDrawBlockHighlightEvent) => void,
   ): OnRegularTrigger;
 
   /**
@@ -9638,7 +10677,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "command", method: (...args: string[]) => void): OnCommandTrigger;
+  (
+    triggerType: "command",
+    method: (...args: string[]) => void,
+  ): OnCommandTrigger;
 
   /**
    * Registers a new trigger that runs when a new gui is first opened.
@@ -9652,7 +10694,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "guiOpened", method: (event: ForgeGuiOpenEvent) => void): OnRegularTrigger;
+  (
+    triggerType: "guiOpened",
+    method: (event: ForgeGuiOpenEvent) => void,
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs when a player joins the world.
@@ -9669,7 +10714,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "playerJoined", method: (player: PlayerMP) => void): OnRegularTrigger;
+  (
+    triggerType: "playerJoined",
+    method: (player: PlayerMP) => void,
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs when a player leaves the world.
@@ -9711,8 +10759,8 @@ declare interface IRegister {
       player: PlayerMP,
       position: Vector3f,
       motion: Vector3f,
-      event: ForgeEntityItemPickupEvent
-    ) => void
+      event: ForgeEntityItemPickupEvent,
+    ) => void,
   ): OnRegularTrigger;
 
   /**
@@ -9733,7 +10781,7 @@ declare interface IRegister {
    */
   (
     triggerType: "dropItem",
-    method: (item: Item, player: PlayerMP, event: CancellableEvent) => void
+    method: (item: Item, player: PlayerMP, event: CancellableEvent) => void,
   ): OnRegularTrigger;
 
   /**
@@ -9751,7 +10799,7 @@ declare interface IRegister {
    */
   (
     triggerType: "screenshotTaken",
-    method: (name: string, event: CancellableEvent) => void
+    method: (name: string, event: CancellableEvent) => void,
   ): OnRegularTrigger;
 
   /**
@@ -9769,7 +10817,7 @@ declare interface IRegister {
    */
   (
     triggerType: "messageSent",
-    method: (message: string, event: CancellableEvent) => void
+    method: (message: string, event: CancellableEvent) => void,
   ): OnRegularTrigger;
 
   /**
@@ -9790,7 +10838,7 @@ declare interface IRegister {
    */
   (
     triggerType: "itemTooltip",
-    method: (lore: string[], item: Item, event: CancellableEvent) => void
+    method: (lore: string[], item: Item, event: CancellableEvent) => void,
   ): OnRegularTrigger;
 
   /**
@@ -9825,8 +10873,8 @@ declare interface IRegister {
     method: (
       action: ClientListener.PlayerInteractAction,
       position: Vector3f,
-      event: ForgePlayerInteractEvent
-    ) => void
+      event: ForgePlayerInteractEvent,
+    ) => void,
   ): OnRegularTrigger;
 
   /**
@@ -9845,7 +10893,11 @@ declare interface IRegister {
    */
   (
     triggerType: "blockBreak",
-    method: (block: Block, player: PlayerMP, event: ForgeBlockEvent.BreakEvent) => void
+    method: (
+      block: Block,
+      player: PlayerMP,
+      event: ForgeBlockEvent.BreakEvent,
+    ) => void,
   ): OnRegularTrigger;
 
   /**
@@ -9860,7 +10912,7 @@ declare interface IRegister {
    */
   (
     triggerType: "entityDamage",
-    method: (target: Entity, attacker: PlayerMP) => void
+    method: (target: Entity, attacker: PlayerMP) => void,
   ): OnRegularTrigger;
 
   /**
@@ -9872,7 +10924,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "entityDeath", method: (entity: Entity) => void): OnRegularTrigger;
+  (
+    triggerType: "entityDeath",
+    method: (entity: Entity) => void,
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs as a gui is rendered
@@ -9890,7 +10945,7 @@ declare interface IRegister {
    */
   (
     triggerType: "guiRender",
-    method: (mouseX: int, mouseY: int, gui: MCGuiScreen) => void
+    method: (mouseX: int, mouseY: int, gui: MCGuiScreen) => void,
   ): OnRegularTrigger;
 
   /**
@@ -9910,7 +10965,12 @@ declare interface IRegister {
    */
   (
     triggerType: "guiKey",
-    method: (char: string, keyCode: int, gui: MCGuiScreen, event: CancellableEvent) => void
+    method: (
+      char: string,
+      keyCode: int,
+      gui: MCGuiScreen,
+      event: CancellableEvent,
+    ) => void,
   ): OnRegularTrigger;
 
   /**
@@ -9937,8 +10997,8 @@ declare interface IRegister {
       mouseY: int,
       mouseButton: int,
       gui: MCGuiScreen,
-      event: CancellableEvent
-    ) => void
+      event: CancellableEvent,
+    ) => void,
   ): OnRegularTrigger;
 
   /**
@@ -9965,8 +11025,8 @@ declare interface IRegister {
       mouseY: int,
       mouseButton: int,
       gui: MCGuiScreen,
-      event: CancellableEvent
-    ) => void
+      event: CancellableEvent,
+    ) => void,
   ): OnRegularTrigger;
 
   /**
@@ -9993,8 +11053,8 @@ declare interface IRegister {
       mouseY: int,
       mouseButton: int,
       gui: MCGuiScreen,
-      event: CancellableEvent
-    ) => void
+      event: CancellableEvent,
+    ) => void,
   ): OnRegularTrigger;
 
   /**
@@ -10012,7 +11072,7 @@ declare interface IRegister {
    */
   (
     triggerType: "packetSent",
-    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void
+    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
   ): OnRegularTrigger;
 
   /**
@@ -10030,7 +11090,7 @@ declare interface IRegister {
    */
   (
     triggerType: "packetReceived",
-    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void
+    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
   ): OnRegularTrigger;
 
   /**
@@ -10049,7 +11109,7 @@ declare interface IRegister {
    */
   (
     triggerType: "chatComponentClicked",
-    method: (component: TextComponent, event: CancellableEvent) => void
+    method: (component: TextComponent, event: CancellableEvent) => void,
   ): OnRegularTrigger;
 
   /**
@@ -10068,7 +11128,7 @@ declare interface IRegister {
    */
   (
     triggerType: "chatComponentHovered",
-    method: (component: TextComponent, event: CancellableEvent) => void
+    method: (component: TextComponent, event: CancellableEvent) => void,
   ): OnRegularTrigger;
 
   /**
@@ -10092,8 +11152,8 @@ declare interface IRegister {
       entity: MCEntity,
       position: Vector3f,
       partialTicks: float,
-      event: CancellableEvent
-    ) => void
+      event: CancellableEvent,
+    ) => void,
   ): OnRegularTrigger;
 
   /**
@@ -10112,7 +11172,7 @@ declare interface IRegister {
    */
   (
     triggerType: "postGuiRender",
-    method: (gui: MCGuiScreen, mouseX: int, mouseY: int) => void
+    method: (gui: MCGuiScreen, mouseX: int, mouseY: int) => void,
   ): OnRegularTrigger;
 
   /**
@@ -10131,7 +11191,11 @@ declare interface IRegister {
    */
   (
     triggerType: "spawnParticle",
-    method: (particle: Particle, type: MCEnumParticleTypes, event: CancellableEvent) => void
+    method: (
+      particle: Particle,
+      type: MCEnumParticleTypes,
+      event: CancellableEvent,
+    ) => void,
   ): OnRegularTrigger;
 
   /**
@@ -10149,7 +11213,7 @@ declare interface IRegister {
    */
   (
     triggerType: "attackEntity",
-    method: (entity: Entity, event: CancellableEvent) => void
+    method: (entity: Entity, event: CancellableEvent) => void,
   ): OnRegularTrigger;
 
   /**
@@ -10171,6 +11235,10 @@ declare interface IRegister {
    */
   (
     triggerType: "hitBlock",
-    method: (block: Block, blockFace: BlockFace, event: CancellableEvent) => void
+    method: (
+      block: Block,
+      blockFace: BlockFace,
+      event: CancellableEvent,
+    ) => void,
   ): OnRegularTrigger;
 }
