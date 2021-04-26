@@ -47,6 +47,20 @@ declare global {
       descriptor: string,
       at: InjectionPoint,
     ): InjectBuilder;
+
+    removeBuilder(
+      className: string,
+      methodName: string,
+      descriptor: string,
+      at: InjectionPoint,
+    ): RemoveBuilder;
+
+    fieldBuilder(
+      className: string,
+      fieldName: string,
+      descriptor: string,
+      ...accessTypes: AccessType[]
+    ): FieldBuilder;
   }
 }
 
@@ -132,28 +146,65 @@ declare class Descriptor {
   readonly desc: string;
 }
 
-declare class InjectBuilder {
+declare class ASMBuilder {
+  className: string;
+  methodName: string;
+  descriptor: string;
+  at: InjectionPoint;
+
   constructor(
     className: string,
     methodName: string,
     descriptor: string,
     at: InjectionPoint,
   );
+}
 
+declare class RemoveBuilder extends ASMBuilder {
+  methodMaps(obj: object): RemoveBuilder;
+
+  numberToRemove(numberToRemove: number): RemoveBuilder;
+
+  execute(): void;
+}
+
+declare class FieldBuilder {
+  constructor(
+    className: string,
+    fieldName: string,
+    descriptor: string,
+    accessTypes?: AccessType,
+  );
+
+  initialValue(obj: object): FieldBuilder;
+
+  execute(): void;
+}
+
+declare class InjectBuilder extends ASMBuilder {
   methodMaps(obj: object): InjectBuilder;
 
-  fieldMaps(obj: Object): InjectBuilder;
+  fieldMaps(obj: object): InjectBuilder;
 
   instructions(insnList: ($: WrappedInsnListBuilder) => void): InjectBuilder;
 
   execute(): void;
 }
 
+// Instruction descriptions from https://en.wikipedia.org/wiki/Java_bytecode_instruction_listings
 declare class WrappedInsnListBuilder {
   /**
    * Invokes an exposed javascript function
    */
   invokeJS(functionName: string): WrappedInsnListBuilder;
+  /**
+   * load onto the stack a reference from an array
+   */
+  aaload(): WrappedInsnListBuilder;
+  /**
+   * store a reference in an array
+   */
+  aastore(): WrappedInsnListBuilder;
   /**
    * Push a null reference onto the stack
    */
@@ -162,6 +213,10 @@ declare class WrappedInsnListBuilder {
    * Load a reference onto the stack from a local variable #index
    */
   aload(index: number): WrappedInsnListBuilder;
+  /**
+   * create a new array of references of length count and component type identified by the class reference index (indexbyte1 << 8 | indexbyte2) in the constant pool
+   */
+  anewarray(className: string): WrappedInsnListBuilder;
   /**
    * Return a reference from a method
    */
@@ -179,15 +234,33 @@ declare class WrappedInsnListBuilder {
    */
   athrow(): WrappedInsnListBuilder;
   /**
+   * load a byte or Boolean value from an array
+   */
+  baload(): WrappedInsnListBuilder;
+  /**
+   * store a byte or Boolean value into an array
+   */
+  bastore(): WrappedInsnListBuilder;
+  /**
    * Push a byte onto the stack as an integer value
    */
   bipush(value: number): WrappedInsnListBuilder;
+  bnewarray(length?: number): WrappedInsnListBuilder;
+  /**
+   * load a char from an array
+   */
+  caload(): WrappedInsnListBuilder;
+  /**
+   * store a char into an array
+   */
+  castore(): WrappedInsnListBuilder;
   /**
    * Checks whether an objectref is of a certain type, the
    *  class reference of which is in the constant pool at
    *  index (indexbyte1 << 8 | indexbyte2)
    */
   checkcast(type: string): WrappedInsnListBuilder;
+  cnewarray(length?: number): WrappedInsnListBuilder;
   /**
    * Convert a double to a float
    */
@@ -204,6 +277,14 @@ declare class WrappedInsnListBuilder {
    * Add two doubles
    */
   dadd(): WrappedInsnListBuilder;
+  /**
+   * load a double from an array
+   */
+  daload(): WrappedInsnListBuilder;
+  /**
+   * store a double into an array
+   */
+  dastore(): WrappedInsnListBuilder;
   /**
    * Compare two doubles, 1 on NaN
    */
@@ -236,6 +317,7 @@ declare class WrappedInsnListBuilder {
    * Negate a double
    */
   dneg(): WrappedInsnListBuilder;
+  dnewarray(length?: number): WrappedInsnListBuilder;
   /**
    * Get the remainder from a division between two doubles
    */
@@ -300,6 +382,14 @@ declare class WrappedInsnListBuilder {
    */
   fadd(): WrappedInsnListBuilder;
   /**
+   * load a float from an array
+   */
+  faload(): WrappedInsnListBuilder;
+  /**
+   * store a float in an array
+   */
+  fastore(): WrappedInsnListBuilder;
+  /**
    * Compare two floats, 1 on NaN
    */
   fcmpg(): WrappedInsnListBuilder;
@@ -352,29 +442,166 @@ declare class WrappedInsnListBuilder {
    */
   fsub(): WrappedInsnListBuilder;
   /**
+   * convert an int into a byte
+   */
+  i2b(): WrappedInsnListBuilder;
+  /**
+   * convert an int into a character
+   */
+  i2c(): WrappedInsnListBuilder;
+  /**
+   * convert an int into a double
+   */
+  i2d(): WrappedInsnListBuilder;
+  /**
+   * convert an int into a float
+   */
+  i2f(): WrappedInsnListBuilder;
+  /**
+   * convert an int into a long
+   */
+  i2l(): WrappedInsnListBuilder;
+  /**
+   * convert an int into a short
+   */
+  i2s(): WrappedInsnListBuilder;
+  /**
+   * add two ints
+   */
+  iadd(): WrappedInsnListBuilder;
+  /**
+   * load an int from an array
+   */
+  iaload(): WrappedInsnListBuilder;
+  /**
+   * perform a bitwise AND on two integers
+   */
+  iand(): WrappedInsnListBuilder;
+  /**
+   * store an int into an array
+   */
+  iastore(): WrappedInsnListBuilder;
+  /**
+   * load the int value −1 onto the stack
+   */
+  iconst_m1(): WrappedInsnListBuilder;
+  /**
+   * load the int value 0 onto the stack
+   */
+  iconst_0(): WrappedInsnListBuilder;
+  /**
+   * load the int value 1 onto the stack
+   */
+  iconst_1(): WrappedInsnListBuilder;
+  /**
+   * load the int value 2 onto the stack
+   */
+  iconst_2(): WrappedInsnListBuilder;
+  /**
+   * load the int value 3 onto the stack
+   */
+  iconst_3(): WrappedInsnListBuilder;
+  /**
+   * load the int value 4 onto the stack
+   */
+  iconst_4(): WrappedInsnListBuilder;
+  /**
+   * load the int value 5 onto the stack
+   */
+  iconst_5(): WrappedInsnListBuilder;
+  /**
+   * divide two integers
+   */
+  idiv(): WrappedInsnListBuilder;
+  /**
+   * increment local variable #index by signed byte const
+   */
+  iinc(): WrappedInsnListBuilder;
+  /**
    * Load an int value from a local variable #index
    */
   iload(value: number): WrappedInsnListBuilder;
+  /**
+   * multiply two integers
+   */
+  imul(): WrappedInsnListBuilder;
+  /**
+   * negate int
+   */
+  ineg(): WrappedInsnListBuilder;
+  inewarray(length?: number): WrappedInsnListBuilder;
+  /**
+   * determines if an object objectref is of a given type, identified by class reference index in constant pool (indexbyte1 << 8 | indexbyte2)
+   */
+  instanceof(clazzName: string): WrappedInsnListBuilder;
+  /**
+   * bitwise int OR
+   */
+  ior(): WrappedInsnListBuilder;
+  /**
+   * logical int remainder
+   */
+  irem(): WrappedInsnListBuilder;
+  /**
+   * return an integer from a method
+   */
+  ireturn(): WrappedInsnListBuilder;
+  /**
+   * int shift left
+   */
+  ishl(): WrappedInsnListBuilder;
+  /**
+   * int arithmetic shift right
+   */
+  ishr(): WrappedInsnListBuilder;
   /**
    * Store int value into variable #index
    */
   istore(vlaue: number): WrappedInsnListBuilder;
   /**
-   * Add two ints
-   */
-  iadd(): WrappedInsnListBuilder;
-  /**
-   * Return an integer from a method
-   */
-  ireturn(): WrappedInsnListBuilder;
-  /**
-   * Push a short onto the stack as an integer value
-   */
-  sipush(value: number): WrappedInsnListBuilder;
-  /**
-   * Int subtract
+   * int subtract
    */
   isub(): WrappedInsnListBuilder;
+  /**
+   * int logical shift right
+   */
+  iushr(): WrappedInsnListBuilder;
+  /**
+   * int xor
+   */
+  ixor(): WrappedInsnListBuilder;
+  /**
+   * convert a long to a double
+   */
+  l2d(): WrappedInsnListBuilder;
+  /**
+   * convert a long to a float
+   */
+  l2f(): WrappedInsnListBuilder;
+  /**
+   * convert a long to a int
+   */
+  l2i(): WrappedInsnListBuilder;
+  /**
+   * add two longs
+   */
+  ladd(): WrappedInsnListBuilder;
+  /**
+   * load a long from an array
+   */
+  laload(): WrappedInsnListBuilder;
+  /**
+   * bitwise AND of two longs
+   */
+  land(): WrappedInsnListBuilder;
+  /**
+   * store a long to an array
+   */
+  lastore(): WrappedInsnListBuilder;
+  /**
+   * push 0 if the two longs are the same, 1 if value1 is greater than value2, -1 otherwise
+   */
+  lcmp(): WrappedInsnListBuilder;
   /**
    * Push 0L (the number zero with type long) onto the stack
    */
@@ -384,20 +611,77 @@ declare class WrappedInsnListBuilder {
    */
   lconst_1(): WrappedInsnListBuilder;
   /**
-   * store a long value in a local variable #index
+   * push a constant #index from a constant pool (String, int, float, Class, java.lang.invoke.MethodType, java.lang.invoke.MethodHandle, or a dynamically-computed constant) onto the stack
    */
-  lstore(value: number): WrappedInsnListBuilder;
+  ldc(constant: any): WrappedInsnListBuilder;
+  /**
+   * divide two longs
+   */
+  ldiv(): WrappedInsnListBuilder;
   /**
    * Load a long value from a local variable #index
    */
   lload(value: number): WrappedInsnListBuilder;
   /**
-   * Determines if an object objectref is of a given type,
-   * identified by class reference index in constant pool
-   * (indexbyte1 << 8 | indexbyte2)
-   * In the case of ASMHelper it just uses a string rather than a reference.
+   * multiply two longs
    */
-  instanceof(clazzName: string): WrappedInsnListBuilder;
+  lmul(): WrappedInsnListBuilder;
+  /**
+   * negate a long
+   */
+  lneg(): WrappedInsnListBuilder;
+  lnewarray(length?: number): WrappedInsnListBuilder;
+  /**
+   * bitwise OR of two longs
+   */
+  lor(): WrappedInsnListBuilder;
+  /**
+   * remainder of division of two longs
+   */
+  lrem(): WrappedInsnListBuilder;
+  /**
+   * return a long value
+   */
+  lreturn(): WrappedInsnListBuilder;
+  /**
+   * bitwise shift left of a long value1 by int value2 positions
+   */
+  lshl(): WrappedInsnListBuilder;
+  /**
+   * bitwise shift right of a long value1 by int value2 positions
+   */
+  lshr(): WrappedInsnListBuilder;
+  /**
+   * store a long value in a local variable #index
+   */
+  lstore(value: number): WrappedInsnListBuilder;
+  /**
+   * subtract two longs
+   */
+  lsub(): WrappedInsnListBuilder;
+  /**
+   * bitwise shift right of a long value1 by int value2 positions, unsigned
+   */
+  lushr(): WrappedInsnListBuilder;
+  /**
+   * bitwise XOR of two longs
+   */
+  lxor(): WrappedInsnListBuilder;
+  /**
+   * enter monitor for object ("grab the lock" – start of synchronized() section)
+   */
+  monitorenter(): WrappedInsnListBuilder;
+  /**
+   * exit monitor for object ("release the lock" – end of synchronized() section)
+   */
+  monitorexit(): WrappedInsnListBuilder;
+  /**
+   * create a new array of dimensions dimensions of type identified by class reference in constant pool index (indexbyte1 << 8 | indexbyte2); the sizes of each dimension is identified by count1, [count2, etc.]
+   */
+  multianewarray(
+    descriptor: string,
+    dimensions: number,
+  ): WrappedInsnListBuilder;
   /**
    * Create new object of type identified by class reference
    * in constant pool index (indexbyte1 << 8 |
@@ -406,6 +690,14 @@ declare class WrappedInsnListBuilder {
    */
   new(className: string): WrappedInsnListBuilder;
   /**
+   * create new array with count elements of primitive type identified by atype
+   */
+  newarray(type: number, length?: number): WrappedInsnListBuilder;
+  /**
+   * perform no operation
+   */
+  nop(): WrappedInsnListBuilder;
+  /**
    * Discard the top value on the stack
    */
   pop(): WrappedInsnListBuilder;
@@ -413,24 +705,32 @@ declare class WrappedInsnListBuilder {
    * Discard the top two values on the stack (or one value, if it is a double or long)
    */
   pop2(): WrappedInsnListBuilder;
+  methodReturn(): WrappedInsnListBuilder;
+  /**
+   * load short from array
+   */
+  saload(): WrappedInsnListBuilder;
+  /**
+   * store short to array
+   */
+  sastore(): WrappedInsnListBuilder;
+  /**
+   * push a short onto the stack as an integer value
+   */
+  sipush(): WrappedInsnListBuilder;
+
+  snewarray(): WrappedInsnListBuilder;
   /**
    * Swaps two top words on the stack (note that value1 and value2 must not be double or long)
    */
   swap(): WrappedInsnListBuilder;
-  /**
-   * Push a constant onto the stack
-   */
-  ldc(constant: any): WrappedInsnListBuilder;
-  /**
-   * Return void from method
-   */
-  methodReturn(): WrappedInsnListBuilder;
-
+  znewarray(length?: number): WrappedInsnListBuilder;
   /**
    * Creates a new label, but does not place it anywhere in the bytecode,
    * it simply gives you a reference to it.
    */
   makeLabel(): LabelNode;
+  findLabel(n: number): LabelNode;
 
   /**
    * Places a previously created label.
@@ -440,53 +740,6 @@ declare class WrappedInsnListBuilder {
    * Jumps to a specificed label based on a condition
    */
   jump(condition: JumpCondition, label: LabelNode): WrappedInsnListBuilder;
-  /**
-   * Create a new array of references of length count and
-   * component type identified by the class reference
-   * index (indexbyte1 << 8 | indexbyte2) in the constant pool
-   * In the case of ASMHelper it just uses a string rather than a reference.
-   */
-  anewarray(className: string): WrappedInsnListBuilder;
-  /**
-   * Load onto the stack a reference from an array
-   */
-  aaload(): WrappedInsnListBuilder;
-  /**
-   * Store a reference in an array
-   */
-  aastore(): WrappedInsnListBuilder;
-  /**
-   * Load a byte or Boolean value from an array
-   */
-  baload(): WrappedInsnListBuilder;
-  /**
-   * Store a byte or Boolean value into an array
-   */
-  bastore(): WrappedInsnListBuilder;
-  /**
-   * Load a char from an array
-   */
-  caload(): WrappedInsnListBuilder;
-  /**
-   * Store a char into an array
-   */
-  castore(): WrappedInsnListBuilder;
-  /**
-   * Load a double from an array
-   */
-  daload(): WrappedInsnListBuilder;
-  /**
-   * Store a double into an array
-   */
-  dastore(): WrappedInsnListBuilder;
-  /**
-   * Load a float from an array
-   */
-  faload(): WrappedInsnListBuilder;
-  /**
-   * Store a float in an array
-   */
-  fastore(): WrappedInsnListBuilder;
   /**
    * Creates a new array of size #size and class #className
    */
@@ -537,6 +790,15 @@ declare class WrappedInsnListBuilder {
    * available.
    */
   long(number: number): WrappedInsnListBuilder;
+  /**
+   * Helper for a synchronized block. Synchronizes on the object at the top of the stack
+   * by entering its monitor at the beginning and exiting its monitor at the end.
+   * Note that you do not have to maintain the stack height inside the code block for
+   * this utility to work, as it uses astore/aload.
+   */
+  synchronized(
+    code: ($: WrappedInsnListBuilder) => void,
+  ): WrappedInsnListBuilder;
 
   /**
    * Helper for creating an if clause.
@@ -644,6 +906,11 @@ declare class WrappedInsnListBuilder {
     desc: string,
     newValue: ($: WrappedInsnListBuilder) => void,
   ): WrappedInsnListBuilder;
+  invoke(
+    type: InvokeType,
+    descriptor: Descriptor,
+    arguments: ($: WrappedInsnListBuilder) => void,
+  ): WrappedInsnListBuilder;
   /**
    * Invoke a static method and puts the result on the stack (might be void); the method is identified by method reference index in constant pool (indexbyte1 << 8 | indexbyte2) In the case of ASMHelper the method is identified by the descriptor
    */
@@ -681,6 +948,18 @@ declare class WrappedInsnListBuilder {
     arguments?: ($: WrappedInsnListBuilder) => void,
   ): WrappedInsnListBuilder;
 
+  handle(tag: number, owner: string, name: string, desc: string): Handle;
+
+  /**
+   * Invokes a dynamic method and puts the result on the stack (might be void); the method is identified by method reference index in constant pool (indexbyte1 << 8 | indexbyte2) In the case of ASMHelper the method is identified by the descriptor
+   */
+  invokeDynamic(
+    name: string,
+    desc: string,
+    handle: Handle,
+    ...bootstrapArgs: any[]
+  ): WrappedInsnListBuilder;
+
   /**
    * Calls a specified method.
    *
@@ -693,19 +972,37 @@ declare class WrappedInsnListBuilder {
     owner: string,
     name: string,
     desc: string,
-    arguments?: ($: WrappedInsnListBuilder) => void,
+    arguments: ($: WrappedInsnListBuilder) => void,
   ): WrappedInsnListBuilder;
-
-  indyHandle(type: number, owner: string, name: string, desc: string): Handle;
   /**
-   * Invokes a dynamic method and puts the result on the stack (might be void); the method is identified by method reference index in constant pool (indexbyte1 << 8 | indexbyte2) In the case of ASMHelper the method is identified by the descriptor
+   * Helper for table switch statements.
+   *
+   * This method allows one to easily create table switch statements. Holes are allowed,
+   * however they are of course discouraged and should be kept to a minimum. Cases which
+   * fall into the range but are not present will have their label placed at the default
+   * code block.
+   *
+   * Cases do not have to be ordered correctly, and will have their labels and insn lists
+   * placed in the order they are called by the user. Cases can fallthrough if desired,
+   * and will fallthrough in the order defined.
+   *
+   * An IllegalStateException will be through if there are no cases, or if there are
+   * multiple cases with the same index.
    */
-  invokeDynamic(
-    name: string,
-    desc: string,
-    handle: Handle,
-    ...bootstrapArgs: any[]
-  ): WrappedInsnListBuilder;
+  tableswitch(builder: ($: SwitchBuilder) => void): WrappedInsnListBuilder;
+  /**
+   * Helper for lookup switch statements.
+   *
+   * This method allows one to easily create lookup switch statements. Cases do
+   * not have to be ordered correctly, and will have their labels and insn lists
+   * placed in the order that they are called by the user. Cases can fallthrough
+   * if desired, and will fallthrough in the order defined.
+   *
+   * An IllegalStateException will be through if there are no cases, or if there are
+   * multiple cases with the same index.
+   */
+  lookupswitch(builder: ($: SwitchBuilder) => void): WrappedInsnListBuilder;
+
   /**
    * store a reference value into the first available local variable
    */
@@ -730,6 +1027,28 @@ declare class WrappedInsnListBuilder {
    * load a local onto the stack
    */
   load(local: Local): WrappedInsnListBuilder;
+
+  insertInsns(list: WrappedInsnListBuilder): WrappedInsnListBuilder;
+
+  build(): WrappedInsnListBuilder;
+}
+
+declare class SwitchBuilder {
+  case(
+    index: number,
+    fallthrough?: boolean,
+    builder?: ($: WrappedInsnListBuilder) => void,
+  ): void;
+
+  default(builder: ($: WrappedInsnListBuilder) => void): void;
+
+  static readonly Case: SwitchBuilder$Case;
+}
+
+declare class SwitchBuilder$Case {
+  getIndex(): number;
+  getFallthrough(): boolean;
+  getBuilder(): ($: WrappedInsnListBuilder) => void;
 }
 
 declare class LabelNode {}
