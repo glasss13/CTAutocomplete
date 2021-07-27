@@ -5945,6 +5945,14 @@ declare global {
     setTabCompletions(...args: string[]): OnCommandTrigger;
 
     /**
+     * Sets the tab completion options for the command.
+     * This method must be used before setting the command name, otherwise, the tab completions will not be set.
+     *
+     * @param args all the tab completion options.
+     */
+     setTabCompletions(args: string[]): OnCommandTrigger;
+
+    /**
      * Sets the command name.<br></br>
      * Example:<br></br>
      * OnCommandTrigger.setCommandName("test")<br></br>
