@@ -8648,9 +8648,11 @@ declare class NBTTagCompound extends NBTBase {
   getString(key: string): string;
   getByteArray(key: string): byte[];
   getIntArray(key: string): int[];
+  getBoolean(key: string): boolean;
   getCompoundTag(key: string): NBTTagCompound;
+  getTagList(key: string, type: number): NBTTagList;
 
-  get(key: string, type: NBTDataType): NBTDataType;
+  get(key: string, type: NBTDataType, tagType?: number): NBTDataType;
 
   get(key: string): NBTBase;
 
@@ -8671,6 +8673,7 @@ declare enum NBTDataType {
   INT_ARRAY = 8,
   BOOLEAN = 9,
   COMPOUND_TAG = 10,
+  TAG_LIST = 11,
 }
 
 declare class NBTBase {
