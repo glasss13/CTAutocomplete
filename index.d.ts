@@ -15,8 +15,27 @@ declare global {
   const Config: Config;
   const ChatTriggers: Reference;
   const console: console;
+  const GlStateManager: MCTGlStateManger;
+  const GL11: JavaGL11;
+  const GL12: JavaGL12;
+  const GL13: JavaGL13;
+  const GL14: JavaGL14;
+  const GL15: JavaGL15;
+  const GL20: JavaGL20;
+  const GL21: JavaGL21;
+  const GL30: JavaGL30;
+  const GL31: JavaGL31;
+  const GL32: JavaGL32;
+  const GL33: JavaGL33;
+  const GL40: JavaGL40;
+  const GL41: JavaGL41;
+  const GL42: JavaGL42;
+  const GL43: JavaGL43;
+  const GL44: JavaGL44;
+  const GL45: JavaGL45;
 
   // obfuscated type types
+  type MCTGlStateManger = MCGlStateManager;
   type MCTBlock = MCBlock;
   type MCTBlockPos = MCBlockPos;
   type MCTItem = MCItem;
@@ -71,6 +90,23 @@ declare global {
   type ForgeTGuiScreenEvent = ForgeGuiScreenEvent;
   type ForgeTBlockEvent = ForgeBlockEvent;
   // java paths
+  type JavaTGL11 = JavaGL11;
+  type JavaTGL12 = JavaGL12;
+  type JavaTGL13 = JavaGL13;
+  type JavaTGL14 = JavaGL14;
+  type JavaTGL15 = JavaGL15;
+  type JavaTGL20 = JavaGL20;
+  type JavaTGL21 = JavaGL21;
+  type JavaTGL30 = JavaGL30;
+  type JavaTGL31 = JavaGL31;
+  type JavaTGL32 = JavaGL32;
+  type JavaTGL33 = JavaGL33;
+  type JavaTGL40 = JavaGL40;
+  type JavaTGL41 = JavaGL41;
+  type JavaTGL42 = JavaGL42;
+  type JavaTGL43 = JavaGL43;
+  type JavaTGL44 = JavaGL44;
+  type JavaTGL45 = JavaGL45;
   type JavaTThread = JavaThread;
   type JavaTUUID = JavaUUID;
   type JavaTFile = JavaFile;
@@ -434,6 +470,70 @@ declare global {
 
   class Tessellator {
     static readonly INSTANCE: Tessellator;
+
+    disableAlpha(): Tessellator;
+    static disableAlpha(): Tessellator;
+
+    enableAlpha(): Tessellator;
+    static enableAlpha(): Tessellator;
+
+    alphaFunc(func: number, ref: number): Tessellator;
+    static alphaFunc(func: number, ref: number): Tessellator;
+
+    enableLighting(): Tessellator;
+    static enableLighting(): Tessellator;
+
+    disableLighting(): Tessellator;
+    static disableLighting(): Tessellator;
+
+    disableDepth(): Tessellator;
+    static disableDepth(): Tessellator;
+
+    enableDepth(): Tessellator;
+    static enableDepth(): Tessellator;
+
+    depthFunc(depthFunc: number): Tessellator;
+    static depthFunc(depthFunc: number): Tessellator;
+
+    depthMask(flagIn: boolean): Tessellator;
+    static depthMask(flagIn: boolean): Tessellator;
+
+    disableBlend(): Tessellator;
+    static disableBlend(): Tessellator;
+
+    enableBlend(): Tessellator;
+    static enableBlend(): Tessellator;
+
+    blendFunc(sourceFactor: number, destFactor: number): Tessellator;
+    static blendFunc(sourceFactor: number, destFactor: number): Tessellator;
+
+    tryBlendFuncSeparate(
+      sourceFactor: number,
+      destFactor: number,
+      sourceFactorAlpha: number,
+      destFactorAlpha: number,
+    ): Tessellator;
+    static tryBlendFuncSeparate(
+      sourceFactor: number,
+      destFactor: number,
+      sourceFactorAlpha: number,
+      destFactorAlpha: number,
+    ): Tessellator;
+
+    enableTexture2D(): Tessellator;
+    static enableTexture2D(): Tessellator;
+
+    disableTexture2D(): Tessellator;
+    static disableTexture2D(): Tessellator;
+
+    deleteTexture(texture: Image): Tessellator;
+    static deleteTexture(texture: Image): Tessellator;
+
+    pushMatrix(): Tessellator;
+    static pushMatrix(): Tessellator;
+
+    popMatrix(): Tessellator;
+    static popMatrix(): Tessellator;
 
     static getPartialTicks(): float;
     getPartialTicks(): float;
@@ -5940,6 +6040,9 @@ declare global {
 
 declare interface javaTypePath {
   // obfuscated paths
+  (
+    path: "net.minecraft.client.renderer.GlStateManager",
+  ): typeof MCGlStateManager;
   (path: "net.minecraft.block.Block"): typeof MCBlock;
   (path: "net.minecraft.util.BlockPos"): typeof MCBlockPos;
   (path: "net.minecraft.item.Item"): typeof MCItem;
@@ -6024,6 +6127,23 @@ declare interface javaTypePath {
   ): typeof ForgeGuiScreenEvent;
   (path: "net.minecraftforge.event.world.BlockEvent"): typeof ForgeBlockEvent;
   // java paths
+  (path: "org.lwjgl.opengl.GL11"): typeof JavaGL11;
+  (path: "org.lwjgl.opengl.GL12"): typeof JavaGL12;
+  (path: "org.lwjgl.opengl.GL13"): typeof JavaGL13;
+  (path: "org.lwjgl.opengl.GL14"): typeof JavaGL14;
+  (path: "org.lwjgl.opengl.GL15"): typeof JavaGL15;
+  (path: "org.lwjgl.opengl.GL20"): typeof JavaGL20;
+  (path: "org.lwjgl.opengl.GL21"): typeof JavaGL21;
+  (path: "org.lwjgl.opengl.GL30"): typeof JavaGL30;
+  (path: "org.lwjgl.opengl.GL31"): typeof JavaGL31;
+  (path: "org.lwjgl.opengl.GL32"): typeof JavaGL32;
+  (path: "org.lwjgl.opengl.GL33"): typeof JavaGL33;
+  (path: "org.lwjgl.opengl.GL40"): typeof JavaGL40;
+  (path: "org.lwjgl.opengl.GL41"): typeof JavaGL41;
+  (path: "org.lwjgl.opengl.GL42"): typeof JavaGL42;
+  (path: "org.lwjgl.opengl.GL43"): typeof JavaGL43;
+  (path: "org.lwjgl.opengl.GL44"): typeof JavaGL44;
+  (path: "org.lwjgl.opengl.GL45"): typeof JavaGL45;
   (path: "java.lang.Thread"): typeof JavaThread;
   (path: "java.util.UUID"): typeof JavaUUID;
   (path: "java.io.File"): typeof JavaFile;
@@ -6058,6 +6178,12 @@ declare interface Java {
 //#region
 
 // TODO probalby should be extending from base object, need to fix issue with static members
+
+declare class MCGlStateManager {
+  class: JavaClass<MCGlStateManager>;
+  static class: JavaClass<typeof MCGlStateManager>;
+}
+
 declare class MCBlock {
   class: JavaClass<MCBlock>;
   static class: JavaClass<typeof MCBlock>;
@@ -6988,6 +7114,24 @@ declare class Vector2f {
   equals(obj: object): boolean;
 }
 declare class JavaBufferedImage {}
+
+declare class JavaGL11 {}
+declare class JavaGL12 {}
+declare class JavaGL13 {}
+declare class JavaGL14 {}
+declare class JavaGL15 {}
+declare class JavaGL20 {}
+declare class JavaGL21 {}
+declare class JavaGL30 {}
+declare class JavaGL31 {}
+declare class JavaGL32 {}
+declare class JavaGL33 {}
+declare class JavaGL40 {}
+declare class JavaGL41 {}
+declare class JavaGL42 {}
+declare class JavaGL43 {}
+declare class JavaGL44 {}
+declare class JavaGL45 {}
 
 declare class JavaThread {
   /**
