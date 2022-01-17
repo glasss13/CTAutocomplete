@@ -71,6 +71,7 @@ declare global {
   type ForgeTGuiScreenEvent = ForgeGuiScreenEvent;
   type ForgeTBlockEvent = ForgeBlockEvent;
   // java paths
+  type JavaTThread = JavaThread;
   type JavaTUUID = JavaUUID;
   type JavaTFile = JavaFile;
   type JavaTPath = JavaPath;
@@ -3003,160 +3004,29 @@ declare global {
      * Allocates a new Thread
      */
     constructor(method: () => void);
-    /**
-     * Returns an estimate of the number of active threads in the current thread's thread group and its subgroups
-     */
-    static activeCount(): int;
-
-    /**
-     * Determines if the currently running thread has permission to modify this thread.
-     */
-    checkAccess(): void;
-
-    /**
-     * The definition of this call depends on suspend(), which is deprecated. Further, the results of this call were never well-defined.
-     */
-    countStackFrames(): int;
-
-    /**
-     * Returns a reference to the currently executing thread object.
-     */
-    static currentThread(): Thread;
-
-    /**
-     * This method was originally designed to destroy this thread without any cleanup. Any monitors it held would have remained locked. However, the method was never implemented. If if were to be implemented, it would be deadlock-prone in much the manner of suspend(). If the target thread held a lock protecting a critical system resource when it was destroyed, no thread could ever access this resource again. If another thread ever attempted to lock this resource, deadlock would result. Such deadlocks typically manifest themselves as "frozen" processes. For more information, see Why are Thread.stop, Thread.suspend and Thread.resume Deprecated?.
-     */
-    destroy(): void;
-
-    /**
-     * Prints a stack trace of the current thread to the standard error stream.
-     */
-    static dumpStack(): void;
-
-    /**
-     * Copies into the specified array every active thread in the current thread's thread group and its subgroups.
-     */
-    static enumerate(tarray: Thread[]): int;
-
-    /**
-     * Returns the identifier of this Thread.
-     */
-    getId(): long;
-
-    /**
-     * Returns this thread's name.
-     */
-    getName(): string;
-
-    /**
-     * Returns this thread's priority.
-     */
-    getPriority(): int;
-
-    /**
-     * Returns true if and only if the current thread holds the monitor lock on the specified object.
-     */
-    static holdsLock(obj: object): boolean;
-
-    /**
-     * Interrupts this thread.
-     */
-    interrupt(): void;
-
-    /**
-     * Tests whether the current thread has been interrupted.
-     */
-    static interrupted(): boolean;
-
-    /**
-     * Tests if this thread is alive.
-     */
-    isAlive(): boolean;
-
-    /**
-     * Tests if this thread is a daemon thread.
-     */
-    isDaemon(): boolean;
-
-    /**
-     * Tests whether this thread has been interrupted.
-     */
-    isInterrupted(): boolean;
-
-    /**
-     * Waits for this thread to die.
-     */
-    join(): void;
-
-    /**
-     * Waits at most millis milliseconds for this thread to die.
-     */
-    join(millis: long): void;
-
-    /**
-     * Waits at most millis milliseconds plus nanos nanoseconds for this thread to die.
-     */
-    join(millis: long, nanos: int): void;
-
-    /**
-     * This method exists solely for use with suspend(), which has been deprecated because it is deadlock-prone. For more information, see Why are Thread.stop, Thread.suspend and Thread.resume Deprecated?.
-     */
-    resume(): void;
-
-    /**
-     * If this thread was constructed using a separate Runnable run object, then that Runnable object's run method is called; otherwise, this method does nothing and returns.
-     */
-    run(): void;
-
-    /**
-     * Marks this thread as either a daemon thread or a user thread.
-     */
-    setDaemon(on: boolean): void;
-
-    /**
-     * Changes the name of this thread to be equal to the argument name.
-     */
-    setName(name: string): void;
-
-    /**
-     * Changes the priority of this thread.
-     */
-    setPriority(newPriority: int): void;
-
-    /**
-     * Causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds, subject to the precision and accuracy of system timers and schedulers.
-     */
-    static sleep(millis: long): void;
 
     /**
      * Causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds plus the specified number of nanoseconds, subject to the precision and accuracy of system timers and schedulers.
      */
-    static sleep(millis: long, nanos: int): void;
+    static sleep(millis: long, nanos?: int): void;
+    /**
+     * Causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds plus the specified number of nanoseconds, subject to the precision and accuracy of system timers and schedulers.
+     */
+    sleep(millis: long, nanos?: int): void;
+
+    /**
+     * Returns a reference to the currently executing thread object.
+     */
+    currentThread(): JavaThread;
+    /**
+     * Returns a reference to the currently executing thread object.
+     */
+    static currentThread(): JavaThread;
 
     /**
      * Causes this thread to begin execution; the Java Virtual Machine calls the run method of this thread.
      */
     start(): void;
-
-    /**
-     * This method is inherently unsafe. Stopping a thread with Thread.stop causes it to unlock all of the monitors that it has locked (as a natural consequence of the unchecked ThreadDeath exception propagating up the stack). If any of the objects previously protected by these monitors were in an inconsistent state, the damaged objects become visible to other threads, potentially resulting in arbitrary behavior. Many uses of stop should be replaced by code that simply modifies some variable to indicate that the target thread should stop running. The target thread should check this variable regularly, and return from its run method in an orderly fashion if the variable indicates that it is to stop running. If the target thread waits for long periods (on a condition variable, for example), the interrupt method should be used to interrupt the wait. For more information, see Why are Thread.stop, Thread.suspend and Thread.resume Deprecated?.
-     */
-    stop(): void;
-
-    /**
-     * This method has been deprecated, as it is inherently deadlock-prone. If the target thread holds a lock on the monitor protecting a critical system resource when it is suspended, no thread can access this resource until the target thread is resumed. If the thread that would resume the target thread attempts to lock this monitor prior to calling resume, deadlock results. Such deadlocks typically manifest themselves as "frozen" processes. For more information, see Why are Thread.stop, Thread.suspend and Thread.resume Deprecated?.
-     */
-    suspend(): void;
-
-    /**
-     * Returns a string representation of this thread, including the thread's name, priority, and thread group.
-     */
-    toString(): string;
-
-    /**
-     * A hint to the scheduler that the current thread is willing to yield its current use of a processor.
-     */
-    yield(): void;
   }
 
   class ArrayList {
@@ -5950,7 +5820,7 @@ declare global {
      *
      * @param args all the tab completion options.
      */
-     setTabCompletions(args: string[]): OnCommandTrigger;
+    setTabCompletions(args: string[]): OnCommandTrigger;
 
     /**
      * Sets the command name.<br></br>
@@ -6059,6 +5929,7 @@ declare interface javaTypePath {
   ): typeof ForgeGuiScreenEvent;
   (path: "net.minecraftforge.event.world.BlockEvent"): typeof ForgeBlockEvent;
   // java paths
+  (path: "java.lang.Thread"): typeof JavaThread;
   (path: "java.util.UUID"): typeof JavaUUID;
   (path: "java.io.File"): typeof JavaFile;
   (path: "java.nio.file.Path"): JavaPath;
@@ -7022,6 +6893,168 @@ declare class Vector2f {
   equals(obj: object): boolean;
 }
 declare class JavaBufferedImage {}
+
+declare class JavaThread {
+  /**
+   * Allocates a new Thread
+   */
+  constructor(method: () => void);
+
+  /**
+   * Causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds plus the specified number of nanoseconds, subject to the precision and accuracy of system timers and schedulers.
+   */
+  static sleep(millis: long, nanos?: int): void;
+
+  /**
+   * Returns a reference to the currently executing thread object.
+   */
+  static currentThread(): JavaThread;
+
+  /**
+   * Causes this thread to begin execution; the Java Virtual Machine calls the run method of this thread.
+   */
+  start(): void;
+
+  /**
+   * Returns an estimate of the number of active threads in the current thread's thread group and its subgroups
+   */
+  static activeCount(): int;
+
+  /**
+   * Determines if the currently running thread has permission to modify this thread.
+   */
+  checkAccess(): void;
+
+  /**
+   * The definition of this call depends on suspend(), which is deprecated. Further, the results of this call were never well-defined.
+   */
+  countStackFrames(): int;
+
+  /**
+   * This method was originally designed to destroy this thread without any cleanup. Any monitors it held would have remained locked. However, the method was never implemented. If if were to be implemented, it would be deadlock-prone in much the manner of suspend(). If the target thread held a lock protecting a critical system resource when it was destroyed, no thread could ever access this resource again. If another thread ever attempted to lock this resource, deadlock would result. Such deadlocks typically manifest themselves as "frozen" processes. For more information, see Why are Thread.stop, Thread.suspend and Thread.resume Deprecated?.
+   */
+  destroy(): void;
+
+  /**
+   * Prints a stack trace of the current thread to the standard error stream.
+   */
+  static dumpStack(): void;
+
+  /**
+   * Copies into the specified array every active thread in the current thread's thread group and its subgroups.
+   */
+  static enumerate(tarray: Thread[]): int;
+
+  /**
+   * Returns the identifier of this Thread.
+   */
+  getId(): long;
+
+  /**
+   * Returns this thread's name.
+   */
+  getName(): string;
+
+  /**
+   * Returns this thread's priority.
+   */
+  getPriority(): int;
+
+  /**
+   * Returns true if and only if the current thread holds the monitor lock on the specified object.
+   */
+  static holdsLock(obj: object): boolean;
+
+  /**
+   * Interrupts this thread.
+   */
+  interrupt(): void;
+
+  /**
+   * Tests whether the current thread has been interrupted.
+   */
+  static interrupted(): boolean;
+
+  /**
+   * Tests if this thread is alive.
+   */
+  isAlive(): boolean;
+
+  /**
+   * Tests if this thread is a daemon thread.
+   */
+  isDaemon(): boolean;
+
+  /**
+   * Tests whether this thread has been interrupted.
+   */
+  isInterrupted(): boolean;
+
+  /**
+   * Waits for this thread to die.
+   */
+  join(): void;
+
+  /**
+   * Waits at most millis milliseconds for this thread to die.
+   */
+  join(millis: long): void;
+
+  /**
+   * Waits at most millis milliseconds plus nanos nanoseconds for this thread to die.
+   */
+  join(millis: long, nanos: int): void;
+
+  /**
+   * This method exists solely for use with suspend(), which has been deprecated because it is deadlock-prone. For more information, see Why are Thread.stop, Thread.suspend and Thread.resume Deprecated?.
+   */
+  resume(): void;
+
+  /**
+   * If this thread was constructed using a separate Runnable run object, then that Runnable object's run method is called; otherwise, this method does nothing and returns.
+   */
+  run(): void;
+
+  /**
+   * Marks this thread as either a daemon thread or a user thread.
+   */
+  setDaemon(on: boolean): void;
+
+  /**
+   * Changes the name of this thread to be equal to the argument name.
+   */
+  setName(name: string): void;
+
+  /**
+   * Changes the priority of this thread.
+   */
+  setPriority(newPriority: int): void;
+
+  /**
+   * Causes this thread to begin execution; the Java Virtual Machine calls the run method of this thread.
+   */
+  start(): void;
+
+  /**
+   * This method is inherently unsafe. Stopping a thread with Thread.stop causes it to unlock all of the monitors that it has locked (as a natural consequence of the unchecked ThreadDeath exception propagating up the stack). If any of the objects previously protected by these monitors were in an inconsistent state, the damaged objects become visible to other threads, potentially resulting in arbitrary behavior. Many uses of stop should be replaced by code that simply modifies some variable to indicate that the target thread should stop running. The target thread should check this variable regularly, and return from its run method in an orderly fashion if the variable indicates that it is to stop running. If the target thread waits for long periods (on a condition variable, for example), the interrupt method should be used to interrupt the wait. For more information, see Why are Thread.stop, Thread.suspend and Thread.resume Deprecated?.
+   */
+  stop(): void;
+
+  /**
+   * This method has been deprecated, as it is inherently deadlock-prone. If the target thread holds a lock on the monitor protecting a critical system resource when it is suspended, no thread can access this resource until the target thread is resumed. If the thread that would resume the target thread attempts to lock this monitor prior to calling resume, deadlock results. Such deadlocks typically manifest themselves as "frozen" processes. For more information, see Why are Thread.stop, Thread.suspend and Thread.resume Deprecated?.
+   */
+  suspend(): void;
+
+  /**
+   * Returns a string representation of this thread, including the thread's name, priority, and thread group.
+   */
+  toString(): string;
+
+  /**
+   * A hint to the scheduler that the current thread is willing to yield its current use of a processor.
+   */
+  yield(): void;
+}
 
 declare class JavaUUID {
   /**
