@@ -5363,7 +5363,36 @@ declare global {
      * @return the string in the file
      */
     static read(file: JavaFile): string;
-
+    /**
+     * Determines if a file or directory exists at the specified location
+     * 
+     * @param fileLocation the location and file name
+     * @return a boolean that represents whether the target exists or not
+     */
+    exists(fileLocation: string): boolean
+    /**
+     * Determines if a file or directory exists at the specified location
+     * 
+     * @param fileLocation the location and file name
+     * @return a boolean that represents whether the target exists or not
+     */
+    static exists(fileLocation: string): boolean     
+    /**
+     * Determines if a file or directory exists at the specified location
+     * 
+     * @param importName name of the import
+     * @param fileName name of the file
+     * @returns a boolean that represents whether the target exists or not
+     */
+    exists(importName: string, fileName: string): boolean
+    /**
+     * Determines if a file or directory exists at the specified location
+     * 
+     * @param importName name of the import
+     * @param fileName name of the file
+     * @returns a boolean that represents whether the target exists or not
+     */
+    static exists(importName: string, fileName: string): boolean
     /**
      * Gets the contents of a url as a string.
      *
@@ -5383,6 +5412,37 @@ declare global {
 
     deleteDirectory(dir: JavaFile): boolean;
     static deleteDirectory(dir: JavaFile): boolean;
+    /**
+     * Determines if a file or directory exists at the specified location
+     * 
+     * @param importName name of the import
+     * @param fileName name of the file
+     * @returns a boolean that represents if the target is a directory or not
+     */
+    isDirectory(importName: string, fileName: string): boolean
+    /**
+     * Determines if a file or directory exists at the specified location
+     * 
+     * @param importName name of the import
+     * @param fileName name of the file
+     * @returns a boolean that represents if the target is a directory or not
+     */
+    static isDirectory(importName: string, fileName: string): boolean
+    /**
+     * Determines if a file or directory exists at the specified location
+     * 
+     * @param fileLocation the location and file name
+     * @returns a boolean that represents if the target is a directory or not
+     */
+    isDirectory(fileLocation: string): boolean
+    /**
+     * Determines if a file or directory exists at the specified location
+     * 
+     * @param fileLocation the location and file name
+     * @returns a boolean that represents if the target is a directory or not
+     */
+    static isDirectory(fileLocation: string): boolean
+
 
     /**
      * Extracts a zip file specified by the zipFilePath to a directory specified by
