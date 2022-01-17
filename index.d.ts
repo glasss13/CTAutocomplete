@@ -4612,6 +4612,38 @@ declare global {
      * @return the formatted message
      */
     static addColor(message?: string): string;
+    /**
+     * Adds a message to the player's chat history. This allows the message to show up for the player when pressing the up/down keys while in the chat gui
+     * 
+     * @param index the index to insert the message
+     * @param message the message to add to chat history
+     */
+    static addToSentMessageHistory(index: int, message: string)
+    /**
+     * Deletes an already sent chat message by the Message
+     * 
+     * @param toDelete the message to be deleted
+     */
+    static deleteChat(toDelete: Message)
+    /**
+     * Deletes an already sent chat message by its chat line id
+     * 
+     * @param chatLineId the chat line id of the message to be deleted
+     */
+    static deleteChat(chatLineId: int)
+    /**
+     * Deletes an already sent chat message by the text of the chat
+     * 
+     * @param toDelete the unformatted text of the message to be deleted
+     */
+    static deleteChat(toDelete: string)
+    /**
+     * Deletes an already sent chat message matching regexp.
+     * 
+     * @param regexp the regex object to match to the message
+     */
+    static deleteChat(regexp: RegExp)
+
     /**Helper method */
     isPlayer(out: string): boolean;
   }
