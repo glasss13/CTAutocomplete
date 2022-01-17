@@ -5367,14 +5367,14 @@ declare global {
      * Determines if a file or directory exists at the specified location
      * 
      * @param fileLocation the location and file name
-     * @return a boolean that represents whether the target exists or not
+     * @return if the file exists
      */
     exists(fileLocation: string): boolean
     /**
      * Determines if a file or directory exists at the specified location
      * 
      * @param fileLocation the location and file name
-     * @return a boolean that represents whether the target exists or not
+     * @return if the file exists
      */
     static exists(fileLocation: string): boolean     
     /**
@@ -5382,7 +5382,7 @@ declare global {
      * 
      * @param importName name of the import
      * @param fileName name of the file
-     * @returns a boolean that represents whether the target exists or not
+     * @returns if the file exists
      */
     exists(importName: string, fileName: string): boolean
     /**
@@ -5390,7 +5390,7 @@ declare global {
      * 
      * @param importName name of the import
      * @param fileName name of the file
-     * @returns a boolean that represents whether the target exists or not
+     * @returns if the file exists
      */
     static exists(importName: string, fileName: string): boolean
     /**
@@ -5417,7 +5417,7 @@ declare global {
      * 
      * @param importName name of the import
      * @param fileName name of the file
-     * @returns a boolean that represents if the target is a directory or not
+     * @returns if the location is a directory
      */
     isDirectory(importName: string, fileName: string): boolean
     /**
@@ -5425,21 +5425,21 @@ declare global {
      * 
      * @param importName name of the import
      * @param fileName name of the file
-     * @returns a boolean that represents if the target is a directory or not
+     * @returns if the location is a directory
      */
     static isDirectory(importName: string, fileName: string): boolean
     /**
      * Determines if a file or directory exists at the specified location
      * 
      * @param fileLocation the location and file name
-     * @returns a boolean that represents if the target is a directory or not
+     * @returnsif the location is a directory
      */
     isDirectory(fileLocation: string): boolean
     /**
      * Determines if a file or directory exists at the specified location
      * 
      * @param fileLocation the location and file name
-     * @returns a boolean that represents if the target is a directory or not
+     * @returns if the location is a directory
      */
     static isDirectory(fileLocation: string): boolean
 
