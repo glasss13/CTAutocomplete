@@ -4002,6 +4002,11 @@ declare global {
 
     readonly entity: MCEntity;
 
+    distanceTo(other: Entity): number;
+    distanceTo(other: MCEntity): number;
+    distanceTo(blockPos: BlockPos): number;
+    distanceTo(x: number, y: number, z: number): number;
+
     getX(): double;
     getY(): double;
     getZ(): double;
