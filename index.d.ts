@@ -4306,7 +4306,7 @@ declare global {
 
     /**
      * Sets the hover action and value of the component.
-     * See [TextComponent.setHoverValue] for possible hover actions.
+     * See [TextComponent.setHoverAction] for possible hover actions.
      * @param action the hover action
      * @param value the hover value
      */
@@ -4336,7 +4336,7 @@ declare global {
 
     /**
      * Sets the value to be used by the hover action.
-     * See [TextComponent.setHoverValue] for possible hover actions.
+     * See [TextComponent.setHoverAction] for possible hover actions.
      * @param value the hover value
      */
     setHoverValue(value: string): TextComponent;
@@ -9844,7 +9844,7 @@ declare interface ITriggerRegister {
    * Registers a new trigger that runs before a noteblock is changed.
    *
    * Passes through four arguments:
-   * - The note block change event's Vector3d position
+   * - The note block change event's Vector3f position
    * - The note block change event's note's name
    * - The note block change event's octave
    * - The note block change event, which can be cancelled
@@ -10334,7 +10334,7 @@ declare interface ITriggerRegister {
    *
    * Passes through three arguments:
    * - The [ClientListener.PlayerInteractAction]
-   * - The position of the target as a Vector3d
+   * - The position of the target as a Vector3f
    * - The event, which can be cancelled
    *
    * Available modifications:
@@ -10575,7 +10575,7 @@ declare interface ITriggerRegister {
    *
    * Passes through four arguments:
    * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.Entity]
-   * - The position as a Vector3d
+   * - The position as a Vector3f
    * - The partial ticks
    * - The event, which can be cancelled
    *
@@ -10863,7 +10863,7 @@ declare interface IRegister {
    * Registers a new trigger that runs before a noteblock is changed.
    *
    * Passes through four arguments:
-   * - The note block change event's Vector3d position
+   * - The note block change event's Vector3f position
    * - The note block change event's note's name
    * - The note block change event's octave
    * - The note block change event, which can be cancelled
@@ -11411,7 +11411,7 @@ declare interface IRegister {
    *
    * Passes through three arguments:
    * - The [ClientListener.PlayerInteractAction]
-   * - The position of the target as a Vector3d
+   * - The position of the target as a Vector3f
    * - The event, which can be cancelled
    *
    * Available modifications:
@@ -11679,7 +11679,7 @@ declare interface IRegister {
    *
    * Passes through four arguments:
    * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.Entity]
-   * - The position as a Vector3d
+   * - The position as a Vector3f
    * - The partial ticks
    * - The event, which can be cancelled
    *
