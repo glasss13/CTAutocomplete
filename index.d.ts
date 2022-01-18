@@ -674,6 +674,9 @@ declare global {
       scale?: float,
       increase?: boolean,
     ): void;
+    
+  
+
   }
 
   class MathLib {
@@ -5414,7 +5417,7 @@ declare global {
      * 
      * @param importName name of the import
      * @param fileName name of the file
-     * @returns if the file exists
+     * @return if the file exists
      */
     exists(importName: string, fileName: string): boolean
     /**
@@ -5422,7 +5425,7 @@ declare global {
      * 
      * @param importName name of the import
      * @param fileName name of the file
-     * @returns if the file exists
+     * @return if the file exists
      */
     static exists(importName: string, fileName: string): boolean
     /**
@@ -5449,7 +5452,7 @@ declare global {
      * 
      * @param importName name of the import
      * @param fileName name of the file
-     * @returns if the location is a directory
+     * @return if the location is a directory
      */
     isDirectory(importName: string, fileName: string): boolean
     /**
@@ -5457,21 +5460,21 @@ declare global {
      * 
      * @param importName name of the import
      * @param fileName name of the file
-     * @returns if the location is a directory
+     * @return if the location is a directory
      */
     static isDirectory(importName: string, fileName: string): boolean
     /**
      * Determines if a file or directory exists at the specified location
      * 
      * @param fileLocation the location and file name
-     * @returnsif the location is a directory
+     * @return if the location is a directory
      */
     isDirectory(fileLocation: string): boolean
     /**
      * Determines if a file or directory exists at the specified location
      * 
      * @param fileLocation the location and file name
-     * @returns if the location is a directory
+     * @return if the location is a directory
      */
     static isDirectory(fileLocation: string): boolean
 
