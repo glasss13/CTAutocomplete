@@ -38,6 +38,10 @@
       "description": "The imgur link for the image of the module",
       "type": "string"
     },
+    "changelog": {
+      "description": "A changelog to be printed when the module is updated",
+      "type": "string"
+    },
     "creator": {
       "description": "The creator of the module",
       "type": "string"
