@@ -4656,10 +4656,8 @@ declare global {
      */
     static command(text: string, clientSide?: boolean): void;
 
-    static clearChat(): void;
-
     /**
-     * Clear chat messages with the specified message ID
+     * Clear chat messages with the specified message ID, or all chat messages if no ID is specified
      *
      * @param chatLineIDs the id(s) to be cleared
      */
