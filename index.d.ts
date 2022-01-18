@@ -5836,33 +5836,116 @@ declare global {
     /**
      * Add a base Minecraft button to the gui
      *
-     * @param buttonId   id for the button
-     * @param x          X position of the button
-     * @param y          Y position of the button
-     * @param buttonText the label of the button
+     * @param button the button to add
+     * @return the Gui for method chaining
      */
-    addButton(buttonId: int, x: int, y: int, buttonText: string): void;
+    addButton(button: MCGuiButton): Gui;
 
     /**
      * Add a base Minecraft button to the gui
      *
-     * @param buttonId   id for the button
-     * @param x          X position of the button
-     * @param y          Y position of the button
-     * @param width      the width of the button
-     * @param height     the height of the button
+     * @param buttonId id for the button
+     * @param x the x position of the button
+     * @param y the y position of the button
+     * @param width the width of the button
+     * @param height the height of the button
      * @param buttonText the label of the button
+     * @return the Gui for method chaining
      */
     addButton(
-      buttonId: int,
-      x: int,
-      y: int,
-      width: int,
-      height: int,
+      buttonId: number,
+      x: number,
+      y: number,
+      width: number,
+      height: number,
       buttonText: string,
-    ): void;
+    ): Gui;
 
-    setButtonVisibility(buttonId: int, visible: boolean): void;
+    /**
+     * Removes a button from the gui with the given id
+     *
+     * @param buttonId the id of the button to remove
+     * @return the Gui for method chaining
+     */
+    removeButton(buttonId: number): Gui;
+
+    clearButtons(): Gui;
+
+    getButton(buttonId: number): MCGuiButton | null;
+
+    getButtonVisibility(buttonId: number): boolean;
+
+    /**
+     * Sets the visibility of a button
+     *
+     * @param buttonId the id of the button to change
+     * @param visible the new visibility of the button
+     * @return the Gui for method chaining
+     */
+    setButtonVisibility(buttonId: int, visible: boolean): Gui;
+
+    getButtonEnabled(buttonId: number): boolean;
+
+    /**
+     * Sets the enabled state of a button
+     *
+     * @param buttonId the id of the button to set
+     * @param enabled the enabled state of the button
+     * @return the Gui for method chaining
+     */
+    setButtonEnabled(buttonId: number, enabled: boolean): Gui;
+
+    getButtonWidth(buttonId: number): number;
+    /**
+     * Sets the button's width. Button textures break if the width is greater than 200
+     *
+     * @param buttonId id of the button
+     * @param width the new width
+     * @return the Gui for method chaining
+     */
+    setButtonWidth(buttonId: number, width: number): Gui;
+
+    getButtonHeight(buttonId: number): number;
+    /**
+     * Sets the button's height. Button textures break if the height is not 20
+     *
+     * @param buttonId id of the button
+     * @param height the new height
+     * @return the Gui for method chaining
+     */
+    setButtonHeight(buttonId: number, height: number): Gui;
+
+    getButtonX(buttonId: number): number;
+
+    /**
+     * Sets the button's x position
+     *
+     * @param buttonId id of the button
+     * @param x the new x position
+     * @return the Gui for method chaining
+     */
+    setButtonX(buttonId: number, x: number): Gui;
+
+    getButtonY(buttonId: number): number;
+
+    /**
+     * Sets the button's y position
+     *
+     * @param buttonId id of the button
+     * @param y the new y position
+     * @return the Gui for method chaining
+     */
+    setButtonY(buttonId: number, y: number): Gui;
+
+    /**
+     * Sets the button's position
+     *
+     * @param buttonId id of the button
+     * @param x the new x position
+     * @param y the new y position
+     * @return the Gui for method chaining
+     */
+    setButtonLoc(buttonId: number, x: number, y: number): Gui;
 
     /**
      * Draws text on screen
