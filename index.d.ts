@@ -6095,7 +6095,7 @@ declare global {
 
   class OnTrigger {
     /**
-     * Sets a triggers priority using [Priority].
+     * Sets a trigger's priority using [Priority].
      * Highest runs first.
      * @param priority the priority of the trigger
      * @return the trigger for method chaining
@@ -9915,7 +9915,7 @@ declare interface ITriggerRegister {
    * - The chat event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnChatTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnChatTrigger.setChatCriteria] Sets the chat criteria
    * - [OnChatTrigger.setParameter] Sets the chat parameter
    * - [OnTrigger.setPriority] Sets the priority
@@ -9937,7 +9937,7 @@ declare interface ITriggerRegister {
    * - The chat event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnChatTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnChatTrigger.setChatCriteria] Sets the chat criteria
    * - [OnChatTrigger.setParameter] Sets the chat parameter
    * - [OnTrigger.setPriority] Sets the priority
@@ -10893,7 +10893,6 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -10977,7 +10976,7 @@ declare interface IRegister {
    * - The chat event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnChatTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnChatTrigger.setChatCriteria] Sets the chat criteria
    * - [OnChatTrigger.setParameter] Sets the chat parameter
    * - [OnTrigger.setPriority] Sets the priority
@@ -11000,7 +10999,7 @@ declare interface IRegister {
    * - The chat event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnChatTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnChatTrigger.setChatCriteria] Sets the chat criteria
    * - [OnChatTrigger.setParameter] Sets the chat parameter
    * - [OnTrigger.setPriority] Sets the priority
@@ -12052,7 +12051,6 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
