@@ -338,12 +338,20 @@ declare global {
       x: int,
       y: int,
       rotate?: boolean,
+      showNametag?: boolean,
+      showCape?: boolean,
+      showHeldItem?: boolean,
+      showArrows?: boolean,
     ): void;
     static drawPlayer(
       player: PlayerMP | MCEntityPlayer | MCEntityLivingBase,
       x: int,
       y: int,
       rotate?: boolean,
+      showNametag?: boolean,
+      showCape?: boolean,
+      showHeldItem?: boolean,
+      showArrows?: boolean,
     ): void;
 
     finishDraw(): void;
