@@ -6861,6 +6861,105 @@ declare class MCWorldClient {
 // Forge Classes //
 ///////////////////
 //#region
+declare class FMLNetworkEvent$ClientConnectedToServerEvent {
+  readonly isLocal: boolean;
+  readonly connectionType: string;
+}
+
+declare class FMLNetworkEvent$ServerConnectionFromClientEvent {
+  readonly isLocal: boolean;
+}
+
+declare class FMLNetworkEvent$ServerDisconnectionFromClientEvent {
+
+}
+
+declare class FMLNetworkEvent$ClientDisconnectionFromServerEvent {
+
+}
+
+declare class FMLNetworkEvent$CustomPacketRegistrationEvent {
+
+}
+
+declare class FMLNetworkEvent$CustomPacketEvent {
+
+}
+
+declare class FMLNetworkEvent$ClientCustomPacketEvent {
+}
+
+declare class FMLNetworkEvent$ServerCustomPacketEvent {
+
+}
+
+declare class FMLNetworkEvent$CustomNetworkEvent {
+  readonly wrappedEevent: object
+}
+
+declare class FMLNetworkEvent {
+  class: JavaClass<FMLNetworkEvent>;
+  static class: JavaClass<typeof FMLNetworkEvent>
+
+      /**
+     * Fired at the client when a client connects to a server
+     */
+  static readonly ClientConnectedToServerEvent: typeof FMLNetworkEvent$ClientConnectedToServerEvent;
+    /**
+     * Fired at the server when a client connects to the server.
+     *
+     * @author cpw
+     *
+     */
+  static readonly ServerConnectionFromClientEvent: typeof FMLNetworkEvent$ServerConnectionFromClientEvent;
+      /**
+     * Fired at the server when a client disconnects.
+     *
+     * @author cpw
+     *
+     */
+  static readonly ServerDisconnectionFromClientEvent: typeof FMLNetworkEvent$ServerDisconnectionFromClientEvent;
+    /**
+     * Fired at the client when the client is disconnected from the server.
+     *
+     * @author cpw
+     *
+     */
+  static readonly ClientDisconnectionFromServerEvent: typeof FMLNetworkEvent$ClientDisconnectionFromServerEvent;
+    /**
+     * Fired when the REGISTER/UNREGISTER for custom channels is received.
+     *
+     * @author cpw
+     *
+     * @param <S> The side
+     */
+    static readonly CustomPacketRegistrationEvent: typeof FMLNetworkEvent$CustomPacketRegistrationEvent;
+
+    static readonly CustomPacketEvent: typeof FMLNetworkEvent$CustomPacketEvent;
+
+        /**
+     * Fired when a custom packet is received on the client for the channel
+     * @author cpw
+     *
+     */
+         static readonly ClientCustomPacketEvent: typeof FMLNetworkEvent$ClientCustomPacketEvent;
+
+    /**
+     * Fired when a custom packet is received at the server for the channel
+     * @author cpw
+     *
+     */
+         static readonly ServerCustomPacketEvent: typeof FMLNetworkEvent$ServerCustomPacketEvent;
+             /**
+     * Fired when a custom event, such as {@link NetworkHandshakeEstablished} is fired for the channel
+     *
+     * @author cpw
+     *
+     */
+    static readonly CustomNetworkEvent: typeof FMLNetworkEvent$CustomNetworkEvent;
+}
+
+
 declare class ForgeClientChatReceivedEvent {
   class: JavaClass<ForgeClientChatReceivedEvent>;
   static class: JavaClass<typeof ForgeClientChatReceivedEvent>;
@@ -9821,6 +9920,8 @@ declare class TriggerType {
   static ChatComponentHovered: TriggerType;
   static PacketSent: TriggerType;
   static PacketReceived: TriggerType;
+  static ServerConnect: TriggerType;
+  static ServerDisconnect: TriggerType;
 
   // rendering
   static RenderWorld: TriggerType;
@@ -10917,6 +11018,35 @@ declare interface ITriggerRegister {
   registerPacketReceived(
     method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
   ): OnRegularTrigger;
+
+      /**
+     * Registers a new trigger that runs whenever the player connects to a server
+     *
+     * Passes through one argument:
+     * - The event, which cannot be cancelled
+     *
+     * Available modifications:
+     * - [OnTrigger.setPriority] Sets the priority
+     *
+     * @param method The method to call when the event is fired
+     * @return The trigger for additional modification
+     */
+  registerServerConnect(method: (event: FMLNetworkEvent$ClientConnectedToServerEvent) => void): OnRegularTrigger;
+
+      /**
+     * Registers a new trigger that runs whenever the player disconnects from a server
+     *
+     * Passes through two arguments:
+     * - The event, which cannot be cancelled
+     *
+     * Available modifications:
+     * - [OnTrigger.setPriority] Sets the priority
+     *
+     * @param method The method to call when the event is fired
+     * @return The trigger for additional modification
+     */
+       registerServerDisconnect(method: (event: FMLNetworkEvent$ClientDisconnectionFromServerEvent) => void): OnRegularTrigger;
+
   /**
    * Registers a new trigger that runs whenever the user clicks on a clickable
    * chat component
@@ -12084,6 +12214,34 @@ declare interface IRegister {
     triggerType: "packetReceived",
     method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
   ): OnRegularTrigger;
+
+      /**
+     * Registers a new trigger that runs whenever the player connects to a server
+     *
+     * Passes through one argument:
+     * - The event, which cannot be cancelled
+     *
+     * Available modifications:
+     * - [OnTrigger.setPriority] Sets the priority
+     *
+     * @param method The method to call when the event is fired
+     * @return The trigger for additional modification
+     */
+  (triggerType: "serverConnect", method: (event: FMLNetworkEvent$ClientConnectedToServerEvent) => void): OnRegularTrigger;
+
+      /**
+     * Registers a new trigger that runs whenever the player disconnects from a server
+     *
+     * Passes through two arguments:
+     * - The event, which cannot be cancelled
+     *
+     * Available modifications:
+     * - [OnTrigger.setPriority] Sets the priority
+     *
+     * @param method The method to call when the event is fired
+     * @return The trigger for additional modification
+     */
+  (triggerType: "serverDisconnect", method: (event: FMLNetworkEvent$ClientDisconnectionFromServerEvent) => void): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs whenever the user clicks on a clickable
