@@ -4007,6 +4007,82 @@ declare global {
     distanceTo(blockPos: BlockPos): number;
     distanceTo(x: number, y: number, z: number): number;
 
+    isOnGround(): boolean;
+
+    isCollided(): boolean;
+
+    getDistanceWalked(): number;
+
+    getStepHeight(): number;
+
+    hasNoClip(): boolean;
+
+    getTicksExisted(): number;
+
+    getFireResistance(): number;
+
+    isImmuneToFire(): boolean;
+
+    isInWater(): boolean;
+
+    isWet(): boolean;
+
+    isAirborne(): boolean;
+
+    getDimension(): number;
+
+    setPosition(x: number, y: number, z: number): Entity;
+
+    setAngles(yaw: number, pitch: number): Entity;
+
+    getMaxInPortalTime(): number;
+
+    setOnFire(seconds: number): Entity;
+
+    extinguish(): Entity;
+
+    move(x: number, y: number, z: number): Entity;
+
+    isSilent(): boolean;
+
+    setIsSilent(silent: boolean): Entity;
+
+    isInLava(): boolean;
+
+    addVelocity(x: number, y: number, z: number): Entity;
+
+    getLookVector(partialTicks: number): MCVec3;
+
+    getEyePosition(partialTicks: number): MCVec3;
+
+    canBeCollidedWith(): boolean;
+
+    canBePushed(): boolean;
+
+    dropItem(item: Item, size: number): MCEntityItem;
+
+    isSneaking(): boolean;
+
+    setIsSneaking(sneaking: boolean): Entity;
+
+    isSprinting(): boolean;
+
+    setIsSprinting(sprinting: boolean): Entity;
+
+    isInvisible(): boolean;
+
+    setIsInvisible(invisible: boolean): Entity;
+
+    isEating(): boolean;
+
+    setIsEating(eating: boolean): Entity;
+
+    isOutsideBorder(): boolean;
+
+    setIsOutsideBorder(outside: boolean): Entity;
+
+    getWorld(): MCWorld;
+
     getX(): double;
     getY(): double;
     getZ(): double;
@@ -6045,6 +6121,7 @@ declare global {
 
 declare interface javaTypePath {
   // obfuscated paths
+  (path: "net.minecraft.util.Vec3"): typeof MCVec3;
   (
     path: "net.minecraft.client.renderer.GlStateManager",
   ): typeof MCGlStateManager;
@@ -6183,6 +6260,10 @@ declare interface Java {
 //#region
 
 // TODO probalby should be extending from base object, need to fix issue with static members
+declare class MCVec3 {
+  class: JavaClass<MCVec3>;
+  static class: JavaClass<typeof MCVec3>;
+}
 
 declare class MCGlStateManager {
   class: JavaClass<MCGlStateManager>;
