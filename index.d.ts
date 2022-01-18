@@ -4604,8 +4604,18 @@ declare global {
      * @param text the text to be printed
      */
     static chat(text: Message | string | TextComponent): void;
+    /**
+     * Prints text in the chat.
+     * The text can be a String, a [Message] or a [TextComponent]
+     *
+     * @param text the text to be printed
+     */
+    chat(text: Message | string | TextComponent): void;
+
     /**logs */
     static test(e: any): void;
+    /**logs */
+    test(e: any): void;
 
     /**
      * Shows text in the action bar.
@@ -4614,6 +4624,13 @@ declare global {
      * @param text the text to show
      */
     static actionBar(text: string | Message | TextComponent): void;
+    /**
+     * Shows text in the action bar.
+     * The text can be a String, a [Message] or a [TextComponent]
+     *
+     * @param text the text to show
+     */
+    actionBar(text: string | Message | TextComponent): void;
 
     /**
      * Simulates a chat message to be caught by other triggers for testing.
@@ -4622,6 +4639,258 @@ declare global {
      * @param text The message to simulate
      */
     static simulateChat(text: string | Message | TextComponent): void;
+    /**
+     * Simulates a chat message to be caught by other triggers for testing.
+     * The text can be a String, a [Message] or a [TextComponent]
+     *
+     * @param text The message to simulate
+     */
+    simulateChat(text: string | Message | TextComponent): void;
+
+    /**
+     * Says chat message.
+     * This message is actually sent to the server.
+     *
+     * @param text the message to be sent
+     */
+    static say(text: string): void;
+    /**
+     * Says chat message.
+     * This message is actually sent to the server.
+     *
+     * @param text the message to be sent
+     */
+    say(text: string): void;
+
+    /**
+     * Runs a command.
+     *
+     * @param text the command to run, without the leading slash (Ex. "help")
+     * @param clientSide should the command be ran as a client side command
+     */
+    static command(text: string, clientSide?: boolean): void;
+    /**
+     * Runs a command.
+     *
+     * @param text the command to run, without the leading slash (Ex. "help")
+     * @param clientSide should the command be ran as a client side command
+     */
+    command(text: string, clientSide?: boolean): void;
+
+    /**
+     * Clear chat messages with the specified message ID, or all chat messages if no ID is specified
+     *
+     * @param chatLineIDs the id(s) to be cleared
+     */
+    static clearChat(...chatLineIDs: int[]): void;
+    /**
+     * Clear chat messages with the specified message ID, or all chat messages if no ID is specified
+     *
+     * @param chatLineIDs the id(s) to be cleared
+     */
+    clearChat(...chatLineIDs: int[]): void;
+
+    /**
+     * Get a message that will be perfectly one line of chat,
+     * the separator repeated as many times as necessary.
+     * The separator defaults to "-"
+     *
+     * @param separator the message to split chat with
+     * @return the message that would split chat
+     */
+    static getChatBreak(separator?: string): string;
+    /**
+     * Get a message that will be perfectly one line of chat,
+     * the separator repeated as many times as necessary.
+     * The separator defaults to "-"
+     *
+     * @param separator the message to split chat with
+     * @return the message that would split chat
+     */
+    getChatBreak(separator?: string): string;
+
+    /**
+     * Gets the width of Minecraft's chat
+     *
+     * @return the width of chat
+     */
+    static getChatWidth(): int;
+    /**
+     * Gets the width of Minecraft's chat
+     *
+     * @return the width of chat
+     */
+    getChatWidth(): int;
+
+    /**
+     * Remove all formatting
+     *
+     * @param text the string to un-format
+     * @return the unformatted string
+     */
+    static removeFormatting(text: string): string;
+    /**
+     * Remove all formatting
+     *
+     * @param text the string to un-format
+     * @return the unformatted string
+     */
+    removeFormatting(text: string): string;
+
+    /**
+     * Replaces Minecraft formatted text with normal formatted text
+     *
+     * @param text the formatted string
+     * @return the unformatted string
+     */
+    static replaceFormatting(text: string): string;
+    /**
+     * Replaces Minecraft formatted text with normal formatted text
+     *
+     * @param text the formatted string
+     * @return the unformatted string
+     */
+    replaceFormatting(text: string): string;
+
+    /**
+     * Get a message that will be perfectly centered in chat.
+     *
+     * @param text the text to be centered
+     * @return the centered message
+     */
+    static getCenteredText(text: string): string;
+    /**
+     * Get a message that will be perfectly centered in chat.
+     *
+     * @param text the text to be centered
+     * @return the centered message
+     */
+    getCenteredText(text: string): string;
+
+    /**
+     * Edits an already sent chat message matched by [regexp].
+     *
+     * @param regexp the regex object to match to the message
+     * @param replacements the new message(s) to be put in replace of the old one
+     */
+    editChat(regexp: RegExp, ...replacements: Message[]): void;
+    /**
+     * Edits an already sent chat message matched by [regexp].
+     *
+     * @param regexp the regex object to match to the message
+     * @param replacements the new message(s) to be put in replace of the old one
+     */
+    static editChat(regexp: RegExp, ...replacements: Message[]): void;
+
+    /**
+     * Edits an already sent chat message by the text of the chat
+     *
+     * @param toReplace the unformatted text of the message to be replaced
+     * @param replacements the new message(s) to be put in place of the old one
+     */
+    editChat(toReplace: string, ...replacements: Message[]): void;
+    /**
+     * Edits an already sent chat message by the text of the chat
+     *
+     * @param toReplace the unformatted text of the message to be replaced
+     * @param replacements the new message(s) to be put in place of the old one
+     */
+    static editChat(toReplace: string, ...replacements: Message[]): void;
+
+    /**
+     * Edits an already sent chat message by the [Message]
+     *
+     * @param toReplace the message to be replaced
+     * @param replacements the new message(s) to be put in place of the old one
+     */
+    editChat(toReplace: Message, ...replacements: Message[]): void;
+    /**
+     * Edits an already sent chat message by the [Message]
+     *
+     * @param toReplace the message to be replaced
+     * @param replacements the new message(s) to be put in place of the old one
+     */
+    static editChat(toReplace: Message, ...replacements: Message[]): void;
+
+    /**
+     * Edits an already sent chat message by its chat line id
+     *
+     * @param chatLineId the chat line id of the message to be replaced
+     * @param replacements the new message(s) to be put in place of the old one
+     */
+    editChat(chatLineId: int, ...replacements: Message[]): void;
+    /**
+     * Edits an already sent chat message by its chat line id
+     *
+     * @param chatLineId the chat line id of the message to be replaced
+     * @param replacements the new message(s) to be put in place of the old one
+     */
+    static editChat(chatLineId: int, ...replacements: Message[]): void;
+
+    /**
+     * Deletes an already sent chat message matching [regexp].
+     *
+     * @param regexp the regex object to match to the message
+     */
+    deleteChat(regexp: RegExp): void;
+    /**
+     * Deletes an already sent chat message matching [regexp].
+     *
+     * @param regexp the regex object to match to the message
+     */
+    static deleteChat(regexp: RegExp): void;
+
+    /**
+     * Deletes an already sent chat message by the text of the chat
+     *
+     * @param toDelete the unformatted text of the message to be deleted
+     */
+    deleteChat(toDelete: string): void;
+    /**
+     * Deletes an already sent chat message by the text of the chat
+     *
+     * @param toDelete the unformatted text of the message to be deleted
+     */
+    static deleteChat(toDelete: string): void;
+
+    /**
+     * Deletes an already sent chat message by the [Message]
+     *
+     * @param toDelete the message to be deleted
+     */
+    deleteChat(toDelete: Message): void;
+    /**
+     * Deletes an already sent chat message by the [Message]
+     *
+     * @param toDelete the message to be deleted
+     */
+    static deleteChat(toDelete: Message): void;
+
+    /**
+     * Deletes an already sent chat message by its chat line id
+     *
+     * @param chatLineId the chat line id of the message to be deleted
+     */
+    deleteChat(chatLineId: int): void;
+    /**
+     * Deletes an already sent chat message by its chat line id
+     *
+     * @param chatLineId the chat line id of the message to be deleted
+     */
+    static deleteChat(chatLineId: int): void;
+
+    /**
+     * Gets the previous 1000 lines of chat
+     *
+     * @return A list of the last 1000 chat lines
+     */
+    static getChatLines(): string[];
+    /**
+     * Gets the previous 1000 lines of chat
+     *
+     * @return A list of the last 1000 chat lines
+     */
+    getChatLines(): string[];
 
     /**
      * Adds a message to the player's chat history. This allows the message to
@@ -4641,132 +4910,23 @@ declare global {
     static addToSentMessageHistory(index: number, message: string): void;
 
     /**
-     * Says chat message.
-     * This message is actually sent to the server.
+     * Get the text of a chat event.
+     * Defaults to the unformatted version.
      *
-     * @param text the message to be sent
+     * @param event The chat event passed in by a chat trigger
+     * @param formatted If true, returns formatted text. Otherwise, returns
+     * unformatted text
+     * @return The text of the event
      */
-    static say(text: string): void;
-
-    /**
-     * Runs a command.
-     *
-     * @param text the command to run, without the leading slash (Ex. "help")
-     * @param clientSide should the command be ran as a client side command
-     */
-    static command(text: string, clientSide?: boolean): void;
-
-    /**
-     * Clear chat messages with the specified message ID, or all chat messages if no ID is specified
-     *
-     * @param chatLineIDs the id(s) to be cleared
-     */
-    static clearChat(...chatLineIDs: int[]): void;
-
-    /**
-     * Get a message that will be perfectly one line of chat,
-     * the separator repeated as many times as necessary.
-     * The separator defaults to "-"
-     *
-     * @param separator the message to split chat with
-     * @return the message that would split chat
-     */
-    static getChatBreak(separator?: string): string;
-
-    /**
-     * Gets the width of Minecraft's chat
-     *
-     * @return the width of chat
-     */
-    static getChatWidth(): int;
-
-    /**
-     * Remove all formatting
-     *
-     * @param text the string to un-format
-     * @return the unformatted string
-     */
-    static removeFormatting(text: string): string;
-
-    /**
-     * Replaces Minecraft formatted text with normal formatted text
-     *
-     * @param text the formatted string
-     * @return the unformatted string
-     */
-    static replaceFormatting(text: string): string;
-
-    /**
-     * Get a message that will be perfectly centered in chat.
-     *
-     * @param text the text to be centered
-     * @return the centered message
-     */
-    static getCenteredText(text: string): string;
-
-    /**
-     * Edits an already sent chat message by regex.
-     * If the JavaScript RegExp object passed in matches a message, it will be replaced.
-     * The regex object will be created by the {@code new RegExp()} constructor,
-     * or the {@code //} regex literal. All flags will be respected.
-     *
-     * @param regexp the regex object to match to the message
-     * @param replacements the new message(s) to be put in replace of the old one
-     */
-    static editChat(regexp: RegExp, ...replacements: Message[]): void;
-
-    /**
-     * Edits an already sent chat message by the text of the chat
-     *
-     * @param toReplace the unformatted text of the message to be replaced
-     * @param replacements the new message(s) to be put in place of the old one
-     */
-    static editChat(toReplace: string, ...replacements: Message[]): void;
-
-    /**
-     * Edits an already sent chat message by the [Message]
-     *
-     * @param toReplace the message to be replaced
-     * @param replacements the new message(s) to be put in place of the old one
-     */
-    static editChat(toReplace: Message, ...replacements: Message[]): void;
-
-    /**
-     * Edits an already sent chat message by its chat line id
-     *
-     * @param chatLineId the chat line id of the message to be replaced
-     * @param replacements the new message(s) to be put in place of the old one
-     */
-    static editChat(chatLineId: int, ...replacements: Message[]): void;
-
-    /**
-     * Edits an already sent chat message.
-     * Whether each specific message is edited or not is up to the first parameter, the "comparator" function.
-     * This function will be passed a {@link Message} object and has to return a boolean for whether or not
-     * that specific message should be edited. (true for yes, false for no). There are overrides of this function
-     * that already implement different versions of this method and those should be used in place of this one
-     * if there is already a suitable replacement. Otherwise, create one and use this method.
-     *
-     * @param toReplace the "comparator" function
-     * @param replacements the replacement messages
-     */
-    static editChat(
-      toReplace: (message: Message) => boolean,
-      ...replacements: Message[]
-    ): void;
-
-    /**
-     * Gets the previous 1000 lines of chat
-     *
-     * @return A list of the last 1000 chat lines
-     */
-    static getChatLines(): string[];
-
+    getChatMessage(
+      event: ForgeClientChatReceivedEvent,
+      formatted?: boolean,
+    ): string;
     /**
      * Get the text of a chat event.
      * Defaults to the unformatted version.
      *
-     * @param event     The chat event passed in by a chat trigger
+     * @param event The chat event passed in by a chat trigger
      * @param formatted If true, returns formatted text. Otherwise, returns
      * unformatted text
      * @return The text of the event
@@ -4777,45 +4937,23 @@ declare global {
     ): string;
 
     /**
-     * Replaces the easier to type '&amp;' color codes with proper color codes in a string.
+     * Replaces the easier to type '&' color codes with proper color codes in a string.
+     *
+     * @param message The string to add color codes to
+     * @return the formatted message
+     */
+    addColor(message?: string): string;
+    /**
+     * Replaces the easier to type '&' color codes with proper color codes in a string.
      *
      * @param message The string to add color codes to
      * @return the formatted message
      */
     static addColor(message?: string): string;
-    /**
-     * Adds a message to the player's chat history. This allows the message to show up for the player when pressing the up/down keys while in the chat gui
-     *
-     * @param index the index to insert the message
-     * @param message the message to add to chat history
-     */
-    static addToSentMessageHistory(index: int, message: string);
-    /**
-     * Deletes an already sent chat message by the Message
-     *
-     * @param toDelete the message to be deleted
-     */
-    static deleteChat(toDelete: Message);
-    /**
-     * Deletes an already sent chat message by its chat line id
-     *
-     * @param chatLineId the chat line id of the message to be deleted
-     */
-    static deleteChat(chatLineId: int);
-    /**
-     * Deletes an already sent chat message by the text of the chat
-     *
-     * @param toDelete the unformatted text of the message to be deleted
-     */
-    static deleteChat(toDelete: string);
-    /**
-     * Deletes an already sent chat message matching regexp.
-     *
-     * @param regexp the regex object to match to the message
-     */
-    static deleteChat(regexp: RegExp);
 
-    /**Helper method */
+    /**
+     * helper method to make sure player exists before putting something in chat
+     */
     isPlayer(out: string): boolean;
   }
 
