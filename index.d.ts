@@ -9409,68 +9409,68 @@ declare class chat {
 // "enum class"
 declare class TriggerType {
   // client
-  static CHAT: TriggerType;
-  static ACTION_BAR: TriggerType;
-  static TICK: TriggerType;
-  static STEP: TriggerType;
-  static GAME_UNLOAD: TriggerType;
-  static GAME_LOAD: TriggerType;
-  static CLICKED: TriggerType;
-  static SCROLLED: TriggerType;
-  static DRAGGED: TriggerType;
-  static GUI_OPENED: TriggerType;
-  static SCREENSHOT_TAKEN: TriggerType;
-  static PICKUP_ITEM: TriggerType;
-  static DROP_ITEM: TriggerType;
-  static MESSAGE_SENT: TriggerType;
-  static TOOLTIP: TriggerType;
-  static PLAYER_INTERACT: TriggerType;
-  static ATTACK_ENTITY: TriggerType;
-  static HIT_BLOCK: TriggerType;
-  static GUI_RENDER: TriggerType;
-  static GUI_KEY: TriggerType;
-  static GUI_MOUSE_CLICK: TriggerType;
-  static GUI_MOUSE_RELEASE: TriggerType;
-  static GUI_MOUSE_DRAG: TriggerType;
-  static CHAT_COMPONENT_CLICKED: TriggerType;
-  static CHAT_COMPONENT_HOVERED: TriggerType;
-  static PACKET_SENT: TriggerType;
-  static PACKET_RECEIVED: TriggerType;
+  static Chat: TriggerType;
+  static ActionBar: TriggerType;
+  static Tick: TriggerType;
+  static Step: TriggerType;
+  static GameUnload: TriggerType;
+  static GameLoad: TriggerType;
+  static Clicked: TriggerType;
+  static Scrolled: TriggerType;
+  static Dragged: TriggerType;
+  static GuiOpened: TriggerType;
+  static ScreenshotTaken: TriggerType;
+  static PickupItem: TriggerType;
+  static DropItem: TriggerType;
+  static MessageSent: TriggerType;
+  static Tooltip: TriggerType;
+  static PlayerInteract: TriggerType;
+  static AttackEntity: TriggerType;
+  static HitBlock: TriggerType;
+  static GuiRender: TriggerType;
+  static GuiKey: TriggerType;
+  static GuiMouseClick: TriggerType;
+  static GuiMouseRelease: TriggerType;
+  static GuiMouseDrag: TriggerType;
+  static ChatComponentClicked: TriggerType;
+  static ChatComponentHovered: TriggerType;
+  static PacketSent: TriggerType;
+  static PacketReceived: TriggerType;
 
   // rendering
-  static RENDER_WORLD: TriggerType;
-  static BLOCK_HIGHLIGHT: TriggerType;
-  static RENDER_OVERLAY: TriggerType;
-  static RENDER_PLAYER_LIST: TriggerType;
-  static RENDER_BOSS_HEALTH: TriggerType;
-  static RENDER_DEBUG: TriggerType;
-  static RENDER_CROSSHAIR: TriggerType;
-  static RENDER_HOTBAR: TriggerType;
-  static RENDER_EXPERIENCE: TriggerType;
-  static RENDER_ARMOR: TriggerType;
-  static RENDER_HEALTH: TriggerType;
-  static RENDER_FOOD: TriggerType;
-  static RENDER_MOUNT_HEALTH: TriggerType;
-  static RENDER_AIR: TriggerType;
-  static RENDER_ENTITY: TriggerType;
-  static POST_GUI_RENDER: TriggerType;
+  static RenderWorld: TriggerType;
+  static BlockHighlight: TriggerType;
+  static RenderOverlay: TriggerType;
+  static RenderPlayerList: TriggerType;
+  static RenderBossHealth: TriggerType;
+  static RenderDebug: TriggerType;
+  static RenderCrosshair: TriggerType;
+  static RenderHotbar: TriggerType;
+  static RenderExperience: TriggerType;
+  static RenderArmor: TriggerType;
+  static RenderHealth: TriggerType;
+  static RenderFood: TriggerType;
+  static RenderMountHealth: TriggerType;
+  static RenderAir: TriggerType;
+  static RenderEntity: TriggerType;
+  static PostGuiRender: TriggerType;
 
   // world
-  static PLAYER_JOIN: TriggerType;
-  static PLAYER_LEAVE: TriggerType;
-  static SOUND_PLAY: TriggerType;
-  static NOTE_BLOCK_PLAY: TriggerType;
-  static NOTE_BLOCK_CHANGE: TriggerType;
-  static WORLD_LOAD: TriggerType;
-  static WORLD_UNLOAD: TriggerType;
-  static BLOCK_BREAK: TriggerType;
-  static SPAWN_PARTICLE: TriggerType;
-  static ENTITY_DEATH: TriggerType;
-  static ENTITY_DAMAGE: TriggerType;
+  static PlayerJoin: TriggerType;
+  static PlayerLeave: TriggerType;
+  static SoundPlay: TriggerType;
+  static NoteBlockPlay: TriggerType;
+  static NoteBlockChange: TriggerType;
+  static WorldLoad: TriggerType;
+  static WorldUnload: TriggerType;
+  static BlockBreak: TriggerType;
+  static SpawnParticle: TriggerType;
+  static EntityDeath: TriggerType;
+  static EntityDamage: TriggerType;
 
   // misc
-  static COMMAND: TriggerType;
-  static OTHER: TriggerType;
+  static Command: TriggerType;
+  static Other: TriggerType;
 
   triggerAll(...args: any[]): void;
 }
