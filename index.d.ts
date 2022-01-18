@@ -9278,7 +9278,6 @@ declare class TriggerType {
   static COMMAND: TriggerType;
   static OTHER: TriggerType;
 
-  trigger(args: any[]): void;
   triggerAll(...args: any[]): void;
 }
 
