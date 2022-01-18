@@ -15,13 +15,6 @@ declare global {
   const Config: Config;
   const ChatTriggers: Reference;
   const console: console;
-  const NBTBase: NBTBase;
-  const NBTTagCompound: NBTTagCompound;
-  const NBTTagList: NBTTagList;
-  const BlockFace: BlockFace;
-  const BlockPos: BlockPos;
-  const BlockType: BlockType;
-  const Vec3i: Vec3i;
   const GlStateManager: MCTGlStateManger;
   const GL11: JavaGL11;
   const GL12: JavaGL12;
@@ -73,6 +66,7 @@ declare global {
   type MCTDynamicTexture = MCDynamicTexture;
   type MCTAbstractTexture = MCAbstractTexture;
   type MCTSoundCategory = MCSoundCategory;
+  type MCTPotion = MCPotion;
   type MCTPotionEffect = MCPotionEffect;
   type MCTWorld = MCWorld;
   type MCTEntityFX = MCEntityFX;
@@ -1025,6 +1019,10 @@ declare global {
 
   class Player {
     readonly INSTANCE: Player;
+
+    asPlayerMP(): PlayerMP;
+    static asPlayerMP(): PlayerMP;
+
     /**
      * Gets Minecraft's EntityPlayerSP object representing the user
      *
@@ -4015,6 +4013,51 @@ declare global {
     toString(): string;
   }
 
+  class EntityLivingBase extends Entity {
+    readonly entityLivingBase: MCEntityLivingBase;
+
+    constructor(entityLivingBase: MCEntityLivingBase);
+
+    addPotionEffect(effect: PotionEffect): void;
+
+    clearPotionEffects(): void;
+
+    getActivePotionEffects(): PotionEffect[];
+
+    canSeeEntity(other: Entity): boolean;
+
+    canSeeEntity(other: MCEntity): boolean;
+
+    /**
+     * Gets the item currently in the entity's specified inventory slot.
+     * 0 for main hand, 1-4 for armor
+     * (2 for offhand in 1.12.2, and everything else shifted over).
+     *
+     * @param slot the slot to access
+     * @return the item in said slot
+     */
+    getItemInSlot(slot: number): Item;
+
+    getHP(): number;
+
+    setHP(health: number): EntityLivingBase;
+
+    getMaxHP(): number;
+
+    getAbsorption(): number;
+    setAbsorption(absorption: number): EntityLivingBase;
+
+    getAge(): number;
+
+    getArmorValue(): number;
+
+    isPotionActive(id: number): boolean;
+
+    isPotionActive(potion: MCPotion): boolean;
+
+    toString(): string;
+  }
+
   class Entity {
     constructor(entity: MCEntity);
 
@@ -4101,6 +4144,8 @@ declare global {
 
     getWorld(): MCWorld;
 
+    isBurning(): boolean;
+
     getX(): double;
     getY(): double;
     getZ(): double;
@@ -4137,7 +4182,7 @@ declare global {
      * Gets the entity's x motion.
      * This is the amount the entity will move in the x direction next tick.
      *
-     * @return the player's x motion
+     * @return the entitys's x motion
      */
     getMotionX(): double;
 
@@ -4145,7 +4190,7 @@ declare global {
      * Gets the entity's y motion.
      * This is the amount the entity will move in the y direction next tick.
      *
-     * @return the player's y motion
+     * @return the entity's y motion
      */
     getMotionY(): double;
 
@@ -4153,16 +4198,9 @@ declare global {
      * Gets the entity's z motion.
      * This is the amount the entity will move in the z direction next tick.
      *
-     * @return the player's z motion
+     * @return the entity's z motion
      */
     getMotionZ(): double;
-
-    /**
-     * Gets the entity's health, -1 if not a living entity
-     *
-     * @return the entity's health
-     */
-    getHP(): float;
 
     getRiding(): Entity | null;
 
@@ -4228,6 +4266,18 @@ declare global {
     toString(): string;
 
     getEntity(): MCEntity;
+
+    /**
+     * Gets the entity's air level.<br></br>
+     *
+     * The returned value will be an integer. If the player is not taking damage, it
+     * will be between 300 (not in water) and 0. If the player is taking damage, it
+     * will be between -20 and 0, getting reset to 0 every time the player takes damage.
+     *
+     * @return the entity's air level
+     */
+    getAir(): number;
+    setAir(air: number): Entity;
   }
 
   class TextComponent {
@@ -5829,7 +5879,7 @@ declare global {
     draw(x: double, y: double, width: double, height: double): Image;
   }
 
-  class PlayerMP extends Entity {
+  class PlayerMP extends EntityLivingBase {
     constructor(player: MCEntityPlayer);
 
     readonly player: MCEntityPlayer;
@@ -6206,6 +6256,7 @@ declare interface javaTypePath {
     path: "net.minecraft.client.renderer.texture.AbstractTexture",
   ): typeof MCAbstractTexture;
   (path: "net.minecraft.client.audio.SoundCategory"): typeof MCSoundCategory;
+  (path: "net.minecraft.potion.Potion"): typeof MCPotion;
   (path: "net.minecraft.potion.PotionEffect"): typeof MCPotionEffect;
   (path: "net.minecraft.world.World"): typeof MCWorld;
   (path: "net.minecraft.client.particle.EntityFX"): typeof MCEntityFX;
@@ -6457,6 +6508,11 @@ declare class MCSoundCategory {
   static ANIMALS: MCSoundCategory;
   static PLAYERS: MCSoundCategory;
   static AMBIENT: MCSoundCategory;
+}
+
+declare class MCPotion {
+  class: JavaClass<MCPotion>;
+  static class: JavaClass<typeof MCPotion>;
 }
 
 declare class MCPotionEffect {
@@ -9512,6 +9568,8 @@ declare class GuiHandler {
 }
 
 declare class PotionEffect {
+  readonly effect: MCPotionEffect;
+
   constructor(effect: MCPotionEffect);
 
   /**
