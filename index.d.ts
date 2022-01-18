@@ -8893,6 +8893,8 @@ declare class NBTTagCompound extends NBTBase {
   set(key: string, value: NBTDataType): NBTTagCompound;
 
   removeTag(key: string): NBTTagCompound;
+
+  toObject(): object;
 }
 
 declare enum NBTDataType {
