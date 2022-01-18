@@ -9383,6 +9383,49 @@ declare class Chunk {
   readonly chunk: MCChunk;
 
   /**
+   * Gets the x position of the chunk
+   */
+  getX(): number;
+  /**
+   * Gets the z position of the chunk
+   */
+  getZ(): number;
+
+  /**
+   * Gets the minimum x coordinate of a block in the chunk
+   *
+   * @return the minimum x coordinate
+   */
+  getMinBlockX(): number;
+
+  /**
+   * Gets the minimum z coordinate of a block in the chunk
+   *
+   * @return the minimum z coordinate
+   */
+  getMinBlockZ(): number;
+
+  /**
+   * Gets the skylight level at the given position. This is the value seen in the debug (F3) menu
+   *
+   * @param x the x coordinate
+   * @param y the y coordinate
+   * @param z the z coordinate
+   * @return the skylight level at the location
+   */
+  getSkyLightLevel(x: number, y: number, z: number): number;
+
+  /**
+   * Gets the block light level at the given position. This is the value seen in the debug (F3) menu
+   *
+   * @param x the x coordinate
+   * @param y the y coordinate
+   * @param z the z coordinate
+   * @return the block light level at the location
+   */
+  getBlockLightLevel(x: number, y: number, z: number): number;
+
+  /**
    * Gets every entity in this chunk
    *
    * @return the entity list
