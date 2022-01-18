@@ -18,6 +18,10 @@ declare global {
   const NBTBase: NBTBase;
   const NBTTagCompound: NBTTagCompound;
   const NBTTagList: NBTTagList;
+  const BlockFace: BlockFace;
+  const BlockPos: BlockPos;
+  const BlockType: BlockType;
+  const Vec3i: Vec3i;
   const GlStateManager: MCTGlStateManger;
   const GL11: JavaGL11;
   const GL12: JavaGL12;
