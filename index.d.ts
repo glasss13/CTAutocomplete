@@ -9841,6 +9841,7 @@ declare class TriggerType {
   static PostGuiRender: TriggerType;
   static PreItemRender: TriggerType;
   static RenderSlotHighlight: TriggerType;
+  static PostRenderEntity: TriggerType;
 
   // world
   static PlayerJoin: TriggerType;
@@ -10989,6 +10990,24 @@ declare interface ITriggerRegister {
    */
   registerPostGuiRender(
     method: (mouseX: int, mouseY: int, gui: MCGuiScreen) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs after an entity is rendered
+   *
+   * Passes through three arguments:
+   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.Entity]
+   * - The position as a Vector3f
+   * - The partial ticks
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerPostRenderEntity(
+    method: (entity: Entity, pos: Vector3f, partialTicks: number) => void,
   ): OnRegularTrigger;
 
   /**
@@ -12146,6 +12165,11 @@ declare interface IRegister {
   (
     triggerType: "postGuiRender",
     method: (mouseX: int, mouseY: int, gui: MCGuiScreen) => void,
+  ): OnRegularTrigger;
+
+  (
+    triggerType: "postRenderEntity",
+    method: (entity: Entity, pos: Vector3f, partialTicks: number) => void,
   ): OnRegularTrigger;
 
   /**
