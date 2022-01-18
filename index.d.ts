@@ -35,6 +35,8 @@ declare global {
   const GL45: JavaGL45;
 
   // obfuscated type types
+  type MCTGuiContainer = MCGuiContainer;
+  type MCTSlot = MCSlot;
   type MCTGlStateManger = MCGlStateManager;
   type MCTBlock = MCBlock;
   type MCTBlockPos = MCBlockPos;
@@ -6216,6 +6218,10 @@ declare global {
 
 declare interface javaTypePath {
   // obfuscated paths
+  (
+    path: "net.minecraft.client.gui.inventory.GuiContainer",
+  ): typeof MCGuiContainer;
+  (path: "net.minecraft.inventory.Slot"): typeof MCSlot;
   (path: "net.minecraft.util.Vec3"): typeof MCVec3;
   (
     path: "net.minecraft.client.renderer.GlStateManager",
@@ -6354,6 +6360,16 @@ declare interface Java {
 // obfuscated classes //
 ////////////////////////
 //#region
+
+declare class MCSlot {
+  class: JavaClass<MCSlot>;
+  static class: JavaClass<typeof MCSlot>;
+}
+
+declare class MCGuiContainer {
+  class: JavaClass<MCGuiContainer>;
+  static class: JavaClass<typeof MCGuiContainer>;
+}
 
 // TODO probalby should be extending from base object, need to fix issue with static members
 declare class MCVec3 {
@@ -9536,6 +9552,8 @@ declare class TriggerType {
   static RenderAir: TriggerType;
   static RenderEntity: TriggerType;
   static PostGuiRender: TriggerType;
+  static PreItemRender: TriggerType;
+  static RenderSlotHighlight: TriggerType;
 
   // world
   static PlayerJoin: TriggerType;
@@ -10672,9 +10690,9 @@ declare interface ITriggerRegister {
    * Registers a new trigger that runs after the current screen is rendered
    *
    * Passes through three arguments:
-   * - The GuiScreen
    * - The mouseX
    * - The mouseY
+   * - The GuiScreen
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -10683,7 +10701,58 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerPostGuiRender(
-    method: (gui: MCGuiScreen, mouseX: int, mouseY: int) => void,
+    method: (mouseX: int, mouseY: int, gui: MCGuiScreen) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the items in the gui are drawn
+   *
+   * Passes through five arguments:
+   * - The mouseX position
+   * - The mouseY position
+   * - The Slot
+   * - The GuiContainer
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerPreItemRender(
+    method: (
+      mouseX: number,
+      mouseY: number,
+      slot: MCSlot,
+      gui: MCGuiContainer,
+    ) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the hovered slot square is drawn.
+   *
+   * Passes through six arguments:
+   * - The mouseX position
+   * - The mouseY position
+   * - The Slot
+   * - The GuiContainer
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderSlotHighlight(
+    method: (
+      mouseX: number,
+      mouseY: number,
+      slot: MCSlot,
+      gui: MCGuiContainer,
+      event: CancellableEvent,
+    ) => void,
   ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs whenever a particle is spawned
@@ -11778,9 +11847,9 @@ declare interface IRegister {
    * Registers a new trigger that runs after the current screen is rendered
    *
    * Passes through three arguments:
-   * - The GuiScreen
    * - The mouseX
    * - The mouseY
+   * - The GuiScreen
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -11790,7 +11859,60 @@ declare interface IRegister {
    */
   (
     triggerType: "postGuiRender",
-    method: (gui: MCGuiScreen, mouseX: int, mouseY: int) => void,
+    method: (mouseX: int, mouseY: int, gui: MCGuiScreen) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the items in the gui are drawn
+   *
+   * Passes through five arguments:
+   * - The mouseX position
+   * - The mouseY position
+   * - The Slot
+   * - The GuiContainer
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "preItemRender",
+    method: (
+      mouseX: number,
+      mouseY: number,
+      slot: MCSlot,
+      gui: MCGuiContainer,
+    ) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the hovered slot square is drawn.
+   *
+   * Passes through six arguments:
+   * - The mouseX position
+   * - The mouseY position
+   * - The Slot
+   * - The GuiContainer
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderSlotHighlight",
+    method: (
+      mouseX: number,
+      mouseY: number,
+      slot: MCSlot,
+      gui: MCGuiContainer,
+      event: CancellableEvent,
+    ) => void,
   ): OnRegularTrigger;
 
   /**
