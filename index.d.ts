@@ -775,9 +775,6 @@ declare global {
       scale?: float,
       increase?: boolean,
     ): void;
-    
-  
-
   }
 
   class MathLib {
@@ -4668,35 +4665,35 @@ declare global {
     static addColor(message?: string): string;
     /**
      * Adds a message to the player's chat history. This allows the message to show up for the player when pressing the up/down keys while in the chat gui
-     * 
+     *
      * @param index the index to insert the message
      * @param message the message to add to chat history
      */
-    static addToSentMessageHistory(index: int, message: string)
+    static addToSentMessageHistory(index: int, message: string);
     /**
      * Deletes an already sent chat message by the Message
-     * 
+     *
      * @param toDelete the message to be deleted
      */
-    static deleteChat(toDelete: Message)
+    static deleteChat(toDelete: Message);
     /**
      * Deletes an already sent chat message by its chat line id
-     * 
+     *
      * @param chatLineId the chat line id of the message to be deleted
      */
-    static deleteChat(chatLineId: int)
+    static deleteChat(chatLineId: int);
     /**
      * Deletes an already sent chat message by the text of the chat
-     * 
+     *
      * @param toDelete the unformatted text of the message to be deleted
      */
-    static deleteChat(toDelete: string)
+    static deleteChat(toDelete: string);
     /**
      * Deletes an already sent chat message matching regexp.
-     * 
+     *
      * @param regexp the regex object to match to the message
      */
-    static deleteChat(regexp: RegExp)
+    static deleteChat(regexp: RegExp);
 
     /**Helper method */
     isPlayer(out: string): boolean;
@@ -5451,34 +5448,34 @@ declare global {
     static read(file: JavaFile): string;
     /**
      * Determines if a file or directory exists at the specified location
-     * 
+     *
      * @param fileLocation the location and file name
      * @return if the file exists
      */
-    exists(fileLocation: string): boolean
+    exists(fileLocation: string): boolean;
     /**
      * Determines if a file or directory exists at the specified location
-     * 
+     *
      * @param fileLocation the location and file name
      * @return if the file exists
      */
-    static exists(fileLocation: string): boolean     
+    static exists(fileLocation: string): boolean;
     /**
      * Determines if a file or directory exists at the specified location
-     * 
+     *
      * @param importName name of the import
      * @param fileName name of the file
      * @return if the file exists
      */
-    exists(importName: string, fileName: string): boolean
+    exists(importName: string, fileName: string): boolean;
     /**
      * Determines if a file or directory exists at the specified location
-     * 
+     *
      * @param importName name of the import
      * @param fileName name of the file
      * @return if the file exists
      */
-    static exists(importName: string, fileName: string): boolean
+    static exists(importName: string, fileName: string): boolean;
     /**
      * Gets the contents of a url as a string.
      *
@@ -5500,35 +5497,34 @@ declare global {
     static deleteDirectory(dir: JavaFile): boolean;
     /**
      * Determines if a file or directory exists at the specified location
-     * 
+     *
      * @param importName name of the import
      * @param fileName name of the file
      * @return if the location is a directory
      */
-    isDirectory(importName: string, fileName: string): boolean
+    isDirectory(importName: string, fileName: string): boolean;
     /**
      * Determines if a file or directory exists at the specified location
-     * 
+     *
      * @param importName name of the import
      * @param fileName name of the file
      * @return if the location is a directory
      */
-    static isDirectory(importName: string, fileName: string): boolean
+    static isDirectory(importName: string, fileName: string): boolean;
     /**
      * Determines if a file or directory exists at the specified location
-     * 
+     *
      * @param fileLocation the location and file name
      * @return if the location is a directory
      */
-    isDirectory(fileLocation: string): boolean
+    isDirectory(fileLocation: string): boolean;
     /**
      * Determines if a file or directory exists at the specified location
-     * 
+     *
      * @param fileLocation the location and file name
      * @return if the location is a directory
      */
-    static isDirectory(fileLocation: string): boolean
-
+    static isDirectory(fileLocation: string): boolean;
 
     /**
      * Extracts a zip file specified by the zipFilePath to a directory specified by
