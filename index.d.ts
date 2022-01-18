@@ -5219,11 +5219,6 @@ declare global {
      */
     setState(pressed: boolean): void;
   }
-  namespace KeyBind {
-    class companion {
-      static clearKeyBinds(): void;
-    }
-  }
 
   class CPS {
     static INSTANCE: CPS;
