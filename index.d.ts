@@ -1371,13 +1371,13 @@ declare global {
      *
      * @return the player's inventory
      */
-    getInventory(): Inventory;
+    getInventory(): Inventory | null;
     /**
      * Gets the inventory of the player, i.e. the inventory accessed by 'e'.
      *
      * @return the player's inventory
      */
-    static getInventory(): Inventory;
+    static getInventory(): Inventory | null;
 
     /**
      * Gets the display name for the player,
@@ -1410,13 +1410,13 @@ declare global {
      *
      * @return the currently opened inventory
      */
-    getOpenedInventory(): Inventory;
+    getOpenedInventory(): Inventory | null;
     /**
      * Gets the inventory the user currently has open, i.e. a chest.
      *
      * @return the currently opened inventory
      */
-    static getOpenedInventory(): Inventory;
+    static getOpenedInventory(): Inventory | null;
 
     /**
      * Draws the player in the GUI
@@ -1425,7 +1425,16 @@ declare global {
     /**
      * Draws the player in the GUI
      */
-    static draw(x: int, y: int, rotate?: boolean): Player;
+    static draw(
+      x: int,
+      y: int,
+      rotate?: boolean,
+      showNametag?: boolean,
+      showArmor?: boolean,
+      showCape?: boolean,
+      showHeldItem?: boolean,
+      showArrow?: boolean,
+    ): Player;
 
     getLastX(): number;
     static getLastX(): number;
@@ -1450,29 +1459,29 @@ declare global {
       /**
        * @return the item in the player's helmet slot
        */
-      getHelmet(): Item;
+      getHelmet(): Item | null;
       /**
        * @return the item in the player's helmet slot
        */
-      static getHelmet(): Item;
+      static getHelmet(): Item | null;
 
       /**
        * @return the item in the player's chestplate slot
        */
-      getChestplate(): Item;
+      getChestplate(): Item | null;
       /**
        * @return the item in the player's chestplate slot
        */
-      static getChestplate(): Item;
+      static getChestplate(): Item | null;
 
       /**
        * @return the item in the player's leggings slot
        */
-      getLeggings(): Item;
+      getLeggings(): Item | null;
       /**
        * @return the item in the player's leggings slot
        */
-      static getLeggings(): Item;
+      static getLeggings(): Item | null;
 
       /**
        * @return the item in the player's boots slot
