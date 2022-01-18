@@ -5853,7 +5853,16 @@ declare global {
     /**
      * Draws the player in the GUI
      */
-    draw(x: int, y: int, rotate?: boolean): PlayerMP;
+    draw(
+      x: int,
+      y: int,
+      rotate?: boolean,
+      showNametag?: boolean,
+      showArmor?: boolean,
+      showCape?: boolean,
+      showHeldItem?: boolean,
+      showArrows?: boolean,
+    ): PlayerMP;
 
     toString(): string;
 
