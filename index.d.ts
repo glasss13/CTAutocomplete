@@ -15,6 +15,9 @@ declare global {
   const Config: Config;
   const ChatTriggers: Reference;
   const console: console;
+  const NBTBase: NBTBase;
+  const NBTTagCompound: NBTTagCompound;
+  const NBTTagList: NBTTagList;
   const GlStateManager: MCTGlStateManger;
   const GL11: JavaGL11;
   const GL12: JavaGL12;
