@@ -4537,9 +4537,26 @@ declare global {
      * Simulates a chat message to be caught by other triggers for testing.
      * The text can be a String, a [Message] or a [TextComponent]
      *
-     * @param message The message to simulate
+     * @param text The message to simulate
      */
     static simulateChat(text: string | Message | TextComponent): void;
+
+    /**
+     * Adds a message to the player's chat history. This allows the message to
+     * show up for the player when pressing the up/down keys while in the chat gui
+     *
+     * @param index the index to insert the message
+     * @param message the message to add to chat history
+     */
+    addToSentMessageHistory(index: number, message: string): void;
+    /**
+     * Adds a message to the player's chat history. This allows the message to
+     * show up for the player when pressing the up/down keys while in the chat gui
+     *
+     * @param index the index to insert the message
+     * @param message the message to add to chat history
+     */
+    static addToSentMessageHistory(index: number, message: string): void;
 
     /**
      * Says chat message.
