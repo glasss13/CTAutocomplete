@@ -1419,6 +1419,24 @@ declare global {
      * Draws the player in the GUI
      */
     static draw(x: int, y: int, rotate?: boolean): Player;
+
+    getLastX(): number;
+    static getLastX(): number;
+
+    getLastY(): number;
+    static getLastY(): number;
+
+    getLastZ(): number;
+    static getLastZ(): number;
+
+    getRenderX(): number;
+    static getRenderX(): number;
+
+    getRenderY(): number;
+    static getRenderY(): number;
+
+    getRenderZ(): number;
+    static getRenderZ(): number;
   }
   namespace Player {
     class armor {
