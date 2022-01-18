@@ -9540,7 +9540,6 @@ declare namespace ClientListener {
   class PlayerInteractAction {
     static RIGHT_CLICK_BLOCK: ClientListener.PlayerInteractAction;
     static RIGHT_CLICK_EMPTY: ClientListener.PlayerInteractAction;
-    static LEFT_CLICK_BLOCK: ClientListener.PlayerInteractAction;
     static UNKNOWN: ClientListener.PlayerInteractAction;
   }
 }
@@ -10304,7 +10303,6 @@ declare interface ITriggerRegister {
    * Registers a new trigger that runs before the player interacts.
    *
    * In 1.8.9, the following events will activate this trigger:
-   * - Left clicking a block
    * - Right clicking a block
    * - Right clicking the air
    *
