@@ -2570,12 +2570,12 @@ declare global {
       | "default_1_1";
 
     /**
-     * Gets the [Block] at a location in the world.
+     * Gets the [BlockType] at a location in the world.
      *
      * @param x the x position
      * @param y the y position
      * @param z the z position
-     * @return the [Block] at the location
+     * @return the [BlockType] at the location
      */
     getBlockAt(x: int, y: int, z: int): Block;
     /**
@@ -2587,6 +2587,36 @@ declare global {
      * @return the [Block] at the location
      */
     static getBlockAt(x: int, y: int, z: int): Block;
+
+    /**
+     * Gets the [BlockType] at a location in the world.
+     *
+     * @param pos The block position
+     * @return the [BlockType] at the location
+     */
+    getBlockAt(pos: BlockPos): Block;
+    /**
+     * Gets the [BlockType] at a location in the world.
+     *
+     * @param pos The block position
+     * @return the [BlockType] at the location
+     */
+    static getBlockAt(pos: BlockPos): Block;
+
+    /**
+     * Gets the [IBlockState] at a location in the world.
+     *
+     * @param pos The block position
+     * @return the [BlockType] at the location
+     */
+    getBlockStateAt(pos: BlockPos): MCIBlockState;
+    /**
+     * Gets the [IBlockState] at a location in the world.
+     *
+     * @param pos The block position
+     * @return the [BlockType] at the location
+     */
+    static getBlockStateAt(pos: BlockPos): MCIBlockState;
 
     /**
      * Gets all of the players in the world, and returns their wrapped versions.
@@ -3677,88 +3707,41 @@ declare global {
     }
   }
 
+  /**
+   * An immutable reference to a placed block in the world. It
+   * has a block type, a position, and optionally a specific face.
+   */
   class Block {
-    block: MCBlock;
-    blockPos: MCBlockPos;
-    face: BlockFace;
+    readonly type: BlockType;
+    readonly pos: BlockPos;
+    readonly face?: BlockFace;
 
-    constructor(block: MCBlock);
-    /**
-     * Copies the block and blockPos of the provided block into
-     * this object.
-     */
-    constructor(block: Block);
+    constructor(type: BlockType, pos: BlockPos, face?: BlockFace);
 
-    constructor(blockName: string);
+    readonly x: number;
+    readonly y: number;
+    readonly z: number;
+    getX(): number;
+    getY(): number;
+    getZ(): number;
 
-    constructor(blockID: int);
-
-    constructor(item: Item);
-
-    /**
-     * Sets the block position in the world.<br>
-     * This is automatically set by {@link Player#lookingAt()}.<br>
-     * This method is not meant for public use.
-     *
-     * @param blockPos the block position
-     * @return the Block object
-     */
-    setBlockPos(blockPos: MCBlockPos): Block;
+    withType(type: BlockType): Block;
+    withPos(pos: BlockPos): Block;
 
     /**
-     * Sets the face that is being looked at by the player.<br>
-     * This is automatically set by {@link Player#lookingAt()}.<br>
-     * This method is not meant for public use.
-     *
-     * @param face this face that is being looked at
-     * @return the Block object
+     * Narrows this block to reference a certain face. Used by
+     * [Player.lookingAt] to specify the block face
+     * being looked at.
      */
-    setFace(face: BlockFace): Block;
-
-    getID(): int;
-
-    /**
-     * Gets the block's registry name.<br>
-     * Example: <code>minecraft:planks</code>
-     *
-     * @return the block's registry name
-     */
-    getRegistryName(): string;
-
-    /**
-     * Gets the block's unlocalized name.<br>
-     * Example: <code>tile.wood</code>
-     *
-     * @return the block's unlocalized name
-     */
-    getUnlocalizedName(): string;
-
-    /**
-     * Gets the block's localized name.<br>
-     * Example: <code>Wooden Planks</code>
-     *
-     * @return the block's localized name
-     */
-    getName(): string;
-
-    getLightValue(): int;
+    withFace(face: BlockFace): Block;
 
     getState(): MCIBlockState;
 
-    getDefaultState(): MCIBlockState;
-
-    getX(): int;
-    getY(): int;
-    getZ(): int;
-
-    getMetadata(): int;
-    getDefaultMetadata(): int;
-
-    canProvidePower(): boolean;
+    getMetadata(): number;
 
     isPowered(): boolean;
 
-    getRedstoneStrength(): int;
+    getRedstoneStrength(): number;
 
     /**
      * Checks whether the block can be mined with the tool in the player's hand
@@ -3768,10 +3751,6 @@ declare global {
     canBeHarvested(): boolean;
 
     canBeHarvestedWith(item: Item): boolean;
-
-    getHarvestLevel(): int;
-
-    isTranslucent(): boolean;
 
     toString(): string;
   }
@@ -3912,13 +3891,13 @@ declare global {
     readonly item: MCItem;
     readonly itemStack: MCItemStack;
 
-    constructor(itemStack?: MCItemStack);
+    constructor(itemStack: MCItemStack);
 
     constructor(itemName: string);
 
     constructor(itemID: int);
 
-    constructor(block: Block);
+    constructor(block: BlockType);
 
     constructor(entityItem: MCEntityItem);
 
@@ -3977,11 +3956,11 @@ declare global {
 
     getMetadata(): int;
 
-    canPlaceOn(block: Block): boolean;
+    canPlaceOn(block: BlockType): boolean;
 
-    canHarvest(block: Block): boolean;
+    canHarvest(block: BlockType): boolean;
 
-    canDestroy(block: Block): boolean;
+    canDestroy(block: BlockType): boolean;
 
     /**
      * Gets the items durability, i.e. the number of uses left
@@ -4112,6 +4091,8 @@ declare global {
     getX(): double;
     getY(): double;
     getZ(): double;
+
+    getPos(): Vec3i;
 
     getLastX(): double;
     getLastY(): double;
@@ -8852,29 +8833,198 @@ declare interface JSONImpl {
   toJSON(key: string): string;
 }
 
-declare class BlockFace {
-  constructor(facing: MCEnumFacing);
+declare class Vec3i {
+  readonly x: number;
+  readonly y: number;
+  readonly z: number;
 
-  readonly facing: MCEnumFacing;
-  getName(): string;
-  getXOffset(): int;
-  getYOffset(): int;
-  getZOffset(): int;
+  constructor(x: number, y: number, z: number);
 
-  toString(): string;
+  crossProduct(other: Vec3i): Vec3i;
 
-  readonly axis: BlockFace.Axis;
+  distanceSq(other: Vec3i): number;
+
+  distance(other: Vec3i): number;
+
+  distanceSqToCenter(x: number, y: number, z: number): number;
+
+  compareTo(other: Vec3i): number;
+
+  equals(other: any): boolean;
+
+  hashCode(): number;
+
+  toString(): `Vec3i{x=${number},y=${number},z=${number}}`;
 }
-declare namespace BlockFace {
-  class Axis {
-    constructor(axis: MCEnumFacing["Axis"]);
 
-    readonly axis: MCEnumFacing["Axis"];
-    getName(): string;
-    isHorizontal(): boolean;
-    isVertical(): boolean;
-    toString(): string;
-  }
+declare class BlockFace$Plane {
+  static readonly Horizontal: BlockFace$Plane;
+  static readonly Vertical: BlockFace$Plane;
+
+  test(t: BlockFace): boolean;
+
+  facings(): BlockFace[];
+
+  iterator(): Iterator<BlockFace>;
+}
+
+declare class BlockFace$AxisDirection {
+  readonly offset: number;
+  constructor(offset: number);
+
+  static readonly Positive: BlockFace$AxisDirection;
+  static readonly Negative: BlockFace$AxisDirection;
+}
+
+declare class BlockFace$Axis {
+  readonly plane: BlockFace$Plane;
+
+  constructor(plane: BlockFace$Plane);
+
+  static readonly X: BlockFace$Axis;
+  static readonly Y: BlockFace$Axis;
+  static readonly Z: BlockFace$Axis;
+
+  isHorizontal(): boolean;
+  isVertical(): boolean;
+
+  test(t: BlockFace): boolean;
+
+  getName(): string;
+}
+
+declare class BlockFace {
+  readonly oppositeIndex: number;
+  readonly axisDirection: BlockFace$AxisDirection;
+  readonly axis: BlockFace$Axis;
+  readonly directionVec: Vec3i;
+
+  constructor(
+    oppositeIndex: number,
+    axisDirection: BlockFace$AxisDirection,
+    axis: BlockFace$Axis,
+    directionVec: Vec3i,
+  );
+
+  static readonly DOWN: BlockFace;
+  static readonly UP: BlockFace;
+  static readonly NORTH: BlockFace;
+  static readonly SOUTH: BlockFace;
+  static readonly WEST: BlockFace;
+  static readonly EAST: BlockFace;
+
+  getOpposite(): BlockFace;
+
+  getOffsetX(): number;
+  getOffsetY(): number;
+  getOffsetZ(): number;
+
+  rotateAround(axis: BlockFace$Axis): BlockFace;
+
+  rotateX(): BlockFace;
+  rotateY(): BlockFace;
+  rotateZ(): BlockFace;
+
+  getName(): string;
+
+  static readonly Plane: typeof BlockFace$Plane;
+  static readonly AxisDirection: typeof BlockFace$AxisDirection;
+  static readonly Axis: typeof BlockFace$Axis;
+
+  static fromMCEnumFacing(facing: MCEnumFacing): BlockFace;
+}
+
+declare class BlockPos extends Vec3i {
+  constructor(x: number, y: number, z: number);
+
+  constructor(pos: Vec3i);
+  constructor(pos: MCBlockPos);
+  constructor(source: Entity);
+
+  add(other: Vec3i): BlockPos;
+  add(x: number, y: number, z: number): BlockPos;
+
+  plus(other: Vec3i): BlockPos;
+
+  subtract(other: Vec3i): BlockPos;
+  subtract(x: number, y: number, z: number): BlockPos;
+
+  minus(other: Vec3i): BlockPos;
+
+  up(n?: number): BlockPos;
+  down(n?: number): BlockPos;
+  north(n?: number): BlockPos;
+  south(n?: number): BlockPos;
+  east(n?: number): BlockPos;
+  west(n?: number): BlockPos;
+
+  offset(facing: BlockFace, n?: number): BlockPos;
+
+  toMCBlock(): MCBlockPos;
+}
+
+/**
+ * An immutable wrapper around Minecraft's Block object. Note
+ * that this references a block "type", and not an actual block
+ * in the world. If a reference to a particular block is needed,
+ * use [Block]
+ */
+declare class BlockType {
+  readonly mcBlock: MCBlock;
+
+  constructor(block: BlockType);
+  constructor(blockName: string);
+  constructor(blockID: number);
+  constructor(item: Item);
+
+  /**
+   * Returns a PlacedBlock based on this block and the
+   * provided BlockPos
+   *
+   * @param blockPos the block position
+   * @return a PlacedBlock object
+   */
+  withBlockPos(blockPos: BlockPos): Block;
+
+  getID(): number;
+
+  /**
+   * Gets the block's registry name.
+   * Example: minecraft:planks
+   *
+   * @return the block's registry name
+   */
+  getRegistryName(): string;
+
+  /**
+   * Gets the block's unlocalized name.
+   * Example: tile.wood
+   *
+   * @return the block's unlocalized name
+   */
+  getUnlocalizedName(): string;
+
+  /**
+   * Gets the block's localized name.
+   * Example: Wooden Planks
+   *
+   * @return the block's localized name
+   */
+  getName(): string;
+
+  getLightValue(): number;
+
+  getDefaultState(): MCIBlockState;
+
+  getDefaultMetadata(): number;
+
+  canProvidePower(): boolean;
+
+  getHarvestLevel(): number;
+
+  isTranslucent(): boolean;
+
+  toString(): `BlockType{name=${string}}`;
 }
 
 declare class NBTTagCompound extends NBTBase {
@@ -10183,10 +10333,8 @@ declare interface ITriggerRegister {
   /**
    * Registers a new trigger that runs before the player breaks a block
    *
-   * Passes through three arguments:
+   * Passes through one argument:
    * - The block
-   * - The player who broke the block
-   * - The event, which can be cancelled
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -10194,13 +10342,7 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerBlockBreak(
-    method: (
-      block: Block,
-      player: PlayerMP,
-      event: ForgeBlockEvent.BreakEvent,
-    ) => void,
-  ): OnRegularTrigger;
+  registerBlockBreak(method: (block: Block) => void): OnRegularTrigger;
   /**
    * Registers a new trigger that runs before an entity is damaged
    *
@@ -10491,9 +10633,8 @@ declare interface ITriggerRegister {
    * Note: this is not continuously called while the block is being broken, only once
    * when first left clicked.
    *
-   * Passes through three arguments:
+   * Passes through two arguments:
    * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.block.Block] being hit
-   * - The specific [com.chattriggers.ctjs.minecraft.wrappers.objects.block.BlockFace] being hit
    * - The event, which can be cancelled
    *
    * Available modifications:
@@ -10503,11 +10644,7 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerHitBlock(
-    method: (
-      block: Block,
-      blockFace: BlockFace,
-      event: CancellableEvent,
-    ) => void,
+    method: (block: Block, event: CancellableEvent) => void,
   ): OnRegularTrigger;
 
   register: IRegister;
@@ -11275,10 +11412,8 @@ declare interface IRegister {
   /**
    * Registers a new trigger that runs before the player breaks a block
    *
-   * Passes through three arguments:
+   * Passes through one argument:
    * - The block
-   * - The player who broke the block
-   * - The event, which can be cancelled
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -11286,14 +11421,7 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (
-    triggerType: "blockBreak",
-    method: (
-      block: Block,
-      player: PlayerMP,
-      event: ForgeBlockEvent.BreakEvent,
-    ) => void,
-  ): OnRegularTrigger;
+  (triggerType: "blockBreak", method: (block: Block) => void): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs before an entity is damaged
@@ -11617,9 +11745,8 @@ declare interface IRegister {
    * Note: this is not continuously called while the block is being broken, only once
    * when first left clicked.
    *
-   * Passes through three arguments:
+   * Passes through two arguments:
    * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.block.Block] being hit
-   * - The specific [com.chattriggers.ctjs.minecraft.wrappers.objects.block.BlockFace] being hit
    * - The event, which can be cancelled
    *
    * Available modifications:
@@ -11630,10 +11757,6 @@ declare interface IRegister {
    */
   (
     triggerType: "hitBlock",
-    method: (
-      block: Block,
-      blockFace: BlockFace,
-      event: CancellableEvent,
-    ) => void,
+    method: (block: Block, event: CancellableEvent) => void,
   ): OnRegularTrigger;
 }
