@@ -2964,8 +2964,23 @@ declare global {
     getHeader(): string;
     static getHeader(): string;
 
-    setHeader(header: string | Message | MCIChatComponent): void;
-    static setHeader(header: string | Message | MCIChatComponent): void;
+    /**
+     * Sets the header text for the TabList.
+     * If [header] is null, it will remove the header entirely
+     *
+     * @param header the header to set, or null to clear
+     */
+    setHeader(header: string | Message | MCIChatComponent | null): void;
+    /**
+     * Sets the header text for the TabList.
+     * If [header] is null, it will remove the header entirely
+     *
+     * @param header the header to set, or null to clear
+     */
+    static setHeader(header: string | Message | MCIChatComponent | null): void;
+
+    clearHeader(): void;
+    static clearHeader(): void;
 
     getFooterMessage(): Message;
     static getFooterMessage(): Message;
@@ -2973,8 +2988,23 @@ declare global {
     getFooter(): string;
     static getFooter(): string;
 
-    setFooter(footer: string | Message | MCIChatComponent): void;
-    static setFooter(footer: string | Message | MCIChatComponent): void;
+    /**
+     * Sets the footer text for the TabList.
+     * If [footer] is null, it will remove the footer entirely
+     *
+     * @param footer the footer to set, or null to clear
+     */
+    setFooter(footer: string | Message | MCIChatComponent | null): void;
+    /**
+     * Sets the footer text for the TabList.
+     * If [footer] is null, it will remove the footer entirely
+     *
+     * @param footer the footer to set, or null to clear
+     */
+    static setFooter(footer: string | Message | MCIChatComponent | null): void;
+
+    clearFooter(): void;
+    static clearFooter(): void;
   }
 
   class Scoreboard {
