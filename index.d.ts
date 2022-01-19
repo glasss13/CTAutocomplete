@@ -11115,7 +11115,7 @@ declare interface ITriggerRegister {
    * Registers a new trigger that runs whenever an entity is rendered
    *
    * Passes through four arguments:
-   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.Entity]
+   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.entity.Entity]
    * - The position as a Vector3f
    * - The partial ticks
    * - The event, which can be cancelled
@@ -11156,7 +11156,7 @@ declare interface ITriggerRegister {
    * Registers a new trigger that runs after an entity is rendered
    *
    * Passes through three arguments:
-   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.Entity]
+   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.entity.Entity]
    * - The position as a Vector3f
    * - The partial ticks
    *
@@ -11286,7 +11286,7 @@ declare interface ITriggerRegister {
    * Registers a new trigger that runs whenever the player has left clicked on an entity
    *
    * Passes through three arguments:
-   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.Entity] that is being hit
+   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.entity.Entity] that is being hit
    * - The event, which can be cancelled
    *
    * Available modifications:
@@ -12380,7 +12380,7 @@ declare interface IRegister {
    * Registers a new trigger that runs whenever an entity is rendered
    *
    * Passes through four arguments:
-   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.Entity]
+   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.entity.Entity]
    * - The position as a Vector3f
    * - The partial ticks
    * - The event, which can be cancelled
@@ -12424,7 +12424,7 @@ declare interface IRegister {
    * Registers a new trigger that runs after an entity is rendered
    *
    * Passes through three arguments:
-   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.Entity]
+   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.entity.Entity]
    * - The position as a Vector3f
    * - The partial ticks
    *
@@ -12562,7 +12562,7 @@ declare interface IRegister {
    * Registers a new trigger that runs whenever the player has left clicked on an entity
    *
    * Passes through three arguments:
-   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.Entity] that is being hit
+   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.entity.Entity] that is being hit
    * - The event, which can be cancelled
    *
    * Available modifications:
