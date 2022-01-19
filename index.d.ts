@@ -35,6 +35,7 @@ declare global {
   const GL45: JavaGL45;
 
   // obfuscated type types
+  type MCTTileEntity = MCTileEntity;
   type MCTGuiContainer = MCGuiContainer;
   type MCTSlot = MCSlot;
   type MCTGlStateManger = MCGlStateManager;
@@ -6605,6 +6606,11 @@ declare interface Java {
 ////////////////////////
 //#region
 
+declare class MCTileEntity {
+  class: JavaClass<MCTileEntity>;
+  static class: JavaClass<typeof MCTileEntity>;
+}
+
 declare class MCSlot {
   class: JavaClass<MCSlot>;
   static class: JavaClass<typeof MCSlot>;
@@ -9932,6 +9938,8 @@ declare class TriggerType {
   static PreItemRender: TriggerType;
   static RenderSlotHighlight: TriggerType;
   static PostRenderEntity: TriggerType;
+  static RenderTileEntity: TriggerType;
+  static PostRenderTileEntity: TriggerType;
 
   // world
   static PlayerJoin: TriggerType;
@@ -11148,6 +11156,48 @@ declare interface ITriggerRegister {
   ): OnRegularTrigger;
 
   /**
+   * Registers a new trigger that runs whenever a tile entity is rendered
+   *
+   * Passes through four arguments:
+   * - The TileEntity
+   * - The position as a Vector3f
+   * - The partial ticks
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderTileEntity(
+    method: (
+      entity: MCTileEntity,
+      pos: Vector3f,
+      partialTicks: number,
+      event: CancellableEvent,
+    ) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs after a tile entity is rendered
+   *
+   * Passes through three arguments:
+   * - The TileEntity
+   * - The position as a Vector3f
+   * - The partial ticks
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerPostRenderTileEntity(
+    method: (entity: MCTileEntity, pos: Vector3f, partialTicks: number) => void,
+  ): OnRegularTrigger;
+
+  /**
    * Registers a new trigger that runs before the items in the gui are drawn
    *
    * Passes through five arguments:
@@ -12355,9 +12405,67 @@ declare interface IRegister {
     method: (mouseX: int, mouseY: int, gui: MCGuiScreen) => void,
   ): OnRegularTrigger;
 
+  /**
+   * Registers a new trigger that runs after an entity is rendered
+   *
+   * Passes through three arguments:
+   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.Entity]
+   * - The position as a Vector3f
+   * - The partial ticks
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
   (
     triggerType: "postRenderEntity",
     method: (entity: Entity, pos: Vector3f, partialTicks: number) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs whenever a tile entity is rendered
+   *
+   * Passes through four arguments:
+   * - The TileEntity
+   * - The position as a Vector3f
+   * - The partial ticks
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderTileEntity",
+    method: (
+      entity: MCTileEntity,
+      pos: Vector3f,
+      partialTicks: number,
+      event: CancellableEvent,
+    ) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs after a tile entity is rendered
+   *
+   * Passes through three arguments:
+   * - The TileEntity
+   * - The position as a Vector3f
+   * - The partial ticks
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "postRenderTileEntity",
+    method: (entity: MCTileEntity, pos: Vector3f, partialTicks: number) => void,
   ): OnRegularTrigger;
 
   /**
