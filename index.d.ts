@@ -5544,9 +5544,6 @@ declare global {
   class EventLib {
     static readonly INSTANCE: EventLib;
 
-    getButtonState(event: ForgeMouseEvent): boolean;
-    static getButtonState(event: ForgeMouseEvent): boolean;
-
     getType(event: ForgeClientChatReceivedEvent): int;
     static getType(event: ForgeClientChatReceivedEvent): int;
 
@@ -5555,11 +5552,6 @@ declare global {
 
     getName(event: ForgePlaySoundEvent): string;
     static getName(event: ForgePlaySoundEvent): string;
-
-    getModId(event: ForgeConfigChangedEvent.OnConfigChangedEvent): string;
-    static getModId(
-      event: ForgeConfigChangedEvent.OnConfigChangedEvent,
-    ): string;
 
     /**
      * Cancel an event. Automatically used with `cancel(event)`.
@@ -9596,14 +9588,6 @@ declare class CancellableEvent {
   isCancelled(): boolean;
 }
 
-declare class ChatListener {
-  readonly INSTANCE: ChatListener;
-  readonly chatHistory: string[];
-  readonly actionBarHistory: string[];
-
-  onReceiveChat(event: ForgeClientChatReceivedEvent): void;
-}
-
 declare class Chunk {
   constructor(chunk: MCChunk);
   readonly chunk: MCChunk;
@@ -10006,6 +9990,8 @@ declare class PotionEffect {
 
 declare class ClientListener {
   static readonly INSTANCE: ClientListener;
+
+  onReceiveChat(event: ForgeClientChatReceivedEvent): void;
 
   onTick(event: ForgeTickEvent.ClientTickEvent): void;
 
