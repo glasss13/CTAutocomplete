@@ -5424,8 +5424,13 @@ declare global {
     getY(): float;
     setY(y: float): Text;
 
+    /**
+     * Gets the width of the text
+     * This is automatically updated when the text is drawn.
+     *
+     * @return the width of the text
+     */
     getWidth(): int;
-    setWidth(width: int): Text;
 
     getLines(): string[];
 
@@ -5435,6 +5440,13 @@ declare global {
     getScale(): float;
     setScale(scale: float): Text;
 
+    /**
+     * Sets the maximum width of the text, splitting it into multiple lines if necessary.
+     *
+     * @param maxWidth the maximum width of the text
+     * @return the Text object for method chaining
+     */
+    setMaxWidth(maxWidth: number): Text;
     getMaxWidth(): int;
 
     getHeight(): float;
