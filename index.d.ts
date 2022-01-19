@@ -9930,6 +9930,7 @@ declare class TriggerType {
   static ServerConnect: TriggerType;
   static ServerDisconnect: TriggerType;
   static GuiClosed: TriggerType;
+  static GuiDrawBackground: TriggerType;
 
   // rendering
   static RenderWorld: TriggerType;
@@ -10894,6 +10895,18 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerEntityDeath(method: (entity: Entity) => void): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the gui background is drawn
+   * This is useful for drawing custom backgrounds.
+   *
+   * Passes through one argument:
+   * - The [GuiScreen] that is being drawn
+   *
+   */
+  registerGuiDrawBackground(
+    method: (gui: MCGuiScreen, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs as a gui is rendered
    *
@@ -12138,6 +12151,19 @@ declare interface IRegister {
   (
     triggerType: "entityDeath",
     method: (entity: Entity) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the gui background is drawn
+   * This is useful for drawing custom backgrounds.
+   *
+   * Passes through one argument:
+   * - The [GuiScreen] that is being drawn
+   *
+   */
+  (
+    triggerType: "guiDrawBackground",
+    method: (gui: MCGuiScreen, event: CancellableEvent) => void,
   ): OnRegularTrigger;
 
   /**
