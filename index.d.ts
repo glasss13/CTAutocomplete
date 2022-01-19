@@ -3815,7 +3815,7 @@ declare global {
      * @param slot the slot index
      * @return the Item in that slot
      */
-    getStackInSlot(slot: int): Item;
+    getStackInSlot(slot: int): Item | null;
 
     /**
      * Returns the window identifier number of this Inventory.
@@ -3839,7 +3839,7 @@ declare global {
     /**
      * @return a list of the [Item]s in an inventory
      */
-    getItems(): Item[];
+    getItems(): (Item | null)[];
 
     /**
      * Checks whether the inventory contains the given item.
