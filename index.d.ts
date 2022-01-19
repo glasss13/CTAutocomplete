@@ -574,7 +574,7 @@ declare global {
      * @param drawMode the GL draw mode
      * @param textured if the Tessellator is textured
      * @return the Tessellator to allow for method chaining
-     * @see com.chattriggers.ctjs.minecraft.libs.renderer.Shape#setDrawMode(int)
+     * @see com.chattriggers.ctjs.minecraft.libs.renderer.Shape.setDrawMode
      */
     begin(drawMode?: int, textured?: boolean): Tessellator;
     /**
@@ -584,7 +584,7 @@ declare global {
      * @param drawMode the GL draw mode
      * @param textured if the Tessellator is textured
      * @return the Tessellator to allow for method chaining
-     * @see com.chattriggers.ctjs.minecraft.libs.renderer.Shape#setDrawMode(int)
+     * @see com.chattriggers.ctjs.minecraft.libs.renderer.Shape.setDrawMode
      */
     static begin(drawMode?: int, textured?: boolean): Tessellator;
 
