@@ -7,6 +7,7 @@ export {}; // this line converts this into a module, allowing for importing and 
 // everything in global will be put into the global scope
 
 declare global {
+  const GuiHandler: GuiHandler;
   const Java: Java;
   const register: IRegister;
   const TriggerRegister: ITriggerRegister;
@@ -1010,6 +1011,354 @@ declare global {
      * fade out model of the sound, see {@link #setAttenuation(int)}
      */
     attenuation?: int;
+  }
+
+  class Chunk {
+    constructor(chunk: MCChunk);
+    readonly chunk: MCChunk;
+
+    /**
+     * Gets the x position of the chunk
+     */
+    getX(): number;
+    /**
+     * Gets the z position of the chunk
+     */
+    getZ(): number;
+
+    /**
+     * Gets the minimum x coordinate of a block in the chunk
+     *
+     * @return the minimum x coordinate
+     */
+    getMinBlockX(): number;
+
+    /**
+     * Gets the minimum z coordinate of a block in the chunk
+     *
+     * @return the minimum z coordinate
+     */
+    getMinBlockZ(): number;
+
+    /**
+     * Gets the skylight level at the given position. This is the value seen in the debug (F3) menu
+     *
+     * @param x the x coordinate
+     * @param y the y coordinate
+     * @param z the z coordinate
+     * @return the skylight level at the location
+     */
+    getSkyLightLevel(x: number, y: number, z: number): number;
+
+    /**
+     * Gets the block light level at the given position. This is the value seen in the debug (F3) menu
+     *
+     * @param x the x coordinate
+     * @param y the y coordinate
+     * @param z the z coordinate
+     * @return the block light level at the location
+     */
+    getBlockLightLevel(x: number, y: number, z: number): number;
+
+    /**
+     * Gets every entity in this chunk
+     *
+     * @return the entity list
+     */
+    getAllEntities(): Entity[];
+
+    /**
+     * Gets every entity in this chunk of a certain class
+     *
+     * @param clazz the class to filter for (Use `Java.type().class` to get this)
+     * @return the entity list
+     */
+    getAllEntitiesOfType(clazz: JavaClass<Entity>): Entity[];
+  }
+
+  class PotionEffect {
+    readonly effect: MCPotionEffect;
+
+    constructor(effect: MCPotionEffect);
+
+    /**
+     * Returns the translation key of the potion.
+     * Ex: "potion.poison"
+     */
+    getName(): string;
+
+    /**
+     * Returns the localized name of the potion that
+     * is displayed in the player's inventory.
+     * Ex: "Poison"
+     */
+    getLocalizedName(): string;
+
+    getAmplifier(): int;
+
+    getDuration(): int;
+
+    getID(): int;
+
+    isAmbient(): boolean;
+
+    isDurationMax(): boolean;
+
+    showsParticles(): boolean;
+
+    toString(): string;
+  }
+
+  class BlockFace {
+    readonly oppositeIndex: number;
+    readonly axisDirection: BlockFace$AxisDirection;
+    readonly axis: BlockFace$Axis;
+    readonly directionVec: Vec3i;
+
+    constructor(
+      oppositeIndex: number,
+      axisDirection: BlockFace$AxisDirection,
+      axis: BlockFace$Axis,
+      directionVec: Vec3i,
+    );
+
+    static readonly DOWN: BlockFace;
+    static readonly UP: BlockFace;
+    static readonly NORTH: BlockFace;
+    static readonly SOUTH: BlockFace;
+    static readonly WEST: BlockFace;
+    static readonly EAST: BlockFace;
+
+    getOpposite(): BlockFace;
+
+    getOffsetX(): number;
+    getOffsetY(): number;
+    getOffsetZ(): number;
+
+    rotateAround(axis: BlockFace$Axis): BlockFace;
+
+    rotateX(): BlockFace;
+    rotateY(): BlockFace;
+    rotateZ(): BlockFace;
+
+    getName(): string;
+
+    static readonly Plane: typeof BlockFace$Plane;
+    static readonly AxisDirection: typeof BlockFace$AxisDirection;
+    static readonly Axis: typeof BlockFace$Axis;
+
+    static fromMCEnumFacing(facing: MCEnumFacing): BlockFace;
+  }
+
+  class BlockPos extends Vec3i {
+    constructor(x: number, y: number, z: number);
+
+    constructor(pos: Vec3i);
+    constructor(pos: MCBlockPos);
+    constructor(source: Entity);
+
+    add(other: Vec3i): BlockPos;
+    add(x: number, y: number, z: number): BlockPos;
+
+    plus(other: Vec3i): BlockPos;
+
+    subtract(other: Vec3i): BlockPos;
+    subtract(x: number, y: number, z: number): BlockPos;
+
+    minus(other: Vec3i): BlockPos;
+
+    up(n?: number): BlockPos;
+    down(n?: number): BlockPos;
+    north(n?: number): BlockPos;
+    south(n?: number): BlockPos;
+    east(n?: number): BlockPos;
+    west(n?: number): BlockPos;
+
+    offset(facing: BlockFace, n?: number): BlockPos;
+
+    toMCBlock(): MCBlockPos;
+  }
+
+  /**
+   * An immutable wrapper around Minecraft's Block object. Note
+   * that this references a block "type", and not an actual block
+   * in the world. If a reference to a particular block is needed,
+   * use [Block]
+   */
+  class BlockType {
+    readonly mcBlock: MCBlock;
+
+    constructor(block: BlockType);
+    constructor(blockName: string);
+    constructor(blockID: number);
+    constructor(item: Item);
+
+    /**
+     * Returns a PlacedBlock based on this block and the
+     * provided BlockPos
+     *
+     * @param blockPos the block position
+     * @return a PlacedBlock object
+     */
+    withBlockPos(blockPos: BlockPos): Block;
+
+    getID(): number;
+
+    /**
+     * Gets the block's registry name.
+     * Example: minecraft:planks
+     *
+     * @return the block's registry name
+     */
+    getRegistryName(): string;
+
+    /**
+     * Gets the block's unlocalized name.
+     * Example: tile.wood
+     *
+     * @return the block's unlocalized name
+     */
+    getUnlocalizedName(): string;
+
+    /**
+     * Gets the block's localized name.
+     * Example: Wooden Planks
+     *
+     * @return the block's localized name
+     */
+    getName(): string;
+
+    getLightValue(): number;
+
+    getDefaultState(): MCIBlockState;
+
+    getDefaultMetadata(): number;
+
+    canProvidePower(): boolean;
+
+    getHarvestLevel(): number;
+
+    isTranslucent(): boolean;
+
+    toString(): `BlockType{name=${string}}`;
+  }
+
+  class Vec3i {
+    readonly x: number;
+    readonly y: number;
+    readonly z: number;
+
+    constructor(x: number, y: number, z: number);
+
+    crossProduct(other: Vec3i): Vec3i;
+
+    distanceSq(other: Vec3i): number;
+
+    distance(other: Vec3i): number;
+
+    distanceSqToCenter(x: number, y: number, z: number): number;
+
+    compareTo(other: Vec3i): number;
+
+    equals(other: any): boolean;
+
+    hashCode(): number;
+
+    toString(): `Vec3i{x=${number},y=${number},z=${number}}`;
+  }
+
+  class NBTBase {
+    constructor(rawNBT: MCNBTBase);
+    readonly rawNBT: MCNBTBase;
+    /**Gets the type byte for the tag. */
+    getId(): byte;
+    /**Creates a clone of the tag. */
+    copy(): MCNBTBase;
+    /**Return whether this compound has no tags. */
+    hasNoTags(): boolean;
+    hasTags(): boolean;
+
+    equals(other: object): boolean;
+
+    hashCode(): int;
+
+    toString(): string;
+  }
+
+  class NBTTagCompound extends NBTBase {
+    constructor(rawNBT: MCNBTTagCompound);
+    readonly rawNBT: MCNBTTagCompound;
+    tagMap: Map<string, MCNBTBase>;
+
+    getTagMap(): NBTTagCompound["tagMap"];
+
+    keySet: Set<string>;
+
+    getKeySet(): NBTTagCompound["keySet"];
+
+    NBTDataType: typeof NBTDataType;
+
+    getTag(key: string): NBTBase | NBTTagCompound | null;
+
+    getTagId(key: string): byte;
+
+    getByte(key: string): byte;
+    getShort(key: string): short;
+    getInteger(key: string): int;
+    getLong(key: string): long;
+    getFloat(key: string): float;
+    getDouble(key: string): double;
+    getString(key: string): string;
+    getByteArray(key: string): byte[];
+    getIntArray(key: string): int[];
+    getBoolean(key: string): boolean;
+    getCompoundTag(key: string): NBTTagCompound;
+    getTagList(key: string, type: number): NBTTagList;
+
+    get(key: string, type: NBTDataType, tagType?: number): NBTDataType;
+
+    get(key: string): NBTBase;
+
+    set(key: string, value: NBTDataType): NBTTagCompound;
+
+    removeTag(key: string): NBTTagCompound;
+
+    toObject(): object;
+  }
+
+  class NBTTagList extends NBTBase {
+    constructor(rawNBT: MCNBTTagList);
+    readonly rawNBT: MCNBTTagList;
+
+    tagCount: int;
+    getTagCount(): int;
+
+    appendTag(nbt: NBTBase): NBTTagList;
+
+    appendTag(nbt: MCNBTBase): NBTTagList;
+
+    set(id: int, nbt: NBTBase): void;
+
+    set(id: int, nbt: MCNBTBase): void;
+
+    removeTag(index: int): MCNBTBase;
+
+    getCompoundTagAt(index: int): MCNBTTagCompound;
+
+    getIntArrayAt(index: int): int[];
+
+    getDoubleAt(index: int): double;
+
+    getFloatAt(index: int): float;
+
+    getStringTagAt(index: int): string;
+
+    get(index: int): MCNBTBase;
+
+    get(
+      index: int,
+      type: NBTTagCompound["NBTDataType"],
+    ): float | double | string | int[] | MCNBTTagCompound | NBTBase;
   }
 
   class Player {
@@ -9282,30 +9631,6 @@ declare interface JSONImpl {
   toJSON(key: string): string;
 }
 
-declare class Vec3i {
-  readonly x: number;
-  readonly y: number;
-  readonly z: number;
-
-  constructor(x: number, y: number, z: number);
-
-  crossProduct(other: Vec3i): Vec3i;
-
-  distanceSq(other: Vec3i): number;
-
-  distance(other: Vec3i): number;
-
-  distanceSqToCenter(x: number, y: number, z: number): number;
-
-  compareTo(other: Vec3i): number;
-
-  equals(other: any): boolean;
-
-  hashCode(): number;
-
-  toString(): `Vec3i{x=${number},y=${number},z=${number}}`;
-}
-
 declare class BlockFace$Plane {
   static readonly Horizontal: BlockFace$Plane;
   static readonly Vertical: BlockFace$Plane;
@@ -9342,181 +9667,6 @@ declare class BlockFace$Axis {
   getName(): string;
 }
 
-declare class BlockFace {
-  readonly oppositeIndex: number;
-  readonly axisDirection: BlockFace$AxisDirection;
-  readonly axis: BlockFace$Axis;
-  readonly directionVec: Vec3i;
-
-  constructor(
-    oppositeIndex: number,
-    axisDirection: BlockFace$AxisDirection,
-    axis: BlockFace$Axis,
-    directionVec: Vec3i,
-  );
-
-  static readonly DOWN: BlockFace;
-  static readonly UP: BlockFace;
-  static readonly NORTH: BlockFace;
-  static readonly SOUTH: BlockFace;
-  static readonly WEST: BlockFace;
-  static readonly EAST: BlockFace;
-
-  getOpposite(): BlockFace;
-
-  getOffsetX(): number;
-  getOffsetY(): number;
-  getOffsetZ(): number;
-
-  rotateAround(axis: BlockFace$Axis): BlockFace;
-
-  rotateX(): BlockFace;
-  rotateY(): BlockFace;
-  rotateZ(): BlockFace;
-
-  getName(): string;
-
-  static readonly Plane: typeof BlockFace$Plane;
-  static readonly AxisDirection: typeof BlockFace$AxisDirection;
-  static readonly Axis: typeof BlockFace$Axis;
-
-  static fromMCEnumFacing(facing: MCEnumFacing): BlockFace;
-}
-
-declare class BlockPos extends Vec3i {
-  constructor(x: number, y: number, z: number);
-
-  constructor(pos: Vec3i);
-  constructor(pos: MCBlockPos);
-  constructor(source: Entity);
-
-  add(other: Vec3i): BlockPos;
-  add(x: number, y: number, z: number): BlockPos;
-
-  plus(other: Vec3i): BlockPos;
-
-  subtract(other: Vec3i): BlockPos;
-  subtract(x: number, y: number, z: number): BlockPos;
-
-  minus(other: Vec3i): BlockPos;
-
-  up(n?: number): BlockPos;
-  down(n?: number): BlockPos;
-  north(n?: number): BlockPos;
-  south(n?: number): BlockPos;
-  east(n?: number): BlockPos;
-  west(n?: number): BlockPos;
-
-  offset(facing: BlockFace, n?: number): BlockPos;
-
-  toMCBlock(): MCBlockPos;
-}
-
-/**
- * An immutable wrapper around Minecraft's Block object. Note
- * that this references a block "type", and not an actual block
- * in the world. If a reference to a particular block is needed,
- * use [Block]
- */
-declare class BlockType {
-  readonly mcBlock: MCBlock;
-
-  constructor(block: BlockType);
-  constructor(blockName: string);
-  constructor(blockID: number);
-  constructor(item: Item);
-
-  /**
-   * Returns a PlacedBlock based on this block and the
-   * provided BlockPos
-   *
-   * @param blockPos the block position
-   * @return a PlacedBlock object
-   */
-  withBlockPos(blockPos: BlockPos): Block;
-
-  getID(): number;
-
-  /**
-   * Gets the block's registry name.
-   * Example: minecraft:planks
-   *
-   * @return the block's registry name
-   */
-  getRegistryName(): string;
-
-  /**
-   * Gets the block's unlocalized name.
-   * Example: tile.wood
-   *
-   * @return the block's unlocalized name
-   */
-  getUnlocalizedName(): string;
-
-  /**
-   * Gets the block's localized name.
-   * Example: Wooden Planks
-   *
-   * @return the block's localized name
-   */
-  getName(): string;
-
-  getLightValue(): number;
-
-  getDefaultState(): MCIBlockState;
-
-  getDefaultMetadata(): number;
-
-  canProvidePower(): boolean;
-
-  getHarvestLevel(): number;
-
-  isTranslucent(): boolean;
-
-  toString(): `BlockType{name=${string}}`;
-}
-
-declare class NBTTagCompound extends NBTBase {
-  constructor(rawNBT: MCNBTTagCompound);
-  readonly rawNBT: MCNBTTagCompound;
-  tagMap: Map<string, MCNBTBase>;
-
-  getTagMap(): NBTTagCompound["tagMap"];
-
-  keySet: Set<string>;
-
-  getKeySet(): NBTTagCompound["keySet"];
-
-  NBTDataType: typeof NBTDataType;
-
-  getTag(key: string): NBTBase | NBTTagCompound | null;
-
-  getTagId(key: string): byte;
-
-  getByte(key: string): byte;
-  getShort(key: string): short;
-  getInteger(key: string): int;
-  getLong(key: string): long;
-  getFloat(key: string): float;
-  getDouble(key: string): double;
-  getString(key: string): string;
-  getByteArray(key: string): byte[];
-  getIntArray(key: string): int[];
-  getBoolean(key: string): boolean;
-  getCompoundTag(key: string): NBTTagCompound;
-  getTagList(key: string, type: number): NBTTagList;
-
-  get(key: string, type: NBTDataType, tagType?: number): NBTDataType;
-
-  get(key: string): NBTBase;
-
-  set(key: string, value: NBTDataType): NBTTagCompound;
-
-  removeTag(key: string): NBTTagCompound;
-
-  toObject(): object;
-}
-
 declare enum NBTDataType {
   BYTE = 0,
   SHORT = 1,
@@ -9532,59 +9682,6 @@ declare enum NBTDataType {
   TAG_LIST = 11,
 }
 
-declare class NBTBase {
-  constructor(rawNBT: MCNBTBase);
-  readonly rawNBT: MCNBTBase;
-  /**Gets the type byte for the tag. */
-  getId(): byte;
-  /**Creates a clone of the tag. */
-  copy(): MCNBTBase;
-  /**Return whether this compound has no tags. */
-  hasNoTags(): boolean;
-  hasTags(): boolean;
-
-  equals(other: object): boolean;
-
-  hashCode(): int;
-
-  toString(): string;
-}
-
-declare class NBTTagList extends NBTBase {
-  constructor(rawNBT: MCNBTTagList);
-  readonly rawNBT: MCNBTTagList;
-
-  tagCount: int;
-  getTagCount(): int;
-
-  appendTag(nbt: NBTBase): NBTTagList;
-
-  appendTag(nbt: MCNBTBase): NBTTagList;
-
-  set(id: int, nbt: NBTBase): void;
-
-  set(id: int, nbt: MCNBTBase): void;
-
-  removeTag(index: int): MCNBTBase;
-
-  getCompoundTagAt(index: int): MCNBTTagCompound;
-
-  getIntArrayAt(index: int): int[];
-
-  getDoubleAt(index: int): double;
-
-  getFloatAt(index: int): float;
-
-  getStringTagAt(index: int): string;
-
-  get(index: int): MCNBTBase;
-
-  get(
-    index: int,
-    type: NBTTagCompound["NBTDataType"],
-  ): float | double | string | int[] | MCNBTTagCompound | NBTBase;
-}
-
 declare class CancellableEvent {
   setCanceled(newVal?: boolean): void;
 
@@ -9595,69 +9692,6 @@ declare class CancellableEvent {
 
   isCanceled(): boolean;
   isCancelled(): boolean;
-}
-
-declare class Chunk {
-  constructor(chunk: MCChunk);
-  readonly chunk: MCChunk;
-
-  /**
-   * Gets the x position of the chunk
-   */
-  getX(): number;
-  /**
-   * Gets the z position of the chunk
-   */
-  getZ(): number;
-
-  /**
-   * Gets the minimum x coordinate of a block in the chunk
-   *
-   * @return the minimum x coordinate
-   */
-  getMinBlockX(): number;
-
-  /**
-   * Gets the minimum z coordinate of a block in the chunk
-   *
-   * @return the minimum z coordinate
-   */
-  getMinBlockZ(): number;
-
-  /**
-   * Gets the skylight level at the given position. This is the value seen in the debug (F3) menu
-   *
-   * @param x the x coordinate
-   * @param y the y coordinate
-   * @param z the z coordinate
-   * @return the skylight level at the location
-   */
-  getSkyLightLevel(x: number, y: number, z: number): number;
-
-  /**
-   * Gets the block light level at the given position. This is the value seen in the debug (F3) menu
-   *
-   * @param x the x coordinate
-   * @param y the y coordinate
-   * @param z the z coordinate
-   * @return the block light level at the location
-   */
-  getBlockLightLevel(x: number, y: number, z: number): number;
-
-  /**
-   * Gets every entity in this chunk
-   *
-   * @return the entity list
-   */
-  getAllEntities(): Entity[];
-
-  /**
-   * Gets every entity in this chunk of a certain class
-   *
-   * @param clazz the class to filter for (Use `Java.type().class` to get this)
-   * @return the entity list
-   */
-  getAllEntitiesOfType(clazz: JavaClass<Entity>): Entity[];
 }
 
 declare class TileEntity {
@@ -9983,39 +10017,6 @@ declare class GuiHandler {
   clearGuis(): void;
 
   onTick(event: ForgeTickEvent.ClientTickEvent): void;
-}
-
-declare class PotionEffect {
-  readonly effect: MCPotionEffect;
-
-  constructor(effect: MCPotionEffect);
-
-  /**
-   * Returns the translation key of the potion.
-   * Ex: "potion.poison"
-   */
-  getName(): string;
-
-  /**
-   * Returns the localized name of the potion that
-   * is displayed in the player's inventory.
-   * Ex: "Poison"
-   */
-  getLocalizedName(): string;
-
-  getAmplifier(): int;
-
-  getDuration(): int;
-
-  getID(): int;
-
-  isAmbient(): boolean;
-
-  isDurationMax(): boolean;
-
-  showsParticles(): boolean;
-
-  toString(): string;
 }
 
 declare class ClientListener {
