@@ -1358,8 +1358,8 @@ declare global {
      */
     static lookingAt(): Block | Sign | Entity;
 
-    getHeldItem(): Item;
-    static getHeldItem(): Item;
+    getHeldItem(): Item | null;
+    static getHeldItem(): Item | null;
 
     setHeldItemIndex(index: int): void;
     static setHeldItemIndex(index: int): void;
@@ -5027,7 +5027,7 @@ declare global {
      *
      * @return The NetHandlerPlayClient object
      */
-    static getConnection(): MCNetHandlerPlayClient;
+    static getConnection(): MCNetHandlerPlayClient | null;
 
     /**
      * Quits the client back to the main menu.
