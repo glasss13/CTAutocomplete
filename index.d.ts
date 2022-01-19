@@ -2675,6 +2675,12 @@ declare global {
      * @return the entity list
      */
     static getAllEntitiesOfType(clazz: JavaClass<any>): Entity[];
+
+    getAllTileEntities(): TileEntity[];
+    static getAllTileEntities(): TileEntity[];
+
+    getAllTileEntitiesOfType(clazz: JavaClass<any>): TileEntity[];
+    static getAllTileEntitiesOfType(clazz: JavaClass<any>): TileEntity[];
   }
   namespace World {
     /**
@@ -9652,6 +9658,26 @@ declare class Chunk {
    * @return the entity list
    */
   getAllEntitiesOfType(clazz: JavaClass<Entity>): Entity[];
+}
+
+declare class TileEntity {
+  constructor(tileEntity: MCTileEntity);
+
+  readonly tileEntity: MCTileEntity;
+
+  getX(): number;
+  getY(): number;
+  getZ(): number;
+
+  getBlock(): Block;
+
+  getBlockType(): BlockType;
+
+  getBlockPos(): BlockPos;
+
+  getMetadata(): number;
+
+  toString(): string;
 }
 
 declare class Settings {
