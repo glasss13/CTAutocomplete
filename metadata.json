@@ -3,6 +3,6 @@
   "name": "CTAutocomplete",
   "creator": "maxssho13",
   "isRequired": true,
-  "version": "0.9.4",
+  "version": "2.0.0",
   "description": "A module that provides IntelliSense for the ChatTriggers API."
 }
