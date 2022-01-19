@@ -388,16 +388,16 @@ declare global {
     getDrawMode(): int;
 
     /**
-     * Sets the GL draw mode of the shape. Possible draw modes are:<br>
-     * 0 = points<br>
-     * 1 = lines<br>
-     * 2 = line loop<br>
-     * 3 = line strip<br>
-     * 5 = triangles<br>
-     * 5 = triangle strip<br>
-     * 6 = triangle fan<br>
-     * 7 = quads<br>
-     * 8 = quad strip<br>
+     * Sets the GL draw mode of the shape. Possible draw modes are:
+     * 0 = points
+     * 1 = lines
+     * 2 = line loop
+     * 3 = line strip
+     * 5 = triangles
+     * 5 = triangle strip
+     * 6 = triangle fan
+     * 7 = quads
+     * 8 = quad strip
      * 9 = polygon
      */
     setDrawMode(drawMode: int): Shape;
@@ -591,9 +591,9 @@ declare global {
     /**
      * Colorize the Tessellator.
      *
-     * @param red   the red value between 0 and 1
+     * @param red the red value between 0 and 1
      * @param green the green value between 0 and 1
-     * @param blue  the blue value between 0 and 1
+     * @param blue the blue value between 0 and 1
      * @param alpha the alpha value between 0 and 1
      * @return the Tessellator to allow for method chaining
      */
@@ -601,9 +601,9 @@ declare global {
     /**
      * Colorize the Tessellator.
      *
-     * @param red   the red value between 0 and 1
+     * @param red the red value between 0 and 1
      * @param green the green value between 0 and 1
-     * @param blue  the blue value between 0 and 1
+     * @param blue the blue value between 0 and 1
      * @param alpha the alpha value between 0 and 1
      * @return the Tessellator to allow for method chaining
      */
@@ -616,23 +616,23 @@ declare global {
 
     /**
      * Rotates the Tessellator in 3d space.
-     * Similar to {@link com.chattriggers.ctjs.minecraft.libs.renderer.Renderer#rotate(float)}
+     * Similar to [com.chattriggers.ctjs.minecraft.libs.renderer.Renderer.rotate]
      *
      * @param angle the angle to rotate
-     * @param x     if the rotation is around the x axis
-     * @param y     if the rotation is around the y axis
-     * @param z     if the rotation is around the z axis
+     * @param x if the rotation is around the x axis
+     * @param y if the rotation is around the y axis
+     * @param z if the rotation is around the z axis
      * @return the Tessellator to allow for method chaining
      */
     rotate(angle: float, x: float, y: float, z: float): Tessellator;
     /**
      * Rotates the Tessellator in 3d space.
-     * Similar to {@link com.chattriggers.ctjs.minecraft.libs.renderer.Renderer#rotate(float)}
+     * Similar to [com.chattriggers.ctjs.minecraft.libs.renderer.Renderer.rotate]
      *
      * @param angle the angle to rotate
-     * @param x     if the rotation is around the x axis
-     * @param y     if the rotation is around the y axis
-     * @param z     if the rotation is around the z axis
+     * @param x if the rotation is around the x axis
+     * @param y if the rotation is around the y axis
+     * @param z if the rotation is around the z axis
      * @return the Tessellator to allow for method chaining
      */
     static rotate(angle: float, x: float, y: float, z: float): Tessellator;
@@ -746,14 +746,14 @@ declare global {
     /**
      * Renders floating lines of text in the 3D world at a specific position.
      *
-     * @param text           The string array of text to render
-     * @param x              X coordinate in the game world
-     * @param y              Y coordinate in the game world
-     * @param z              Z coordinate in the game world
-     * @param color          the color of the text
+     * @param text The string array of text to render
+     * @param x X coordinate in the game world
+     * @param y Y coordinate in the game world
+     * @param z Z coordinate in the game world
+     * @param color the color of the text
      * @param renderBlackBox render a pretty black border behind the text
-     * @param scale          the scale of the text
-     * @param increase       whether or not to scale the text up as the player moves away
+     * @param scale the scale of the text
+     * @param increase whether to scale the text up as the player moves away
      */
     drawString(
       text: string,
@@ -768,14 +768,14 @@ declare global {
     /**
      * Renders floating lines of text in the 3D world at a specific position.
      *
-     * @param text           The string array of text to render
-     * @param x              X coordinate in the game world
-     * @param y              Y coordinate in the game world
-     * @param z              Z coordinate in the game world
-     * @param color          the color of the text
+     * @param text The string array of text to render
+     * @param x X coordinate in the game world
+     * @param y Y coordinate in the game world
+     * @param z Z coordinate in the game world
+     * @param color the color of the text
      * @param renderBlackBox render a pretty black border behind the text
-     * @param scale          the scale of the text
-     * @param increase       whether or not to scale the text up as the player moves away
+     * @param scale the scale of the text
+     * @param increase whether to scale the text up as the player moves away
      */
     static drawString(
       text: string,
@@ -793,9 +793,9 @@ declare global {
     /**
      * Maps a number from one range to another.
      *
-     * @param number  the number to map
-     * @param in_min  the original range min
-     * @param in_max  the original range max
+     * @param number the number to map
+     * @param in_min the original range min
+     * @param in_max the original range max
      * @param out_min the final range min
      * @param out_max the final range max
      * @return the re-mapped number
@@ -810,9 +810,9 @@ declare global {
     /**
      * Maps a number from one range to another.
      *
-     * @param number  the number to map
-     * @param in_min  the original range min
-     * @param in_max  the original range max
+     * @param number the number to map
+     * @param in_min the original range min
+     * @param in_max the original range max
      * @param out_min the final range min
      * @param out_max the final range max
      * @return the re-mapped number
@@ -829,8 +829,8 @@ declare global {
      * Clamps a floating number between two values.
      *
      * @param number the number to clamp
-     * @param min    the minimum
-     * @param max    the maximum
+     * @param min the minimum
+     * @param max the maximum
      * @return the clamped number
      */
     clampFloat(number: float, min: float, max: float): float;
@@ -838,8 +838,8 @@ declare global {
      * Clamps a floating number between two values.
      *
      * @param number the number to clamp
-     * @param min    the minimum
-     * @param max    the maximum
+     * @param min the minimum
+     * @param max the maximum
      * @return the clamped number
      */
     static clampFloat(number: float, min: float, max: float): float;
@@ -848,8 +848,8 @@ declare global {
      * Clamps an integer number between two values.
      *
      * @param number the number to clamp
-     * @param min    the minimum
-     * @param max    the maximum
+     * @param min the minimum
+     * @param max the maximum
      * @return the clamped number
      */
     clamp(number: int, min: int, max: int): int;
@@ -857,38 +857,30 @@ declare global {
      * Clamps an integer number between two values.
      *
      * @param number the number to clamp
-     * @param min    the minimum
-     * @param max    the maximum
+     * @param min the minimum
+     * @param max the maximum
      * @return the clamped number
      */
     static clamp(number: int, min: int, max: int): int;
   }
   /**
-   * <p>
-   *     Instances a new Sound with certain properties. These properties
-   *     should be passed through as a normal JavaScript object.
-   * </p>
+   * Instances a new Sound with certain properties. These properties
+   * should be passed through as a normal JavaScript object.
    *
-   * <p>
-   *     REQUIRED:<br>
-   *     &emsp;source (String) - filename, relative to ChatTriggers assets directory
-   * </p>
+   * REQUIRED:
+   * - source (String) - filename, relative to ChatTriggers assets directory
    *
-   * <p>
-   *     OPTIONAL:<br>
-   *     &emsp;priority (boolean) - whether or not this sound should be prioritized, defaults to false<br>
-   *     &emsp;loop (boolean) - whether or not to loop this sound over and over, defaults to false<br>
-   *     &emsp;stream (boolean) - whether or not to stream this sound rather than preload it (should be true for large files), defaults to false
-   * </p>
+   * OPTIONAL:
+   * - priority (boolean) - whether or not this sound should be prioritized, defaults to false
+   * - loop (boolean) - whether or not to loop this sound over and over, defaults to false
+   * - stream (boolean) - whether or not to stream this sound rather than preload it (should be true for large files), defaults to false
    *
-   * <p>
-   *     CONFIGURABLE (can be set in config object, or changed later, but MAKE SURE THE WORLD HAS LOADED)<br>
-   *     &emsp;category (String) - which category this sound should be a part of, see {@link #setCategory(String)}.<br>
-   *     &emsp;volume (float) - volume of the sound, see {@link #setVolume(float)}<br>
-   *     &emsp;pitch (float) - pitch of the sound, see {@link #setPitch(float)}<br>
-   *     &emsp;x, y, z (float) - location of the sound, see {@link #setPosition(float, float, float)}. Defaults to the players position.<br>
-   *     &emsp;attenuation (int) - fade out model of the sound, see {@link #setAttenuation(int)}<br>
-   * </p>
+   * CONFIGURABLE (can be set in config object, or changed later, but MAKE SURE THE WORLD HAS LOADED)
+   * - category (String) - which category this sound should be a part of, see [setCategory].
+   * - volume (float) - volume of the sound, see [setVolume]
+   * - pitch (float) - pitch of the sound, see [setPitch]
+   * - x, y, z (float) - location of the sound, see [setPosition]. Defaults to the players position.
+   * - attenuation (int) - fade out model of the sound, see [setAttenuation]
    *
    * @param config the JavaScript config object
    */
@@ -1161,7 +1153,7 @@ declare global {
     static getArmorPoints(): int;
 
     /**
-     * Gets the player's air level.<br></br>
+     * Gets the player's air level.
      *
      * The returned value will be an integer. If the player is not taking damage, it
      * will be between 300 (not in water) and 0. If the player is taking damage, it
@@ -1171,7 +1163,7 @@ declare global {
      */
     getAirLevel(): int;
     /**
-     * Gets the player's air level.<br></br>
+     * Gets the player's air level.
      *
      * The returned value will be an integer. If the player is not taking damage, it
      * will be between 300 (not in water) and 0. If the player is taking damage, it
@@ -1519,9 +1511,9 @@ declare global {
     /**
      * Play a sound at the player location.
      *
-     * @param name   the name of the sound
+     * @param name the name of the sound
      * @param volume the volume of the sound
-     * @param pitch  the pitch of the sound
+     * @param pitch the pitch of the sound
      */
     static playSound(name: string, volume: number, pitch: number): void;
     static playSound(
@@ -2528,23 +2520,23 @@ declare global {
     ): void;
 
     /**
-     * Play a record at location x, y, and z.<br></br>
+     * Play a record at location x, y, and z.
      * Use "null" as name in the same location to stop record.
      *
-     * @param name  the name of the sound/record
-     * @param x     the x location
-     * @param y     the y location
-     * @param z     the z location
+     * @param name the name of the sound/record
+     * @param x the x location
+     * @param y the y location
+     * @param z the z location
      */
     playRecord(name: string, x: double, y: double, z: double): void;
     /**
-     * Play a record at location x, y, and z.<br></br>
+     * Play a record at location x, y, and z.
      * Use "null" as name in the same location to stop record.
      *
-     * @param name  the name of the sound/record
-     * @param x     the x location
-     * @param y     the y location
-     * @param z     the z location
+     * @param name the name of the sound/record
+     * @param x the x location
+     * @param y the y location
+     * @param z the z location
      */
     static playRecord(name: string, x: double, y: double, z: double): void;
 
@@ -2649,14 +2641,14 @@ declare global {
      * Gets a player by their username, must be in the currently loaded chunks!
      *
      * @param name the username
-     * @return the player with said username, or null if they dont exist.
+     * @return the player with said username, or null if they don't exist.
      */
     getPlayerByName(name: string): PlayerMP;
     /**
      * Gets a player by their username, must be in the currently loaded chunks!
      *
      * @param name the username
-     * @return the player with said username, or null if they dont exist.
+     * @return the player with said username, or null if they don't exist.
      */
     static getPlayerByName(name: string): PlayerMP;
 
@@ -3024,14 +3016,14 @@ declare global {
     static getScoreboardTitle(): string;
 
     /**
-     * Gets the top-most string which is displayed on the scoreboard. (doesn't have a score on the side).<br></br>
+     * Gets the top-most string which is displayed on the scoreboard. (doesn't have a score on the side).
      * Be aware that this can contain color codes.
      *
      * @return the scoreboard title
      */
     getTitle(): string;
     /**
-     * Gets the top-most string which is displayed on the scoreboard. (doesn't have a score on the side).<br></br>
+     * Gets the top-most string which is displayed on the scoreboard. (doesn't have a score on the side).
      * Be aware that this can contain color codes.
      *
      * @return the scoreboard title
@@ -3039,14 +3031,14 @@ declare global {
     static getTitle(): string;
 
     /**
-     * Get all currently visible strings on the scoreboard. (excluding title)<br></br>
+     * Get all currently visible strings on the scoreboard. (excluding title)
      * Be aware that this can contain color codes.
      *
      * @return the list of lines
      */
     getLines(descending?: boolean): Scoreboard.Score[];
     /**
-     * Get all currently visible strings on the scoreboard. (excluding title)<br></br>
+     * Get all currently visible strings on the scoreboard. (excluding title)
      * Be aware that this can contain color codes.
      *
      * @return the list of lines
@@ -3092,7 +3084,7 @@ declare global {
      *
      * @param score the score value for this item
      * @param line the string to display on said line
-     * @param override whether or not to remove old lines with the same score
+     * @param override whether to remove old lines with the same score
      */
     setLine(score: int, line: string, override: boolean): void;
     /**
@@ -3100,7 +3092,7 @@ declare global {
      *
      * @param score the score value for this item
      * @param line the string to display on said line
-     * @param override whether or not to remove old lines with the same score
+     * @param override whether to remove old lines with the same score
      */
     static setLine(score: int, line: string, override: boolean): void;
 
@@ -3151,11 +3143,11 @@ declare global {
     }
   }
   /**
-   * Creates a new Sign object wrapper.<br>
-   * Returned with {@link Player#lookingAt()} when looking at a sign.<br>
-   * Extends {@link Block}.
+   * Creates a new Sign object wrapper.
+   * Returned with [com.chattriggers.ctjs.minecraft.wrappers.Player.lookingAt] when looking at a sign.
+   * Extends [Block].
    *
-   * @param block the {@link Block} to convert to a Sign
+   * @param block the [Block] to convert to a Sign
    */
   class Sign extends Block {
     constructor(block: Block);
@@ -3717,7 +3709,7 @@ declare global {
 
     /**
      * Creates a new action.
-     * The Inventory must be a container, see {@link Inventory#isContainer()}.
+     * The Inventory must be a container, see [Inventory.isContainer].
      * The slot can be -999 for outside of the gui
      *
      * @param inventory the inventory to complete the action on
@@ -3732,7 +3724,7 @@ declare global {
     class Companion {
       /**
        * Creates a new action.
-       * The Inventory must be a container, see {@link Inventory#isContainer()}.
+       * The Inventory must be a container, see [Inventory.isContainer].
        * The slot can be -999 for outside of the gui
        *
        * @param inventory the inventory to complete the action on
@@ -3827,7 +3819,7 @@ declare global {
 
     /**
      * Returns the window identifier number of this Inventory.
-     * This Inventory must be backed by a Container {@link #isContainer()}
+     * This Inventory must be backed by a Container [isContainer]
      *
      * @return the window id
      */
@@ -3836,11 +3828,11 @@ declare global {
     doAction(action: Action): void;
 
     /**
-     * Checks if an item can be shift clicked into a certain slot, i.e coal into the bottom of a furnace.
+     * Checks if an item can be shift clicked into a certain slot, i.e. coal into the bottom of a furnace.
      *
      * @param slot the slot index
      * @param item the item for checking
-     * @return whether or not it can be shift clicked in
+     * @return whether it can be shift clicked in
      */
     isItemValidForSlot(slot: int, item: Item): boolean;
 
@@ -3853,7 +3845,7 @@ declare global {
      * Checks whether the inventory contains the given item.
      *
      * @param item the item to check for
-     * @return whether or not the inventory contains the item
+     * @return whether the inventory contains the item
      */
     contains(item: Item): boolean;
 
@@ -3861,7 +3853,7 @@ declare global {
      * Checks whether the inventory contains an item with ID.
      *
      * @param id the ID of the item to match
-     * @retun whether or not the inventory contains an item with ID
+     * @retun whether the inventory contains an item with ID
      */
     contains(id: int): boolean;
 
@@ -3892,7 +3884,7 @@ declare global {
     isContainer(): boolean;
 
     /**
-     * Shorthand for {@link ClickAction}
+     * Shorthand for [ClickAction]
      *
      * @param slot the slot to click on
      * @param button the mouse button to use. "LEFT" by default.
@@ -3902,7 +3894,7 @@ declare global {
     click(slot: int, shift?: boolean, button?: string): Inventory;
 
     /**
-     * Shorthand for {@link DropAction}
+     * Shorthand for [DropAction]
      *
      * @param slot the slot to drop
      * @param ctrl whether control should be held (drops whole stack)
@@ -3911,7 +3903,7 @@ declare global {
     drop(slot: int, ctrl: boolean): Inventory;
 
     /**
-     * Shorthand for {@link DragAction}
+     * Shorthand for [DragAction]
      *
      * @param type what click type this should be: LEFT, MIDDLE, RIGHT
      * @param slots all of the slots to drag onto
@@ -3946,7 +3938,7 @@ declare global {
     constructor(entityItem: MCEntityItem);
 
     /**
-     * Created an Item object from an Entity.
+     * Create an Item object from an Entity.
      * Has to be wrapping an EntityItem.
      *
      * @param entity the Entity
@@ -3969,24 +3961,24 @@ declare global {
     getStackSize(): int;
 
     /**
-     * Gets the item's unlocalized name.<br>
-     * Example: <code>tile.wood</code>
+     * Gets the item's unlocalized name.
+     * Example: tile.wood
      *
      * @return the item's unlocalized name
      */
     getUnlocalizedName(): string;
 
     /**
-     * Gets the item's registry name.<br>
-     * Example: <code>minecraft:planks</code>
+     * Gets the item's registry name.
+     * Example: minecraft:planks
      *
      * @return the item's registry name
      */
     getRegistryName(): string;
 
     /**
-     * Gets the item's stack display name.<br>
-     * Example: <code>Oak Wood Planks</code>
+     * Gets the item's stack display name.
+     * Example: Oak Wood Planks
      *
      * @return the item's stack display name
      */
@@ -4007,9 +3999,9 @@ declare global {
     canDestroy(block: BlockType): boolean;
 
     /**
-     * Gets the items durability, i.e. the number of uses left
+     * Gets the item's durability, i.e. the number of uses left
      *
-     * @return the items durability
+     * @return the item's durability
      */
     getDurability(): int;
 
@@ -4242,11 +4234,11 @@ declare global {
     getRiders(): Entity[];
 
     /**
-     * Checks whether or not the entity is dead.
+     * Checks whether the entity is dead.
      * This is a fairly loose term, dead for a particle could mean it has faded,
      * while dead for an entity means it has no health.
      *
-     * @return whether or not an entity is dead
+     * @return whether an entity is dead
      */
     isDead(): boolean;
 
@@ -4301,7 +4293,7 @@ declare global {
     getEntity(): MCEntity;
 
     /**
-     * Gets the entity's air level.<br></br>
+     * Gets the entity's air level.
      *
      * The returned value will be an integer. If the player is not taking damage, it
      * will be between 300 (not in water) and 0. If the player is taking damage, it
@@ -4460,7 +4452,7 @@ declare global {
      * Sets a page of the book to the specified message.
      *
      * @param pageNumber the number of the page to set
-     * @param message    the message to set the page to
+     * @param message the message to set the page to
      * @return the current book to allow method chaining
      */
     setPage(pageNumber: int, message: Message): Book;
@@ -4534,7 +4526,7 @@ declare global {
     isRecursive(): boolean;
 
     /**
-     * Sets whether or not the message can trip other triggers.
+     * Sets whether the message can trip other triggers.
      * @param recursive true if message can trip other triggers.
      */
     setRecursive(recursive: boolean): Message;
@@ -4552,7 +4544,7 @@ declare global {
 
     /**
      * Sets the TextComponent or String in the Message at index.
-     * @param index    the index of the TextComponent or String to change
+     * @param index the index of the TextComponent or String to change
      * @param component the new TextComponent or String to replace with
      * @return the Message for method chaining
      */
@@ -5049,7 +5041,7 @@ declare global {
     static isInTab(): boolean;
 
     /**
-     * Gets whether or not the Minecraft window is active
+     * Gets whether the Minecraft window is active
      * and in the foreground of the user's screen.
      *
      * @return true if the game is active, false otherwise
@@ -5134,11 +5126,11 @@ declare global {
     /**
      * Display a title.
      *
-     * @param title    title text
+     * @param title title text
      * @param subtitle subtitle text
-     * @param fadeIn   time to fade in
-     * @param time     time to stay on screen
-     * @param fadeOut  time to fade out
+     * @param fadeIn time to fade in
+     * @param time time to stay on screen
+     * @param fadeOut time to fade out
      */
     static showTitle(
       title: string,
@@ -5181,7 +5173,7 @@ declare global {
      *
      * @param category the keybind category the keybind will be in
      * @param description what the key bind does
-     * @param keyCode     the keycode which the key bind will respond to, see Keyboard below. Ex. Keyboard.KEY_A
+     * @param keyCode the keycode which the key bind will respond to, see Keyboard below. Ex. Keyboard.KEY_A
      * @see [Keyboard](http://legacy.lwjgl.org/javadoc/org/lwjgl/input/Keyboard.html)
      */
     constructor(
@@ -5195,14 +5187,14 @@ declare global {
     /**
      * Returns true if the key is pressed (used for continuous querying).
      *
-     * @return whether or not the key is pressed
+     * @return whether the key is pressed
      */
     isKeyDown(): boolean;
 
     /**
      * Returns true on the initial key press. For continuous querying use [isKeyDown].
      *
-     * @return whether or not the key has just been pressed
+     * @return whether the key has just been pressed
      */
     isPressed(): boolean;
 
@@ -5489,7 +5481,7 @@ declare global {
 
     /**
      * Sets the stage of this drag.
-     * Possible values are: BEGIN, SLOT, END {@link #stage}
+     * Possible values are: BEGIN, SLOT, END [stage]
      *
      * @param stage the stage
      * @return the current Action for method chaining
@@ -5576,33 +5568,33 @@ declare global {
      * Writes a file to folder in modules.
      *
      * @param importName name of the import
-     * @param fileName   name of the file
-     * @param toWrite    string to write in file
+     * @param fileName name of the file
+     * @param toWrite string to write in file
      */
     write(importName: string, fileName: string, toWrite: string): void;
     /**
      * Writes a file to folder in modules.
      *
      * @param importName name of the import
-     * @param fileName   name of the file
-     * @param toWrite    string to write in file
+     * @param fileName name of the file
+     * @param toWrite string to write in file
      */
     static write(importName: string, fileName: string, toWrite: string): void;
 
     /**
-     * Writes a file to anywhere on the system.<br></br>
+     * Writes a file to anywhere on the system.
      * Use "./" for the ".minecraft" folder.
      *
      * @param fileLocation the location and file name
-     * @param toWrite      string to write in file
+     * @param toWrite string to write in file
      */
     write(fileLocation: string, toWrite: string): void;
     /**
-     * Writes a file to anywhere on the system.<br></br>
+     * Writes a file to anywhere on the system.
      * Use "./" for the ".minecraft" folder.
      *
      * @param fileLocation the location and file name
-     * @param toWrite      string to write in file
+     * @param toWrite string to write in file
      */
     static write(fileLocation: string, toWrite: string): void;
 
@@ -5610,58 +5602,58 @@ declare global {
      * Writes a file to folder in modules.
      *
      * @param importName name of the import
-     * @param fileName   name of the file
-     * @param toAppend    string to append in file
+     * @param fileName name of the file
+     * @param toAppend string to append in file
      */
     append(importName: string, fileName: string, toAppend: string): void;
     /**
      * Writes a file to folder in modules.
      *
      * @param importName name of the import
-     * @param fileName   name of the file
-     * @param toAppend    string to append in file
+     * @param fileName name of the file
+     * @param toAppend string to append in file
      */
     static append(importName: string, fileName: string, toAppend: string): void;
 
     /**
-     * Writes a file to anywhere on the system.<br></br>
+     * Writes a file to anywhere on the system.
      * Use "./" for the ".minecraft" folder.
      *
      * @param fileLocation the location and file name
-     * @param toAppend      string to append in file
+     * @param toAppend string to append in file
      */
     append(fileLocation: string, toAppend: string): void;
     /**
-     * Writes a file to anywhere on the system.<br></br>
+     * Writes a file to anywhere on the system.
      * Use "./" for the ".minecraft" folder.
      *
      * @param fileLocation the location and file name
-     * @param toAppend      string to append in file
+     * @param toAppend string to append in file
      */
     static append(fileLocation: string, toAppend: string): void;
 
     /**
-     * Reads a file from folder in modules.<br></br>
+     * Reads a file from folder in modules.
      * Returns an empty string if file is not found.
      *
      * @param importName name of the import
-     * @param fileName   name of the file
+     * @param fileName name of the file
      * @return the string in the file
      */
     read(importName: string, fileName: string): string;
     /**
-     * Reads a file from folder in modules.<br></br>
+     * Reads a file from folder in modules.
      * Returns an empty string if file is not found.
      *
      * @param importName name of the import
-     * @param fileName   name of the file
+     * @param fileName name of the file
      * @return the string in the file
      */
     static read(importName: string, fileName: string): string;
 
     /**
-     * Reads a file from anywhere on the system.<br></br>
-     * Use "./" for the ".minecraft" folder.<br></br>
+     * Reads a file from anywhere on the system.
+     * Use "./" for the ".minecraft" folder.
      * Returns an empty string if file is not found.
      *
      * @param fileLocation the location and file name
@@ -5669,8 +5661,8 @@ declare global {
      */
     read(fileLocation: string): string;
     /**
-     * Reads a file from anywhere on the system.<br></br>
-     * Use "./" for the ".minecraft" folder.<br></br>
+     * Reads a file from anywhere on the system.
+     * Use "./" for the ".minecraft" folder.
      * Returns an empty string if file is not found.
      *
      * @param fileLocation the location and file name
@@ -5681,14 +5673,14 @@ declare global {
     /**
      * Reads a file from anywhere on the system using java.io.File.
      *
-     * @param file the java.io.File to loadExtra
+     * @param file the java.io.File to read
      * @return the string in the file
      */
     read(file: JavaFile): string;
     /**
      * Reads a file from anywhere on the system using java.io.File.
      *
-     * @param file the java.io.File to loadExtra
+     * @param file the java.io.File to read
      * @return the string in the file
      */
     static read(file: JavaFile): string;
@@ -5774,7 +5766,7 @@ declare global {
 
     /**
      * Extracts a zip file specified by the zipFilePath to a directory specified by
-     * destDirectory (will be created if does not exists).
+     * destDirectory (will be created if does not exist).
      * @param zipFilePath the zip file path
      * @param destDirectory the destination directory
      * @throws IOException IOException
@@ -5782,7 +5774,7 @@ declare global {
     unzip(zipFilePath: string, destDirectory: string): void;
     /**
      * Extracts a zip file specified by the zipFilePath to a directory specified by
-     * destDirectory (will be created if does not exists).
+     * destDirectory (will be created if does not exist).
      * @param zipFilePath the zip file path
      * @param destDirectory the destination directory
      * @throws IOException IOException
@@ -5806,12 +5798,12 @@ declare global {
     isAltDown(): boolean;
 
     /**
-     * Registers a method to be ran while gui is open.<br></br>
-     * Registered method runs on draw.<br></br>
-     * Arguments passed through to method:<br></br>
-     * int mouseX<br></br>
-     * int mouseY<br></br>
-     * float partialTicks
+     * Registers a method to be run while gui is open.
+     * Registered method runs on draw.
+     * Arguments passed through to method:
+     * - int mouseX
+     * - int mouseY
+     * - float partialTicks
      *
      * @param method the method to run
      * @return the trigger
@@ -5821,12 +5813,12 @@ declare global {
     ): OnRegularTrigger;
 
     /**
-     * Registers a method to be ran while gui is open.<br></br>
-     * Registered method runs on mouse click.<br></br>
-     * Arguments passed through to method:<br></br>
-     * int mouseX<br></br>
-     * int mouseY<br></br>
-     * int button
+     * Registers a method to be run while gui is open.
+     * Registered method runs on mouse click.
+     * Arguments passed through to method:
+     * - int mouseX
+     * - int mouseY
+     * - int button
      *
      * @param method the method to run
      * @return the trigger
@@ -5836,23 +5828,23 @@ declare global {
     ): OnRegularTrigger;
 
     /**
-     * Registers a method to be ran while the gui is open.<br></br>
-     * Registered method runs on mouse scroll.<br></br>
-     * Arguments passed through to method:<br></br>
-     * int mouseX<br></br>
-     * int mouseY<br></br>
-     * int scroll direction
+     * Registers a method to be run while the gui is open.
+     * Registered method runs on mouse scroll.
+     * Arguments passed through to method:
+     * - int mouseX
+     * - int mouseY
+     * - int scroll direction
      */
     registerScrolled(
       method: (mouseX: int, mouseY: int, scroll: int) => void,
     ): OnRegularTrigger;
 
     /**
-     * Registers a method to be ran while gui is open.<br></br>
-     * Registered method runs on key input.<br></br>
-     * Arguments passed through to method:<br></br>
-     * char typed character<br></br>
-     * int key code
+     * Registers a method to be run while gui is open.
+     * Registered method runs on key input.
+     * Arguments passed through to method:
+     * - char typed character
+     * - int key code
      *
      * @param method the method to run
      * @return the trigger
@@ -5862,13 +5854,13 @@ declare global {
     ): OnRegularTrigger;
 
     /**
-     * Registers a method to be ran while gui is open.<br></br>
-     * Registered method runs on key input.<br></br>
-     * Arguments passed through to method:<br></br>
-     * mouseX<br></br>
-     * mouseY<br></br>
-     * clickedMouseButton<br></br>
-     * timeSinceLastClick
+     * Registers a method to be run while gui is open.
+     * Registered method runs on key input.
+     * Arguments passed through to method:
+     * - int mouseX
+     * - int mouseY
+     * - int clickedMouseButton
+     * - long timeSinceLastClick
      *
      * @param method the method to run
      * @return the trigger
@@ -5883,12 +5875,12 @@ declare global {
     ): OnRegularTrigger;
 
     /**
-     * Registers a method to be ran while gui is open.<br></br>
-     * Registered method runs on mouse release.<br></br>
-     * Arguments passed through to method:<br></br>
-     * mouseX<br></br>
-     * mouseY<br></br>
-     * button
+     * Registers a method to be run while gui is open.
+     * Registered method runs on mouse release.
+     * Arguments passed through to method:
+     * - int mouseX
+     * - int mouseY
+     * - int button
      *
      * @param method the method to run
      * @return the trigger
@@ -5898,10 +5890,10 @@ declare global {
     ): OnRegularTrigger;
 
     /**
-     * Registers a method to be ran while gui is open.<br></br>
-     * Registered method runs when an action is performed (clicking a button)<br></br>
-     * Arguments passed through to method:<br></br>
-     * the button that is clicked
+     * Registers a method to be run while gui is open.
+     * Registered method runs when an action is performed (clicking a button)
+     * Arguments passed through to method:
+     * - the button that is clicked
      *
      * @param method the method to run
      * @return the trigger
@@ -6203,7 +6195,7 @@ declare global {
     /**
      * Sets the amount of ticks this particle will live for
      *
-     * @param maxAge the particles max age (in ticks)
+     * @param maxAge the particle's max age (in ticks)
      */
     setMaxAge(maxAge: int): Particle;
 
@@ -6270,9 +6262,9 @@ declare global {
     triggerIfCanceled(bool: boolean): OnChatTrigger;
 
     /**
-     * Sets the chat criteria for [matchesChatCriteria].<br></br>
-     * Arguments for the trigger's method can be passed in using ${variable}.<br></br>
-     * Example: `OnChatTrigger.setChatCriteria("<${name}> ${message}");`<br></br>
+     * Sets the chat criteria for [matchesChatCriteria].
+     * Arguments for the trigger's method can be passed in using ${variable}.
+     * Example: `OnChatTrigger.setChatCriteria("<${name}> ${message}");`
      * Use ${*} to match a chat message but ignore the pass through.
      * @param chatCriteria the chat criteria to set
      * @return the trigger object for method chaining
@@ -6364,8 +6356,7 @@ declare global {
     soundNameCriteria: string;
 
     /**
-     * Sets the sound name criteria.<br></br>
-     * Short hand for [OnSoundPlayTrigger.setSoundNameCriteria].
+     * Sets the sound name criteria.
      *
      * @param soundNameCriteria the sound name
      * @return the trigger for method chaining
@@ -6433,9 +6424,9 @@ declare global {
     setTabCompletions(args: string[]): OnCommandTrigger;
 
     /**
-     * Sets the command name.<br></br>
-     * Example:<br></br>
-     * OnCommandTrigger.setCommandName("test")<br></br>
+     * Sets the command name.
+     * Example:
+     * OnCommandTrigger.setCommandName("test")
      * would result in the command being /test
      *
      * @param commandName The command name
@@ -10058,7 +10049,7 @@ declare interface ILoader {
   /**
    * Loads a list of modules into the loader. This method will only
    * ever be called with modules that have an entry point corresponding
-   * to this loader's languages's extension
+   * to this loader's language's extension
    */
   entryPass(module: Module, entryURI: JavaURI): void;
 
@@ -10112,7 +10103,7 @@ declare interface ILoader {
    * Save a resource to the OS's filesystem from inside the jar
    * @param resourceName name of the file inside the jar
    * @param outputFile file to save to
-   * @param replace whether or not to replace the file being saved to
+   * @param replace whether to replace the file being saved to
    */
   saveResource(
     resourceName: string,
@@ -10348,9 +10339,9 @@ declare interface ITriggerRegister {
    * - Steps elapsed
    *
    * Available modifications:
-   * - [OnStepTrigger.setFps] Sets the fps, ie. how many times this trigger will fire
+   * - [OnStepTrigger.setFps] Sets the fps, i.e. how many times this trigger will fire
    *      per second
-   * - [OnStepTrigger.setDelay] Sets the delay in seconds, ie how many seconds it take
+   * - [OnStepTrigger.setDelay] Sets the delay in seconds, i.e. how many seconds it takes
    *      to fire. Overrides [OnStepTrigger.setFps].
    * - [OnTrigger.setPriority] Sets the priority
    *
@@ -10605,7 +10596,7 @@ declare interface ITriggerRegister {
    * Registers a new trigger that runs after the game loads.
    *
    * This runs after the initial loading of the game directly after scripts are
-   * loaded and after "/ct loadExtra" happens.
+   * loaded and after "/ct load" happens.
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -10617,7 +10608,7 @@ declare interface ITriggerRegister {
   /**
    * Registers a new trigger that runs before the game unloads.
    *
-   * This runs before shutdown of the JVM and before "/ct loadExtra" happens.
+   * This runs before shutdown of the JVM and before "/ct load" happens.
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -11527,9 +11518,9 @@ declare interface IRegister {
    * - Steps elapsed
    *
    * Available modifications:
-   * - [OnStepTrigger.setFps] Sets the fps, ie. how many times this trigger will fire
+   * - [OnStepTrigger.setFps] Sets the fps, i.e. how many times this trigger will fire
    *      per second
-   * - [OnStepTrigger.setDelay] Sets the delay in seconds, ie how many seconds it take
+   * - [OnStepTrigger.setDelay] Sets the delay in seconds, i.e how many seconds it takes
    *      to fire. Overrides [OnStepTrigger.setFps].
    * - [OnTrigger.setPriority] Sets the priority
    *
@@ -11815,7 +11806,7 @@ declare interface IRegister {
    * Registers a new trigger that runs after the game loads.
    *
    * This runs after the initial loading of the game directly after scripts are
-   * loaded and after "/ct loadExtra" happens.
+   * loaded and after "/ct load" happens.
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -11828,7 +11819,7 @@ declare interface IRegister {
   /**
    * Registers a new trigger that runs before the game unloads.
    *
-   * This runs before shutdown of the JVM and before "/ct loadExtra" happens.
+   * This runs before shutdown of the JVM and before "/ct load" happens.
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -12134,8 +12125,8 @@ declare interface IRegister {
    * Registers a new trigger that runs whenever a key is typed with a gui open
    *
    * Passes through four arguments:
-   * - The character pressed (eg. 'd')
-   * - The key code pressed (eg. 41)
+   * - The character pressed (e.g. 'd')
+   * - The key code pressed (e.g. 41)
    * - The gui
    * - The event, which can be cancelled
    *
