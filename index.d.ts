@@ -227,8 +227,8 @@ declare global {
     getRenderManager(): MCRenderManager;
     static getRenderManager(): MCRenderManager;
 
-    getStringWidth(text: string, removeFormatting?: boolean): int;
-    static getStringWidth(text: string, removeFormatting?: boolean): int;
+    getStringWidth(text: string): int;
+    static getStringWidth(text: string): int;
 
     color(red: long, green: long, blue: long, alpha?: long): long;
     static color(red: long, green: long, blue: long, alpha?: long): long;
