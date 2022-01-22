@@ -4431,7 +4431,7 @@ declare global {
      * @param slot the slot to access
      * @return the item in said slot
      */
-    getItemInSlot(slot: number): Item;
+    getItemInSlot(slot: number): Item | undefined;
 
     getHP(): number;
 
@@ -4447,8 +4447,8 @@ declare global {
     getArmorValue(): number;
 
     isPotionActive(id: number): boolean;
-
     isPotionActive(potion: MCPotion): boolean;
+    isPotionActive(potionEffect: PotionEffect): boolean;
 
     toString(): string;
   }
