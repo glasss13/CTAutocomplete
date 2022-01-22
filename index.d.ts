@@ -1074,6 +1074,21 @@ declare global {
      * @return the entity list
      */
     getAllEntitiesOfType(clazz: JavaClass<Entity>): Entity[];
+
+    /**
+     * Gets every tile entity in this chunk
+     *
+     * @return the tile entity list
+     */
+    getAllTileEntities(): TileEntity[];
+
+    /**
+     * Gets every tile entity in this chunk of a certain class
+     *
+     * @param clazz the class to filter for (Use `Java.type().class` to get this)
+     * @return the tile entity list
+     */
+    getAllTileEntitiesOfType(clazz: JavaClass<any>): TileEntity[];
   }
 
   class PotionEffect {
@@ -4523,6 +4538,8 @@ declare global {
     setIsOutsideBorder(outside: boolean): Entity;
 
     getWorld(): MCWorld;
+
+    getChunk(): Chunk;
 
     isBurning(): boolean;
 
