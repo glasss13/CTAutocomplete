@@ -6808,6 +6808,13 @@ declare global {
     setTabCompletions(args: string[]): OnCommandTrigger;
 
     /**
+     * Sets the aliases for the command.
+     *
+     * @param args all the aliases.
+     */
+    setAliases(...args: string[]): OnCommandTrigger;
+
+    /**
      * Sets the command name.
      * Example:
      * OnCommandTrigger.setCommandName("test")
