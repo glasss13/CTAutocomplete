@@ -13,6 +13,7 @@ declare global {
   const TriggerRegister: ITriggerRegister;
   const InteractAction: typeof ForgePlayerInteractEvent.Action;
   const Console: Console;
+  const Client: Client;
   const Config: Config;
   const ChatTriggers: Reference;
   const console: console;
@@ -5373,173 +5374,11 @@ declare global {
     }
   }
 
-  class Client {
-    static INSTANCE: Client;
-    static settings: Settings;
-
-    getSettings(): Settings;
-
-    /**
-     * Gets Minecraft's Minecraft object
-     *
-     * @return The Minecraft object
-     */
-    static getMinecraft(): MCMinecraft;
-
-    /**
-     * Gets Minecraft's NetHandlerPlayClient object
-     *
-     * @return The NetHandlerPlayClient object
-     */
-    static getConnection(): MCNetHandlerPlayClient | null;
-
-    /**
-     * Quits the client back to the main menu.
-     * This acts just like clicking the "Disconnect" or "Save and quit to title" button.
-     */
-    static disconnect(): void;
-
-    /**
-     * Gets the Minecraft GuiNewChat object for the chat gui
-     *
-     * @return The GuiNewChat object for the chat gui
-     */
-    static getChatGUI(): MCGuiNewChat;
-
-    static isInChat(): boolean;
-
-    static getTabGui(): MCGuiPlayerTabOverlay;
-
-    static isInTab(): boolean;
-
-    /**
-     * Gets whether the Minecraft window is active
-     * and in the foreground of the user's screen.
-     *
-     * @return true if the game is active, false otherwise
-     */
-    static isTabbedIn(): boolean;
-
-    static isControlDown(): boolean;
-
-    static isShiftDown(): boolean;
-
-    static isAltDown(): boolean;
-
-    /**
-     * Get the [KeyBind] from an already existing
-     * Minecraft KeyBinding, otherwise, returns null.
-     *
-     * @param keyCode the keycode to search for, see Keyboard below. Ex. Keyboard.KEY_A
-     * @return the [KeyBind] from a Minecraft KeyBinding, or null if one doesn't exist
-     * @see [Keyboard](http://legacy.lwjgl.org/javadoc/org/lwjgl/input/Keyboard.html)
-     */
-    static getKeyBindFromKey(keyCode: int | Keyboard): KeyBind;
-
-    /**
-     * Get the [KeyBind] from an already existing
-     * Minecraft KeyBinding, else, return a new one.
-     *
-     * @param keyCode the keycode to search for, see Keyboard below. Ex. Keyboard.KEY_A
-     * @return the [KeyBind] from a Minecraft KeyBinding, or null if one doesn't exist
-     * @see [Keyboard](http://legacy.lwjgl.org/javadoc/org/lwjgl/input/Keyboard.html)
-     */
-    static getKeyBindFromKey(
-      keyCode: int | Keyboard,
-      description: string,
-      category?: string,
-    ): KeyBind;
-
-    /**
-     * Get the [KeyBind] from an already existing
-     * Minecraft KeyBinding, else, null.
-     *
-     * @param description the key binding's original description
-     * @return the key bind, or null if one doesn't exist
-     */
-    static getKeyBindFromDescription(description: string): KeyBind;
-
-    static getFPS(): int;
-
-    static getVersion(): string;
-
-    static getMaxMemory(): long;
-
-    static getTotalMemory(): long;
-
-    static getFreeMemory(): long;
-
-    static getMemoryUsage(): int;
-
-    static getSystemTime(): long;
-
-    static getMouseX(): float;
-
-    static getMouseY(): float;
-
-    static isInGui(): boolean;
-
-    /**
-     * Gets the chat message currently typed into the chat gui.
-     *
-     * @return A blank string if the gui isn't open, otherwise, the message
-     */
-    static getCurrentChatMessage(): string;
-
-    /**
-     * Sets the current chat message, if the chat gui is not open, one will be opened.
-     *
-     * @param message the message to put in the chat text box.
-     */
-    static setCurrentChatMessage(message: string): void;
-
-    static sendPacket<T extends MCINetHandler>(packet: MCPacket<T>): void;
-
-    /**
-     * Display a title.
-     *
-     * @param title title text
-     * @param subtitle subtitle text
-     * @param fadeIn time to fade in
-     * @param time time to stay on screen
-     * @param fadeOut time to fade out
-     */
-    static showTitle(
-      title: string,
-      subtitle: string,
-      fadeIn: int,
-      time: int,
-      fadeOut: int,
-    ): void;
-  }
-  namespace Client {
-    class currentGui {
-      /**
-       * Gets the Java class name of the currently open gui, for example, "GuiChest"
-       *
-       * @return the class name of the current gui
-       */
-      static getClassName(): string;
-
-      /**
-       * Gets the Minecraft gui class that is currently open
-       *
-       * @return the Minecraft gui
-       */
-      static get(): MCGuiScreen;
-
-      /**
-       * Closes the currently open gui
-       */
-      static close(): void;
-    }
-    class camera {
-      static getX(): double;
-      static getY(): double;
-      static getZ(): double;
-    }
-  }
   class KeyBind {
+    registerKeyPress(method: Function): KeyBind;
+    registerKeyRelease(method: Function): KeyBind;
+    registerKeyDown(method: Function): KeyBind;
+
     /**
      * Creates a new key bind, editable in the user's controls.
      *
@@ -9489,6 +9328,241 @@ declare class JavaMethod {
 // CT non-included //
 /////////////////////
 //#region
+declare class Client {
+  /**
+   * Get the [KeyBind] from an already existing
+   * Minecraft KeyBinding, else, return a new one.
+   *
+   * @param keyCode the keycode to search for, see Keyboard below. Ex. Keyboard.KEY_A
+   * @return the [KeyBind] from a Minecraft KeyBinding, or null if one doesn't exist
+   * @see [Keyboard](http://legacy.lwjgl.org/javadoc/org/lwjgl/input/Keyboard.html)
+   */
+  getKeyBindFromKey(
+    keyCode: number,
+    description?: string,
+    category?: string,
+  ): KeyBind | undefined;
+
+  /**
+   * Get the [KeyBind] from an already existing
+   * Minecraft KeyBinding, else, null.
+   *
+   * @param description the key binding's original description
+   * @return the key bind, or null if one doesn't exist
+   */
+  getKeyBindFromDescription(description: string): Keyboard | undefined;
+
+  static readonly INSTANCE: Client;
+  static readonly settings: Settings;
+  readonly INSTANCE: Client;
+  readonly settings: Settings;
+
+  getSettings(): Settings;
+  static getSettings(): Settings;
+
+  /**
+   * Gets Minecraft's Minecraft object
+   *
+   * @return The Minecraft object
+   */
+  getMinecraft(): MCMinecraft;
+  /**
+   * Gets Minecraft's Minecraft object
+   *
+   * @return The Minecraft object
+   */
+  static getMinecraft(): MCMinecraft;
+
+  /**
+   * Gets Minecraft's NetHandlerPlayClient object
+   *
+   * @return The NetHandlerPlayClient object
+   */
+  getConnection(): MCNetHandlerPlayClient | null;
+  /**
+   * Gets Minecraft's NetHandlerPlayClient object
+   *
+   * @return The NetHandlerPlayClient object
+   */
+  static getConnection(): MCNetHandlerPlayClient | null;
+
+  /**
+   * Quits the client back to the main menu.
+   * This acts just like clicking the "Disconnect" or "Save and quit to title" button.
+   */
+  disconnect(): void;
+  /**
+   * Quits the client back to the main menu.
+   * This acts just like clicking the "Disconnect" or "Save and quit to title" button.
+   */
+  static disconnect(): void;
+
+  /**
+   * Gets the Minecraft GuiNewChat object for the chat gui
+   *
+   * @return The GuiNewChat object for the chat gui
+   */
+  getChatGUI(): MCGuiNewChat;
+  /**
+   * Gets the Minecraft GuiNewChat object for the chat gui
+   *
+   * @return The GuiNewChat object for the chat gui
+   */
+  static getChatGUI(): MCGuiNewChat;
+
+  isInChat(): boolean;
+  static isInChat(): boolean;
+
+  getTabGui(): MCGuiPlayerTabOverlay;
+  static getTabGui(): MCGuiPlayerTabOverlay;
+
+  isInTab(): boolean;
+  static isInTab(): boolean;
+
+  /**
+   * Gets whether the Minecraft window is active
+   * and in the foreground of the user's screen.
+   *
+   * @return true if the game is active, false otherwise
+   */
+  isTabbedIn(): boolean;
+  /**
+   * Gets whether the Minecraft window is active
+   * and in the foreground of the user's screen.
+   *
+   * @return true if the game is active, false otherwise
+   */
+  static isTabbedIn(): boolean;
+
+  isControlDown(): boolean;
+  static isControlDown(): boolean;
+
+  isShiftDown(): boolean;
+  static isShiftDown(): boolean;
+
+  isAltDown(): boolean;
+  static isAltDown(): boolean;
+
+  getFps(): number;
+  static getFps(): number;
+
+  getVersion(): string;
+  static getVersion(): string;
+
+  getMaxMemory(): number;
+  static getMaxMemory(): number;
+
+  getTotalMemory(): number;
+  static getTotalMemory(): number;
+
+  getFreeMemory(): number;
+  static getFreeMemory(): number;
+
+  getMemoryUsage(): number;
+  static getMemoryUsage(): number;
+
+  getSystemTIme(): number;
+  static getSystemTIme(): number;
+
+  getMouseX(): number;
+  static getMouseX(): number;
+
+  getMouseY(): number;
+  static getMouseY(): number;
+
+  isInGui(): boolean;
+  static isInGui(): boolean;
+
+  /**
+   * Gets the chat message currently typed into the chat gui.
+   *
+   * @return A blank string if the gui isn't open, otherwise, the message
+   */
+  getCurrentChatMessage(): string;
+  /**
+   * Gets the chat message currently typed into the chat gui.
+   *
+   * @return A blank string if the gui isn't open, otherwise, the message
+   */
+  static getCurrentChatMessage(): string;
+
+  /**
+   * Sets the current chat message, if the chat gui is not open, one will be opened.
+   *
+   * @param message the message to put in the chat text box.
+   */
+  setCurrentChatMessage(message: string): void;
+  /**
+   * Sets the current chat message, if the chat gui is not open, one will be opened.
+   *
+   * @param message the message to put in the chat text box.
+   */
+  static setCurrentChatMessage(message: string): void;
+
+  sendPacket<T extends MCINetHandler>(packet: MCPacket<T>): void;
+  static sendPacket<T extends MCINetHandler>(packet: MCPacket<T>): void;
+
+  /**
+   * Display a title.
+   *
+   * @param title title text
+   * @param subtitle subtitle text
+   * @param fadeIn time to fade in
+   * @param time time to stay on screen
+   * @param fadeOut time to fade out
+   */
+  showTitle(
+    title: string,
+    subtitle: string,
+    fadeIn: number,
+    time: number,
+    fadeOut: number,
+  ): void;
+  /**
+   * Display a title.
+   *
+   * @param title title text
+   * @param subtitle subtitle text
+   * @param fadeIn time to fade in
+   * @param time time to stay on screen
+   * @param fadeOut time to fade out
+   */
+  static showTitle(
+    title: string,
+    subtitle: string,
+    fadeIn: number,
+    time: number,
+    fadeOut: number,
+  ): void;
+}
+declare namespace Client {
+  class currentGui {
+    /**
+     * Gets the Java class name of the currently open gui, for example, "GuiChest"
+     *
+     * @return the class name of the current gui
+     */
+    static getClassName(): string;
+
+    /**
+     * Gets the Minecraft gui class that is currently open
+     *
+     * @return the Minecraft gui
+     */
+    static get(): MCGuiScreen;
+
+    /**
+     * Closes the currently open gui
+     */
+    static close(): void;
+  }
+  class camera {
+    static getX(): double;
+    static getY(): double;
+    static getZ(): double;
+  }
+}
+
 declare class Console {
   clearConsole(): void;
 
