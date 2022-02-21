@@ -1505,6 +1505,9 @@ declare global {
     getUUID(): string;
     static getUUID(): string;
 
+    getUUIDObj(): JavaUUID;
+    static getUUIDObj(): JavaUUID;
+
     getHP(): float;
     static getHP(): float;
 
@@ -1764,17 +1767,26 @@ declare global {
     static setTabDisplayName(textComponent: TextComponent): void;
 
     /**
-     * Gets the inventory the user currently has open, i.e. a chest.
-     *
-     * @return the currently opened inventory
+     * @deprecated Use the better named method getContainer
      */
-    getOpenedInventory(): Inventory | null;
+    getOpenedInventory(): Inventory | undefined;
     /**
-     * Gets the inventory the user currently has open, i.e. a chest.
-     *
-     * @return the currently opened inventory
+     * @deprecated Use the better named method getContainer
      */
-    static getOpenedInventory(): Inventory | null;
+    static getOpenedInventory(): Inventory | undefined;
+
+    /**
+     * Gets the container the user currently has open, i.e. a chest.
+     *
+     * @return the currently opened container
+     */
+    getContainer(): Inventory | undefined;
+    /**
+     * Gets the container the user currently has open, i.e. a chest.
+     *
+     * @return the currently opened container
+     */
+    static getContainer(): Inventory | undefined;
 
     /**
      * Draws the player in the GUI
