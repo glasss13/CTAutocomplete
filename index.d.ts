@@ -6821,17 +6821,22 @@ declare global {
      * would result in the command being /test
      *
      * @param commandName The command name
+     * @param overrideExisting Whether existing commands with the same name should be overridden
      * @return the trigger for additional modification
      */
-    setCommandName(commandName: string): OnCommandTrigger;
+    setCommandName(
+      commandName: string,
+      overrideExisting?: boolean,
+    ): OnCommandTrigger;
 
     /**
      * Alias for [setCommandName]
      *
      * @param commandName The command name
+     * * @param overrideExisting Whether existing commands with the same name should be overridden
      * @return the trigger for additional modification
      */
-    setName(commandName: string): OnCommandTrigger;
+    setName(commandName: string, overrideExisting?: boolean): OnCommandTrigger;
   }
 }
 
