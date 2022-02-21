@@ -5793,16 +5793,28 @@ declare global {
      * @param importName name of the import
      * @param fileName name of the file
      * @param toWrite string to write in file
+     * @param recursive whether to create folders to the file location if they don't exist
      */
-    write(importName: string, fileName: string, toWrite: string): void;
+    write(
+      importName: string,
+      fileName: string,
+      toWrite: string,
+      recursive?: boolean,
+    ): void;
     /**
      * Writes a file to folder in modules.
      *
      * @param importName name of the import
      * @param fileName name of the file
      * @param toWrite string to write in file
+     * @param recursive whether to create folders to the file location if they don't exist
      */
-    static write(importName: string, fileName: string, toWrite: string): void;
+    static write(
+      importName: string,
+      fileName: string,
+      toWrite: string,
+      recursive?: boolean,
+    ): void;
 
     /**
      * Writes a file to anywhere on the system.
@@ -5810,16 +5822,22 @@ declare global {
      *
      * @param fileLocation the location and file name
      * @param toWrite string to write in file
+     * @param recursive whether to create folders to the file location if they don't exist
      */
-    write(fileLocation: string, toWrite: string): void;
+    write(fileLocation: string, toWrite: string, recursive?: boolean): void;
     /**
      * Writes a file to anywhere on the system.
      * Use "./" for the ".minecraft" folder.
      *
      * @param fileLocation the location and file name
      * @param toWrite string to write in file
+     * @param recursive whether to create folders to the file location if they don't exist
      */
-    static write(fileLocation: string, toWrite: string): void;
+    static write(
+      fileLocation: string,
+      toWrite: string,
+      recursive?: boolean,
+    ): void;
 
     /**
      * Writes a file to folder in modules.
