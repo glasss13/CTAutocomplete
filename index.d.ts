@@ -10114,6 +10114,10 @@ declare class TriggerType {
   static RenderFood: TriggerType;
   static RenderMountHealth: TriggerType;
   static RenderAir: TriggerType;
+  static RenderPortal: TriggerType;
+  static RenderJumpBar: TriggerType;
+  static RenderChat: TriggerType;
+  static RenderHelmet: TriggerType;
   static RenderEntity: TriggerType;
   static PostGuiRender: TriggerType;
   static PreItemRender: TriggerType;
@@ -10749,6 +10753,84 @@ declare interface ITriggerRegister {
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
   ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the portal effect is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderPortal(
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the jump bar is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderJumpBar(
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the chat is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderChat(
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player's helmet overlay is drawn.
+   * This triggers when a pumpkin is on the player's head
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderHelmet(
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
   /**
    * Registers a new trigger that runs before the block highlight box is drawn.
    *
@@ -11964,6 +12046,87 @@ declare interface IRegister {
    */
   (
     triggerType: "renderAir",
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the portal effect is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderPortal",
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the jump bar is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderJumpBar",
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the chat is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderChat",
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player's helmet overlay is drawn.
+   * This triggers when a pumpkin is on the player's head
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderHelmet",
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
