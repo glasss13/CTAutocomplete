@@ -4836,11 +4836,11 @@ declare global {
     /**
      * Sets a page of the book to the specified message.
      *
-     * @param pageNumber the number of the page to set
+     * @param pageIndex the index of the page to set
      * @param message the message to set the page to
      * @return the current book to allow method chaining
      */
-    setPage(pageNumber: int, message: Message): Book;
+    setPage(pageIndex: int, message: Message): Book;
 
     updateBookScreen(pages: NBTTagList): void;
 
