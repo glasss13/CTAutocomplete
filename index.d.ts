@@ -5511,10 +5511,16 @@ declare global {
         button: int,
         pressed: boolean,
       ) => void,
-    ): OnTrigger;
+    ): OnRegularTrigger;
+
     registerHovered(
       method: (mouseX: number, mouseY: number) => void,
-    ): OnTrigger;
+    ): OnRegularTrigger;
+
+    registerMouseLeave(
+      method: (mouseX: number, mouseY: number) => void,
+    ): OnRegularTrigger;
+
     registerDragged(
       method: (
         xDist: number,
@@ -5523,7 +5529,7 @@ declare global {
         mouseY: number,
         button: int,
       ) => void,
-    ): OnTrigger;
+    ): OnRegularTrigger;
 
     drawLeft(
       x: float,
