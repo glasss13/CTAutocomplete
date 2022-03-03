@@ -37,6 +37,7 @@ declare global {
   const GL45: JavaGL45;
 
   // obfuscated type types
+  type MCTScorePlayerTeam = MCScorePlayerTeam;
   type MCTTileEntity = MCTileEntity;
   type MCTGuiContainer = MCGuiContainer;
   type MCTSlot = MCSlot;
@@ -1395,6 +1396,9 @@ declare global {
      * @return The Minecraft EntityPlayerSP object representing the user
      */
     static getPlayer(): MCEntityPlayerSP;
+
+    getTeam(): Team | null;
+    static getTeam(): Team | null;
 
     getX(): double;
     static getX(): double;
@@ -6405,6 +6409,8 @@ declare global {
      */
     getItemInSlot(slot: int): Item;
 
+    getTeam(): Team | null;
+
     /**
      * Gets the display name for this player,
      * i.e. the name shown in tab list and in the player's nametag.
@@ -6874,6 +6880,10 @@ declare interface Java {
 // obfuscated classes //
 ////////////////////////
 //#region
+declare class MCScorePlayerTeam {
+  class: JavaClass<MCScorePlayerTeam>;
+  static class: JavaClass<typeof MCTileEntity>;
+}
 
 declare class MCTileEntity {
   class: JavaClass<MCTileEntity>;
@@ -9379,6 +9389,88 @@ declare class JavaMethod {
 // CT non-included //
 /////////////////////
 //#region
+declare class Team {
+  constructor(team: MCScorePlayerTeam);
+
+  readonly team: MCScorePlayerTeam;
+
+  getTeam(): MCScorePlayerTeam;
+
+  /**
+   * Gets the registered name of the team
+   */
+  getRegisteredName(): string;
+
+  /**
+   * Gets the display name of the team
+   */
+  getName(): string;
+
+  /**
+   * Sets the display name of the team
+   * @param name the new display name
+   * @return the team for method chaining
+   */
+  setName(name: string): Team;
+
+  /**
+   * Gets the list of names on the team
+   */
+  getMembers(): String[];
+
+  /**
+   * Gets the team prefix
+   */
+  getPrefix(): string;
+
+  /**
+   * Sets the team prefix
+   * @param prefix the prefix to set
+   * @return the team for method chaining
+   */
+  setPrefix(prefix: string): Team;
+
+  /**
+   * Gets the team suffix
+   */
+  getSuffix(): string;
+
+  /**
+   * Sets the team suffix
+   * @param suffix the suffix to set
+   * @return the team for method chaining
+   */
+  setSuffix(suffix: string): Team;
+
+  /**
+   * Gets the team's friendly fire setting
+   */
+  getFriendlyFire(): boolean;
+
+  /**
+   * Gets whether the team can see invisible players on the same team
+   */
+  canSeeInvisibleTeammates(): boolean;
+
+  /**
+   * Gets the team's name tag visibility
+   */
+  getNameTagVisibility():
+    | "always"
+    | "never"
+    | "hideForOtherTeams"
+    | "hideForOwnTeam";
+
+  /**
+   * Gets the team's death message visibility
+   */
+  getDeathMessageVisibility():
+    | "always"
+    | "never"
+    | "hideForOtherTeams"
+    | "hideForOwnTeam";
+}
+
 declare class Client {
   /**
    * Get the [KeyBind] from an already existing
