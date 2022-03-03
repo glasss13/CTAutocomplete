@@ -3414,6 +3414,21 @@ declare global {
     static getTitle(): string;
 
     /**
+     * Sets the scoreboard title.
+     *
+     * @param title the new title
+     * @return the scoreboard title
+     */
+    setTitle(title: string): void;
+    /**
+     * Sets the scoreboard title.
+     *
+     * @param title the new title
+     * @return the scoreboard title
+     */
+    static setTitle(title: string): void;
+
+    /**
      * Get all currently visible strings on the scoreboard. (excluding title)
      * Be aware that this can contain color codes.
      *
