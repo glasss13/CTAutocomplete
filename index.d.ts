@@ -10118,6 +10118,7 @@ declare class TriggerType {
   static RenderJumpBar: TriggerType;
   static RenderChat: TriggerType;
   static RenderHelmet: TriggerType;
+  static RenderScoreboard: TriggerType;
   static RenderEntity: TriggerType;
   static PostGuiRender: TriggerType;
   static PreItemRender: TriggerType;
@@ -10830,6 +10831,22 @@ declare interface ITriggerRegister {
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
   ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the scoreboard is drawn.
+   *
+   * Passes through one argument:
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderScoreboard(
+    method: (event: CancellableEvent) => void,
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs before the block highlight box is drawn.
@@ -12131,6 +12148,23 @@ declare interface IRegister {
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
   ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the scoreboard is drawn.
+   *
+   * Passes through one argument:
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderScoreboard",
+    method: (event: CancellableEvent) => void,
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs before the block highlight box is drawn.
