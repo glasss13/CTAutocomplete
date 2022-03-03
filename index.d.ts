@@ -949,12 +949,12 @@ declare global {
     pause(): void;
 
     /**
-     * Completely stops the song
+     * Completely stops the sound
      */
     stop(): void;
 
     /**
-     * I really don't know what this does
+     * Immediately restarts the sound
      */
     rewind(): void;
   }
