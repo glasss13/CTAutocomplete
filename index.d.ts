@@ -6336,7 +6336,7 @@ declare global {
     drawCreativeTabHoveringString(text: string, mouseX: int, mouseY: int): void;
 
     /**
-     * Draws hovering tex that doesn't follow the mouse
+     * Draws hovering text that doesn't follow the mouse
      *
      * @param text the text's to draw
      * @param x X position of the text
@@ -6709,7 +6709,7 @@ declare global {
   }
 }
 
-declare interface javaTypePath {
+declare interface JavaTypePath {
   // obfuscated paths
   (
     path: "net.minecraft.client.gui.inventory.GuiContainer",
@@ -6846,7 +6846,7 @@ declare interface javaTypePath {
 }
 
 declare interface Java {
-  type: javaTypePath;
+  type: JavaTypePath;
 }
 
 ////////////////////////
