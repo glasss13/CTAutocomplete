@@ -2921,6 +2921,9 @@ declare global {
      */
     static playRecord(name: string, x: double, y: double, z: double): void;
 
+    stopAllSounds(): void;
+    static stopAllSounds(): void;
+
     isRaining(): boolean;
     static isRaining(): boolean;
 
@@ -4255,7 +4258,7 @@ declare global {
      * Checks whether the inventory contains an item with ID.
      *
      * @param id the ID of the item to match
-     * @retun whether the inventory contains an item with ID
+     * @return whether the inventory contains an item with ID
      */
     contains(id: int): boolean;
 
