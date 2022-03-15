@@ -1338,6 +1338,28 @@ declare global {
 
     get(key: string): NBTBase;
 
+    setNBTBase(key: string, value: NBTBase): NBTTagCompound;
+
+    setNBTBase(key: string, value: MCNBTBase): NBTTagCompound;
+
+    setByte(key: string, value: number): NBTTagCompound;
+
+    setShort(key: string, value: number): NBTTagCompound;
+
+    setInteger(key: string, value: number): NBTTagCompound;
+
+    setLong(key: string, value: number): NBTTagCompound;
+
+    setFloat(key: string, value: number): NBTTagCompound;
+
+    setDouble(key: string, value: number): NBTTagCompound;
+
+    setString(key: string, value: string): NBTTagCompound;
+
+    setByteArray(key: string, value: number[]): NBTTagCompound;
+
+    setBoolean(key: string, value: boolean): NBTTagCompound;
+
     set(key: string, value: NBTDataType): NBTTagCompound;
 
     removeTag(key: string): NBTTagCompound;
