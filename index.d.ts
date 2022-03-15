@@ -37,6 +37,8 @@ declare global {
   const GL45: JavaGL45;
 
   // obfuscated type types
+  type MCTScoreboard = MCScoreboard;
+  type MCTScoreObjective = MCScoreObjective;
   type MCTScorePlayerTeam = MCScorePlayerTeam;
   type MCTTileEntity = MCTileEntity;
   type MCTGuiContainer = MCGuiContainer;
@@ -3396,14 +3398,21 @@ declare global {
 
   class Scoreboard {
     readonly INSTANCE: Scoreboard;
+
+    getScoreboard(): MCScoreboard | null;
+    static getScoreboard(): MCScoreboard | null;
+
+    getSidebar(): MCScoreObjective | null;
+    static getSidebar(): MCScoreObjective | null;
+
     /**
-     * Alias for [Scoreboard.getTitle].
+     * Alias for [getTitle].
      *
      * @return the scoreboard title
      */
     getScoreboardTitle(): string;
     /**
-     * Alias for [Scoreboard.getTitle].
+     * Alias for [getTitle].
      *
      * @return the scoreboard title
      */
@@ -6887,9 +6896,19 @@ declare interface Java {
 // obfuscated classes //
 ////////////////////////
 //#region
+declare class MCScoreboard {
+  class: JavaClass<MCScoreboard>;
+  static class: JavaClass<typeof MCScoreboard>;
+}
+
+declare class MCScoreObjective {
+  class: JavaClass<MCScoreObjective>;
+  static class: JavaClass<typeof MCScoreObjective>;
+}
+
 declare class MCScorePlayerTeam {
   class: JavaClass<MCScorePlayerTeam>;
-  static class: JavaClass<typeof MCTileEntity>;
+  static class: JavaClass<typeof MCScorePlayerTeam>;
 }
 
 declare class MCTileEntity {
