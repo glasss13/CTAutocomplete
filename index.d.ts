@@ -1358,6 +1358,10 @@ declare global {
 
     set(id: int, nbt: MCNBTBase): void;
 
+    insertTag(index: number, nbt: NBTBase): NBTTagList;
+
+    insertTag(index: number, nbt: MCNBTBase): NBTTagList;
+
     removeTag(index: int): MCNBTBase;
 
     getCompoundTagAt(index: int): MCNBTTagCompound;
