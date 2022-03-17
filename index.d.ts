@@ -5514,9 +5514,16 @@ declare global {
 
     clearDisplays(): void;
 
-    renderDisplays(event: ForgeRenderGameOverlayEvent): void;
+    renderDisplayOverlay(event: ForgeRenderGameOverlayEvent): void;
+
+    renderDisplayGui(event: ForgeGuiScreenEvent.DrawScreenEvent.Post): void;
   }
   namespace DisplayHandler {
+    enum RegisterType {
+      RENDER_OVERLAY,
+      POST_GUI_RENDER,
+    }
+
     enum Background {
       NONE,
       FULL,
@@ -5648,7 +5655,8 @@ declare global {
     getLines(): DisplayLine[];
     setLines(lines: DisplayLine[]): Display;
 
-    addLine(index: int, line: string | DisplayLine): void;
+    addLine(line: string | DisplayLine): Display;
+    addLine(index: int, line: string | DisplayLine): Display;
 
     addLines(...lines: string[] | DisplayLine[]): void;
 
@@ -5669,6 +5677,28 @@ declare global {
     getHeight(): float;
     getMinWidth(): float;
     setMinWidth(minWidth: float): Display;
+
+    /**
+     * Gets the type of register the display will render under.
+     *
+     * The returned value will be a DisplayHandler.RegisterType
+     *      renderOverlayEvent: render overlay
+     *      postGuiRenderEvent: post gui render
+     *
+     * @return the register type
+     */
+    getRegisterType(): DisplayHandler.RegisterType;
+
+    /**
+     * Sets the type of register the display will render under.
+     *
+     * Possible input values are:.
+     *      renderOverlayEvent: render overlay
+     *      postGuiRenderEvent: post gui render
+     */
+    setRegisterType(
+      registerType: string | DisplayHandler.RegisterType,
+    ): Display;
 
     render(): void;
 
