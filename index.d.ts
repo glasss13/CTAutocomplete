@@ -6541,6 +6541,13 @@ declare global {
     setAlpha(a: float): Particle;
 
     /**
+     * Returns the color of the Particle
+     *
+     * @return A [java.awt.Color] with the R, G, B and A values
+     */
+    getColor(): JavaColor;
+
+    /**
      * Sets the amount of ticks this particle will live for
      *
      * @param maxAge the particle's max age (in ticks)
