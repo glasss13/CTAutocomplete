@@ -10317,6 +10317,7 @@ declare class TriggerType {
   static RenderChat: TriggerType;
   static RenderHelmet: TriggerType;
   static RenderScoreboard: TriggerType;
+  static RenderTitle: TriggerType;
   static RenderEntity: TriggerType;
   static PostGuiRender: TriggerType;
   static PreItemRender: TriggerType;
@@ -11044,6 +11045,24 @@ declare interface ITriggerRegister {
    */
   registerRenderScoreboard(
     method: (event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the title and subtitle are drawn.
+   *
+   * Passes through three arguments:
+   * - The title
+   * - The subtitle
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderTitle(
+    method: (title: string, subtitle: string, event: CancellableEvent) => void,
   ): OnRegularTrigger;
 
   /**
@@ -12362,6 +12381,25 @@ declare interface IRegister {
   (
     triggerType: "renderScoreboard",
     method: (event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the title and subtitle are drawn.
+   *
+   * Passes through three arguments:
+   * - The title
+   * - The subtitle
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderTitle",
+    method: (title: string, subtitle: string, event: CancellableEvent) => void,
   ): OnRegularTrigger;
 
   /**
