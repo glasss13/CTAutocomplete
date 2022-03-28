@@ -10265,79 +10265,79 @@ declare class chat {
 // "enum class"
 declare class TriggerType {
   // client
-  static Chat: TriggerType;
   static ActionBar: TriggerType;
-  static Tick: TriggerType;
-  static Step: TriggerType;
-  static GameUnload: TriggerType;
-  static GameLoad: TriggerType;
-  static Clicked: TriggerType;
-  static Scrolled: TriggerType;
-  static Dragged: TriggerType;
-  static GuiOpened: TriggerType;
-  static ScreenshotTaken: TriggerType;
-  static PickupItem: TriggerType;
-  static DropItem: TriggerType;
-  static MessageSent: TriggerType;
-  static Tooltip: TriggerType;
-  static PlayerInteract: TriggerType;
   static AttackEntity: TriggerType;
-  static HitBlock: TriggerType;
-  static GuiRender: TriggerType;
-  static GuiKey: TriggerType;
-  static GuiMouseClick: TriggerType;
-  static GuiMouseRelease: TriggerType;
-  static GuiMouseDrag: TriggerType;
+  static Chat: TriggerType;
   static ChatComponentClicked: TriggerType;
   static ChatComponentHovered: TriggerType;
-  static PacketSent: TriggerType;
-  static PacketReceived: TriggerType;
-  static ServerConnect: TriggerType;
-  static ServerDisconnect: TriggerType;
+  static Clicked: TriggerType;
+  static Dragged: TriggerType;
+  static DropItem: TriggerType;
+  static GameLoad: TriggerType;
+  static GameUnload: TriggerType;
   static GuiClosed: TriggerType;
   static GuiDrawBackground: TriggerType;
+  static GuiKey: TriggerType;
+  static GuiMouseClick: TriggerType;
+  static GuiMouseDrag: TriggerType;
+  static GuiMouseRelease: TriggerType;
+  static GuiOpened: TriggerType;
+  static GuiRender: TriggerType;
+  static HitBlock: TriggerType;
+  static MessageSent: TriggerType;
+  static PacketReceived: TriggerType;
+  static PacketSent: TriggerType;
+  static PickupItem: TriggerType;
+  static PlayerInteract: TriggerType;
+  static ScreenshotTaken: TriggerType;
+  static Scrolled: TriggerType;
+  static ServerConnect: TriggerType;
+  static ServerDisconnect: TriggerType;
+  static Step: TriggerType;
+  static Tick: TriggerType;
+  static Tooltip: TriggerType;
 
   // rendering
-  static RenderWorld: TriggerType;
   static BlockHighlight: TriggerType;
+  static PostGuiRender: TriggerType;
+  static PostRenderEntity: TriggerType;
+  static PostRenderTileEntity: TriggerType;
+  static PreItemRender: TriggerType;
+  static RenderAir: TriggerType;
+  static RenderArmor: TriggerType;
+  static RenderBossHealth: TriggerType;
+  static RenderChat: TriggerType;
+  static RenderCrosshair: TriggerType;
+  static RenderDebug: TriggerType;
+  static RenderEntity: TriggerType;
+  static RenderExperience: TriggerType;
+  static RenderFood: TriggerType;
+  static RenderHealth: TriggerType;
+  static RenderHelmet: TriggerType;
+  static RenderHotbar: TriggerType;
+  static RenderJumpBar: TriggerType;
+  static RenderMountHealth: TriggerType;
   static RenderOverlay: TriggerType;
   static RenderPlayerList: TriggerType;
-  static RenderBossHealth: TriggerType;
-  static RenderDebug: TriggerType;
-  static RenderCrosshair: TriggerType;
-  static RenderHotbar: TriggerType;
-  static RenderExperience: TriggerType;
-  static RenderArmor: TriggerType;
-  static RenderHealth: TriggerType;
-  static RenderFood: TriggerType;
-  static RenderMountHealth: TriggerType;
-  static RenderAir: TriggerType;
   static RenderPortal: TriggerType;
-  static RenderJumpBar: TriggerType;
-  static RenderChat: TriggerType;
-  static RenderHelmet: TriggerType;
   static RenderScoreboard: TriggerType;
-  static RenderTitle: TriggerType;
-  static RenderEntity: TriggerType;
-  static PostGuiRender: TriggerType;
-  static PreItemRender: TriggerType;
   static RenderSlotHighlight: TriggerType;
-  static PostRenderEntity: TriggerType;
   static RenderTileEntity: TriggerType;
-  static PostRenderTileEntity: TriggerType;
+  static RenderTitle: TriggerType;
+  static RenderWorld: TriggerType;
 
   // world
+  static BlockBreak: TriggerType;
+  static EntityDamage: TriggerType;
+  static EntityDeath: TriggerType;
+  static NoteBlockChange: TriggerType;
+  static NoteBlockPlay: TriggerType;
   static PlayerJoin: TriggerType;
   static PlayerLeave: TriggerType;
   static SoundPlay: TriggerType;
-  static NoteBlockPlay: TriggerType;
-  static NoteBlockChange: TriggerType;
+  static SpawnParticle: TriggerType;
   static WorldLoad: TriggerType;
   static WorldUnload: TriggerType;
-  static BlockBreak: TriggerType;
-  static SpawnParticle: TriggerType;
-  static EntityDeath: TriggerType;
-  static EntityDamage: TriggerType;
 
   // misc
   static Command: TriggerType;
@@ -10494,28 +10494,6 @@ declare interface ILoader {
 // TODO: Look at this because its awful and there has to be a way to not have to have so much duplicate code
 declare interface ITriggerRegister {
   /**
-   * Registers a new trigger that runs before a chat message is received.
-   *
-   * Passes through multiple arguments:
-   * - Any number of chat criteria variables
-   * - The chat event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnChatTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnChatTrigger.setChatCriteria] Sets the chat criteria
-   * - [OnChatTrigger.setParameter] Sets the chat parameter
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * A NOTE ON AUTOCOMPLETE: DUE TO LIMITATIONS WITH REST PARAMETERS, TYPINGS FOR THE PARAMETERS OF THE FUNCTION ARE SLIGHTLY OFF
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerChat(
-    method: (...args: (string | ForgeClientChatReceivedEvent)[]) => void,
-  ): OnChatTrigger;
-
-  /**
    * Registers a new trigger that runs before an action bar message is received.
    *
    * Passes through multiple arguments:
@@ -10538,7 +10516,11 @@ declare interface ITriggerRegister {
   ): OnChatTrigger;
 
   /**
-   * Registers a trigger that runs before the world loads.
+   * Registers a new trigger that runs whenever the player has left clicked on an entity
+   *
+   * Passes through three arguments:
+   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.entity.Entity] that is being hit
+   * - The event, which can be cancelled
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -10546,9 +10528,39 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerWorldLoad(method: () => void): OnRegularTrigger;
+  registerAttackEntity(
+    method: (entity: Entity, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
   /**
-   * Registers a new trigger that runs before the world unloads.
+   * Registers a new trigger that runs before a chat message is received.
+   *
+   * Passes through multiple arguments:
+   * - Any number of chat criteria variables
+   * - The chat event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnChatTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnChatTrigger.setChatCriteria] Sets the chat criteria
+   * - [OnChatTrigger.setParameter] Sets the chat parameter
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * A NOTE ON AUTOCOMPLETE: DUE TO LIMITATIONS WITH REST PARAMETERS, TYPINGS FOR THE PARAMETERS OF THE FUNCTION ARE SLIGHTLY OFF
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerChat(
+    method: (...args: (string | ForgeClientChatReceivedEvent)[]) => void,
+  ): OnChatTrigger;
+
+  /**
+   * Registers a new trigger that runs whenever the user clicks on a clickable
+   * chat component
+   *
+   * Passes through two arguments:
+   * - The [com.chattriggers.ctjs.minecraft.objects.message.TextComponent]
+   * - The event, which can be cancelled
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -10556,7 +10568,28 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerWorldUnload(method: () => void): OnRegularTrigger;
+  registerChatComponentClicked(
+    method: (component: TextComponent, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs whenever the user hovers over a
+   * hoverable chat component
+   *
+   * Passes through two arguments:
+   * - The [com.chattriggers.ctjs.minecraft.objects.message.TextComponent]
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerChatComponentHovered(
+    method: (component: TextComponent, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
   /**
    * Registers a new trigger that runs before a mouse button is being pressed or released.
    *
@@ -10580,23 +10613,7 @@ declare interface ITriggerRegister {
       isButtonDown: boolean,
     ) => void,
   ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs before the mouse is scrolled.
-   *
-   * Passes through three arguments:
-   * - The mouse x position
-   * - The mouse y position
-   * - The scroll direction: 1, -1
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerScrolled(
-    method: (mouseX: float, mouseY: float, direction: int) => void,
-  ): OnRegularTrigger;
+
   /**
    * Registers a new trigger that runs while a mouse button is being held down.
    *
@@ -10622,419 +10639,15 @@ declare interface ITriggerRegister {
       button: int,
     ) => void,
   ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs before a sound is played.
-   *
-   * Passes through six arguments:
-   * - The sound event's position
-   * - The sound event's name
-   * - The sound event's volume
-   * - The sound event's pitch
-   * - The sound event's category's name
-   * - The sound event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnSoundPlayTrigger.setCriteria] Sets the sound name criteria
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerSoundPlay(
-    method: (
-      position: Vector3f,
-      name: string,
-      vol: float,
-      pitch: float,
-      category: MCSoundCategory,
-      event: ForgePlaySoundEvent,
-    ) => void,
-  ): OnSoundPlayTrigger;
-  /**
-   * Registers a new trigger that runs before a noteblock is played.
-   *
-   * Passes through four arguments:
-   * - The note block play event's Vector3f position
-   * - The note block play event's note's name
-   * - The note block play event's octave
-   * - The note block play event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerNoteBlockPlay(
-    method: (
-      position: Vector3f,
-      name: string,
-      octave: ForgeNoteBlockEvent.Octave,
-      event: ForgeNoteBlockEvent.Play,
-    ) => void,
-  ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs before a noteblock is changed.
-   *
-   * Passes through four arguments:
-   * - The note block change event's Vector3f position
-   * - The note block change event's note's name
-   * - The note block change event's octave
-   * - The note block change event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerNoteBlockChange(
-    method: (
-      position: Vector3f,
-      name: string,
-      octave: ForgeNoteBlockEvent.Octave,
-      event: ForgeNoteBlockEvent.Change,
-    ) => void,
-  ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs before every game tick.
-   *
-   * Passes through one argument:
-   * - Ticks elapsed
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerTick(method: (elapsed: int) => void): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs in predictable intervals. (60 per second by default)
-   *
-   * Passes through one argument:
-   * - Steps elapsed
-   *
-   * Available modifications:
-   * - [OnStepTrigger.setFps] Sets the fps, i.e. how many times this trigger will fire
-   *      per second
-   * - [OnStepTrigger.setDelay] Sets the delay in seconds, i.e. how many seconds it takes
-   *      to fire. Overrides [OnStepTrigger.setFps].
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerStep(method: (elapsed: long) => void): OnStepTrigger;
-  /**
-   * Registers a new trigger that runs before the world is drawn.
-   *
-   * Passes through one argument:
-   * - Partial ticks elapsed
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderWorld(method: (partialTicks: long) => void): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs before the overlay is drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which cannot be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderOverlay(
-    method: (event: ForgeRenderGameOverlayEvent) => void,
-  ): OnRenderTrigger;
-  /**
-   * Registers a new trigger that runs before the player list is being drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderPlayerList(
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-  /**
-   * Registers a new trigger that runs before the crosshair is being drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderCrosshair(
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-  /**
-   * Registers a trigger that runs before the debug screen is being drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderDebug(
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-  /**
-   * Registers a new trigger that runs before the boss health bar is being drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderBossHealth(
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-  /**
-   * Registers a new trigger that runs before the player's health is being drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderHealth(
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-  /**
-   * Registers a new trigger that runs before the player's armor bar is drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderArmor(
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-  /**
-   * Registers a new trigger that runs before the player's food is being drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderFood(
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-  /**
-   * Registers a new trigger that runs before the player's mount's health is being drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderMountHealth(
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-  /**
-   * Registers a new trigger that runs before the player's experience is being drawn.
-   *
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderExperience(
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-  /**
-   * Registers a new trigger that runs before the player's hotbar is drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderHotbar(
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-  /**
-   * Registers a new trigger that runs before the player's air level is drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderAir(
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
 
   /**
-   * Registers a new trigger that runs before the portal effect is drawn.
+   * Registers a new trigger that runs before an item is dropped.
    *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderPortal(
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a new trigger that runs before the jump bar is drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderJumpBar(
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a new trigger that runs before the chat is drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderChat(
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a new trigger that runs before the player's helmet overlay is drawn.
-   * This triggers when a pumpkin is on the player's head
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderHelmet(
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a new trigger that runs before the scoreboard is drawn.
-   *
-   * Passes through one argument:
+   * Passes through five arguments:
+   * - The [Item] that is dropped up
+   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.PlayerMP] that dropped the item
+   * - The item's position vector
+   * - The item's motion vector
    * - The event, which can be cancelled
    *
    * Available modifications:
@@ -11043,44 +10656,10 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerRenderScoreboard(
-    method: (event: CancellableEvent) => void,
+  registerDropItem(
+    method: (item: Item, player: PlayerMP, event: CancellableEvent) => void,
   ): OnRegularTrigger;
 
-  /**
-   * Registers a new trigger that runs before the title and subtitle are drawn.
-   *
-   * Passes through three arguments:
-   * - The title
-   * - The subtitle
-   * - The event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderTitle(
-    method: (title: string, subtitle: string, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs before the block highlight box is drawn.
-   *
-   * Passes through two arguments:
-   * - The draw block highlight event's position
-   * - The draw block highlight event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerDrawBlockHighlight(
-    method: (position: Vector3f, event: ForgeDrawBlockHighlightEvent) => void,
-  ): OnRegularTrigger;
   /**
    * Registers a new trigger that runs after the game loads.
    *
@@ -11094,6 +10673,7 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerGameLoad(method: () => void): OnRegularTrigger;
+
   /**
    * Registers a new trigger that runs before the game unloads.
    *
@@ -11106,20 +10686,138 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerGameUnload(method: () => void): OnRegularTrigger;
+
   /**
-   * Registers a new command that will run the method provided.
+   * Registers a new trigger that runs when a gui is closed.
    *
-   * Passes through multiple arguments:
-   * - The arguments supplied to the command by the user
+   * Passes through one argument:
+   * - The gui that was closed
    *
    * Available modifications:
-   * - [OnCommandTrigger.setCommandName] Sets the command name
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerCommand(method: (...args: string[]) => void): OnCommandTrigger;
+  registerGuiClosed(method: (event: MCGuiScreen) => void): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the gui background is drawn
+   * This is useful for drawing custom backgrounds.
+   *
+   * Passes through one argument:
+   * - The [GuiScreen] that is being drawn
+   *
+   */
+  registerGuiDrawBackground(
+    method: (gui: MCGuiScreen, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs whenever a key is typed with a gui open
+   *
+   * Passes through four arguments:
+   * - The character pressed (eg. 'd')
+   * - The key code pressed (eg. 41)
+   * - The gui
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerGuiKey(
+    method: (
+      char: string,
+      keyCode: int,
+      gui: MCGuiScreen,
+      event: CancellableEvent,
+    ) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs whenever the mouse is clicked with a
+   * gui open
+   *
+   * Passes through five arguments:
+   * - The mouse x position
+   * - The mouse y position
+   * - The mouse button
+   * - The gui
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerGuiMouseClick(
+    method: (
+      mouseX: int,
+      mouseY: int,
+      mouseButton: int,
+      gui: MCGuiScreen,
+      event: CancellableEvent,
+    ) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs whenever a mouse button held and dragged
+   * with a gui open
+   *
+   * Passes through five arguments:
+   * - The mouse x position
+   * - The mouse y position
+   * - The mouse button
+   * - The gui
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerGuiMouseDrag(
+    method: (
+      mouseX: int,
+      mouseY: int,
+      mouseButton: int,
+      gui: MCGuiScreen,
+      event: CancellableEvent,
+    ) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs whenever a mouse button is released
+   * with a gui open
+   *
+   * Passes through five arguments:
+   * - The mouse x position
+   * - The mouse y position
+   * - The mouse button
+   * - The gui
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerGuiMouseRelease(
+    method: (
+      mouseX: int,
+      mouseY: int,
+      mouseButton: int,
+      gui: MCGuiScreen,
+      event: CancellableEvent,
+    ) => void,
+  ): OnRegularTrigger;
+
   /**
    * Registers a new trigger that runs when a new gui is first opened.
    *
@@ -11137,10 +10835,12 @@ declare interface ITriggerRegister {
   ): OnRegularTrigger;
 
   /**
-   * Registers a new trigger that runs when a gui is closed.
+   * Registers a new trigger that runs as a gui is rendered
    *
-   * Passes through one argument:
-   * - The gui that was closed
+   * Passes through three arguments:
+   * - The mouse x position
+   * - The mouse y position
+   * - The gui
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -11148,15 +10848,19 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerGuiClosed(method: (event: MCGuiScreen) => void): OnRegularTrigger;
+  registerGuiRender(
+    method: (mouseX: int, mouseY: int, gui: MCGuiScreen) => void,
+  ): OnRegularTrigger;
+
   /**
-   * Registers a new trigger that runs when a player joins the world.
+   * Registers a new trigger that runs whenever a block is left clicked
    *
-   * Maximum is one per tick. Any extras will queue and run in later ticks.
-   * This trigger is asynchronous.
+   * Note: this is not continuously called while the block is being broken, only once
+   * when first left clicked.
    *
-   * Passes through one argument:
-   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.PlayerMP] object
+   * Passes through two arguments:
+   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.block.Block] being hit
+   * - The event, which can be cancelled
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -11164,15 +10868,16 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerPlayerJoined(method: (player: PlayerMP) => void): OnRegularTrigger;
+  registerHitBlock(
+    method: (block: Block, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
   /**
-   * Registers a new trigger that runs when a player leaves the world.
+   * Registers a new trigger that runs before a message is sent in chat.
    *
-   * Maximum is one per tick. Any extras will queue and run in later ticks.
-   * This trigger is asynchronous.
-   *
-   * Passes through one argument:
-   * - The name of the player that left
+   * Passes through two arguments:
+   * - The message
+   * - The message event, which can be cancelled
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -11180,7 +10885,44 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerPlayerLeft(method: (name: string) => void): OnRegularTrigger;
+  registerMessageSent(
+    method: (message: string, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs whenever a packet is sent to the client from the server
+   *
+   * Passes through two arguments:
+   * - The packet
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerPacketReceived(
+    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs whenever a packet is sent from the client to the server
+   *
+   * Passes through two arguments:
+   * - The packet
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerPacketSent(
+    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
   /**
    * Registers a new trigger that runs before an item is picked up.
    *
@@ -11206,76 +10948,7 @@ declare interface ITriggerRegister {
       event: ForgeEntityItemPickupEvent,
     ) => void,
   ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs before an item is dropped.
-   *
-   * Passes through five arguments:
-   * - The [Item] that is dropped up
-   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.PlayerMP] that dropped the item
-   * - The item's position vector
-   * - The item's motion vector
-   * - The event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerDropItem(
-    method: (item: Item, player: PlayerMP, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs before a screenshot is taken.
-   *
-   * Passes through two arguments:
-   * - The name of the screenshot
-   * - The screenshot event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerScreenshotTaken(
-    method: (name: string, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs before a message is sent in chat.
-   *
-   * Passes through two arguments:
-   * - The message
-   * - The message event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerMessageSent(
-    method: (message: string, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs when a tooltip is being rendered.
-   * This allows for the user to modify what text is in the tooltip, and even the
-   * ability to cancel rendering completely.
-   *
-   * Passes through three arguments:
-   * - The list of lore to modify.
-   * - The [Item] that this lore is attached to.
-   * - The cancellable event.
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerItemTooltip(
-    method: (lore: string[], item: Item, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+
   /**
    * Registers a new trigger that runs before the player interacts.
    *
@@ -11309,11 +10982,13 @@ declare interface ITriggerRegister {
       event: ForgePlayerInteractEvent,
     ) => void,
   ): OnRegularTrigger;
+
   /**
-   * Registers a new trigger that runs before the player breaks a block
+   * Registers a new trigger that runs before a screenshot is taken.
    *
-   * Passes through one argument:
-   * - The block
+   * Passes through two arguments:
+   * - The name of the screenshot
+   * - The screenshot event, which can be cancelled
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -11321,49 +10996,17 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerBlockBreak(method: (block: Block) => void): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs before an entity is damaged
-   *
-   * Passes through two arguments:
-   * - The target Entity that is damaged
-   * - The PlayerMP attacker
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerEntityDamage(
-    method: (target: Entity, attacker: PlayerMP) => void,
+  registerScreenshotTaken(
+    method: (name: string, event: CancellableEvent) => void,
   ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs before an entity dies
-   *
-   * Passes through one argument:
-   * - The Entity that died
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerEntityDeath(method: (entity: Entity) => void): OnRegularTrigger;
 
   /**
-   * Registers a new trigger that runs before the gui background is drawn
-   * This is useful for drawing custom backgrounds.
-   *
-   * Passes through one argument:
-   * - The [GuiScreen] that is being drawn
-   *
-   */
-  registerGuiDrawBackground(
-    method: (gui: MCGuiScreen, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs as a gui is rendered
+   * Registers a new trigger that runs before the mouse is scrolled.
    *
    * Passes through three arguments:
    * - The mouse x position
    * - The mouse y position
-   * - The gui
+   * - The scroll direction: 1, -1
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -11371,141 +11014,8 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerGuiRender(
-    method: (mouseX: int, mouseY: int, gui: MCGuiScreen) => void,
-  ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs whenever a key is typed with a gui open
-   *
-   * Passes through four arguments:
-   * - The character pressed (eg. 'd')
-   * - The key code pressed (eg. 41)
-   * - The gui
-   * - The event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerGuiKey(
-    method: (
-      char: string,
-      keyCode: int,
-      gui: MCGuiScreen,
-      event: CancellableEvent,
-    ) => void,
-  ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs whenever the mouse is clicked with a
-   * gui open
-   *
-   * Passes through five arguments:
-   * - The mouse x position
-   * - The mouse y position
-   * - The mouse button
-   * - The gui
-   * - The event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerGuiMouseClick(
-    method: (
-      mouseX: int,
-      mouseY: int,
-      mouseButton: int,
-      gui: MCGuiScreen,
-      event: CancellableEvent,
-    ) => void,
-  ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs whenever a mouse button is released
-   * with a gui open
-   *
-   * Passes through five arguments:
-   * - The mouse x position
-   * - The mouse y position
-   * - The mouse button
-   * - The gui
-   * - The event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerGuiMouseRelease(
-    method: (
-      mouseX: int,
-      mouseY: int,
-      mouseButton: int,
-      gui: MCGuiScreen,
-      event: CancellableEvent,
-    ) => void,
-  ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs whenever a mouse button held and dragged
-   * with a gui open
-   *
-   * Passes through five arguments:
-   * - The mouse x position
-   * - The mouse y position
-   * - The mouse button
-   * - The gui
-   * - The event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerGuiMouseDrag(
-    method: (
-      mouseX: int,
-      mouseY: int,
-      mouseButton: int,
-      gui: MCGuiScreen,
-      event: CancellableEvent,
-    ) => void,
-  ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs whenever a packet is sent from the client to the server
-   *
-   * Passes through two arguments:
-   * - The packet
-   * - The event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerPacketSent(
-    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs whenever a packet is sent to the client from the server
-   *
-   * Passes through two arguments:
-   * - The packet
-   * - The event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerPacketReceived(
-    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
+  registerScrolled(
+    method: (mouseX: float, mouseY: float, direction: int) => void,
   ): OnRegularTrigger;
 
   /**
@@ -11541,12 +11051,63 @@ declare interface ITriggerRegister {
   ): OnRegularTrigger;
 
   /**
-   * Registers a new trigger that runs whenever the user clicks on a clickable
-   * chat component
+   * Registers a new trigger that runs in predictable intervals. (60 per second by default)
+   *
+   * Passes through one argument:
+   * - Steps elapsed
+   *
+   * Available modifications:
+   * - [OnStepTrigger.setFps] Sets the fps, i.e. how many times this trigger will fire
+   *      per second
+   * - [OnStepTrigger.setDelay] Sets the delay in seconds, i.e. how many seconds it takes
+   *      to fire. Overrides [OnStepTrigger.setFps].
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerStep(method: (elapsed: long) => void): OnStepTrigger;
+
+  /**
+   * Registers a new trigger that runs before every game tick.
+   *
+   * Passes through one argument:
+   * - Ticks elapsed
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerTick(method: (elapsed: int) => void): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs when a tooltip is being rendered.
+   * This allows for the user to modify what text is in the tooltip, and even the
+   * ability to cancel rendering completely.
+   *
+   * Passes through three arguments:
+   * - The list of lore to modify.
+   * - The [Item] that this lore is attached to.
+   * - The cancellable event.
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerItemTooltip(
+    method: (lore: string[], item: Item, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the block highlight box is drawn.
    *
    * Passes through two arguments:
-   * - The [com.chattriggers.ctjs.minecraft.objects.message.TextComponent]
-   * - The event, which can be cancelled
+   * - The draw block highlight event's position
+   * - The draw block highlight event, which can be cancelled
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -11554,49 +11115,10 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerChatComponentClicked(
-    method: (component: TextComponent, event: CancellableEvent) => void,
+  registerDrawBlockHighlight(
+    method: (position: Vector3f, event: ForgeDrawBlockHighlightEvent) => void,
   ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs whenever the user hovers over a
-   * hoverable chat component
-   *
-   * Passes through two arguments:
-   * - The [com.chattriggers.ctjs.minecraft.objects.message.TextComponent]
-   * - The event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerChatComponentHovered(
-    method: (component: TextComponent, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs whenever an entity is rendered
-   *
-   * Passes through four arguments:
-   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.entity.Entity]
-   * - The position as a Vector3f
-   * - The partial ticks
-   * - The event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderEntity(
-    method: (
-      entity: MCEntity,
-      position: Vector3f,
-      partialTicks: float,
-      event: CancellableEvent,
-    ) => void,
-  ): OnRegularTrigger;
+
   /**
    * Registers a new trigger that runs after the current screen is rendered
    *
@@ -11631,30 +11153,6 @@ declare interface ITriggerRegister {
    */
   registerPostRenderEntity(
     method: (entity: Entity, pos: Vector3f, partialTicks: number) => void,
-  ): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs whenever a tile entity is rendered
-   *
-   * Passes through four arguments:
-   * - The TileEntity
-   * - The position as a Vector3f
-   * - The partial ticks
-   * - The event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerRenderTileEntity(
-    method: (
-      entity: MCTileEntity,
-      pos: Vector3f,
-      partialTicks: number,
-      event: CancellableEvent,
-    ) => void,
   ): OnRegularTrigger;
 
   /**
@@ -11700,6 +11198,349 @@ declare interface ITriggerRegister {
   ): OnRegularTrigger;
 
   /**
+   * Registers a new trigger that runs before the player's air level is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderAir(
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player's armor bar is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderArmor(
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the boss health bar is being drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderBossHealth(
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the chat is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderChat(
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the crosshair is being drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderCrosshair(
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a trigger that runs before the debug screen is being drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderDebug(
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs whenever an entity is rendered
+   *
+   * Passes through four arguments:
+   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.entity.Entity]
+   * - The position as a Vector3f
+   * - The partial ticks
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderEntity(
+    method: (
+      entity: MCEntity,
+      position: Vector3f,
+      partialTicks: float,
+      event: CancellableEvent,
+    ) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player's experience is being drawn.
+   *
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderExperience(
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player's food is being drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderFood(
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player's health is being drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderHealth(
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player's helmet overlay is drawn.
+   * This triggers when a pumpkin is on the player's head
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderHelmet(
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player's hotbar is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderHotbar(
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the jump bar is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderJumpBar(
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player's mount's health is being drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderMountHealth(
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the overlay is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which cannot be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderOverlay(
+    method: (event: ForgeRenderGameOverlayEvent) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player list is being drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderPlayerList(
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the portal effect is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderPortal(
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the scoreboard is drawn.
+   *
+   * Passes through one argument:
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderScoreboard(
+    method: (event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
    * Registers a new trigger that runs before the hovered slot square is drawn.
    *
    * Passes through six arguments:
@@ -11724,6 +11565,213 @@ declare interface ITriggerRegister {
       event: CancellableEvent,
     ) => void,
   ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs whenever a tile entity is rendered
+   *
+   * Passes through four arguments:
+   * - The TileEntity
+   * - The position as a Vector3f
+   * - The partial ticks
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderTileEntity(
+    method: (
+      entity: MCTileEntity,
+      pos: Vector3f,
+      partialTicks: number,
+      event: CancellableEvent,
+    ) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the title and subtitle are drawn.
+   *
+   * Passes through three arguments:
+   * - The title
+   * - The subtitle
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderTitle(
+    method: (title: string, subtitle: string, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the world is drawn.
+   *
+   * Passes through one argument:
+   * - Partial ticks elapsed
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderWorld(method: (partialTicks: long) => void): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player breaks a block
+   *
+   * Passes through one argument:
+   * - The block
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerBlockBreak(method: (block: Block) => void): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before an entity is damaged
+   *
+   * Passes through two arguments:
+   * - The target Entity that is damaged
+   * - The PlayerMP attacker
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerEntityDamage(
+    method: (target: Entity, attacker: PlayerMP) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before an entity dies
+   *
+   * Passes through one argument:
+   * - The Entity that died
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerEntityDeath(method: (entity: Entity) => void): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before a noteblock is changed.
+   *
+   * Passes through four arguments:
+   * - The note block change event's Vector3f position
+   * - The note block change event's note's name
+   * - The note block change event's octave
+   * - The note block change event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerNoteBlockChange(
+    method: (
+      position: Vector3f,
+      name: string,
+      octave: ForgeNoteBlockEvent.Octave,
+      event: ForgeNoteBlockEvent.Change,
+    ) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before a noteblock is played.
+   *
+   * Passes through four arguments:
+   * - The note block play event's Vector3f position
+   * - The note block play event's note's name
+   * - The note block play event's octave
+   * - The note block play event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerNoteBlockPlay(
+    method: (
+      position: Vector3f,
+      name: string,
+      octave: ForgeNoteBlockEvent.Octave,
+      event: ForgeNoteBlockEvent.Play,
+    ) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs when a player joins the world.
+   *
+   * Maximum is one per tick. Any extras will queue and run in later ticks.
+   * This trigger is asynchronous.
+   *
+   * Passes through one argument:
+   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.PlayerMP] object
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerPlayerJoined(method: (player: PlayerMP) => void): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs when a player leaves the world.
+   *
+   * Maximum is one per tick. Any extras will queue and run in later ticks.
+   * This trigger is asynchronous.
+   *
+   * Passes through one argument:
+   * - The name of the player that left
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerPlayerLeft(method: (name: string) => void): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before a sound is played.
+   *
+   * Passes through six arguments:
+   * - The sound event's position
+   * - The sound event's name
+   * - The sound event's volume
+   * - The sound event's pitch
+   * - The sound event's category's name
+   * - The sound event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnSoundPlayTrigger.setCriteria] Sets the sound name criteria
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerSoundPlay(
+    method: (
+      position: Vector3f,
+      name: string,
+      vol: float,
+      pitch: float,
+      category: MCSoundCategory,
+      event: ForgePlaySoundEvent,
+    ) => void,
+  ): OnSoundPlayTrigger;
+
   /**
    * Registers a new trigger that runs whenever a particle is spawned
    *
@@ -11745,6 +11793,71 @@ declare interface ITriggerRegister {
       event: CancellableEvent,
     ) => void,
   ): OnRegularTrigger;
+
+  /**
+   * Registers a trigger that runs before the world loads.
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerWorldLoad(method: () => void): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the world unloads.
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerWorldUnload(method: () => void): OnRegularTrigger;
+
+  /**
+   * Registers a new command that will run the method provided.
+   *
+   * Passes through multiple arguments:
+   * - The arguments supplied to the command by the user
+   *
+   * Available modifications:
+   * - [OnCommandTrigger.setCommandName] Sets the command name
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerCommand(method: (...args: string[]) => void): OnCommandTrigger;
+
+  register: IRegister;
+}
+
+declare interface IRegister {
+  /**
+   * Registers a new trigger that runs before an action bar message is received.
+   *
+   * Passes through multiple arguments:
+   * - Any number of chat criteria variables
+   * - The chat event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnChatTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnChatTrigger.setChatCriteria] Sets the chat criteria
+   * - [OnChatTrigger.setParameter] Sets the chat parameter
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * A NOTE ON AUTOCOMPLETE: DUE TO LIMITATIONS WITH REST PARAMETERS, TYPINGS FOR THE PARAMETERS OF THE FUNCTION ARE SLIGHTLY OFF
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "actionBar",
+    method: (...params: (string | ForgeClientChatReceivedEvent)[]) => void,
+  ): OnChatTrigger;
+
   /**
    * Registers a new trigger that runs whenever the player has left clicked on an entity
    *
@@ -11758,33 +11871,11 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerAttackEntity(
+  (
+    triggerType: "attackEntity",
     method: (entity: Entity, event: CancellableEvent) => void,
   ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs whenever a block is left clicked
-   *
-   * Note: this is not continuously called while the block is being broken, only once
-   * when first left clicked.
-   *
-   * Passes through two arguments:
-   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.block.Block] being hit
-   * - The event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  registerHitBlock(
-    method: (block: Block, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
 
-  register: IRegister;
-}
-
-declare interface IRegister {
   /**
    * Registers a new trigger that runs before a chat message is received.
    *
@@ -11809,29 +11900,31 @@ declare interface IRegister {
   ): OnChatTrigger;
 
   /**
-   * Registers a new trigger that runs before an action bar message is received.
+   * Registers a new trigger that runs whenever the user clicks on a clickable
+   * chat component
    *
-   * Passes through multiple arguments:
-   * - Any number of chat criteria variables
-   * - The chat event, which can be cancelled
+   * Passes through two arguments:
+   * - The [com.chattriggers.ctjs.minecraft.objects.message.TextComponent]
+   * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnChatTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnChatTrigger.setChatCriteria] Sets the chat criteria
-   * - [OnChatTrigger.setParameter] Sets the chat parameter
    * - [OnTrigger.setPriority] Sets the priority
-   *
-   * A NOTE ON AUTOCOMPLETE: DUE TO LIMITATIONS WITH REST PARAMETERS, TYPINGS FOR THE PARAMETERS OF THE FUNCTION ARE SLIGHTLY OFF
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   (
-    triggerType: "actionBar",
-    method: (...params: (string | ForgeClientChatReceivedEvent)[]) => void,
-  ): OnChatTrigger;
+    triggerType: "chatComponentClicked",
+    method: (component: TextComponent, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
   /**
-   * Registers a trigger that runs before the world loads.
+   * Registers a new trigger that runs whenever the user hovers over a
+   * hoverable chat component
+   *
+   * Passes through two arguments:
+   * - The [com.chattriggers.ctjs.minecraft.objects.message.TextComponent]
+   * - The event, which can be cancelled
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -11839,17 +11932,11 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "worldLoad", method: () => void): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs before the world unloads.
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (triggerType: "worldUnload", method: () => void): OnRegularTrigger;
+  (
+    triggerType: "chatComponentHovered",
+    method: (component: TextComponent, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
   /**
    * Registers a new trigger that runs before a mouse button is being pressed or released.
    *
@@ -11874,24 +11961,7 @@ declare interface IRegister {
       isButtonDown: boolean,
     ) => void,
   ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs before the mouse is scrolled.
-   *
-   * Passes through three arguments:
-   * - The mouse x position
-   * - The mouse y position
-   * - The scroll direction: 1, -1
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "scrolled",
-    method: (mouseX: float, mouseY: float, direction: int) => void,
-  ): OnRegularTrigger;
+
   /**
    * Registers a new trigger that runs while a mouse button is being held down.
    *
@@ -11918,458 +11988,15 @@ declare interface IRegister {
       button: int,
     ) => void,
   ): OnRegularTrigger;
-  /**
-   * Registers a new trigger that runs before a sound is played.
-   *
-   * Passes through six arguments:
-   * - The sound event's position
-   * - The sound event's name
-   * - The sound event's volume
-   * - The sound event's pitch
-   * - The sound event's category's name
-   * - The sound event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnSoundPlayTrigger.setCriteria] Sets the sound name criteria
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "soundPlay",
-    method: (
-      position: Vector3f,
-      name: string,
-      vol: float,
-      pitch: float,
-      category: MCSoundCategory,
-      event: ForgePlaySoundEvent,
-    ) => void,
-  ): OnSoundPlayTrigger;
 
   /**
-   * Registers a new trigger that runs before a noteblock is played.
-   *
-   * Passes through four arguments:
-   * - The note block play event's Vector3f position
-   * - The note block play event's note's name
-   * - The note block play event's octave
-   * - The note block play event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "noteBlockPlay",
-    method: (
-      position: Vector3f,
-      name: string,
-      octave: ForgeNoteBlockEvent.Octave,
-      event: ForgeNoteBlockEvent.Play,
-    ) => void,
-  ): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs before a noteblock is changed.
-   *
-   * Passes through four arguments:
-   * - The note block change event's Vector3f position
-   * - The note block change event's note's name
-   * - The note block change event's octave
-   * - The note block change event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "noteBlockChange",
-    method: (
-      position: Vector3f,
-      name: string,
-      octave: ForgeNoteBlockEvent.Octave,
-      event: ForgeNoteBlockEvent.Change,
-    ) => void,
-  ): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs before every game tick.
-   *
-   * Passes through one argument:
-   * - Ticks elapsed
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (triggerType: "tick", method: (elapsed: int) => void): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs in predictable intervals. (60 per second by default)
-   *
-   * Passes through one argument:
-   * - Steps elapsed
-   *
-   * Available modifications:
-   * - [OnStepTrigger.setFps] Sets the fps, i.e. how many times this trigger will fire
-   *      per second
-   * - [OnStepTrigger.setDelay] Sets the delay in seconds, i.e how many seconds it takes
-   *      to fire. Overrides [OnStepTrigger.setFps].
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (triggerType: "step", method: (elapsed: long) => void): OnStepTrigger;
-
-  /**
-   * Registers a new trigger that runs before the world is drawn.
-   *
-   * Passes through one argument:
-   * - Partial ticks elapsed
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderWorld",
-    method: (partialTicks: long) => void,
-  ): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs before the overlay is drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which cannot be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderOverlay",
-    method: (event: ForgeRenderGameOverlayEvent) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a new trigger that runs before the player list is being drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderPlayerList",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a new trigger that runs before the crosshair is being drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderCrosshair",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a trigger that runs before the debug screen is being drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderDebug",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a new trigger that runs before the boss health bar is being drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderBossHealth",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a new trigger that runs before the player's health is being drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderHealth",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a new trigger that runs before the player's armor bar is drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderArmor",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a new trigger that runs before the player's food is being drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderFood",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a new trigger that runs before the player's mount's health is being drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderMountHealth",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a new trigger that runs before the player's experience is being drawn.
-   *
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderExperience",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a new trigger that runs before the player's hotbar is drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderHotbar",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a new trigger that runs before the player's air level is drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderAir",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a new trigger that runs before the portal effect is drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderPortal",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a new trigger that runs before the jump bar is drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderJumpBar",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a new trigger that runs before the chat is drawn.
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderChat",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a new trigger that runs before the player's helmet overlay is drawn.
-   * This triggers when a pumpkin is on the player's head
-   *
-   * Passes through one argument:
-   * - The render event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderHelmet",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): OnRenderTrigger;
-
-  /**
-   * Registers a new trigger that runs before the scoreboard is drawn.
-   *
-   * Passes through one argument:
+   * Registers a new trigger that runs before an item is dropped.
+   *
+   * Passes through five arguments:
+   * - The [Item] that is dropped up
+   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.PlayerMP] that dropped the item
+   * - The item's position vector
+   * - The item's motion vector
    * - The event, which can be cancelled
    *
    * Available modifications:
@@ -12379,45 +12006,8 @@ declare interface IRegister {
    * @return The trigger for additional modification
    */
   (
-    triggerType: "renderScoreboard",
-    method: (event: CancellableEvent) => void,
-  ): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs before the title and subtitle are drawn.
-   *
-   * Passes through three arguments:
-   * - The title
-   * - The subtitle
-   * - The event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderTitle",
-    method: (title: string, subtitle: string, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs before the block highlight box is drawn.
-   *
-   * Passes through two arguments:
-   * - The draw block highlight event's position
-   * - The draw block highlight event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "drawBlockHighlight",
-    method: (position: Vector3f, event: ForgeDrawBlockHighlightEvent) => void,
+    triggerType: "dropItem",
+    method: (item: Item, player: PlayerMP, event: CancellableEvent) => void,
   ): OnRegularTrigger;
 
   /**
@@ -12448,41 +12038,6 @@ declare interface IRegister {
   (triggerType: "gameUnload", method: () => void): OnRegularTrigger;
 
   /**
-   * Registers a new command that will run the method provided.
-   *
-   * Passes through multiple arguments:
-   * - The arguments supplied to the command by the user
-   *
-   * Available modifications:
-   * - [OnCommandTrigger.setCommandName] Sets the command name
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "command",
-    method: (...args: string[]) => void,
-  ): OnCommandTrigger;
-
-  /**
-   * Registers a new trigger that runs when a new gui is first opened.
-   *
-   * Passes through one argument:
-   * - The gui opened event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "guiOpened",
-    method: (event: ForgeGuiOpenEvent) => void,
-  ): OnRegularTrigger;
-
-  /**
    * Registers a new trigger that runs when a gui is closed.
    *
    * Passes through one argument:
@@ -12500,227 +12055,6 @@ declare interface IRegister {
   ): OnRegularTrigger;
 
   /**
-   * Registers a new trigger that runs when a player joins the world.
-   *
-   * Maximum is one per tick. Any extras will queue and run in later ticks.
-   * This trigger is asynchronous.
-   *
-   * Passes through one argument:
-   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.PlayerMP] object
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "playerJoined",
-    method: (player: PlayerMP) => void,
-  ): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs when a player leaves the world.
-   *
-   * Maximum is one per tick. Any extras will queue and run in later ticks.
-   * This trigger is asynchronous.
-   *
-   * Passes through one argument:
-   * - The name of the player that left
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (triggerType: "playerLeft", method: (name: string) => void): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs before an item is picked up.
-   *
-   * Passes through five arguments:
-   * - The [Item] that is picked up
-   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.PlayerMP] that picked up the item
-   * - The item's position vector
-   * - The item's motion vector
-   * - The event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "pickupItem",
-    method: (
-      item: Item,
-      player: PlayerMP,
-      position: Vector3f,
-      motion: Vector3f,
-      event: ForgeEntityItemPickupEvent,
-    ) => void,
-  ): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs before an item is dropped.
-   *
-   * Passes through five arguments:
-   * - The [Item] that is dropped up
-   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.PlayerMP] that dropped the item
-   * - The item's position vector
-   * - The item's motion vector
-   * - The event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "dropItem",
-    method: (item: Item, player: PlayerMP, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs before a screenshot is taken.
-   *
-   * Passes through two arguments:
-   * - The name of the screenshot
-   * - The screenshot event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "screenshotTaken",
-    method: (name: string, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs before a message is sent in chat.
-   *
-   * Passes through two arguments:
-   * - The message
-   * - The message event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "messageSent",
-    method: (message: string, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs when a tooltip is being rendered.
-   * This allows for the user to modify what text is in the tooltip, and even the
-   * ability to cancel rendering completely.
-   *
-   * Passes through three arguments:
-   * - The list of lore to modify.
-   * - The [Item] that this lore is attached to.
-   * - The cancellable event.
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "itemTooltip",
-    method: (lore: string[], item: Item, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs before the player interacts.
-   *
-   * In 1.8.9, the following events will activate this trigger:
-   * - Left clicking a block
-   * - Right clicking a block
-   * - Right clicking the air
-   *
-   * In 1.12.2, the following events will activate this trigger:
-   * - Left clicking a block
-   * - Left clicking air
-   * - Right clicking an entity
-   * - Right clicking a block
-   * - Right clicking an item
-   * - Right clicking air
-   *
-   * Passes through three arguments:
-   * - The [ClientListener.PlayerInteractAction]
-   * - The position of the target as a Vector3f
-   * - The event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "playerInteract",
-    method: (
-      action: ClientListener.PlayerInteractAction,
-      position: Vector3f,
-      event: ForgePlayerInteractEvent,
-    ) => void,
-  ): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs before the player breaks a block
-   *
-   * Passes through one argument:
-   * - The block
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (triggerType: "blockBreak", method: (block: Block) => void): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs before an entity is damaged
-   *
-   * Passes through two arguments:
-   * - The target Entity that is damaged
-   * - The PlayerMP attacker
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "entityDamage",
-    method: (target: Entity, attacker: PlayerMP) => void,
-  ): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs before an entity dies
-   *
-   * Passes through one argument:
-   * - The Entity that died
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "entityDeath",
-    method: (entity: Entity) => void,
-  ): OnRegularTrigger;
-
-  /**
    * Registers a new trigger that runs before the gui background is drawn
    * This is useful for drawing custom backgrounds.
    *
@@ -12731,25 +12065,6 @@ declare interface IRegister {
   (
     triggerType: "guiDrawBackground",
     method: (gui: MCGuiScreen, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs as a gui is rendered
-   *
-   * Passes through three arguments:
-   * - The mouse x position
-   * - The mouse y position
-   * - The gui
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "guiRender",
-    method: (mouseX: int, mouseY: int, gui: MCGuiScreen) => void,
   ): OnRegularTrigger;
 
   /**
@@ -12806,34 +12121,6 @@ declare interface IRegister {
   ): OnRegularTrigger;
 
   /**
-   * Registers a new trigger that runs whenever a mouse button is released
-   * with a gui open
-   *
-   * Passes through five arguments:
-   * - The mouse x position
-   * - The mouse y position
-   * - The mouse button
-   * - The gui
-   * - The event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "guiMouseRelease",
-    method: (
-      mouseX: int,
-      mouseY: int,
-      mouseButton: int,
-      gui: MCGuiScreen,
-      event: CancellableEvent,
-    ) => void,
-  ): OnRegularTrigger;
-
-  /**
    * Registers a new trigger that runs whenever a mouse button held and dragged
    * with a gui open
    *
@@ -12862,10 +12149,14 @@ declare interface IRegister {
   ): OnRegularTrigger;
 
   /**
-   * Registers a new trigger that runs whenever a packet is sent from the client to the server
+   * Registers a new trigger that runs whenever a mouse button is released
+   * with a gui open
    *
-   * Passes through two arguments:
-   * - The packet
+   * Passes through five arguments:
+   * - The mouse x position
+   * - The mouse y position
+   * - The mouse button
+   * - The gui
    * - The event, which can be cancelled
    *
    * Available modifications:
@@ -12875,8 +12166,89 @@ declare interface IRegister {
    * @return The trigger for additional modification
    */
   (
-    triggerType: "packetSent",
-    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
+    triggerType: "guiMouseRelease",
+    method: (
+      mouseX: int,
+      mouseY: int,
+      mouseButton: int,
+      gui: MCGuiScreen,
+      event: CancellableEvent,
+    ) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs when a new gui is first opened.
+   *
+   * Passes through one argument:
+   * - The gui opened event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "guiOpened",
+    method: (event: ForgeGuiOpenEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs as a gui is rendered
+   *
+   * Passes through three arguments:
+   * - The mouse x position
+   * - The mouse y position
+   * - The gui
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "guiRender",
+    method: (mouseX: int, mouseY: int, gui: MCGuiScreen) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs whenever a block is left clicked
+   *
+   * Note: this is not continuously called while the block is being broken, only once
+   * when first left clicked.
+   *
+   * Passes through two arguments:
+   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.block.Block] being hit
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "hitBlock",
+    method: (block: Block, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before a message is sent in chat.
+   *
+   * Passes through two arguments:
+   * - The message
+   * - The message event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "messageSent",
+    method: (message: string, event: CancellableEvent) => void,
   ): OnRegularTrigger;
 
   /**
@@ -12895,6 +12267,124 @@ declare interface IRegister {
   (
     triggerType: "packetReceived",
     method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs whenever a packet is sent from the client to the server
+   *
+   * Passes through two arguments:
+   * - The packet
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "packetSent",
+    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before an item is picked up.
+   *
+   * Passes through five arguments:
+   * - The [Item] that is picked up
+   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.PlayerMP] that picked up the item
+   * - The item's position vector
+   * - The item's motion vector
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "pickupItem",
+    method: (
+      item: Item,
+      player: PlayerMP,
+      position: Vector3f,
+      motion: Vector3f,
+      event: ForgeEntityItemPickupEvent,
+    ) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player interacts.
+   *
+   * In 1.8.9, the following events will activate this trigger:
+   * - Left clicking a block
+   * - Right clicking a block
+   * - Right clicking the air
+   *
+   * In 1.12.2, the following events will activate this trigger:
+   * - Left clicking a block
+   * - Left clicking air
+   * - Right clicking an entity
+   * - Right clicking a block
+   * - Right clicking an item
+   * - Right clicking air
+   *
+   * Passes through three arguments:
+   * - The [ClientListener.PlayerInteractAction]
+   * - The position of the target as a Vector3f
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "playerInteract",
+    method: (
+      action: ClientListener.PlayerInteractAction,
+      position: Vector3f,
+      event: ForgePlayerInteractEvent,
+    ) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before a screenshot is taken.
+   *
+   * Passes through two arguments:
+   * - The name of the screenshot
+   * - The screenshot event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "screenshotTaken",
+    method: (name: string, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the mouse is scrolled.
+   *
+   * Passes through three arguments:
+   * - The mouse x position
+   * - The mouse y position
+   * - The scroll direction: 1, -1
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "scrolled",
+    method: (mouseX: float, mouseY: float, direction: int) => void,
   ): OnRegularTrigger;
 
   /**
@@ -12932,12 +12422,46 @@ declare interface IRegister {
   ): OnRegularTrigger;
 
   /**
-   * Registers a new trigger that runs whenever the user clicks on a clickable
-   * chat component
+   * Registers a new trigger that runs in predictable intervals. (60 per second by default)
    *
-   * Passes through two arguments:
-   * - The [com.chattriggers.ctjs.minecraft.objects.message.TextComponent]
-   * - The event, which can be cancelled
+   * Passes through one argument:
+   * - Steps elapsed
+   *
+   * Available modifications:
+   * - [OnStepTrigger.setFps] Sets the fps, i.e. how many times this trigger will fire
+   *      per second
+   * - [OnStepTrigger.setDelay] Sets the delay in seconds, i.e how many seconds it takes
+   *      to fire. Overrides [OnStepTrigger.setFps].
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (triggerType: "step", method: (elapsed: long) => void): OnStepTrigger;
+
+  /**
+   * Registers a new trigger that runs before every game tick.
+   *
+   * Passes through one argument:
+   * - Ticks elapsed
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (triggerType: "tick", method: (elapsed: int) => void): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs when a tooltip is being rendered.
+   * This allows for the user to modify what text is in the tooltip, and even the
+   * ability to cancel rendering completely.
+   *
+   * Passes through three arguments:
+   * - The list of lore to modify.
+   * - The [Item] that this lore is attached to.
+   * - The cancellable event.
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -12946,17 +12470,16 @@ declare interface IRegister {
    * @return The trigger for additional modification
    */
   (
-    triggerType: "chatComponentClicked",
-    method: (component: TextComponent, event: CancellableEvent) => void,
+    triggerType: "itemTooltip",
+    method: (lore: string[], item: Item, event: CancellableEvent) => void,
   ): OnRegularTrigger;
 
   /**
-   * Registers a new trigger that runs whenever the user hovers over a
-   * hoverable chat component
+   * Registers a new trigger that runs before the block highlight box is drawn.
    *
    * Passes through two arguments:
-   * - The [com.chattriggers.ctjs.minecraft.objects.message.TextComponent]
-   * - The event, which can be cancelled
+   * - The draw block highlight event's position
+   * - The draw block highlight event, which can be cancelled
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -12965,33 +12488,8 @@ declare interface IRegister {
    * @return The trigger for additional modification
    */
   (
-    triggerType: "chatComponentHovered",
-    method: (component: TextComponent, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs whenever an entity is rendered
-   *
-   * Passes through four arguments:
-   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.entity.Entity]
-   * - The position as a Vector3f
-   * - The partial ticks
-   * - The event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderEntity",
-    method: (
-      entity: MCEntity,
-      position: Vector3f,
-      partialTicks: float,
-      event: CancellableEvent,
-    ) => void,
+    triggerType: "drawBlockHighlight",
+    method: (position: Vector3f, event: ForgeDrawBlockHighlightEvent) => void,
   ): OnRegularTrigger;
 
   /**
@@ -13030,31 +12528,6 @@ declare interface IRegister {
   (
     triggerType: "postRenderEntity",
     method: (entity: Entity, pos: Vector3f, partialTicks: number) => void,
-  ): OnRegularTrigger;
-
-  /**
-   * Registers a new trigger that runs whenever a tile entity is rendered
-   *
-   * Passes through four arguments:
-   * - The TileEntity
-   * - The position as a Vector3f
-   * - The partial ticks
-   * - The event, which can be cancelled
-   *
-   * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
-   *
-   * @param method The method to call when the event is fired
-   * @return The trigger for additional modification
-   */
-  (
-    triggerType: "renderTileEntity",
-    method: (
-      entity: MCTileEntity,
-      pos: Vector3f,
-      partialTicks: number,
-      event: CancellableEvent,
-    ) => void,
   ): OnRegularTrigger;
 
   /**
@@ -13102,6 +12575,367 @@ declare interface IRegister {
   ): OnRegularTrigger;
 
   /**
+   * Registers a new trigger that runs before the player's air level is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderAir",
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player's armor bar is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderArmor",
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the boss health bar is being drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderBossHealth",
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the chat is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderChat",
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the crosshair is being drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderCrosshair",
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a trigger that runs before the debug screen is being drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderDebug",
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs whenever an entity is rendered
+   *
+   * Passes through four arguments:
+   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.entity.Entity]
+   * - The position as a Vector3f
+   * - The partial ticks
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderEntity",
+    method: (
+      entity: MCEntity,
+      position: Vector3f,
+      partialTicks: float,
+      event: CancellableEvent,
+    ) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player's experience is being drawn.
+   *
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderExperience",
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player's food is being drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderFood",
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player's health is being drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderHealth",
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player's helmet overlay is drawn.
+   * This triggers when a pumpkin is on the player's head
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderHelmet",
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player's hotbar is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderHotbar",
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the jump bar is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderJumpBar",
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player's mount's health is being drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderMountHealth",
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the overlay is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which cannot be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderOverlay",
+    method: (event: ForgeRenderGameOverlayEvent) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player list is being drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderPlayerList",
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the portal effect is drawn.
+   *
+   * Passes through one argument:
+   * - The render event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderPortal",
+    method: (
+      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
+    ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the scoreboard is drawn.
+   *
+   * Passes through one argument:
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderScoreboard",
+    method: (event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
    * Registers a new trigger that runs before the hovered slot square is drawn.
    *
    * Passes through six arguments:
@@ -13129,6 +12963,227 @@ declare interface IRegister {
   ): OnRegularTrigger;
 
   /**
+   * Registers a new trigger that runs whenever a tile entity is rendered
+   *
+   * Passes through four arguments:
+   * - The TileEntity
+   * - The position as a Vector3f
+   * - The partial ticks
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderTileEntity",
+    method: (
+      entity: MCTileEntity,
+      pos: Vector3f,
+      partialTicks: number,
+      event: CancellableEvent,
+    ) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the title and subtitle are drawn.
+   *
+   * Passes through three arguments:
+   * - The title
+   * - The subtitle
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderTitle",
+    method: (title: string, subtitle: string, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the world is drawn.
+   *
+   * Passes through one argument:
+   * - Partial ticks elapsed
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderWorld",
+    method: (partialTicks: long) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player breaks a block
+   *
+   * Passes through one argument:
+   * - The block
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (triggerType: "blockBreak", method: (block: Block) => void): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before an entity is damaged
+   *
+   * Passes through two arguments:
+   * - The target Entity that is damaged
+   * - The PlayerMP attacker
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "entityDamage",
+    method: (target: Entity, attacker: PlayerMP) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before an entity dies
+   *
+   * Passes through one argument:
+   * - The Entity that died
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "entityDeath",
+    method: (entity: Entity) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before a noteblock is changed.
+   *
+   * Passes through four arguments:
+   * - The note block change event's Vector3f position
+   * - The note block change event's note's name
+   * - The note block change event's octave
+   * - The note block change event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "noteBlockChange",
+    method: (
+      position: Vector3f,
+      name: string,
+      octave: ForgeNoteBlockEvent.Octave,
+      event: ForgeNoteBlockEvent.Change,
+    ) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before a noteblock is played.
+   *
+   * Passes through four arguments:
+   * - The note block play event's Vector3f position
+   * - The note block play event's note's name
+   * - The note block play event's octave
+   * - The note block play event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "noteBlockPlay",
+    method: (
+      position: Vector3f,
+      name: string,
+      octave: ForgeNoteBlockEvent.Octave,
+      event: ForgeNoteBlockEvent.Play,
+    ) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs when a player joins the world.
+   *
+   * Maximum is one per tick. Any extras will queue and run in later ticks.
+   * This trigger is asynchronous.
+   *
+   * Passes through one argument:
+   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.PlayerMP] object
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "playerJoined",
+    method: (player: PlayerMP) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs when a player leaves the world.
+   *
+   * Maximum is one per tick. Any extras will queue and run in later ticks.
+   * This trigger is asynchronous.
+   *
+   * Passes through one argument:
+   * - The name of the player that left
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (triggerType: "playerLeft", method: (name: string) => void): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before a sound is played.
+   *
+   * Passes through six arguments:
+   * - The sound event's position
+   * - The sound event's name
+   * - The sound event's volume
+   * - The sound event's pitch
+   * - The sound event's category's name
+   * - The sound event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnSoundPlayTrigger.setCriteria] Sets the sound name criteria
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "soundPlay",
+    method: (
+      position: Vector3f,
+      name: string,
+      vol: float,
+      pitch: float,
+      category: MCSoundCategory,
+      event: ForgePlaySoundEvent,
+    ) => void,
+  ): OnSoundPlayTrigger;
+
+  /**
    * Registers a new trigger that runs whenever a particle is spawned
    *
    * Passes through three arguments:
@@ -13152,11 +13207,7 @@ declare interface IRegister {
   ): OnRegularTrigger;
 
   /**
-   * Registers a new trigger that runs whenever the player has left clicked on an entity
-   *
-   * Passes through three arguments:
-   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.entity.Entity] that is being hit
-   * - The event, which can be cancelled
+   * Registers a trigger that runs before the world loads.
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -13164,20 +13215,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (
-    triggerType: "attackEntity",
-    method: (entity: Entity, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  (triggerType: "worldLoad", method: () => void): OnRegularTrigger;
 
   /**
-   * Registers a new trigger that runs whenever a block is left clicked
-   *
-   * Note: this is not continuously called while the block is being broken, only once
-   * when first left clicked.
-   *
-   * Passes through two arguments:
-   * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.block.Block] being hit
-   * - The event, which can be cancelled
+   * Registers a new trigger that runs before the world unloads.
    *
    * Available modifications:
    * - [OnTrigger.setPriority] Sets the priority
@@ -13185,8 +13226,23 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
+  (triggerType: "worldUnload", method: () => void): OnRegularTrigger;
+
+  /**
+   * Registers a new command that will run the method provided.
+   *
+   * Passes through multiple arguments:
+   * - The arguments supplied to the command by the user
+   *
+   * Available modifications:
+   * - [OnCommandTrigger.setCommandName] Sets the command name
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
   (
-    triggerType: "hitBlock",
-    method: (block: Block, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+    triggerType: "command",
+    method: (...args: string[]) => void,
+  ): OnCommandTrigger;
 }
