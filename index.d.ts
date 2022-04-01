@@ -6077,8 +6077,68 @@ declare global {
      */
     static getUrlContent(theUrl: string, userAgent?: string): string;
 
+    /**
+     * Deletes a file at the specified location
+     *
+     * @param importName name of the import
+     * @param fileName name of the file
+     * @return if the file was deleted
+     */
+    delete(importName: string, fileName: string): boolean;
+    /**
+     * Deletes a file at the specified location
+     *
+     * @param importName name of the import
+     * @param fileName name of the file
+     * @return if the file was deleted
+     */
+    static delete(importName: string, fileName: string): boolean;
+
+    /**
+     * Deletes a file at the specified location
+     *
+     * @param fileLocation the path of the file
+     * @return if the file was deleted
+     */
+    delete(fileLocation: string): boolean;
+    /**
+     * Deletes a file at the specified location
+     *
+     * @param fileLocation the path of the file
+     * @return if the file was deleted
+     */
+    static delete(fileLocation: string): boolean;
+
+    /**
+     * Deletes a directory at the specified location
+     *
+     * @param dir the directory to delete
+     * @return if the directory was deleted
+     */
+    deleteDirectory(dir: string): boolean;
+    /**
+     * Deletes a directory at the specified location
+     *
+     * @param dir the directory to delete
+     * @return if the directory was deleted
+     */
+    static deleteDirectory(dir: string): boolean;
+
+    /**
+     * Deletes a directory at the specified location
+     *
+     * @param dir the directory to delete
+     * @return if the directory was deleted
+     */
     deleteDirectory(dir: JavaFile): boolean;
+    /**
+     * Deletes a directory at the specified location
+     *
+     * @param dir the directory to delete
+     * @return if the directory was deleted
+     */
     static deleteDirectory(dir: JavaFile): boolean;
+
     /**
      * Determines if a file or directory exists at the specified location
      *
