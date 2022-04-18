@@ -186,6 +186,26 @@ declare global {
     easeColor(to: number, speed: number, jump: number): number;
   }
 
+  class Slot {
+    constructor(mcSlot: MCSlot);
+
+    readonly mcSlot: MCSlot;
+
+    getMcSlot(): MCSlot;
+
+    getIndex(): number;
+
+    getDisplayX(): number;
+
+    getDisplayY(): number;
+
+    getInventory(): Inventory;
+
+    getItem(): Item | null;
+
+    toString(): string;
+  }
+
   class Renderer {
     readonly colorized: long;
 
