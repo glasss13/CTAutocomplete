@@ -4476,13 +4476,13 @@ declare global {
     getLore(): string[];
 
     /**
-     * Renders the item icon to the client's overlay.
+     * Renders the item icon to the client's overlay, with customizable overlay information.
      *
      * @param x the x location
      * @param y the y location
      * @param scale the scale
      */
-    draw(x?: float, y?: float, scale?: float): void;
+    draw(x?: float, y?: float, scale?: float, z?: float): void;
 
     /**
      * Checks whether another Item is the same as this one.
@@ -9860,6 +9860,19 @@ declare namespace Client {
     static get(): MCGuiScreen;
 
     /**
+     * Gets the slot under the mouse in the current gui, if one exists.
+     *
+     * @return the [Slot] under the mouse
+     */
+    getSlotUnderMouse(): Slot | null;
+    /**
+     * Gets the slot under the mouse in the current gui, if one exists.
+     *
+     * @return the [Slot] under the mouse
+     */
+    static getSlotUnderMouse(): Slot | null;
+
+    /**
      * Closes the currently open gui
      */
     static close(): void;
@@ -10369,6 +10382,7 @@ declare class TriggerType {
   static PacketSent: TriggerType;
   static PickupItem: TriggerType;
   static PlayerInteract: TriggerType;
+  static RenderSlot: TriggerType;
   static ScreenshotTaken: TriggerType;
   static Scrolled: TriggerType;
   static ServerConnect: TriggerType;
@@ -10395,6 +10409,8 @@ declare class TriggerType {
   static RenderHealth: TriggerType;
   static RenderHelmet: TriggerType;
   static RenderHotbar: TriggerType;
+  static RenderItemIntoGui: TriggerType;
+  static RenderItemOverlayIntoGui: TriggerType;
   static RenderJumpBar: TriggerType;
   static RenderMountHealth: TriggerType;
   static RenderOverlay: TriggerType;
@@ -11064,6 +11080,22 @@ declare interface ITriggerRegister {
   ): OnRegularTrigger;
 
   /**
+   * Registers a new trigger that runs before a slot is drawn in a container
+   * This is useful for hiding "background" items in containers used as GUIs.
+   *
+   * Passes through three arguments:
+   * - The [Slot] being drawn
+   * - The MC GUIScreen that is being drawn
+   * - The event, which can be cancelled
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderSlot(
+    method: (slot: Slot, gui: MCGuiContainer, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
    * Registers a new trigger that runs before a screenshot is taken.
    *
    * Passes through two arguments:
@@ -11259,7 +11291,7 @@ declare interface ITriggerRegister {
    * Passes through five arguments:
    * - The mouseX position
    * - The mouseY position
-   * - The Slot
+   * - The MC Slot
    * - The GuiContainer
    *
    * Available modifications:
@@ -11511,6 +11543,38 @@ declare interface ITriggerRegister {
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
   ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before each item is drawn into a GUI.
+   *
+   * Passes through four arguments:
+   * - The [Item]
+   * - The x position
+   * - The y position
+   * - The event, which can be cancelled.
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderItemIntoGui(
+    method: (item: Item, x: number, y: number, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before each item overlay (stack size and damage bar) is drawn.
+   *
+   * Passes through four arguments:
+   * - The [Item]
+   * - The x position
+   * - The y position
+   * - The event, which can be cancelled.
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderItemOverlayIntoGui(
+    method: (item: Item, x: number, y: number, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs before the jump bar is drawn.
@@ -12431,6 +12495,23 @@ declare interface IRegister {
   ): OnRegularTrigger;
 
   /**
+   * Registers a new trigger that runs before a slot is drawn in a container
+   * This is useful for hiding "background" items in containers used as GUIs.
+   *
+   * Passes through three arguments:
+   * - The [Slot] being drawn
+   * - The MC GUIScreen that is being drawn
+   * - The event, which can be cancelled
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderSlot",
+    method: (slot: Slot, gui: MCGuiContainer, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
    * Registers a new trigger that runs before a screenshot is taken.
    *
    * Passes through two arguments:
@@ -12635,7 +12716,7 @@ declare interface IRegister {
    * Passes through five arguments:
    * - The mouseX position
    * - The mouseY position
-   * - The Slot
+   * - The MC Slot
    * - The GuiContainer
    *
    * Available modifications:
@@ -12900,6 +12981,40 @@ declare interface IRegister {
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
   ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before each item is drawn into a GUI.
+   *
+   * Passes through four arguments:
+   * - The [Item]
+   * - The x position
+   * - The y position
+   * - The event, which can be cancelled.
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderItemIntoGui",
+    method: (item: Item, x: number, y: number, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
+
+  /**
+   * Registers a new trigger that runs before each item overlay (stack size and damage bar) is drawn.
+   *
+   * Passes through four arguments:
+   * - The [Item]
+   * - The x position
+   * - The y position
+   * - The event, which can be cancelled.
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderItemOverlayIntoGui",
+    method: (item: Item, x: number, y: number, event: CancellableEvent) => void,
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs before the jump bar is drawn.
