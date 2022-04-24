@@ -207,43 +207,43 @@ declare global {
   }
 
   class Renderer {
-    readonly colorized: long;
+    readonly colorized: number;
 
-    BLACK: long;
-    static BLACK: long;
-    DARK_BLUE: long;
-    static DARK_BLUE: long;
-    DARK_GREEN: long;
-    static DARK_GREEN: long;
-    DARK_AQUA: long;
-    static DARK_AQUA: long;
-    DARK_RED: long;
-    static DARK_RED: long;
-    DARK_PURPLE: long;
-    static DARK_PURPLE: long;
-    GOLD: long;
-    static GOLD: long;
-    GRAY: long;
-    static GRAY: long;
-    DARK_GRAY: long;
-    static DARK_GRAY: long;
-    BLUE: long;
-    static BLUE: long;
-    GREEN: long;
-    static GREEN: long;
-    AQUA: long;
-    static AQUA: long;
-    RED: long;
-    static RED: long;
-    LIGHT_PURPLE: long;
-    static LIGHT_PURPLE: long;
-    YELLOW: long;
-    static YELLOW: long;
-    WHITE: long;
-    static WHITE: long;
+    BLACK: number;
+    static BLACK: number;
+    DARK_BLUE: number;
+    static DARK_BLUE: number;
+    DARK_GREEN: number;
+    static DARK_GREEN: number;
+    DARK_AQUA: number;
+    static DARK_AQUA: number;
+    DARK_RED: number;
+    static DARK_RED: number;
+    DARK_PURPLE: number;
+    static DARK_PURPLE: number;
+    GOLD: number;
+    static GOLD: number;
+    GRAY: number;
+    static GRAY: number;
+    DARK_GRAY: number;
+    static DARK_GRAY: number;
+    BLUE: number;
+    static BLUE: number;
+    GREEN: number;
+    static GREEN: number;
+    AQUA: number;
+    static AQUA: number;
+    RED: number;
+    static RED: number;
+    LIGHT_PURPLE: number;
+    static LIGHT_PURPLE: number;
+    YELLOW: number;
+    static YELLOW: number;
+    WHITE: number;
+    static WHITE: number;
 
-    getColor(color: int): long;
-    static getColor(color: int): long;
+    getColor(color: number): number;
+    static getColor(color: number): number;
 
     getFontRenderer(): MCFontRenderer;
     static getFontRenderer(): MCFontRenderer;
@@ -251,121 +251,131 @@ declare global {
     getRenderManager(): MCRenderManager;
     static getRenderManager(): MCRenderManager;
 
-    getStringWidth(text: string): int;
-    static getStringWidth(text: string): int;
+    getStringWidth(text: string): number;
+    static getStringWidth(text: string): number;
 
-    color(red: long, green: long, blue: long, alpha?: long): long;
-    static color(red: long, green: long, blue: long, alpha?: long): long;
+    color(red: number, green: number, blue: number, alpha?: number): number;
+    static color(
+      red: number,
+      green: number,
+      blue: number,
+      alpha?: number,
+    ): number;
 
-    getRainbow(step: float, speed?: float): long;
-    static getRainbow(step: float, speed?: float): long;
+    getRainbow(step: number, speed?: number): number;
+    static getRainbow(step: number, speed?: number): number;
 
-    getRainbowColors(step: float, speed?: float): int[];
-    static getRainbowColors(step: float, speed?: float): int[];
+    getRainbowColors(step: number, speed?: number): number[];
+    static getRainbowColors(step: number, speed?: number): number[];
 
     retainTransforms(retain: boolean): void;
     static retainTransforms(retain: boolean): void;
 
-    translate(x: float, y: float, z?: float): void;
-    static translate(x: float, y: float, z?: float): void;
+    translate(x: number, y: number, z?: number): void;
+    static translate(x: number, y: number, z?: number): void;
 
-    scale(scaleX: float, scaleY?: float): void;
-    static scale(scaleX: float, scaleY?: float): void;
+    scale(scaleX: number, scaleY?: number): void;
+    static scale(scaleX: number, scaleY?: number): void;
 
-    rotate(angle: float): void;
-    static rotate(angle: float): void;
+    rotate(angle: number): void;
+    static rotate(angle: number): void;
 
-    colorize(red: float, green: float, blue: float, alpha?: float): void;
-    static colorize(red: float, green: float, blue: float, alpha?: float): void;
+    colorize(red: number, green: number, blue: number, alpha?: number): void;
+    static colorize(
+      red: number,
+      green: number,
+      blue: number,
+      alpha?: number,
+    ): void;
 
-    setDrawMode(drawMode: int): Renderer;
-    static setDrawMode(drawMode: int): Renderer;
+    setDrawMode(drawMode: number): Renderer;
+    static setDrawMode(drawMode: number): Renderer;
 
-    getDrawMode(): int;
-    static getDrawMode(): int;
+    getDrawMode(): number;
+    static getDrawMode(): number;
 
-    fixAlpha(color: long): long;
-    static fixAlpha(color: long): long;
+    fixAlpha(color: number): number;
+    static fixAlpha(color: number): number;
 
     drawRect(
-      color: long,
-      x: float,
-      y: float,
-      width: float,
-      height: float,
+      color: number,
+      x: number,
+      y: number,
+      width: number,
+      height: number,
     ): void;
     static drawRect(
-      color: long,
-      x: float,
-      y: float,
-      width: float,
-      height: float,
+      color: number,
+      x: number,
+      y: number,
+      width: number,
+      height: number,
     ): void;
 
-    drawShape(color: long, ...vertexes: float[][]): void;
-    static drawShape(color: long, ...vertexes: float[][]): void;
+    drawShape(color: number, ...vertexes: number[][]): void;
+    static drawShape(color: number, ...vertexes: number[][]): void;
 
     drawLine(
-      color: long,
-      x1: float,
-      y1: float,
-      x2: float,
-      y2: float,
-      thickness: float,
-      drawMode?: int,
+      color: number,
+      x1: number,
+      y1: number,
+      x2: number,
+      y2: number,
+      thickness: number,
+      drawMode?: number,
     ): void;
     static drawLine(
-      color: long,
-      x1: float,
-      y1: float,
-      x2: float,
-      y2: float,
-      thickness: float,
-      drawMode?: int,
+      color: number,
+      x1: number,
+      y1: number,
+      x2: number,
+      y2: number,
+      thickness: number,
+      drawMode?: number,
     ): void;
 
     drawCircle(
-      color: long,
-      x: float,
-      y: float,
-      radius: float,
-      steps: int,
-      drawMode?: int,
+      color: number,
+      x: number,
+      y: number,
+      radius: number,
+      steps: number,
+      drawMode?: number,
     ): void;
     static drawCircle(
-      color: long,
-      x: float,
-      y: float,
-      radius: float,
-      steps: int,
-      drawMode?: int,
+      color: number,
+      x: number,
+      y: number,
+      radius: number,
+      steps: number,
+      drawMode?: number,
     ): void;
 
-    drawString(text: string, x: float, y: float): void;
-    static drawString(text: string, x: float, y: float): void;
+    drawString(text: string, x: number, y: number): void;
+    static drawString(text: string, x: number, y: number): void;
 
-    drawStringWithShadow(text: string, x: float, y: float): void;
-    static drawStringWithShadow(text: string, x: float, y: float): void;
+    drawStringWithShadow(text: string, x: number, y: number): void;
+    static drawStringWithShadow(text: string, x: number, y: number): void;
 
     drawImage(
       image: Image,
-      x: double,
-      y: double,
-      width: double,
-      height: double,
+      x: number,
+      y: number,
+      width: number,
+      height: number,
     ): void;
     static drawImage(
       image: Image,
-      x: double,
-      y: double,
-      width: double,
-      height: double,
+      x: number,
+      y: number,
+      width: number,
+      height: number,
     ): void;
 
     drawPlayer(
       player: PlayerMP | MCEntityPlayer | MCEntityLivingBase,
-      x: int,
-      y: int,
+      x: number,
+      y: number,
       rotate?: boolean,
       showNametag?: boolean,
       showCape?: boolean,
@@ -374,8 +384,8 @@ declare global {
     ): void;
     static drawPlayer(
       player: PlayerMP | MCEntityPlayer | MCEntityLivingBase,
-      x: int,
-      y: int,
+      x: number,
+      y: number,
       rotate?: boolean,
       showNametag?: boolean,
       showCape?: boolean,
@@ -389,28 +399,28 @@ declare global {
 
   namespace Renderer {
     class screen {
-      getWidth(): int;
-      static getWidth(): int;
+      getWidth(): number;
+      static getWidth(): number;
 
-      getHeight(): int;
-      static getHeight(): int;
+      getHeight(): number;
+      static getHeight(): number;
 
-      getScale(): int;
-      static getScale(): int;
+      getScale(): number;
+      static getScale(): number;
     }
   }
 
   class Shape {
-    constructor(color: int);
+    constructor(color: number);
 
     copy(): Shape;
 
     clone(): Shape;
 
-    getColor(): int;
-    setColor(color: int): Shape;
+    getColor(): number;
+    setColor(color: number): Shape;
 
-    getDrawMode(): int;
+    getDrawMode(): number;
 
     /**
      * Sets the GL draw mode of the shape. Possible draw modes are:
@@ -425,82 +435,88 @@ declare global {
      * 8 = quad strip
      * 9 = polygon
      */
-    setDrawMode(drawMode: int): Shape;
+    setDrawMode(drawMode: number): Shape;
 
     getVertexes(): Vector2f[];
 
-    addVertex(x: float, y: float): Shape;
+    addVertex(x: number, y: number): Shape;
 
-    insertVertex(index: int, x: float, y: float): Shape;
+    insertVertex(index: number, x: number, y: number): Shape;
 
-    removeVertex(index: int): Shape;
+    removeVertex(index: number): Shape;
 
     /**
      * Sets the shape as a line pointing from [x1, y1] to [x2, y2] with a thickness
      */
     setLine(
-      x1: float,
-      y1: float,
-      x2: float,
-      y2: float,
-      thickness: float,
+      x1: number,
+      y1: number,
+      x2: number,
+      y2: number,
+      thickness: number,
     ): Shape;
 
     /**
      * Sets the shape as a circle with a center at [x, y]
      * with radius and number of steps around the circle
      */
-    setCircle(x: float, y: float, radius: float, steps: int): Shape;
+    setCircle(x: number, y: number, radius: number, steps: number): Shape;
 
     draw(): Shape;
   }
 
   class Rectangle {
-    constructor(color: long, x: float, y: float, width: float, height: float);
+    constructor(
+      color: number,
+      x: number,
+      y: number,
+      width: number,
+      height: number,
+    );
 
-    getColor(): long;
-    setColor(color: long): Rectangle;
+    getColor(): number;
+    setColor(color: number): Rectangle;
 
-    getX(): float;
-    setX(x: float): Rectangle;
+    getX(): number;
+    setX(x: number): Rectangle;
 
-    getY(): float;
-    setY(y: float): Rectangle;
+    getY(): number;
+    setY(y: number): Rectangle;
 
-    getWidth(): float;
-    setWidth(width: float): Rectangle;
+    getWidth(): number;
+    setWidth(width: number): Rectangle;
 
-    getHeight(): float;
-    setHeight(height: float): Rectangle;
+    getHeight(): number;
+    setHeight(height: number): Rectangle;
 
     isShadow(): boolean;
     setShadow(shadow: boolean): Rectangle;
 
     getShadowOffset(): Vector2f;
 
-    getShadowOffsetX(): float;
-    getShadowOffsetY(): float;
+    getShadowOffsetX(): number;
+    getShadowOffsetY(): number;
 
-    setShadowOffset(x: float, y: float): Rectangle;
+    setShadowOffset(x: number, y: number): Rectangle;
 
-    setShadowOffsetX(x: float): Rectangle;
-    setShadowOffsetY(y: float): Rectangle;
+    setShadowOffsetX(x: number): Rectangle;
+    setShadowOffsetY(y: number): Rectangle;
 
-    getShadowColor(): long;
-    setShadowColor(color: long): Rectangle;
+    getShadowColor(): number;
+    setShadowColor(color: number): Rectangle;
 
-    setShadow(color: long, x: float, y: float): Rectangle;
+    setShadow(color: number, x: number, y: number): Rectangle;
 
     getOutline(): boolean;
     setOutline(outline: boolean): Rectangle;
 
-    getOutlineColor(): long;
-    setOutlineColor(color: long): Rectangle;
+    getOutlineColor(): number;
+    setOutlineColor(color: number): Rectangle;
 
-    getThickness(): float;
-    setThickness(thickness: float): Rectangle;
+    getThickness(): number;
+    setThickness(thickness: number): Rectangle;
 
-    setOutline(color: long, thickness: float): Rectangle;
+    setOutline(color: number, thickness: number): Rectangle;
 
     draw(): Rectangle;
   }
@@ -572,10 +588,10 @@ declare global {
     popMatrix(): Tessellator;
     static popMatrix(): Tessellator;
 
-    static getPartialTicks(): float;
-    getPartialTicks(): float;
-    static setPartialTicks(p: float): void;
-    setPartialTicks(p: float): void;
+    static getPartialTicks(): number;
+    getPartialTicks(): number;
+    static setPartialTicks(p: number): void;
+    setPartialTicks(p: number): void;
 
     /**
      * Binds a texture to the client for the Tessellator to use.
@@ -601,7 +617,7 @@ declare global {
      * @return the Tessellator to allow for method chaining
      * @see com.chattriggers.ctjs.minecraft.libs.renderer.Shape.setDrawMode
      */
-    begin(drawMode?: int, textured?: boolean): Tessellator;
+    begin(drawMode?: number, textured?: boolean): Tessellator;
     /**
      * Begin drawing with the Tessellator
      * with default draw mode of quads and textured
@@ -611,7 +627,7 @@ declare global {
      * @return the Tessellator to allow for method chaining
      * @see com.chattriggers.ctjs.minecraft.libs.renderer.Shape.setDrawMode
      */
-    static begin(drawMode?: int, textured?: boolean): Tessellator;
+    static begin(drawMode?: number, textured?: boolean): Tessellator;
 
     /**
      * Colorize the Tessellator.
@@ -622,7 +638,12 @@ declare global {
      * @param alpha the alpha value between 0 and 1
      * @return the Tessellator to allow for method chaining
      */
-    colorize(red: float, green: float, blue: float, alpha?: float): Tessellator;
+    colorize(
+      red: number,
+      green: number,
+      blue: number,
+      alpha?: number,
+    ): Tessellator;
     /**
      * Colorize the Tessellator.
      *
@@ -633,10 +654,10 @@ declare global {
      * @return the Tessellator to allow for method chaining
      */
     static colorize(
-      red: float,
-      green: float,
-      blue: float,
-      alpha?: float,
+      red: number,
+      green: number,
+      blue: number,
+      alpha?: number,
     ): Tessellator;
 
     /**
@@ -649,7 +670,7 @@ declare global {
      * @param z if the rotation is around the z axis
      * @return the Tessellator to allow for method chaining
      */
-    rotate(angle: float, x: float, y: float, z: float): Tessellator;
+    rotate(angle: number, x: number, y: number, z: number): Tessellator;
     /**
      * Rotates the Tessellator in 3d space.
      * Similar to [com.chattriggers.ctjs.minecraft.libs.renderer.Renderer.rotate]
@@ -660,7 +681,7 @@ declare global {
      * @param z if the rotation is around the z axis
      * @return the Tessellator to allow for method chaining
      */
-    static rotate(angle: float, x: float, y: float, z: float): Tessellator;
+    static rotate(angle: number, x: number, y: number, z: number): Tessellator;
 
     /**
      * Translates the Tessellator in 3d space.
@@ -671,7 +692,7 @@ declare global {
      * @param z the z position
      * @return the Tessellator to allow for method chaining
      */
-    translate(x: float, y: float, z: float): Tessellator;
+    translate(x: number, y: number, z: number): Tessellator;
     /**
      * Translates the Tessellator in 3d space.
      * Similar to [com.chattriggers.ctjs.minecraft.libs.renderer.Renderer.translate]
@@ -681,7 +702,7 @@ declare global {
      * @param z the z position
      * @return the Tessellator to allow for method chaining
      */
-    static translate(x: float, y: float, z: float): Tessellator;
+    static translate(x: number, y: number, z: number): Tessellator;
 
     /**
      * Scales the Tessellator in 3d space.
@@ -692,7 +713,7 @@ declare global {
      * @param z scale in the z direction
      * @return the Tessellator to allow for method chaining
      */
-    scale(x: float, y?: float, z?: float): Tessellator;
+    scale(x: number, y?: number, z?: number): Tessellator;
     /**
      * Scales the Tessellator in 3d space.
      * Similar to [com.chattriggers.ctjs.minecraft.libs.renderer.Renderer.scale]
@@ -702,7 +723,7 @@ declare global {
      * @param z scale in the z direction
      * @return the Tessellator to allow for method chaining
      */
-    static scale(x: float, y?: float, z?: float): Tessellator;
+    static scale(x: number, y?: number, z?: number): Tessellator;
 
     /**
      * Sets a new vertex in the Tessellator.
@@ -712,7 +733,7 @@ declare global {
      * @param z the z position
      * @return the Tessellator to allow for method chaining
      */
-    pos(x: float, y: float, z: float): Tessellator;
+    pos(x: number, y: number, z: number): Tessellator;
     /**
      * Sets a new vertex in the Tessellator.
      *
@@ -721,7 +742,7 @@ declare global {
      * @param z the z position
      * @return the Tessellator to allow for method chaining
      */
-    static pos(x: float, y: float, z: float): Tessellator;
+    static pos(x: number, y: number, z: number): Tessellator;
 
     /**
      * Sets the texture location on the last defined vertex.
@@ -731,7 +752,7 @@ declare global {
      * @param v the v position in the texture
      * @return the Tessellator to allow for method chaining
      */
-    tex(u: float, v: float): Tessellator;
+    tex(u: number, v: number): Tessellator;
     /**
      * Sets the texture location on the last defined vertex.
      * Use directly after using [Tessellator.pos]
@@ -740,7 +761,7 @@ declare global {
      * @param v the v position in the texture
      * @return the Tessellator to allow for method chaining
      */
-    static tex(u: float, v: float): Tessellator;
+    static tex(u: number, v: number): Tessellator;
 
     /**
      * Finalizes and draws the Tessellator.
@@ -758,7 +779,7 @@ declare global {
      * @param z the Z coordinate
      * @return the Vector3f position to render at
      */
-    getRenderPos(x: float, y: float, z: float): Vector3f;
+    getRenderPos(x: number, y: number, z: number): Vector3f;
     /**
      * Gets a fixed render position from x, y, and z inputs adjusted with partial ticks
      * @param x the X coordinate
@@ -766,7 +787,7 @@ declare global {
      * @param z the Z coordinate
      * @return the Vector3f position to render at
      */
-    static getRenderPos(x: float, y: float, z: float): Vector3f;
+    static getRenderPos(x: number, y: number, z: number): Vector3f;
 
     /**
      * Renders floating lines of text in the 3D world at a specific position.
@@ -782,12 +803,12 @@ declare global {
      */
     drawString(
       text: string,
-      x: float,
-      y: float,
-      z: float,
-      color?: int,
+      x: number,
+      y: number,
+      z: number,
+      color?: number,
       renderBlackBox?: boolean,
-      scale?: float,
+      scale?: number,
       increase?: boolean,
     ): void;
     /**
@@ -804,12 +825,12 @@ declare global {
      */
     static drawString(
       text: string,
-      x: float,
-      y: float,
-      z: float,
-      color?: int,
+      x: number,
+      y: number,
+      z: number,
+      color?: number,
       renderBlackBox?: boolean,
-      scale?: float,
+      scale?: number,
       increase?: boolean,
     ): void;
   }
@@ -826,12 +847,12 @@ declare global {
      * @return the re-mapped number
      */
     map(
-      number: float,
-      in_min: float,
-      in_max: float,
-      out_min: float,
-      out_max: float,
-    ): float;
+      number: number,
+      in_min: number,
+      in_max: number,
+      out_min: number,
+      out_max: number,
+    ): number;
     /**
      * Maps a number from one range to another.
      *
@@ -843,12 +864,12 @@ declare global {
      * @return the re-mapped number
      */
     static map(
-      number: float,
-      in_min: float,
-      in_max: float,
-      out_min: float,
-      out_max: float,
-    ): float;
+      number: number,
+      in_min: number,
+      in_max: number,
+      out_min: number,
+      out_max: number,
+    ): number;
 
     /**
      * Clamps a floating number between two values.
@@ -858,7 +879,7 @@ declare global {
      * @param max the maximum
      * @return the clamped number
      */
-    clampFloat(number: float, min: float, max: float): float;
+    clampFloat(number: number, min: number, max: number): number;
     /**
      * Clamps a floating number between two values.
      *
@@ -867,7 +888,7 @@ declare global {
      * @param max the maximum
      * @return the clamped number
      */
-    static clampFloat(number: float, min: float, max: float): float;
+    static clampFloat(number: number, min: number, max: number): number;
 
     /**
      * Clamps an integer number between two values.
@@ -877,7 +898,7 @@ declare global {
      * @param max the maximum
      * @return the clamped number
      */
-    clamp(number: int, min: int, max: int): int;
+    clamp(number: number, min: number, max: number): number;
     /**
      * Clamps an integer number between two values.
      *
@@ -886,7 +907,7 @@ declare global {
      * @param max the maximum
      * @return the clamped number
      */
-    static clamp(number: int, min: int, max: int): int;
+    static clamp(number: number, min: number, max: number): number;
   }
   /**
    * Instances a new Sound with certain properties. These properties
@@ -928,9 +949,9 @@ declare global {
      *
      * @param volume New volume, float value ( 0.0f - 1.0f ).
      */
-    setVolume(volume: float): Sound;
+    setVolume(volume: number): Sound;
 
-    getVolume(): float;
+    getVolume(): number;
 
     /**
      * Updates the position of this sound
@@ -939,16 +960,16 @@ declare global {
      * @param y the y coordinate
      * @param z the z coordinate
      */
-    setPosition(x: float, y: float, z: float): Sound;
+    setPosition(x: number, y: number, z: number): Sound;
 
     /**
      * Sets this sound's pitch.
      *
      * @param pitch A float value ( 0.5f - 2.0f ).
      */
-    setPitch(pitch: float): Sound;
+    setPitch(pitch: number): Sound;
 
-    getPitch(): float;
+    getPitch(): number;
 
     /**
      * Sets the attenuation (fade out over space) of the song.
@@ -959,7 +980,7 @@ declare global {
      *
      * @param model the model
      */
-    setAttenuation(model: int): Sound;
+    setAttenuation(model: number): Sound;
 
     /**
      * Plays/resumes the sound
@@ -1009,32 +1030,32 @@ declare global {
      * CONFIGURABLE (can be set in config object, or changed later, but MAKE SURE THE WORLD HAS LOADED)
      * volume of the sound, see {@link #setVolume(float)}
      **/
-    volume?: float;
+    volume?: number;
     /**
      * CONFIGURABLE (can be set in config object, or changed later, but MAKE SURE THE WORLD HAS LOADED)
      * pitch of the sound, see {@link #setPitch(float)}
      */
-    pitch?: float;
+    pitch?: number;
     /**
      * CONFIGURABLE (can be set in config object, or changed later, but MAKE SURE THE WORLD HAS LOADED)
      * location of the sound, see {@link #setPosition(float, float, float)}. Defaults to the players position
      */
-    x?: float;
+    x?: number;
     /**
      * CONFIGURABLE (can be set in config object, or changed later, but MAKE SURE THE WORLD HAS LOADED)
      * location of the sound, see {@link #setPosition(float, float, float)}. Defaults to the players position
      */
-    y?: float;
+    y?: number;
     /**
      * CONFIGURABLE (can be set in config object, or changed later, but MAKE SURE THE WORLD HAS LOADED)
      * location of the sound, see {@link #setPosition(float, float, float)}. Defaults to the players position
      */
-    z?: float;
+    z?: number;
     /**
      * CONFIGURABLE (can be set in config object, or changed later, but MAKE SURE THE WORLD HAS LOADED)
      * fade out model of the sound, see {@link #setAttenuation(int)}
      */
-    attenuation?: int;
+    attenuation?: number;
   }
 
   class Chunk {
@@ -1133,11 +1154,11 @@ declare global {
      */
     getLocalizedName(): string;
 
-    getAmplifier(): int;
+    getAmplifier(): number;
 
-    getDuration(): int;
+    getDuration(): number;
 
-    getID(): int;
+    getID(): number;
 
     isAmbient(): boolean;
 
@@ -1310,7 +1331,7 @@ declare global {
     constructor(rawNBT: MCNBTBase);
     readonly rawNBT: MCNBTBase;
     /**Gets the type byte for the tag. */
-    getId(): byte;
+    getId(): number;
     /**Creates a clone of the tag. */
     copy(): MCNBTBase;
     /**Return whether this compound has no tags. */
@@ -1319,7 +1340,7 @@ declare global {
 
     equals(other: object): boolean;
 
-    hashCode(): int;
+    hashCode(): number;
 
     toString(): string;
   }
@@ -1339,17 +1360,17 @@ declare global {
 
     getTag(key: string): NBTBase | NBTTagCompound | null;
 
-    getTagId(key: string): byte;
+    getTagId(key: string): number;
 
-    getByte(key: string): byte;
-    getShort(key: string): short;
-    getInteger(key: string): int;
-    getLong(key: string): long;
-    getFloat(key: string): float;
-    getDouble(key: string): double;
+    getByte(key: string): number;
+    getShort(key: string): number;
+    getInteger(key: string): number;
+    getLong(key: string): number;
+    getFloat(key: string): number;
+    getDouble(key: string): number;
     getString(key: string): string;
-    getByteArray(key: string): byte[];
-    getIntArray(key: string): int[];
+    getByteArray(key: string): number[];
+    getIntArray(key: string): number[];
     getBoolean(key: string): boolean;
     getCompoundTag(key: string): NBTTagCompound;
     getTagList(key: string, type: number): NBTTagList;
@@ -1391,39 +1412,39 @@ declare global {
     constructor(rawNBT: MCNBTTagList);
     readonly rawNBT: MCNBTTagList;
 
-    tagCount: int;
-    getTagCount(): int;
+    tagCount: number;
+    getTagCount(): number;
 
     appendTag(nbt: NBTBase): NBTTagList;
 
     appendTag(nbt: MCNBTBase): NBTTagList;
 
-    set(id: int, nbt: NBTBase): void;
+    set(id: number, nbt: NBTBase): void;
 
-    set(id: int, nbt: MCNBTBase): void;
+    set(id: number, nbt: MCNBTBase): void;
 
     insertTag(index: number, nbt: NBTBase): NBTTagList;
 
     insertTag(index: number, nbt: MCNBTBase): NBTTagList;
 
-    removeTag(index: int): MCNBTBase;
+    removeTag(index: number): MCNBTBase;
 
-    getCompoundTagAt(index: int): MCNBTTagCompound;
+    getCompoundTagAt(index: number): MCNBTTagCompound;
 
-    getIntArrayAt(index: int): int[];
+    getIntArrayAt(index: number): number[];
 
-    getDoubleAt(index: int): double;
+    getDoubleAt(index: number): number;
 
-    getFloatAt(index: int): float;
+    getFloatAt(index: number): number;
 
-    getStringTagAt(index: int): string;
+    getStringTagAt(index: number): string;
 
-    get(index: int): MCNBTBase;
+    get(index: number): MCNBTBase;
 
     get(
-      index: int,
+      index: number,
       type: NBTTagCompound["NBTDataType"],
-    ): float | double | string | int[] | MCNBTTagCompound | NBTBase;
+    ): number | string | number[] | MCNBTTagCompound | NBTBase;
   }
 
   class Player {
@@ -1448,14 +1469,14 @@ declare global {
     getTeam(): Team | null;
     static getTeam(): Team | null;
 
-    getX(): double;
-    static getX(): double;
+    getX(): number;
+    static getX(): number;
 
-    getY(): double;
-    static getY(): double;
+    getY(): number;
+    static getY(): number;
 
-    getZ(): double;
-    static getZ(): double;
+    getZ(): number;
+    static getZ(): number;
 
     /**
      * Gets the player's x motion.
@@ -1463,14 +1484,14 @@ declare global {
      *
      * @return the player's x motion
      */
-    getMotionX(): double;
+    getMotionX(): number;
     /**
      * Gets the player's x motion.
      * This is the amount the player will move in the x direction next tick.
      *
      * @return the player's x motion
      */
-    static getMotionX(): double;
+    static getMotionX(): number;
 
     /**
      * Gets the player's y motion.
@@ -1478,14 +1499,14 @@ declare global {
      *
      * @return the player's y motion
      */
-    getMotionY(): double;
+    getMotionY(): number;
     /**
      * Gets the player's y motion.
      * This is the amount the player will move in the y direction next tick.
      *
      * @return the player's y motion
      */
-    static getMotionY(): double;
+    static getMotionY(): number;
 
     /**
      * Gets the player's z motion.
@@ -1493,53 +1514,53 @@ declare global {
      *
      * @return the player's z motion
      */
-    getMotionZ(): double;
+    getMotionZ(): number;
     /**
      * Gets the player's z motion.
      * This is the amount the player will move in the z direction next tick.
      *
      * @return the player's z motion
      */
-    static getMotionZ(): double;
+    static getMotionZ(): number;
 
     /**
      * Gets the player's camera pitch.
      *
      * @return the player's camera pitch
      */
-    getPitch(): float;
+    getPitch(): number;
     /**
      * Gets the player's camera pitch.
      *
      * @return the player's camera pitch
      */
-    static getPitch(): float;
+    static getPitch(): number;
 
     /**
      * Gets the player's camera yaw.
      *
      * @return the player's camera yaw
      */
-    getYaw(): float;
+    getYaw(): number;
     /**
      * Gets the player's camera yaw.
      *
      * @return the player's camera yaw
      */
-    static getYaw(): float;
+    static getYaw(): number;
 
     /**
      * Gets the player's yaw rotation without wrapping.
      *
      * @return the yaw
      */
-    getRawYaw(): float;
+    getRawYaw(): number;
     /**
      * Gets the player's yaw rotation without wrapping.
      *
      * @return the yaw
      */
-    static getRawYaw(): float;
+    static getRawYaw(): number;
 
     /**
      * Gets the player's username.
@@ -1560,17 +1581,17 @@ declare global {
     getUUIDObj(): JavaUUID;
     static getUUIDObj(): JavaUUID;
 
-    getHP(): float;
-    static getHP(): float;
+    getHP(): number;
+    static getHP(): number;
 
-    getHunger(): int;
-    static getHunger(): int;
+    getHunger(): number;
+    static getHunger(): number;
 
-    getSaturation(): int;
-    static getSaturation(): int;
+    getSaturation(): number;
+    static getSaturation(): number;
 
-    getArmorPoints(): int;
-    static getArmorPoints(): int;
+    getArmorPoints(): number;
+    static getArmorPoints(): number;
 
     /**
      * Gets the player's air level.
@@ -1581,7 +1602,7 @@ declare global {
      *
      * @return the player's air level
      */
-    getAirLevel(): int;
+    getAirLevel(): number;
     /**
      * Gets the player's air level.
      *
@@ -1591,13 +1612,13 @@ declare global {
      *
      * @return the player's air level
      */
-    static getAirLevel(): int;
+    static getAirLevel(): number;
 
-    getXPLevel(): int;
-    static getXPLevel(): int;
+    getXPLevel(): number;
+    static getXPLevel(): number;
 
-    getXPProgress(): float;
-    static getXPProgress(): float;
+    getXPProgress(): number;
+    static getXPProgress(): number;
 
     getBiome():
       | "Ocean"
@@ -1687,13 +1708,13 @@ declare global {
      *
      * @return the light level at the player's current position
      */
-    getLightLevel(): int;
+    getLightLevel(): number;
     /**
      * Gets the light level at the player's current position.
      *
      * @return the light level at the player's current position
      */
-    static getLightLevel(): int;
+    static getLightLevel(): number;
 
     isSneaking(): boolean;
     static isSneaking(): boolean;
@@ -1773,11 +1794,11 @@ declare global {
     getHeldItem(): Item | null;
     static getHeldItem(): Item | null;
 
-    setHeldItemIndex(index: int): void;
-    static setHeldItemIndex(index: int): void;
+    setHeldItemIndex(index: number): void;
+    static setHeldItemIndex(index: number): void;
 
-    getHeldItemIndex(): int;
-    static getHeldItemIndex(): int;
+    getHeldItemIndex(): number;
+    static getHeldItemIndex(): number;
 
     /**
      * Gets the inventory of the player, i.e. the inventory accessed by 'e'.
@@ -1843,13 +1864,13 @@ declare global {
     /**
      * Draws the player in the GUI
      */
-    draw(x: int, y: int, rotate?: boolean): Player;
+    draw(x: number, y: number, rotate?: boolean): Player;
     /**
      * Draws the player in the GUI
      */
     static draw(
-      x: int,
-      y: int,
+      x: number,
+      y: number,
       rotate?: boolean,
       showNametag?: boolean,
       showArmor?: boolean,
@@ -2957,7 +2978,7 @@ declare global {
      * @param y the y location
      * @param z the z location
      */
-    playRecord(name: string, x: double, y: double, z: double): void;
+    playRecord(name: string, x: number, y: number, z: number): void;
     /**
      * Play a record at location x, y, and z.
      * Use "null" as name in the same location to stop record.
@@ -2967,7 +2988,7 @@ declare global {
      * @param y the y location
      * @param z the z location
      */
-    static playRecord(name: string, x: double, y: double, z: double): void;
+    static playRecord(name: string, x: number, y: number, z: number): void;
 
     stopAllSounds(): void;
     static stopAllSounds(): void;
@@ -2975,20 +2996,20 @@ declare global {
     isRaining(): boolean;
     static isRaining(): boolean;
 
-    getRainingStrength(): float;
-    static getRainingStrength(): float;
+    getRainingStrength(): number;
+    static getRainingStrength(): number;
 
-    getTime(): long;
-    static getTime(): long;
+    getTime(): number;
+    static getTime(): number;
 
     getDifficulty(): "PEACEFUL" | "EASY" | "NORMAL" | "HARD";
     static getDifficulty(): "PEACEFUL" | "EASY" | "NORMAL" | "HARD";
 
-    getMoonPhase(): int;
-    static getMoonPhase(): int;
+    getMoonPhase(): number;
+    static getMoonPhase(): number;
 
-    getSeed(): long;
-    static getSeed(): long;
+    getSeed(): number;
+    static getSeed(): number;
 
     getType():
       | "default"
@@ -3015,7 +3036,7 @@ declare global {
      * @param z the z position
      * @return the [BlockType] at the location
      */
-    getBlockAt(x: int, y: int, z: int): Block;
+    getBlockAt(x: number, y: number, z: number): Block;
     /**
      * Gets the [Block] at a location in the world.
      *
@@ -3024,7 +3045,7 @@ declare global {
      * @param z the z position
      * @return the [Block] at the location
      */
-    static getBlockAt(x: int, y: int, z: int): Block;
+    static getBlockAt(x: number, y: number, z: number): Block;
 
     /**
      * Gets the [BlockType] at a location in the world.
@@ -3087,8 +3108,8 @@ declare global {
     hasPlayer(name: string): boolean;
     static hasPlayer(name: string): boolean;
 
-    getChunk(x: int, y: int, z: int): Chunk;
-    static getChunk(x: int, y: int, z: int): Chunk;
+    getChunk(x: number, y: number, z: number): Chunk;
+    static getChunk(x: number, y: number, z: number): Chunk;
 
     getAllEntities(): Entity[];
     static getAllEntities(): Entity[];
@@ -3124,65 +3145,65 @@ declare global {
        *
        * @return the border center x location
        */
-      getCenterX(): double;
+      getCenterX(): number;
       /**
        * Gets the border center x location.
        *
        * @return the border center x location
        */
-      static getCenterX(): double;
+      static getCenterX(): number;
 
       /**
        * Gets the border center z location.
        *
        * @return the border center z location
        */
-      getCenterZ(): double;
+      getCenterZ(): number;
       /**
        * Gets the border center z location.
        *
        * @return the border center z location
        */
-      static getCenterZ(): double;
+      static getCenterZ(): number;
 
       /**
        * Gets the border size.
        *
        * @return the border size
        */
-      getSize(): int;
+      getSize(): number;
       /**
        * Gets the border size.
        *
        * @return the border size
        */
-      static getSize(): int;
+      static getSize(): number;
 
       /**
        * Gets the border target size.
        *
        * @return the border target size
        */
-      getTargetSize(): double;
+      getTargetSize(): number;
       /**
        * Gets the border target size.
        *
        * @return the border target size
        */
-      static getTargetSize(): double;
+      static getTargetSize(): number;
 
       /**
        * Gets the border time until the target size is met.
        *
        * @return the border time until target
        */
-      getTimeUntilTarget(): long;
+      getTimeUntilTarget(): number;
       /**
        * Gets the border time until the target size is met.
        *
        * @return the border time until target
        */
-      static getTimeUntilTarget(): long;
+      static getTimeUntilTarget(): number;
     }
 
     /**
@@ -3194,39 +3215,39 @@ declare global {
        *
        * @return the spawn x location.
        */
-      getX(): int;
+      getX(): number;
       /**
        * Gets the spawn x location.
        *
        * @return the spawn x location.
        */
-      static getX(): int;
+      static getX(): number;
 
       /**
        * Gets the spawn y location.
        *
        * @return the spawn y location.
        */
-      getY(): int;
+      getY(): number;
       /**
        * Gets the spawn y location.
        *
        * @return the spawn y location.
        */
-      static getY(): int;
+      static getY(): number;
 
       /**
        * Gets the spawn z location.
        *
        * @return the spawn z location.
        */
-      getZ(): int;
+      getZ(): number;
       /**
        * Gets the spawn z location.
        *
        * @return the spawn z location.
        */
-      static getZ(): int;
+      static getZ(): number;
     }
 
     class particle {
@@ -3260,12 +3281,12 @@ declare global {
        */
       spawnParticle(
         particle: string,
-        x: double,
-        y: double,
-        z: double,
-        xSpeed: double,
-        ySpeed: double,
-        zSpeed: double,
+        x: number,
+        y: number,
+        z: number,
+        xSpeed: number,
+        ySpeed: number,
+        zSpeed: number,
       ): Particle;
       /**
        * Spawns a particle into the world with the given attributes,
@@ -3282,12 +3303,12 @@ declare global {
        */
       static spawnParticle(
         particle: string,
-        x: double,
-        y: double,
-        z: double,
-        xSpeed: double,
-        ySpeed: double,
-        zSpeed: double,
+        x: number,
+        y: number,
+        z: number,
+        xSpeed: number,
+        ySpeed: number,
+        zSpeed: number,
       ): Particle;
 
       spawnParticle(particle: MCEntityFX): void;
@@ -3348,14 +3369,14 @@ declare global {
      *
      * @return The ping to the current server
      */
-    getPing(): long;
+    getPing(): number;
     /**
      * Gets the ping to the current server, or 5 if the player
      * is in a single-player world.
      *
      * @return The ping to the current server
      */
-    static getPing(): long;
+    static getPing(): number;
   }
 
   class TabList {
@@ -3512,7 +3533,7 @@ declare global {
      * @param index the line index
      * @return the score object at the index
      */
-    getLineByIndex(index: int): Scoreboard.Score;
+    getLineByIndex(index: number): Scoreboard.Score;
     /**
      * Gets the line at the specified index (0 based)
      * Equivalent to Scoreboard.getLines().get(index)
@@ -3520,7 +3541,7 @@ declare global {
      * @param index the line index
      * @return the score object at the index
      */
-    static getLineByIndex(index: int): Scoreboard.Score;
+    static getLineByIndex(index: number): Scoreboard.Score;
 
     /**
      * Gets a list of lines that have a certain score,
@@ -3529,7 +3550,7 @@ declare global {
      * @param score the score to look for
      * @return a list of actual score objects
      */
-    getLinesByScore(score: int): Scoreboard.Score[];
+    getLinesByScore(score: number): Scoreboard.Score[];
     /**
      * Gets a list of lines that have a certain score,
      * i.e. the numbers shown on the right
@@ -3537,7 +3558,7 @@ declare global {
      * @param score the score to look for
      * @return a list of actual score objects
      */
-    static getLinesByScore(score: int): Scoreboard.Score[];
+    static getLinesByScore(score: number): Scoreboard.Score[];
 
     /**
      * Sets a line in the scoreboard to the specified name and score.
@@ -3546,7 +3567,7 @@ declare global {
      * @param line the string to display on said line
      * @param override whether to remove old lines with the same score
      */
-    setLine(score: int, line: string, override: boolean): void;
+    setLine(score: number, line: string, override: boolean): void;
     /**
      * Sets a line in the scoreboard to the specified name and score.
      *
@@ -3554,7 +3575,7 @@ declare global {
      * @param line the string to display on said line
      * @param override whether to remove old lines with the same score
      */
-    static setLine(score: int, line: string, override: boolean): void;
+    static setLine(score: number, line: string, override: boolean): void;
 
     setShouldRender(shouldRender: boolean): void;
     static setShouldRender(shouldRender: boolean): void;
@@ -3577,14 +3598,14 @@ declare global {
        *
        * @return the actual point value
        */
-      getPoints(): int;
+      getPoints(): number;
       /**
        * Gets the score point value for this score,
        * i.e. the number on the right of the board
        *
        * @return the actual point value
        */
-      static getPoints(): int;
+      static getPoints(): number;
 
       /**
        * Gets the display string of this score
@@ -3627,14 +3648,14 @@ declare global {
     static getPrivateValue<T, E>(
       classToAccess: JavaClass<T>,
       instance: T,
-      fieldIndex: int,
+      fieldIndex: number,
     ): E;
 
     static setPrivateValue<T, E>(
       classToAccess: JavaClass<T>,
       instance: T,
       value: E,
-      fieldIndex: int,
+      fieldIndex: number,
     ): void;
 
     static setPrivateValue<T, E>(
@@ -3663,11 +3684,11 @@ declare global {
     /**
      * Causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds plus the specified number of nanoseconds, subject to the precision and accuracy of system timers and schedulers.
      */
-    static sleep(millis: long, nanos?: int): void;
+    static sleep(millis: number, nanos?: number): void;
     /**
      * Causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds plus the specified number of nanoseconds, subject to the precision and accuracy of system timers and schedulers.
      */
-    sleep(millis: long, nanos?: int): void;
+    sleep(millis: number, nanos?: number): void;
 
     /**
      * Returns a reference to the currently executing thread object.
@@ -3688,7 +3709,7 @@ declare global {
     /**Constructs an empty list with an initial capacity of ten. */
     constructor();
     /**Constructs an empty list with the specified initial capacity. */
-    constructor(initialCapacity: int);
+    constructor(initialCapacity: number);
 
     /**
      * Appends the specified element to the end of this list
@@ -3698,7 +3719,7 @@ declare global {
     /**
      * Inserts the specified element at the specified position in this list.
      */
-    add(index: int, element: object): boolean;
+    add(index: number, element: object): boolean;
 
     /**
      * Removes all of the elements from this list.
@@ -3718,17 +3739,17 @@ declare global {
     /**
      * Increases the capacity of this ArrayList instance, if necessary, to ensure that it can hold at least the number of elements specified by the minimum capacity argument.
      */
-    ensureCapacity(minCapacity: int): void;
+    ensureCapacity(minCapacity: number): void;
 
     /**
      * Returns the element at the specified position in this list.
      */
-    get(index: int): object;
+    get(index: number): object;
 
     /**
      * Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
      */
-    indexOf(o: object): int;
+    indexOf(o: object): number;
 
     /**
      * Returns true if this list contains no elements.
@@ -3738,12 +3759,12 @@ declare global {
     /**
      * Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element.
      */
-    lastIndexOf(o: object): int;
+    lastIndexOf(o: object): number;
 
     /**
      * Removes the element at the specified position in this list.
      */
-    remove(index: int): object;
+    remove(index: number): object;
 
     /**
      * Removes the first occurrence of the specified element from this list, if it is present.
@@ -3753,17 +3774,17 @@ declare global {
     /**
      * Replaces the element at the specified position in this list with the specified element.
      */
-    set(index: int, element: object): object;
+    set(index: number, element: object): object;
 
     /**
      * Returns the number of elements in this list.
      */
-    size(): int;
+    size(): number;
 
     /**
      * Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.
      */
-    subList(fromIndex: int, toIndex: int): object[];
+    subList(fromIndex: number, toIndex: number): object[];
 
     /**
      * Returns an array containing all of the elements in this list in proper sequence (from first to last element).
@@ -3790,12 +3811,12 @@ declare global {
     /**
      * Constructs an empty HashMap with the specified initial capacity and the default load factor (0.75).
      */
-    constructor(initialCapacity: int);
+    constructor(initialCapacity: number);
 
     /**
      * Constructs an empty HashMap with the specified initial capacity and load factor.
      */
-    constructor(initialCapacity: int, loadFactor: float);
+    constructor(initialCapacity: number, loadFactor: number);
 
     /**
      * Constructs a new HashMap with the same mappings as the specified Map.
@@ -3921,7 +3942,7 @@ declare global {
     /**
      * Returns the number of key-value mappings in this map.
      */
-    size(): int;
+    size(): number;
   }
 
   /**A raw Keyboard interface. This can be used to poll the current state of the keys, or read all the keyboard presses / releases since the last read. */
@@ -3929,157 +3950,157 @@ declare global {
     /**
      * The special character meaning that no character was translated for the event.
      */
-    static readonly CHAR_NONEL: int;
+    static readonly CHAR_NONEL: number;
     /**
      * Internal use - event size in bytes
      */
-    static readonly EVENT_SIZE: int;
+    static readonly EVENT_SIZE: number;
 
-    static KEY_0: int;
-    static KEY_1: int;
-    static KEY_2: int;
-    static KEY_3: int;
-    static KEY_4: int;
-    static KEY_5: int;
-    static KEY_6: int;
-    static KEY_7: int;
-    static KEY_8: int;
-    static KEY_9: int;
-    static KEY_A: int;
-    static KEY_ADD: int;
-    static KEY_APOSTROPHE: int;
-    static KEY_APPS: int;
-    static KEY_AT: int;
-    static KEY_AX: int;
-    static KEY_B: int;
-    static KEY_BACK: int;
-    static KEY_BACKSLASH: int;
-    static KEY_C: int;
-    static KEY_CAPITAL: int;
-    static KEY_CIRCUMFLEX: int;
-    static KEY_CLEAR: int;
-    static KEY_COLON: int;
-    static KEY_COMMA: int;
-    static KEY_CONVERT: int;
-    static KEY_D: int;
-    static KEY_DECIMAL: int;
-    static KEY_DELETE: int;
-    static KEY_DIVIDE: int;
-    static KEY_DOWN: int;
-    static KEY_E: int;
-    static KEY_END: int;
-    static KEY_EQUALS: int;
-    static KEY_ESCAPE: int;
-    static KEY_F: int;
-    static KEY_F1: int;
-    static KEY_F10: int;
-    static KEY_F11: int;
-    static KEY_F12: int;
-    static KEY_F13: int;
-    static KEY_F14: int;
-    static KEY_F15: int;
-    static KEY_F16: int;
-    static KEY_F17: int;
-    static KEY_F18: int;
-    static KEY_F19: int;
-    static KEY_F2: int;
-    static KEY_F3: int;
-    static KEY_F4: int;
-    static KEY_F5: int;
-    static KEY_F6: int;
-    static KEY_F7: int;
-    static KEY_F8: int;
-    static KEY_F9: int;
-    static KEY_FUNCTION: int;
-    static KEY_G: int;
-    static KEY_GRAVE: int;
-    static KEY_H: int;
-    static KEY_HOME: int;
-    static KEY_I: int;
-    static KEY_INSERT: int;
-    static KEY_J: int;
-    static KEY_K: int;
-    static KEY_KANA: int;
-    static KEY_KANJI: int;
-    static KEY_L: int;
-    static KEY_LBRACKET: int;
-    static KEY_LCONTROL: int;
-    static KEY_LEFT: int;
-    static KEY_LMENU: int;
-    static KEY_LMETA: int;
-    static KEY_LSHIFT: int;
+    static KEY_0: number;
+    static KEY_1: number;
+    static KEY_2: number;
+    static KEY_3: number;
+    static KEY_4: number;
+    static KEY_5: number;
+    static KEY_6: number;
+    static KEY_7: number;
+    static KEY_8: number;
+    static KEY_9: number;
+    static KEY_A: number;
+    static KEY_ADD: number;
+    static KEY_APOSTROPHE: number;
+    static KEY_APPS: number;
+    static KEY_AT: number;
+    static KEY_AX: number;
+    static KEY_B: number;
+    static KEY_BACK: number;
+    static KEY_BACKSLASH: number;
+    static KEY_C: number;
+    static KEY_CAPITAL: number;
+    static KEY_CIRCUMFLEX: number;
+    static KEY_CLEAR: number;
+    static KEY_COLON: number;
+    static KEY_COMMA: number;
+    static KEY_CONVERT: number;
+    static KEY_D: number;
+    static KEY_DECIMAL: number;
+    static KEY_DELETE: number;
+    static KEY_DIVIDE: number;
+    static KEY_DOWN: number;
+    static KEY_E: number;
+    static KEY_END: number;
+    static KEY_EQUALS: number;
+    static KEY_ESCAPE: number;
+    static KEY_F: number;
+    static KEY_F1: number;
+    static KEY_F10: number;
+    static KEY_F11: number;
+    static KEY_F12: number;
+    static KEY_F13: number;
+    static KEY_F14: number;
+    static KEY_F15: number;
+    static KEY_F16: number;
+    static KEY_F17: number;
+    static KEY_F18: number;
+    static KEY_F19: number;
+    static KEY_F2: number;
+    static KEY_F3: number;
+    static KEY_F4: number;
+    static KEY_F5: number;
+    static KEY_F6: number;
+    static KEY_F7: number;
+    static KEY_F8: number;
+    static KEY_F9: number;
+    static KEY_FUNCTION: number;
+    static KEY_G: number;
+    static KEY_GRAVE: number;
+    static KEY_H: number;
+    static KEY_HOME: number;
+    static KEY_I: number;
+    static KEY_INSERT: number;
+    static KEY_J: number;
+    static KEY_K: number;
+    static KEY_KANA: number;
+    static KEY_KANJI: number;
+    static KEY_L: number;
+    static KEY_LBRACKET: number;
+    static KEY_LCONTROL: number;
+    static KEY_LEFT: number;
+    static KEY_LMENU: number;
+    static KEY_LMETA: number;
+    static KEY_LSHIFT: number;
     /**
      * Deprecated.
      * Use KEY_LMETA instead
      */
-    static KEY_LWIN: int;
-    static KEY_M: int;
-    static KEY_MINUS: int;
-    static KEY_MULTIPLY: int;
-    static KEY_N: int;
-    static KEY_NEXT: int;
-    static KEY_NOCONVERT: int;
+    static KEY_LWIN: number;
+    static KEY_M: number;
+    static KEY_MINUS: number;
+    static KEY_MULTIPLY: number;
+    static KEY_N: number;
+    static KEY_NEXT: number;
+    static KEY_NOCONVERT: number;
     /**
      * The special keycode meaning that only the translated character is valid.
      */
-    static KEY_NONE: int;
-    static KEY_NUMLOCK: int;
-    static KEY_NUMPAD0: int;
-    static KEY_NUMPAD1: int;
-    static KEY_NUMPAD2: int;
-    static KEY_NUMPAD3: int;
-    static KEY_NUMPAD4: int;
-    static KEY_NUMPAD5: int;
-    static KEY_NUMPAD6: int;
-    static KEY_NUMPAD7: int;
-    static KEY_NUMPAD8: int;
-    static KEY_NUMPAD9: int;
-    static KEY_NUMPADCOMMA: int;
-    static KEY_NUMPADENTER: int;
-    static KEY_NUMPADEQUALS: int;
-    static KEY_O: int;
-    static KEY_P: int;
-    static KEY_PAUSE: int;
-    static KEY_PERIOD: int;
-    static KEY_POWER: int;
-    static KEY_PRIOR: int;
-    static KEY_Q: int;
-    static KEY_R: int;
-    static KEY_RBRACKET: int;
-    static KEY_RCONTROL: int;
-    static KEY_RETURN: int;
-    static KEY_RIGHT: int;
-    static KEY_RMENU: int;
-    static KEY_RMETA: int;
-    static KEY_RSHIFT: int;
+    static KEY_NONE: number;
+    static KEY_NUMLOCK: number;
+    static KEY_NUMPAD0: number;
+    static KEY_NUMPAD1: number;
+    static KEY_NUMPAD2: number;
+    static KEY_NUMPAD3: number;
+    static KEY_NUMPAD4: number;
+    static KEY_NUMPAD5: number;
+    static KEY_NUMPAD6: number;
+    static KEY_NUMPAD7: number;
+    static KEY_NUMPAD8: number;
+    static KEY_NUMPAD9: number;
+    static KEY_NUMPADCOMMA: number;
+    static KEY_NUMPADENTER: number;
+    static KEY_NUMPADEQUALS: number;
+    static KEY_O: number;
+    static KEY_P: number;
+    static KEY_PAUSE: number;
+    static KEY_PERIOD: number;
+    static KEY_POWER: number;
+    static KEY_PRIOR: number;
+    static KEY_Q: number;
+    static KEY_R: number;
+    static KEY_RBRACKET: number;
+    static KEY_RCONTROL: number;
+    static KEY_RETURN: number;
+    static KEY_RIGHT: number;
+    static KEY_RMENU: number;
+    static KEY_RMETA: number;
+    static KEY_RSHIFT: number;
     /**
      * Deprecated.
      * Use KEY_RMETA instead
      */
-    static KEY_RWIN: int;
-    static KEY_S: int;
-    static KEY_SCROLL: int;
-    static KEY_SECTION: int;
-    static KEY_SEMICOLON: int;
-    static KEY_SLASH: int;
-    static KEY_SLEEP: int;
-    static KEY_SPACE: int;
-    static KEY_STOP: int;
-    static KEY_SUBTRACT: int;
-    static KEY_SYSRQ: int;
-    static KEY_T: int;
-    static KEY_TAB: int;
-    static KEY_U: int;
-    static KEY_UNDERLINE: int;
-    static KEY_UNLABELED: int;
-    static KEY_UP: int;
-    static KEY_V: int;
-    static KEY_W: int;
-    static KEY_X: int;
-    static KEY_Y: int;
-    static KEY_YEN: int;
-    static KEY_Z: int;
-    static KEYBOARD_SIZE: int;
+    static KEY_RWIN: number;
+    static KEY_S: number;
+    static KEY_SCROLL: number;
+    static KEY_SECTION: number;
+    static KEY_SEMICOLON: number;
+    static KEY_SLASH: number;
+    static KEY_SLEEP: number;
+    static KEY_SPACE: number;
+    static KEY_STOP: number;
+    static KEY_SUBTRACT: number;
+    static KEY_SYSRQ: number;
+    static KEY_T: number;
+    static KEY_TAB: number;
+    static KEY_U: number;
+    static KEY_UNDERLINE: number;
+    static KEY_UNLABELED: number;
+    static KEY_UP: number;
+    static KEY_V: number;
+    static KEY_W: number;
+    static KEY_X: number;
+    static KEY_Y: number;
+    static KEY_YEN: number;
+    static KEY_Z: number;
+    static KEYBOARD_SIZE: number;
 
     /**
      * Check whether repeat events are currently reported or not.
@@ -4101,11 +4122,11 @@ declare global {
      */
     static enableRepeatEvents(enable: boolean): void;
 
-    static getEventCharacter(): char;
+    static getEventCharacter(): number;
     /**
      * Please not that the key code returned is NOT valid against the current keyboard layout.
      */
-    static getEventKey(): int;
+    static getEventKey(): number;
 
     /**
      * Gets the state of the key that generated the current event
@@ -4115,31 +4136,31 @@ declare global {
     /**
      * Gets the time in nanoseconds of the current event.
      */
-    static getEventNanoseconds(): long;
+    static getEventNanoseconds(): number;
 
-    static getKeyCount(): int;
+    static getKeyCount(): number;
 
     /**
      * Get's a key's index.
      */
-    static getKeyIndex(keyName: string): int;
+    static getKeyIndex(keyName: string): number;
 
     /**
      * Gets a key's name
      */
-    static getKeyName(key: int): string;
+    static getKeyName(key: number): string;
 
     /**
      * Gets the number of keyboard events waiting after doing a buffer enabled poll().
      */
-    static getNumKeyboardEvents(): int;
+    static getNumKeyboardEvents(): number;
 
     static isCreated(): boolean;
 
     /**
      * Checks to see if a key is down.
      */
-    static isKeyDown(key: int): boolean;
+    static isKeyDown(key: number): boolean;
 
     static isRepeatEvent(): boolean;
 
@@ -4155,17 +4176,17 @@ declare global {
   }
 
   class Action {
-    constructor(slot: int, windowId: int);
+    constructor(slot: number, windowId: number);
 
-    setSlot(slot: int): Action;
+    setSlot(slot: number): Action;
 
-    setWindowId(windowId: int): Action;
+    setWindowId(windowId: number): Action;
 
     complete(): void;
 
-    doClick(button: int, mode: int): void;
+    doClick(button: number, mode: number): void;
 
-    getSlot(): int;
+    getSlot(): number;
 
     /**
      * Creates a new action.
@@ -4177,7 +4198,7 @@ declare global {
      * @param typeString the type of action to do (CLICK, DRAG, DROP, KEY)
      * @return the new action
      */
-    static of(inventory: Inventory, slot: int, typeString: string): Action;
+    static of(inventory: Inventory, slot: number, typeString: string): Action;
   }
 
   namespace Action {
@@ -4192,7 +4213,7 @@ declare global {
        * @param typeString the type of action to do (CLICK, DRAG, DROP, KEY)
        * @return the new action
        */
-      static of(inventory: Inventory, slot: int, typeString: string): Action;
+      static of(inventory: Inventory, slot: number, typeString: string): Action;
     }
 
     enum type {
@@ -4267,7 +4288,7 @@ declare global {
      *
      * @return the size of the Inventory
      */
-    getSize(): int;
+    getSize(): number;
 
     /**
      * Gets the item in any slot, starting from 0.
@@ -4275,7 +4296,7 @@ declare global {
      * @param slot the slot index
      * @return the Item in that slot
      */
-    getStackInSlot(slot: int): Item | null;
+    getStackInSlot(slot: number): Item | null;
 
     /**
      * Returns the window identifier number of this Inventory.
@@ -4283,7 +4304,7 @@ declare global {
      *
      * @return the window id
      */
-    getWindowId(): int;
+    getWindowId(): number;
 
     doAction(action: Action): void;
 
@@ -4294,7 +4315,7 @@ declare global {
      * @param item the item for checking
      * @return whether it can be shift clicked in
      */
-    isItemValidForSlot(slot: int, item: Item): boolean;
+    isItemValidForSlot(slot: number, item: Item): boolean;
 
     /**
      * @return a list of the [Item]s in an inventory
@@ -4315,7 +4336,7 @@ declare global {
      * @param id the ID of the item to match
      * @return whether the inventory contains an item with ID
      */
-    contains(id: int): boolean;
+    contains(id: number): boolean;
 
     /**
      * Gets the index of any item in the inventory, and returns the slot number.
@@ -4324,7 +4345,7 @@ declare global {
      * @param item the item to check for
      * @return the index of the given item
      */
-    indexOf(item: Item): int;
+    indexOf(item: Item): number;
 
     /**
      * Gets the index of any item in the inventory with matching ID, and returns the slot number.
@@ -4333,7 +4354,7 @@ declare global {
      * @param id the item ID to check for
      * @return the index of the given item with ID
      */
-    indexOf(id: int): int;
+    indexOf(id: number): number;
 
     /**
      * Returns true if this Inventory wraps a Container object
@@ -4351,7 +4372,7 @@ declare global {
      * @param shift whether shift is being held. False by default
      * @return this inventory for method chaining
      */
-    click(slot: int, shift?: boolean, button?: string): Inventory;
+    click(slot: number, shift?: boolean, button?: string): Inventory;
 
     /**
      * Shorthand for [DropAction]
@@ -4360,7 +4381,7 @@ declare global {
      * @param ctrl whether control should be held (drops whole stack)
      * @return this inventory for method chaining
      */
-    drop(slot: int, ctrl: boolean): Inventory;
+    drop(slot: number, ctrl: boolean): Inventory;
 
     /**
      * Shorthand for [DragAction]
@@ -4369,7 +4390,7 @@ declare global {
      * @param slots all of the slots to drag onto
      * @return this inventory for method chaining
      */
-    drag(type: string, ...slot: int[]): Inventory;
+    drag(type: string, ...slot: number[]): Inventory;
 
     /**
      * Gets the name of the inventory, simply "container" for most chest-like blocks.
@@ -4391,7 +4412,7 @@ declare global {
 
     constructor(itemName: string);
 
-    constructor(itemID: int);
+    constructor(itemID: number);
 
     constructor(block: BlockType);
 
@@ -4414,11 +4435,11 @@ declare global {
     /**Deprecated Use the better-named method getNBT*/
     getItemNBT(): NBTTagCompound;
 
-    getID(): int;
+    getID(): number;
 
-    setStackSize(stackSize: int): Item;
+    setStackSize(stackSize: number): Item;
 
-    getStackSize(): int;
+    getStackSize(): number;
 
     /**
      * Gets the item's unlocalized name.
@@ -4444,13 +4465,13 @@ declare global {
      */
     getName(): string;
 
-    getEnchantments(): Map<string, int>;
+    getEnchantments(): Map<string, number>;
 
     isEnchantable(): boolean;
 
     isEnchanted(): boolean;
 
-    getMetadata(): int;
+    getMetadata(): number;
 
     canPlaceOn(block: BlockType): boolean;
 
@@ -4463,13 +4484,13 @@ declare global {
      *
      * @return the item's durability
      */
-    getDurability(): int;
+    getDurability(): number;
 
-    getDamage(): int;
+    getDamage(): number;
 
-    setDamage(damage: int): Item;
+    setDamage(damage: number): Item;
 
-    getMaxDamage(): int;
+    getMaxDamage(): number;
 
     isDamagable(): boolean;
 
@@ -4482,7 +4503,7 @@ declare global {
      * @param y the y location
      * @param scale the scale
      */
-    draw(x?: float, y?: float, scale?: float, z?: float): void;
+    draw(x?: number, y?: number, scale?: number, z?: number): void;
 
     /**
      * Checks whether another Item is the same as this one.
@@ -4493,7 +4514,7 @@ declare global {
      */
     equals(other?: any): boolean;
 
-    hashCode(): int;
+    hashCode(): number;
 
     toString(): string;
   }
@@ -4633,19 +4654,19 @@ declare global {
 
     isBurning(): boolean;
 
-    getX(): double;
-    getY(): double;
-    getZ(): double;
+    getX(): number;
+    getY(): number;
+    getZ(): number;
 
     getPos(): Vec3i;
 
-    getLastX(): double;
-    getLastY(): double;
-    getLastZ(): double;
+    getLastX(): number;
+    getLastY(): number;
+    getLastZ(): number;
 
-    getRenderX(): double;
-    getRenderY(): double;
-    getRenderZ(): double;
+    getRenderX(): number;
+    getRenderY(): number;
+    getRenderZ(): number;
 
     face: BlockFace;
 
@@ -4655,7 +4676,7 @@ declare global {
      *
      * @return the entity's pitch
      */
-    getPitch(): double;
+    getPitch(): number;
 
     /**
      * Gets the yaw, the vertical direction the entity is facing towards.
@@ -4663,7 +4684,7 @@ declare global {
      *
      * @return the entity's yaw
      */
-    getYaw(): double;
+    getYaw(): number;
 
     /**
      * Gets the entity's x motion.
@@ -4671,7 +4692,7 @@ declare global {
      *
      * @return the entitys's x motion
      */
-    getMotionX(): double;
+    getMotionX(): number;
 
     /**
      * Gets the entity's y motion.
@@ -4679,7 +4700,7 @@ declare global {
      *
      * @return the entity's y motion
      */
-    getMotionY(): double;
+    getMotionY(): number;
 
     /**
      * Gets the entity's z motion.
@@ -4687,7 +4708,7 @@ declare global {
      *
      * @return the entity's z motion
      */
-    getMotionZ(): double;
+    getMotionZ(): number;
 
     getRiding(): Entity | null;
 
@@ -4709,14 +4730,14 @@ declare global {
      *
      * @return the entity's width
      */
-    getWidth(): float;
+    getWidth(): number;
 
     /**
      * Gets the entire height of the entity's hitbox
      *
      * @return the entity's height
      */
-    getHeight(): float;
+    getHeight(): number;
 
     /**
      * Gets the height of the eyes on the entity,
@@ -4725,7 +4746,7 @@ declare global {
      *
      * @return the height of the entity's eyes
      */
-    getEyeHeight(): float;
+    getEyeHeight(): number;
 
     /**
      * Gets the name of the entity, could be "Villager",
@@ -4917,15 +4938,15 @@ declare global {
      * @param message the message to set the page to
      * @return the current book to allow method chaining
      */
-    setPage(pageIndex: int, message: Message): Book;
+    setPage(pageIndex: number, message: Message): Book;
 
     updateBookScreen(pages: NBTTagList): void;
 
-    display(page?: int): void;
+    display(page?: number): void;
 
     isOpen(): boolean;
 
-    getCurrentPage(): int;
+    getCurrentPage(): number;
   }
 
   class Message {
@@ -4975,12 +4996,12 @@ declare global {
     /**
      * @return the chat line ID of the message
      */
-    getChatLineId(): int;
+    getChatLineId(): number;
 
     /**
      * Sets the chat line ID of the message. Useful for updating an already sent chat message.
      */
-    setChatLineId(id: int): Message;
+    setChatLineId(id: number): Message;
 
     /**
      * @return true if the message can trip other triggers.
@@ -5010,7 +5031,7 @@ declare global {
      * @param component the new TextComponent or String to replace with
      * @return the Message for method chaining
      */
-    setTextComponent(index: int, component: string | TextComponent): Message;
+    setTextComponent(index: number, component: string | TextComponent): Message;
 
     /**
      * Adds a TextComponent or String to the end of the Message.
@@ -5025,7 +5046,7 @@ declare global {
      * @param component the new TextComponent or String to insert
      * @return the Message for method chaining
      */
-    addTextComponent(index: int, component: string | TextComponent): Message;
+    addTextComponent(index: number, component: string | TextComponent): Message;
 
     clone(): Message;
 
@@ -5137,13 +5158,13 @@ declare global {
      *
      * @param chatLineIDs the id(s) to be cleared
      */
-    static clearChat(...chatLineIDs: int[]): void;
+    static clearChat(...chatLineIDs: number[]): void;
     /**
      * Clear chat messages with the specified message ID, or all chat messages if no ID is specified
      *
      * @param chatLineIDs the id(s) to be cleared
      */
-    clearChat(...chatLineIDs: int[]): void;
+    clearChat(...chatLineIDs: number[]): void;
 
     /**
      * Get a message that will be perfectly one line of chat,
@@ -5169,13 +5190,13 @@ declare global {
      *
      * @return the width of chat
      */
-    static getChatWidth(): int;
+    static getChatWidth(): number;
     /**
      * Gets the width of Minecraft's chat
      *
      * @return the width of chat
      */
-    getChatWidth(): int;
+    getChatWidth(): number;
 
     /**
      * Remove all formatting
@@ -5273,14 +5294,14 @@ declare global {
      * @param chatLineId the chat line id of the message to be replaced
      * @param replacements the new message(s) to be put in place of the old one
      */
-    editChat(chatLineId: int, ...replacements: Message[]): void;
+    editChat(chatLineId: number, ...replacements: Message[]): void;
     /**
      * Edits an already sent chat message by its chat line id
      *
      * @param chatLineId the chat line id of the message to be replaced
      * @param replacements the new message(s) to be put in place of the old one
      */
-    static editChat(chatLineId: int, ...replacements: Message[]): void;
+    static editChat(chatLineId: number, ...replacements: Message[]): void;
 
     /**
      * Deletes an already sent chat message matching [regexp].
@@ -5326,13 +5347,13 @@ declare global {
      *
      * @param chatLineId the chat line id of the message to be deleted
      */
-    deleteChat(chatLineId: int): void;
+    deleteChat(chatLineId: number): void;
     /**
      * Deletes an already sent chat message by its chat line id
      *
      * @param chatLineId the chat line id of the message to be deleted
      */
-    static deleteChat(chatLineId: int): void;
+    static deleteChat(chatLineId: number): void;
 
     /**
      * Gets the previous 1000 lines of chat
@@ -5413,7 +5434,7 @@ declare global {
   }
 
   class ClickAction extends Action {
-    constructor(slot: int, windowId: int);
+    constructor(slot: number, windowId: number);
 
     getClickType(): ClickAction.ClickType;
 
@@ -5478,7 +5499,7 @@ declare global {
      */
     constructor(
       description: string,
-      keyCode: int | Keyboard,
+      keyCode: number | Keyboard,
       category?: string,
     );
 
@@ -5503,7 +5524,7 @@ declare global {
      *
      * @return the integer key code
      */
-    getKeyCode(): int;
+    getKeyCode(): number;
 
     /**
      * Sets the state of the key.
@@ -5516,17 +5537,17 @@ declare global {
   class CPS {
     static INSTANCE: CPS;
 
-    static getLeftClicksMax(): int;
+    static getLeftClicksMax(): number;
 
-    static getRightClicksMax(): int;
+    static getRightClicksMax(): number;
 
-    static getLeftClicks(): int;
+    static getLeftClicks(): number;
 
-    static getRightClicks(): int;
+    static getRightClicks(): number;
 
-    static getLeftClicksAverage(): int;
+    static getLeftClicksAverage(): number;
 
-    static getRightClicksAverage(): int;
+    static getRightClicksAverage(): number;
   }
 
   class DisplayHandler {
@@ -5571,13 +5592,13 @@ declare global {
     getText(): Text;
     setText(text: string): DisplayLine;
 
-    getTextColor(): long;
-    setTextColor(color: long): DisplayLine;
+    getTextColor(): number;
+    setTextColor(color: number): DisplayLine;
 
-    getTextWidth(): float;
+    getTextWidth(): number;
 
     setShadow(shadow: boolean): DisplayLine;
-    setScale(scale: float): DisplayLine;
+    setScale(scale: number): DisplayLine;
 
     getAlign(): DisplayHandler.Align;
     setAlign(align: string | DisplayHandler.Align): DisplayLine;
@@ -5585,14 +5606,14 @@ declare global {
     getBackground(): DisplayHandler.Background;
     setBackground(background: string | DisplayHandler.Background): DisplayLine;
 
-    getBackgroundColor(): long;
-    setBackgroundColor(color: long): DisplayLine;
+    getBackgroundColor(): number;
+    setBackgroundColor(color: number): DisplayLine;
 
     registerClicked(
       method: (
         mouseX: number,
         mouseY: number,
-        button: int,
+        button: number,
         pressed: boolean,
       ) => void,
     ): OnRegularTrigger;
@@ -5611,40 +5632,40 @@ declare global {
         yDist: number,
         mouseX: number,
         mouseY: number,
-        button: int,
+        button: number,
       ) => void,
     ): OnRegularTrigger;
 
     drawLeft(
-      x: float,
-      y: float,
-      maxWidth: float,
+      x: number,
+      y: number,
+      maxWidth: number,
       background: DisplayHandler.Background,
-      backgroundColor: long,
-      textColor: long,
+      backgroundColor: number,
+      textColor: number,
     ): void;
     drawRight(
-      x: float,
-      y: float,
-      maxWidth: float,
+      x: number,
+      y: number,
+      maxWidth: number,
       background: DisplayHandler.Background,
-      backgroundColor: long,
-      textColor: long,
+      backgroundColor: number,
+      textColor: number,
     ): void;
     drawCenter(
-      x: float,
-      y: float,
-      maxWidth: float,
+      x: number,
+      y: number,
+      maxWidth: number,
       background: DisplayHandler.Background,
-      backgroundColor: long,
-      textColor: long,
+      backgroundColor: number,
+      textColor: number,
     ): void;
 
     toString(): string;
   }
   interface DisplayLineConfig {
-    textColor?: long;
-    backgroundColor?: long;
+    textColor?: number;
+    backgroundColor?: number;
 
     align?: DisplayHandler.Align;
     background?: DisplayHandler.Background;
@@ -5654,11 +5675,11 @@ declare global {
     constructor();
     constructor(config: DisplayConfig);
 
-    getBackgroundColor(): long;
-    setBackgroundColor(backgroundColor: long): Display;
+    getBackgroundColor(): number;
+    setBackgroundColor(backgroundColor: number): Display;
 
-    getTextColor(): long;
-    setTextColor(textColor: long): Display;
+    getTextColor(): number;
+    setTextColor(textColor: number): Display;
 
     getBackground(): DisplayHandler.Background;
     setBackground(background: string | DisplayHandler.Background): Display;
@@ -5669,34 +5690,34 @@ declare global {
     getOrder(): DisplayHandler.Order;
     setOrder(order: string | DisplayHandler.Order): Display;
 
-    getLine(index: int): DisplayLine;
-    setLine(index: int, line: string | DisplayLine): Display;
+    getLine(index: number): DisplayLine;
+    setLine(index: number, line: string | DisplayLine): Display;
 
     getLines(): DisplayLine[];
     setLines(lines: DisplayLine[]): Display;
 
     addLine(line: string | DisplayLine): Display;
-    addLine(index: int, line: string | DisplayLine): Display;
+    addLine(index: number, line: string | DisplayLine): Display;
 
     addLines(...lines: string[] | DisplayLine[]): void;
 
     clearLines(): Display;
 
-    getRenderX(): float;
-    setRenderX(renderX: float): Display;
+    getRenderX(): number;
+    setRenderX(renderX: number): Display;
 
-    getRenderY(): float;
-    setRenderY(renderY: float): Display;
+    getRenderY(): number;
+    setRenderY(renderY: number): Display;
 
-    setRenderLoc(renderX: float, renderY: float): Display;
+    setRenderLoc(renderX: number, renderY: number): Display;
 
     getShouldRender(): boolean;
     setShouldRender(shouldRender: boolean): Display;
 
-    getWidth(): float;
-    getHeight(): float;
-    getMinWidth(): float;
-    setMinWidth(minWidth: float): Display;
+    getWidth(): number;
+    getHeight(): number;
+    getMinWidth(): number;
+    setMinWidth(minWidth: number): Display;
 
     /**
      * Gets the type of register the display will render under.
@@ -5727,23 +5748,23 @@ declare global {
 
   interface DisplayConfig {
     shouldRender?: boolean;
-    renderX?: float;
-    renderY?: float;
-    backgroundColor?: long;
-    textColor?: long;
+    renderX?: number;
+    renderY?: number;
+    backgroundColor?: number;
+    textColor?: number;
     background?: DisplayHandler.Background;
     align?: DisplayHandler.Align;
     order?: DisplayHandler.Order;
   }
 
   class Text {
-    constructor(string: string, x?: float, y?: float);
+    constructor(string: string, x?: number, y?: number);
 
     getString(): string;
     setString(string: string): Text;
 
-    getColor(): long;
-    setColor(color: long): Text;
+    getColor(): number;
+    setColor(color: number): Text;
 
     getFormatted(): boolean;
     setFormatted(formatted: boolean): Text;
@@ -5754,11 +5775,11 @@ declare global {
     getAlign(): DisplayHandler.Align;
     setAlign(align: string | DisplayHandler.Align): Text;
 
-    getX(): float;
-    setX(x: float): Text;
+    getX(): number;
+    setX(x: number): Text;
 
-    getY(): float;
-    setY(y: float): Text;
+    getY(): number;
+    setY(y: number): Text;
 
     /**
      * Gets the width of the text
@@ -5766,15 +5787,15 @@ declare global {
      *
      * @return the width of the text
      */
-    getWidth(): int;
+    getWidth(): number;
 
     getLines(): string[];
 
-    getMaxLines(): int;
-    setMaxLines(maxLines: int): Text;
+    getMaxLines(): number;
+    setMaxLines(maxLines: number): Text;
 
-    getScale(): float;
-    setScale(scale: float): Text;
+    getScale(): number;
+    setScale(scale: number): Text;
 
     /**
      * Sets the maximum width of the text, splitting it into multiple lines if necessary.
@@ -5783,21 +5804,21 @@ declare global {
      * @return the Text object for method chaining
      */
     setMaxWidth(maxWidth: number): Text;
-    getMaxWidth(): int;
+    getMaxWidth(): number;
 
-    getHeight(): float;
+    getHeight(): number;
 
     exceedsMaxLines(): boolean;
 
-    draw(x?: float, y?: float): Text;
+    draw(x?: number, y?: number): Text;
 
     toString(): string;
   }
 
   class DragAction extends Action {
-    constructor(slot: int, windowId: int);
-    readonly slot: int;
-    readonly windowId: int;
+    constructor(slot: number, windowId: number);
+    readonly slot: number;
+    readonly windowId: number;
 
     /**
      * The type of click (REQUIRED)
@@ -5851,9 +5872,9 @@ declare global {
   }
 
   class DropAction extends Action {
-    constructor(slot: int, windowId: int);
-    readonly slot: int;
-    readonly windowId: int;
+    constructor(slot: number, windowId: number);
+    readonly slot: number;
+    readonly windowId: number;
 
     getHoldingCtrl(): boolean;
 
@@ -5866,9 +5887,9 @@ declare global {
   }
 
   class KeyAction extends Action {
-    constructor(slot: int, windowId: int);
+    constructor(slot: number, windowId: number);
 
-    getKey(): int;
+    getKey(): number;
 
     /**
      * Which key to act as if has been clicked (REQUIRED).
@@ -5876,7 +5897,7 @@ declare global {
      *
      * @param key which key to "click"
      */
-    setKey(key: int): KeyAction;
+    setKey(key: number): KeyAction;
 
     complete(): void;
   }
@@ -5884,8 +5905,8 @@ declare global {
   class EventLib {
     static readonly INSTANCE: EventLib;
 
-    getType(event: ForgeClientChatReceivedEvent): int;
-    static getType(event: ForgeClientChatReceivedEvent): int;
+    getType(event: ForgeClientChatReceivedEvent): number;
+    static getType(event: ForgeClientChatReceivedEvent): number;
 
     getMessage(event: ForgeClientChatReceivedEvent): MCIChatComponent;
     static getMessage(event: ForgeClientChatReceivedEvent): MCIChatComponent;
@@ -6235,7 +6256,7 @@ declare global {
      * @return the trigger
      */
     registerDraw(
-      method: (mouseX: int, mouseY: int, partialTicks: float) => void,
+      method: (mouseX: number, mouseY: number, partialTicks: number) => void,
     ): OnRegularTrigger;
 
     /**
@@ -6250,7 +6271,7 @@ declare global {
      * @return the trigger
      */
     registerClicked(
-      method: (mouseX: int, mouseY: int, button: int) => void,
+      method: (mouseX: number, mouseY: number, button: number) => void,
     ): OnRegularTrigger;
 
     /**
@@ -6262,7 +6283,7 @@ declare global {
      * - int scroll direction
      */
     registerScrolled(
-      method: (mouseX: int, mouseY: int, scroll: int) => void,
+      method: (mouseX: number, mouseY: number, scroll: number) => void,
     ): OnRegularTrigger;
 
     /**
@@ -6276,7 +6297,7 @@ declare global {
      * @return the trigger
      */
     registerKeyTyped(
-      method: (typed: string, key: int) => void,
+      method: (typed: string, key: number) => void,
     ): OnRegularTrigger;
 
     /**
@@ -6293,10 +6314,10 @@ declare global {
      */
     registerMouseDragged(
       method: (
-        mouseX: int,
-        mouseY: int,
-        clickedMouseButton: int,
-        timeSinceLastClick: long,
+        mouseX: number,
+        mouseY: number,
+        clickedMouseButton: number,
+        timeSinceLastClick: number,
       ) => void,
     ): OnRegularTrigger;
 
@@ -6312,7 +6333,7 @@ declare global {
      * @return the trigger
      */
     registerMouseReleased(
-      method: (mouseX: int, mouseY: int, button: int) => void,
+      method: (mouseX: number, mouseY: number, button: number) => void,
     ): OnRegularTrigger;
 
     /**
@@ -6331,12 +6352,12 @@ declare global {
     /**
      * Internal method to run trigger. Not meant for public use
      */
-    mouseClicked(mouseX: int, mouseY: int, button: int): void;
+    mouseClicked(mouseX: number, mouseY: number, button: number): void;
 
     /**
      * Internal method to run trigger. Not meant for public use
      */
-    mouseReleased(mouseX: int, mouseY: int, button: int): void;
+    mouseReleased(mouseX: number, mouseY: number, button: number): void;
 
     /**
      * Internal method to run trigger. Not meant for public use
@@ -6347,10 +6368,10 @@ declare global {
      * Internal method to run trigger. Not meant for public use
      */
     mouseClickMove(
-      mouseX: int,
-      mouseY: int,
-      clickedMouseButton: int,
-      timeSinceLastClick: long,
+      mouseX: number,
+      mouseY: number,
+      clickedMouseButton: number,
+      timeSinceLastClick: number,
     ): void;
 
     /**
@@ -6361,12 +6382,12 @@ declare global {
     /**
      * Internal method to run trigger. Not meant for public use
      */
-    drawScreen(mouseX: int, mouseY: int, partialTicks: float): void;
+    drawScreen(mouseX: number, mouseY: number, partialTicks: number): void;
 
     /**
      * Internal method to run trigger. Not meant for public use
      */
-    keyTyped(typedChar: string, keyCode: int): void;
+    keyTyped(typedChar: string, keyCode: number): void;
 
     /**
      * Internal method to run trigger. Not meant for public use
@@ -6424,7 +6445,7 @@ declare global {
      * @param visible the new visibility of the button
      * @return the Gui for method chaining
      */
-    setButtonVisibility(buttonId: int, visible: boolean): Gui;
+    setButtonVisibility(buttonId: number, visible: boolean): Gui;
 
     getButtonEnabled(buttonId: number): boolean;
 
@@ -6497,7 +6518,7 @@ declare global {
      * @param y Y position of the text
      * @param color color of the text
      */
-    drawString(text: string, x: int, y: int, color: int): void;
+    drawString(text: string, x: number, y: number, color: number): void;
 
     /**
      * Draws hovering text that follows the mouse
@@ -6506,7 +6527,11 @@ declare global {
      * @param mouseX X position of mouse
      * @param mouseY Y position of mouse
      */
-    drawCreativeTabHoveringString(text: string, mouseX: int, mouseY: int): void;
+    drawCreativeTabHoveringString(
+      text: string,
+      mouseX: number,
+      mouseY: number,
+    ): void;
 
     /**
      * Draws hovering text that doesn't follow the mouse
@@ -6515,7 +6540,7 @@ declare global {
      * @param x X position of the text
      * @param y Y position of the text
      */
-    drawHoveringString(text: string[], x: int, y: int): void;
+    drawHoveringString(text: string[], x: number, y: number): void;
   }
 
   class Image {
@@ -6525,15 +6550,15 @@ declare global {
 
     constructor(name: string, url?: string);
 
-    getTextureWidth(): int;
+    getTextureWidth(): number;
 
-    getTextureHeight(): int;
+    getTextureHeight(): number;
 
     getTexture(): MCDynamicTexture;
 
     onRender(event: ForgeRenderGameOverlayEvent): void;
 
-    draw(x: double, y: double, width: double, height: double): Image;
+    draw(x: number, y: number, width: number, height: number): Image;
   }
 
   class PlayerMP extends EntityLivingBase {
@@ -6545,7 +6570,7 @@ declare global {
 
     getActivePotionEffects(): PotionEffect[];
 
-    getPing(): int;
+    getPing(): number;
 
     /**
      * Gets the item currently in the player's specified inventory slot.
@@ -6555,7 +6580,7 @@ declare global {
      * @param slot the slot to access
      * @return the item in said slot
      */
-    getItemInSlot(slot: int): Item;
+    getItemInSlot(slot: number): Item;
 
     getTeam(): Team | null;
 
@@ -6580,8 +6605,8 @@ declare global {
      * Draws the player in the GUI
      */
     draw(
-      x: int,
-      y: int,
+      x: number,
+      y: number,
       rotate?: boolean,
       showNametag?: boolean,
       showArmor?: boolean,
@@ -6600,25 +6625,25 @@ declare global {
 
     readonly underlyingEntity: MCEntityFX;
 
-    getX(): double;
-    getY(): double;
-    getZ(): double;
+    getX(): number;
+    getY(): number;
+    getZ(): number;
 
-    setX(x: double): Particle;
-    setY(y: double): Particle;
-    setZ(z: double): Particle;
+    setX(x: number): Particle;
+    setY(y: number): Particle;
+    setZ(z: number): Particle;
 
-    scale(scale: float): Particle;
+    scale(scale: number): Particle;
 
-    multiplyVelocity(multiplier: float): Particle;
+    multiplyVelocity(multiplier: number): Particle;
 
-    setColor(r: float, g: float, b: float): Particle;
+    setColor(r: number, g: number, b: number): Particle;
 
-    setColor(r: float, g: float, b: float, a: float): Particle;
+    setColor(r: number, g: number, b: number, a: number): Particle;
 
-    setColor(color: long): Particle;
+    setColor(color: number): Particle;
 
-    setAlpha(a: float): Particle;
+    setAlpha(a: number): Particle;
 
     /**
      * Returns the color of the Particle
@@ -6632,7 +6657,7 @@ declare global {
      *
      * @param maxAge the particle's max age (in ticks)
      */
-    setMaxAge(maxAge: int): Particle;
+    setMaxAge(maxAge: number): Particle;
 
     remove(): Particle;
 
@@ -6668,7 +6693,7 @@ declare global {
      */
     unregister(): OnTrigger;
 
-    compareTo(other: OnTrigger): int;
+    compareTo(other: OnTrigger): number;
   }
 
   namespace OnTrigger {
@@ -6810,7 +6835,7 @@ declare global {
      * @param fps the frames per second to set
      * @return the trigger for method chaining
      */
-    setFps(fps: long): OnStepTrigger;
+    setFps(fps: number): OnStepTrigger;
 
     /**
      * Sets the delay in seconds between the trigger activation.
@@ -6818,7 +6843,7 @@ declare global {
      * @param delay The delay in seconds
      * @return the trigger for method chaining
      */
-    setDelay(delay: long): OnStepTrigger;
+    setDelay(delay: number): OnStepTrigger;
 
     trigger(args: any[]): void;
   }
@@ -7459,7 +7484,7 @@ declare namespace ForgeNoteBlockEvent {
     static MID: ForgeNoteBlockEvent.Octave;
     static HIGH: ForgeNoteBlockEvent.Octave;
 
-    static fromId(id: int): ForgeNoteBlockEvent.Octave;
+    static fromId(id: number): ForgeNoteBlockEvent.Octave;
     class: JavaClass<ForgeNoteBlockEvent.Octave>;
     static class: JavaClass<typeof ForgeNoteBlockEvent.Octave>;
   }
@@ -7479,7 +7504,7 @@ declare namespace ForgeNoteBlockEvent {
 
     static values: ForgeNoteBlockEvent.Note[];
 
-    static fromId(id: int): ForgeNoteBlockEvent.Note;
+    static fromId(id: number): ForgeNoteBlockEvent.Note;
   }
   class Play extends ForgeNoteBlockEvent {
     setCanceled(canceled: boolean): void;
@@ -7545,18 +7570,18 @@ declare namespace ForgeGuiScreenEvent {
   class BackgroundDrawnEvent extends ForgeGuiScreenEvent {
     constructor(gui: MCGuiScreen);
 
-    getMouseX(): int;
-    getMouseY(): int;
+    getMouseX(): number;
+    getMouseY(): number;
   }
   class DrawScreenEvent extends ForgeGuiScreenEvent {
-    readonly mouseX: int;
-    readonly mouseY: int;
-    readonly renderPartialTicks: float;
+    readonly mouseX: number;
+    readonly mouseY: number;
+    readonly renderPartialTicks: number;
     constructor(
       gui: MCGuiScreen,
-      mouseX: int,
-      mouseY: int,
-      renderPartialTicks: float,
+      mouseX: number,
+      mouseY: number,
+      renderPartialTicks: number,
     );
   }
 }
@@ -7564,17 +7589,17 @@ declare namespace ForgeGuiScreenEvent.DrawScreenEvent {
   class Post extends ForgeGuiScreenEvent.DrawScreenEvent {
     constructor(
       gui: MCGuiScreen,
-      mouseX: int,
-      mouseY: int,
-      renderPartialTicks: float,
+      mouseX: number,
+      mouseY: number,
+      renderPartialTicks: number,
     );
   }
   class Pre extends ForgeGuiScreenEvent.DrawScreenEvent {
     constructor(
       gui: MCGuiScreen,
-      mouseX: int,
-      mouseY: int,
-      renderPartialTicks: float,
+      mouseX: number,
+      mouseY: number,
+      renderPartialTicks: number,
     );
   }
 }
@@ -7595,9 +7620,9 @@ declare namespace ForgeBlockEvent {
 
     getPlayer(): MCEntityPlayer;
 
-    getExpToDrop(): int;
+    getExpToDrop(): number;
 
-    setExpToDrop(exp: int): void;
+    setExpToDrop(exp: number): void;
   }
 }
 
@@ -7611,13 +7636,6 @@ declare class MCScore {
 // Java Classes //
 //////////////////
 //#region
-declare type char = number;
-declare type short = number;
-declare type byte = number;
-declare type int = number;
-declare type float = number;
-declare type long = number;
-declare type double = number;
 
 //TODO
 declare class JavaColor {
@@ -7729,27 +7747,27 @@ declare class JavaColor {
   /**
    * Creates a color in the specified ColorSpace with the color components specified in the float array and the specified alpha.
    */
-  constructor(cspace: any, components: float[], alpha: float);
+  constructor(cspace: any, components: number[], alpha: number);
   /**
    * Creates an opaque sRGB color with the specified red, green, and blue values in the range (0.0 - 1.0).
    */
-  constructor(r: float, g: float, b: float);
+  constructor(r: number, g: number, b: number);
   /**
    * Creates an opaque sRGB color with the specified combined RGB value consisting of the red component in bits 16-23, the green component in bits 8-15, and the blue component in bits 0-7.
    */
-  constructor(rgb: int);
+  constructor(rgb: number);
   /**
    * Creates an sRGB color with the specified combined RGBA value consisting of the alpha component in bits 24-31, the red component in bits 16-23, the green component in bits 8-15, and the blue component in bits 0-7.
    */
-  constructor(rgb: int, hasalpha: boolean);
+  constructor(rgb: number, hasalpha: boolean);
   /**
    * Creates an opaque sRGB color with the specified red, green, and blue values in the range (0 - 255).
    */
-  constructor(r: int, g: int, b: int);
+  constructor(r: number, g: number, b: number);
   /**
    * Creates an sRGB color with the specified red, green, blue, and alpha values in the range (0 - 255).
    */
-  constructor(r: int, g: int, b: int, a: int);
+  constructor(r: number, g: number, b: number, a: number);
 
   /**
    * Creates a new Color that is a brighter version of this Color.
@@ -7779,12 +7797,12 @@ declare class JavaColor {
   /**
    * Returns the alpha component in the range 0-255.
    */
-  getAlpha(): int;
+  getAlpha(): number;
 
   /**
    * Returns the blue component in the range 0-255 in the default sRGB space.
    */
-  getBlue(): int;
+  getBlue(): number;
 
   /**
    * Finds a color in the system properties.
@@ -7799,17 +7817,17 @@ declare class JavaColor {
   /**
    * Finds a color in the system properties.
    */
-  static getColor(nm: string, v: int): JavaColor;
+  static getColor(nm: string, v: number): JavaColor;
 
   /**
    * Returns a float array containing only the color components of the Color in the ColorSpace specified by the cspace parameter.
    */
-  getColorComponents(cspace: any, compArray: float[]): float[];
+  getColorComponents(cspace: any, compArray: number[]): number[];
 
   /**
    * Returns a float array containing only the color components of the Color, in the ColorSpace of the Color.
    */
-  getColorComponents(compArray: float[]): float[];
+  getColorComponents(compArray: number[]): number[];
 
   /**
    * Returns the ColorSpace of this Color.
@@ -7819,62 +7837,62 @@ declare class JavaColor {
   /**
    * Returns a float array containing the color and alpha components of the Color, in the ColorSpace specified by the cspace parameter.
    */
-  getComponents(cspace: any, compArray: float[]): float[];
+  getComponents(cspace: any, compArray: number[]): number[];
 
   /**
    * Returns a float array containing the color and alpha components of the Color, in the ColorSpace of the Color.
    */
-  getComponents(compArray: float[]): float[];
+  getComponents(compArray: number[]): number[];
 
   /**
    * Returns the green component in the range 0-255 in the default sRGB space.
    */
-  getGreen(): int;
+  getGreen(): number;
 
   /**
    * Creates a Color object based on the specified values for the HSB color model.
    */
-  static getHSBColor(h: float, s: float, b: float): JavaColor;
+  static getHSBColor(h: number, s: number, b: number): JavaColor;
 
   /**
    * Returns the red component in the range 0-255 in the default sRGB space.
    */
-  getRed(): int;
+  getRed(): number;
 
   /**
    * Returns the RGB value representing the color in the default sRGB ColorModel.
    */
-  getRGB(): int;
+  getRGB(): number;
 
   /**
    * Returns a float array containing only the color components of the Color, in the default sRGB color space.
    */
-  getRGBColorComponents(compArray: float[]): float[];
+  getRGBColorComponents(compArray: number[]): number[];
 
   /**
    * Returns a float array containing the color and alpha components of the Color, as represented in the default sRGB color space.
    */
-  getRGBComponents(compArray: float[]): float[];
+  getRGBComponents(compArray: number[]): number[];
 
   /**
    * Returns the transparency mode for this Color.
    */
-  getTransparency(): int;
+  getTransparency(): number;
 
   /**
    * Computes the hash code for this Color.
    */
-  hashCode(): int;
+  hashCode(): number;
 
   /**
    * Converts the components of a color, as specified by the HSB model, to an equivalent set of values for the default RGB model.
    */
-  static HSBtoRGB(hue: float, saturation: float, brightness: float): int;
+  static HSBtoRGB(hue: number, saturation: number, brightness: number): number;
 
   /**
    * Converts the components of a color, as specified by the default RGB model, to an equivalent set of values for hue, saturation, and brightness that are the three components of the HSB model.
    */
-  static RGBtoHSB(r: int, g: int, b: int, hsbvals: float[]): float[];
+  static RGBtoHSB(r: number, g: number, b: number, hsbvals: number[]): number[];
 
   /**
    * Returns a string representation of this Color.
@@ -7883,19 +7901,19 @@ declare class JavaColor {
 }
 
 declare class Vector3f {
-  x: float;
-  y: float;
-  z: float;
+  x: number;
+  y: number;
+  z: number;
 
-  constructor(x: float, y: float, z: float);
+  constructor(x: number, y: number, z: number);
 
-  set(x: float, y: float): void;
+  set(x: number, y: number): void;
 
-  set(x: float, y: float, z: float): void;
+  set(x: number, y: number, z: number): void;
   /**
    * @return the length squared of the vector
    */
-  lengthSquared(): float;
+  lengthSquared(): number;
 
   /**
    * Translate a vector
@@ -7903,7 +7921,7 @@ declare class Vector3f {
    * @param y the translation in y
    * @return this
    */
-  translate(x: float, y: float, z: float): Vector3f;
+  translate(x: number, y: number, z: number): Vector3f;
 
   /**
    * Add a vector to another vector and place the result in a destination
@@ -7956,7 +7974,7 @@ declare class Vector3f {
    * @param right The RHS vector
    * @return left dot right
    */
-  static dot(left: Vector3f, right: Vector3f): float;
+  static dot(left: Vector3f, right: Vector3f): number;
 
   /**
    * Calculate the angle between two vectors, in radians
@@ -7964,23 +7982,23 @@ declare class Vector3f {
    * @param b The other vector
    * @return the angle between the two vectors, in radians
    */
-  static angle(a: Vector3f, b: Vector3f): float;
+  static angle(a: Vector3f, b: Vector3f): number;
 
   toString(): string;
 
-  getX(): float;
-  getY(): float;
-  setX(x: float): void;
-  setY(y: float): void;
-  setZ(z: float): void;
-  getZ(): float;
+  getX(): number;
+  getY(): number;
+  setX(x: number): void;
+  setY(y: number): void;
+  setZ(z: number): void;
+  getZ(): number;
 
   equals(obj: object): boolean;
 }
 
 declare class Vector2f {
-  x: float;
-  y: float;
+  x: number;
+  y: number;
   /**
    * Constructor for Vector3f.
    */
@@ -7988,9 +8006,9 @@ declare class Vector2f {
 
   constructor(src: Vector2f);
 
-  constructor(x: float, y: float);
+  constructor(x: number, y: number);
 
-  set(x: float, y: float): void;
+  set(x: number, y: number): void;
 
   /**
    * Load from another Vector2f
@@ -8002,7 +8020,7 @@ declare class Vector2f {
   /**
    * @return the length squared of the vector
    */
-  lengthSquared(): float;
+  lengthSquared(): number;
 
   /**
    * Translate a vector
@@ -8010,7 +8028,7 @@ declare class Vector2f {
    * @param y the translation in y
    * @return this
    */
-  translate(x: float, y: float): Vector2f;
+  translate(x: number, y: number): Vector2f;
 
   /**
    * Negate a vector
@@ -8039,7 +8057,7 @@ declare class Vector2f {
    * @param right The RHS vector
    * @return left dot right
    */
-  static dot(left: Vector2f, right: Vector2f): float;
+  static dot(left: Vector2f, right: Vector2f): number;
 
   /**
    * Calculate the angle between two vectors, in radians
@@ -8047,7 +8065,7 @@ declare class Vector2f {
    * @param b The other vector
    * @return the angle between the two vectors, in radians
    */
-  static angle(a: Vector2f, b: Vector2f): float;
+  static angle(a: Vector2f, b: Vector2f): number;
 
   /**
    * Add a vector to another vector and place the result in a destination
@@ -8069,31 +8087,31 @@ declare class Vector2f {
    */
   static sub(left: Vector2f, right: Vector2f, dest: Vector2f): Vector2f;
 
-  scale(scale: float): Vector2f;
+  scale(scale: number): Vector2f;
 
   toString(): string;
 
   /**
    * @return x
    */
-  getX(): float;
+  getX(): number;
 
   /**
    * @return Y
    */
-  getY(): float;
+  getY(): number;
 
   /**
    * Set X
    * @param x
    */
-  setX(x: float): void;
+  setX(x: number): void;
 
   /**
    * Set Y
    * @param y
    */
-  setY(y: float): void;
+  setY(y: number): void;
 
   equals(obj: object): boolean;
 }
@@ -8126,7 +8144,7 @@ declare class JavaThread {
   /**
    * Causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds plus the specified number of nanoseconds, subject to the precision and accuracy of system timers and schedulers.
    */
-  static sleep(millis: long, nanos?: int): void;
+  static sleep(millis: number, nanos?: number): void;
 
   /**
    * Returns a reference to the currently executing thread object.
@@ -8141,7 +8159,7 @@ declare class JavaThread {
   /**
    * Returns an estimate of the number of active threads in the current thread's thread group and its subgroups
    */
-  static activeCount(): int;
+  static activeCount(): number;
 
   /**
    * Determines if the currently running thread has permission to modify this thread.
@@ -8151,7 +8169,7 @@ declare class JavaThread {
   /**
    * The definition of this call depends on suspend(), which is deprecated. Further, the results of this call were never well-defined.
    */
-  countStackFrames(): int;
+  countStackFrames(): number;
 
   /**
    * This method was originally designed to destroy this thread without any cleanup. Any monitors it held would have remained locked. However, the method was never implemented. If if were to be implemented, it would be deadlock-prone in much the manner of suspend(). If the target thread held a lock protecting a critical system resource when it was destroyed, no thread could ever access this resource again. If another thread ever attempted to lock this resource, deadlock would result. Such deadlocks typically manifest themselves as "frozen" processes. For more information, see Why are Thread.stop, Thread.suspend and Thread.resume Deprecated?.
@@ -8166,12 +8184,12 @@ declare class JavaThread {
   /**
    * Copies into the specified array every active thread in the current thread's thread group and its subgroups.
    */
-  static enumerate(tarray: Thread[]): int;
+  static enumerate(tarray: Thread[]): number;
 
   /**
    * Returns the identifier of this Thread.
    */
-  getId(): long;
+  getId(): number;
 
   /**
    * Returns this thread's name.
@@ -8181,7 +8199,7 @@ declare class JavaThread {
   /**
    * Returns this thread's priority.
    */
-  getPriority(): int;
+  getPriority(): number;
 
   /**
    * Returns true if and only if the current thread holds the monitor lock on the specified object.
@@ -8221,12 +8239,12 @@ declare class JavaThread {
   /**
    * Waits at most millis milliseconds for this thread to die.
    */
-  join(millis: long): void;
+  join(millis: number): void;
 
   /**
    * Waits at most millis milliseconds plus nanos nanoseconds for this thread to die.
    */
-  join(millis: long, nanos: int): void;
+  join(millis: number, nanos: number): void;
 
   /**
    * This method exists solely for use with suspend(), which has been deprecated because it is deadlock-prone. For more information, see Why are Thread.stop, Thread.suspend and Thread.resume Deprecated?.
@@ -8251,7 +8269,7 @@ declare class JavaThread {
   /**
    * Changes the priority of this thread.
    */
-  setPriority(newPriority: int): void;
+  setPriority(newPriority: number): void;
 
   /**
    * Causes this thread to begin execution; the Java Virtual Machine calls the run method of this thread.
@@ -8283,7 +8301,7 @@ declare class JavaUUID {
   /**
    * Constructs a new UUID using the specified data.
    */
-  constructor(mostSigBitswNBT: long, leastSigBits: long);
+  constructor(mostSigBitswNBT: number, leastSigBits: number);
 
   /**
    * Creates a UUID from the string standard representation as described in the toString() method.
@@ -8293,7 +8311,7 @@ declare class JavaUUID {
   /**
    * Static factory to retrieve a type 3 (name based) UUID based on the specified byte array.
    */
-  static nameUUIDFromBytes(name: byte[]): JavaUUID;
+  static nameUUIDFromBytes(name: number[]): JavaUUID;
 
   /**
    * Static factory to retrieve a type 4 (pseudo randomly generated) UUID.
@@ -8303,11 +8321,11 @@ declare class JavaUUID {
   /**
    * The clock sequence value associated with this UUID.
    */
-  clockSequence(): int;
+  clockSequence(): number;
   /**
    * Compares this UUID with the specified UUID.
    */
-  compareTo(val: JavaUUID): int;
+  compareTo(val: JavaUUID): number;
 
   /**
    * Compares this object to the specified object.
@@ -8316,27 +8334,27 @@ declare class JavaUUID {
   /**
    * Returns the least significant 64 bits of this UUID's 128 bit value.
    */
-  getLeastSignificantBits(): long;
+  getLeastSignificantBits(): number;
 
   /**
    * Returns the most significant 64 bits of this UUID's 128 bit value.
    */
-  getMostSignificantBits(): long;
+  getMostSignificantBits(): number;
 
   /**
    * Returns a hash code for this UUID.
    */
-  hashCode(): int;
+  hashCode(): number;
 
   /**
    * The node value associated with this UUID.
    */
-  node(): long;
+  node(): number;
 
   /**
    * The timestamp value associated with this UUID.
    */
-  timestamp(): long;
+  timestamp(): number;
 
   /**
    * Returns a String object representing this UUID.
@@ -8346,12 +8364,12 @@ declare class JavaUUID {
   /**
    * The variant number associated with this UUID.
    */
-  variant(): int;
+  variant(): number;
 
   /**
    * The version number associated with this UUID.
    */
-  version(): int;
+  version(): number;
 }
 /**An abstract representation of file and directory pathnames. */
 declare class JavaFile {
@@ -8362,7 +8380,7 @@ declare class JavaFile {
   /**
    * The system-dependent path-separator character.
    */
-  static pathSeperatorChar: char;
+  static pathSeperatorChar: number;
   /**
    * The system-dependent default name-separator character, represented as a string for convenience.
    */
@@ -8370,7 +8388,7 @@ declare class JavaFile {
   /**
    * The system-dependent default name-separator character.
    */
-  static separatorChar: char;
+  static separatorChar: number;
 
   /**
    * Creates a new File instance from a parent abstract pathname and a child pathname string.
@@ -8410,7 +8428,7 @@ declare class JavaFile {
   /**
    * Compares two abstract pathnames lexicographically.
    */
-  compareTo(pathname: JavaFile): int;
+  compareTo(pathname: JavaFile): number;
 
   /**
    * Atomically creates a new, empty file named by this abstract pathname if and only if a file with this name does not yet exist.
@@ -8474,7 +8492,7 @@ declare class JavaFile {
   /**
    * Returns the number of unallocated bytes in the partition named by this abstract path name.
    */
-  getFreeSpace(): long;
+  getFreeSpace(): number;
 
   /**
    * Returns the name of the file or directory denoted by this abstract pathname.
@@ -8499,17 +8517,17 @@ declare class JavaFile {
   /**
    * Returns the size of the partition named by this abstract pathname.
    */
-  getTotalSpace(): long;
+  getTotalSpace(): number;
 
   /**
    * Returns the number of bytes available to this virtual machine on the partition named by this abstract pathname.
    */
-  getUsableSpace(): long;
+  getUsableSpace(): number;
 
   /**
    * Computes a hash code for this abstract pathname.
    */
-  hashCode(): int;
+  hashCode(): number;
 
   /**
    * Tests whether this abstract pathname is absolute.
@@ -8534,12 +8552,12 @@ declare class JavaFile {
   /**
    * Returns the time that the file denoted by this abstract pathname was last modified.
    */
-  lastModified(): long;
+  lastModified(): number;
 
   /**
    * Returns the length of the file denoted by this abstract pathname.
    */
-  length(): long;
+  length(): number;
 
   /**
    * Returns an array of strings naming the files and directories in the directory denoted by this abstract pathname.
@@ -8594,7 +8612,7 @@ declare class JavaFile {
   /**
    * Sets the last-modified time of the file or directory named by this abstract pathname.
    */
-  setLastModified(time: long): boolean;
+  setLastModified(time: number): boolean;
 
   /**
    * A convenience method to set the owner's read permission for this abstract pathname.
@@ -8647,7 +8665,7 @@ declare interface JavaPath {
   /**
    * Compares two abstract paths lexicographically.
    */
-  compareTo(other: JavaPath): int;
+  compareTo(other: JavaPath): number;
 
   /**
    * Tests if this path ends with the given path.
@@ -8789,7 +8807,7 @@ declare class JavaClass<T> {
   /**
    * Returns the Java language modifiers for this class or interface, encoded in an integer.
    */
-  getModifiers(): int;
+  getModifiers(): number;
 
   /**
    * Returns the name of the entity (class, interface, array class, primitive type, or void) represented by this Class object, as a String.
@@ -8906,7 +8924,7 @@ declare class JavaURL {
   /**
    * Creates a URL object from the specified protocol, host, port number, and file.
    */
-  constructor(protocol: string, host: string, port: int, file: string);
+  constructor(protocol: string, host: string, port: number, file: string);
 
   /**
    * Creates a URL object from the specified protocol, host, port number, file, and handler.
@@ -8914,7 +8932,7 @@ declare class JavaURL {
   constructor(
     protocol: string,
     host: string,
-    port: int,
+    port: number,
     file: string,
     handler: JavaURLStreamHandler,
   );
@@ -8957,7 +8975,7 @@ declare class JavaURL {
   /**
    * Gets the default port number of the protocol associated with this URL.
    */
-  getDefaultPort(): int;
+  getDefaultPort(): number;
 
   /**
    * Gets the file name of this URL.
@@ -8977,7 +8995,7 @@ declare class JavaURL {
   /**
    * Gets the port number of this URL.
    */
-  getPort(): int;
+  getPort(): number;
 
   /**
    * Gets the protocol name of this URL.
@@ -9007,7 +9025,7 @@ declare class JavaURL {
   /**
    * Creates an integer suitable for hash table indexing.
    */
-  hashCode(): int;
+  hashCode(): number;
 
   /**
    * Same as openConnection(), except that the connection will be made through the specified proxy; Protocol handlers that do not support proxing will ignore the proxy parameter and make a normal connection.
@@ -9063,7 +9081,7 @@ declare class JavaURI {
     scheme: string,
     userInfo: string,
     host: string,
-    port: int,
+    port: number,
     path: string,
     query: string,
     fragment: string,
@@ -9088,7 +9106,7 @@ declare class JavaURI {
   /**
    * Compares this URI to another object, which must be a URI.
    */
-  compareTo(that: JavaURI): int;
+  compareTo(that: JavaURI): number;
 
   /**
    * Creates a URI by parsing the given string.
@@ -9123,7 +9141,7 @@ declare class JavaURI {
   /**
    * Returns the port number of this URI.
    */
-  getPort(): int;
+  getPort(): number;
 
   /**
    * Returns the decoded query component of this URI.
@@ -9178,7 +9196,7 @@ declare class JavaURI {
   /**
    * Returns a hash-code value for this URI.
    */
-  hashCode(): int;
+  hashCode(): number;
 
   /**
    * Tells whether or not this URI is absolute.
@@ -9244,7 +9262,7 @@ declare class JavaInputStream {
   /**
    * Returns an estimate of the number of bytes that can be read (or skipped over) from this input stream without blocking by the next invocation of a method for this input stream.
    */
-  available(): int;
+  available(): number;
 
   /**
    * Closes this input stream and releases any system resources associated with the stream.
@@ -9254,7 +9272,7 @@ declare class JavaInputStream {
   /**
    * Marks the current position in this input stream.
    */
-  mark(readLimit: int): void;
+  mark(readLimit: number): void;
 
   /**
    * Tests if this input stream supports the mark and reset methods.
@@ -9263,17 +9281,17 @@ declare class JavaInputStream {
   /**
    * Reads the next byte of data from the input stream.
    */
-  read(): int;
+  read(): number;
 
   /**
    * Reads some number of bytes from the input stream and stores them into the buffer array b.
    */
-  read(b: byte[]): int;
+  read(b: number[]): number;
 
   /**
    * Reads up to len bytes of data from the input stream into an array of bytes.
    */
-  read(b: byte[], off: int, len: int): int;
+  read(b: number[], off: number, len: number): number;
 
   /**
    * Repositions this stream to the position at the time the mark method was last called on this input stream.
@@ -9283,7 +9301,7 @@ declare class JavaInputStream {
   /**
    * Skips over and discards n bytes of data from this input stream.
    */
-  skip(n: long): long;
+  skip(n: number): number;
 }
 
 declare class JavaURLConnection {}
@@ -9313,7 +9331,7 @@ declare class JavaProxy {
   /**
    * Returns a hashcode for this Proxy.
    */
-  hashCode(): int;
+  hashCode(): number;
 
   /**
    * Constructs a string representation of this Proxy.
@@ -9374,12 +9392,12 @@ declare class JavaField {
   /**
    * Gets the value of a static or instance byte field.
    */
-  getByte(obj: object): byte;
+  getByte(obj: object): number;
 
   /**
    * Gets the value of a static or instance field of type char or of another primitive type convertible to type char via a widening conversion.
    */
-  getChar(obj: object): char;
+  getChar(obj: object): number;
 
   /**
    * Returns the Class object representing the class or interface that declares the field represented by this Field object.
@@ -9389,21 +9407,21 @@ declare class JavaField {
   /**
    * Gets the value of a static or instance field of type double or of another primitive type convertible to type double via a widening conversion.
    */
-  getDouble(obj: object): double;
+  getDouble(obj: object): number;
 
   /**
    * Gets the value of a static or instance field of type float or of another primitive type convertible to type float via a widening conversion.
    */
-  getFloat(obj: object): float;
+  getFloat(obj: object): number;
   /**
    *Gets the value of a static or instance field of type int or of another primitive type convertible to type int via a widening conversion.
    */
-  getInt(obj: object): int;
+  getInt(obj: object): number;
 
   /**
    * Gets the value of a static or instance field of type long or of another primitive type convertible to type long via a widening conversion.
    */
-  getLong(obj: object): long;
+  getLong(obj: object): number;
 
   /**
    * Sets the field represented by this Field object on the specified object argument to the specified new value.
@@ -9417,37 +9435,37 @@ declare class JavaField {
   /**
    * Sets the value of a field as a byte on the specified object.
    */
-  setByte(obj: object, b: byte): void;
+  setByte(obj: object, b: number): void;
 
   /**
    * Sets the value of a field as a char on the specified object.
    */
-  setChar(obj: object, c: char): void;
+  setChar(obj: object, c: number): void;
 
   /**
    * Sets the value of a field as a double on the specified object.
    */
-  setDouble(obj: object, d: double): void;
+  setDouble(obj: object, d: number): void;
 
   /**
    * Sets the value of a field as a float on the specified object.
    */
-  setFloat(obj: object, f: float): void;
+  setFloat(obj: object, f: number): void;
 
   /**
    * Sets the value of a field as an int on the specified object.
    */
-  setInt(obj: object, i: int): void;
+  setInt(obj: object, i: number): void;
 
   /**
    * Sets the value of a field as a long on the specified object.
    */
-  setLong(obj: object, l: long): void;
+  setLong(obj: object, l: number): void;
 
   /**
    * Sets the value of a field as a short on the specified object.
    */
-  setShort(obj: object, s: short): void;
+  setShort(obj: object, s: number): void;
 
   /**
    * Returns a string describing this Field, including its generic type.
@@ -9486,7 +9504,7 @@ declare class JavaMethod {
   /**
    * Returns the Java language modifiers for the executable represented by this object.
    */
-  getModifiers(): int;
+  getModifiers(): number;
 
   /**
    * Returns the name of the method represented by this Method object, as a String.
@@ -9496,7 +9514,7 @@ declare class JavaMethod {
   /**
    * Returns the number of formal parameters (whether explicitly declared or implicitly declared or neither) for the executable represented by this object.
    */
-  getParameterCount(): int;
+  getParameterCount(): number;
 
   /**
    * Returns an array of Class objects that represent the formal parameter types, in declaration order, of the executable represented by this object.
@@ -9511,7 +9529,7 @@ declare class JavaMethod {
   /**
    * Returns a hashcode for this Method.
    */
-  hashCode(): int;
+  hashCode(): number;
 
   /**
    * Invokes the underlying method represented by this Method object, on the specified object with the specified parameters.
@@ -9878,9 +9896,9 @@ declare namespace Client {
     static close(): void;
   }
   class camera {
-    static getX(): double;
-    static getY(): double;
-    static getZ(): double;
+    static getX(): number;
+    static getY(): number;
+    static getZ(): number;
   }
 }
 
@@ -10142,17 +10160,17 @@ declare class Settings {
   static getSettings(): MCGameSettings;
   getSettings(): MCGameSettings;
 
-  static getFOV(): float;
-  getFOV(): float;
+  static getFOV(): number;
+  getFOV(): number;
 
-  static setFOV(fov: float): void;
-  setFOV(fov: float): void;
+  static setFOV(fov: number): void;
+  setFOV(fov: number): void;
 
-  static getDifficulty(): int;
-  getDifficulty(): int;
+  static getDifficulty(): number;
+  getDifficulty(): number;
 
-  static setDifficulty(difficulty: int): void;
-  setDifficulty(difficulty: int): void;
+  static setDifficulty(difficulty: number): void;
+  setDifficulty(difficulty: number): void;
 
   static skin: skin;
   static sound: sound;
@@ -10198,50 +10216,50 @@ declare class skin {
 }
 
 declare class sound {
-  getMasterVolume(): float;
-  static getMasterVolume(): float;
-  setMasterVolume(level: float): void;
-  static setMasterVolume(level: float): void;
+  getMasterVolume(): number;
+  static getMasterVolume(): number;
+  setMasterVolume(level: number): void;
+  static setMasterVolume(level: number): void;
 
-  getMusicVolume(): float;
-  static getMusicVolume(): float;
-  setMusicVolume(level: float): void;
-  static setMusicVolume(level: float): void;
+  getMusicVolume(): number;
+  static getMusicVolume(): number;
+  setMusicVolume(level: number): void;
+  static setMusicVolume(level: number): void;
 
-  getNoteblockVolume(): float;
-  static getNoteblockVolume(): float;
-  setNoteblockVolume(level: float): void;
-  static setNoteblockVolume(level: float): void;
+  getNoteblockVolume(): number;
+  static getNoteblockVolume(): number;
+  setNoteblockVolume(level: number): void;
+  static setNoteblockVolume(level: number): void;
 
-  getWeather(): float;
-  static getWeather(): float;
-  setWeather(level: float): void;
-  static setWeather(level: float): void;
+  getWeather(): number;
+  static getWeather(): number;
+  setWeather(level: number): void;
+  static setWeather(level: number): void;
 
-  getBlocks(): float;
-  static getBlocks(): float;
-  setBlocks(level: float): void;
-  static setBlocks(level: float): void;
+  getBlocks(): number;
+  static getBlocks(): number;
+  setBlocks(level: number): void;
+  static setBlocks(level: number): void;
 
-  getHostileCreatures(): float;
-  static getHostileCreatures(): float;
-  setHostileCreatures(level: float): void;
-  static setHostileCreatures(level: float): void;
+  getHostileCreatures(): number;
+  static getHostileCreatures(): number;
+  setHostileCreatures(level: number): void;
+  static setHostileCreatures(level: number): void;
 
-  getFriendlyCreatures(): float;
-  static getFriendlyCreatures(): float;
-  setFriendlyCreatures(level: float): void;
-  static setFriendlyCreatures(level: float): void;
+  getFriendlyCreatures(): number;
+  static getFriendlyCreatures(): number;
+  setFriendlyCreatures(level: number): void;
+  static setFriendlyCreatures(level: number): void;
 
-  getPlayers(): float;
-  static getPlayers(): float;
-  setPlayers(level: float): void;
-  static setPlayers(level: float): void;
+  getPlayers(): number;
+  static getPlayers(): number;
+  setPlayers(level: number): void;
+  static setPlayers(level: number): void;
 
-  getAmbient(): float;
-  static getAmbient(): float;
-  setAmbient(level: float): void;
-  static setAmbient(level: float): void;
+  getAmbient(): number;
+  static getAmbient(): number;
+  setAmbient(level: number): void;
+  static setAmbient(level: number): void;
 }
 
 declare class video {
@@ -10250,20 +10268,20 @@ declare class video {
   setGraphics(fancy: boolean): void;
   static setGraphics(fancy: boolean): void;
 
-  getRenderDistance(): int;
-  static getRenderDistance(): int;
-  setRenderDistance(distance: int): void;
-  static setRenderDistance(distance: int): void;
+  getRenderDistance(): number;
+  static getRenderDistance(): number;
+  setRenderDistance(distance: number): void;
+  static setRenderDistance(distance: number): void;
 
-  getSmoothLighting(): int;
-  static getSmoothLighting(): int;
-  setSmoothLighting(level: int): void;
-  static setSmoothLighting(level: int): void;
+  getSmoothLighting(): number;
+  static getSmoothLighting(): number;
+  setSmoothLighting(level: number): void;
+  static setSmoothLighting(level: number): void;
 
-  getMaxFrameRate(): int;
-  static getMaxFrameRate(): int;
-  setMaxFrameRate(frameRate: int): void;
-  static setMaxFrameRate(frameRate: int): void;
+  getMaxFrameRate(): number;
+  static getMaxFrameRate(): number;
+  setMaxFrameRate(frameRate: number): void;
+  static setMaxFrameRate(frameRate: number): void;
 
   get3dAnaglyph(): boolean;
   static get3dAnaglyph(): boolean;
@@ -10275,25 +10293,25 @@ declare class video {
   setBobbing(toggled: boolean): void;
   static setBobbing(toggled: boolean): void;
 
-  getGuiScale(): int;
-  static getGuiScale(): int;
-  setGuiScale(scale: int): void;
-  static setGuiScale(scale: int): void;
+  getGuiScale(): number;
+  static getGuiScale(): number;
+  setGuiScale(scale: number): void;
+  static setGuiScale(scale: number): void;
 
-  getBrightness(): float;
-  static getBrightness(): float;
-  setBrightness(brightness: float): void;
-  static setBrightness(brightness: float): void;
+  getBrightness(): number;
+  static getBrightness(): number;
+  setBrightness(brightness: number): void;
+  static setBrightness(brightness: number): void;
 
-  getClouds(): int;
-  static getClouds(): int;
-  setClouds(clouds: int): void;
-  static setClouds(clouds: int): void;
+  getClouds(): number;
+  static getClouds(): number;
+  setClouds(clouds: number): void;
+  static setClouds(clouds: number): void;
 
-  getParticles(): int;
-  static getParticles(): int;
-  setParticles(particles: int): void;
-  static setParticles(particles: int): void;
+  getParticles(): number;
+  static getParticles(): number;
+  setParticles(particles: number): void;
+  static setParticles(particles: number): void;
 
   getFullscreen(): boolean;
   static getFullscreen(): boolean;
@@ -10305,10 +10323,10 @@ declare class video {
   setVsync(toggled: boolean): void;
   static setVsync(toggled: boolean): void;
 
-  getMipmapLevels(): int;
-  static getMipmapLevels(): int;
-  setMipmapLevels(mipmapLevels: int): void;
-  static setMipmapLevels(mipmapLevels: int): void;
+  getMipmapLevels(): number;
+  static getMipmapLevels(): number;
+  setMipmapLevels(mipmapLevels: number): void;
+  static setMipmapLevels(mipmapLevels: number): void;
 
   getAlternateBlocks(): boolean;
   static getAlternateBlocks(): boolean;
@@ -10344,10 +10362,10 @@ declare class chat {
   setWebLinks(toggled: boolean): void;
   static setWebLinks(toggled: boolean): void;
 
-  getOpacity(): float;
-  static getOpacity(): float;
-  setOpacity(opacity: float): void;
-  static setOpacity(opacity: float): void;
+  getOpacity(): number;
+  static getOpacity(): number;
+  setOpacity(opacity: number): void;
+  static setOpacity(opacity: number): void;
 
   getPromptOnWebLinks(): boolean;
   static getPromptOnWebLinks(): boolean;
@@ -10479,10 +10497,10 @@ declare class ClientListener {
 }
 declare namespace ClientListener {
   class State {
-    constructor(x: float, y: float);
+    constructor(x: number, y: number);
 
-    getX(): float;
-    getY(): float;
+    getX(): number;
+    getY(): number;
   }
   class PlayerInteractAction {
     static RIGHT_CLICK_BLOCK: ClientListener.PlayerInteractAction;
@@ -10497,9 +10515,9 @@ declare class Module {
   readonly name: string;
   readonly metadata: any;
 
-  draw(x: float, y: float, width: float): float;
+  draw(x: number, y: number, width: number): number;
 
-  click(x: int, y: int, width: float): void;
+  click(x: number, y: number, width: number): void;
 
   toString(): string;
 }
@@ -10703,9 +10721,9 @@ declare interface ITriggerRegister {
    */
   registerClicked(
     method: (
-      mouseX: float,
-      mouseY: float,
-      button: int,
+      mouseX: number,
+      mouseY: number,
+      button: number,
       isButtonDown: boolean,
     ) => void,
   ): OnRegularTrigger;
@@ -10728,11 +10746,11 @@ declare interface ITriggerRegister {
    */
   registerDragged(
     method: (
-      mouseDeltaX: float,
-      mouseDeltaY: float,
-      mouseX: float,
-      mouseY: float,
-      button: int,
+      mouseDeltaX: number,
+      mouseDeltaY: number,
+      mouseX: number,
+      mouseY: number,
+      button: number,
     ) => void,
   ): OnRegularTrigger;
 
@@ -10827,7 +10845,7 @@ declare interface ITriggerRegister {
   registerGuiKey(
     method: (
       char: string,
-      keyCode: int,
+      keyCode: number,
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
@@ -10852,9 +10870,9 @@ declare interface ITriggerRegister {
    */
   registerGuiMouseClick(
     method: (
-      mouseX: int,
-      mouseY: int,
-      mouseButton: int,
+      mouseX: number,
+      mouseY: number,
+      mouseButton: number,
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
@@ -10879,9 +10897,9 @@ declare interface ITriggerRegister {
    */
   registerGuiMouseDrag(
     method: (
-      mouseX: int,
-      mouseY: int,
-      mouseButton: int,
+      mouseX: number,
+      mouseY: number,
+      mouseButton: number,
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
@@ -10906,9 +10924,9 @@ declare interface ITriggerRegister {
    */
   registerGuiMouseRelease(
     method: (
-      mouseX: int,
-      mouseY: int,
-      mouseButton: int,
+      mouseX: number,
+      mouseY: number,
+      mouseButton: number,
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
@@ -10945,7 +10963,7 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerGuiRender(
-    method: (mouseX: int, mouseY: int, gui: MCGuiScreen) => void,
+    method: (mouseX: number, mouseY: number, gui: MCGuiScreen) => void,
   ): OnRegularTrigger;
 
   /**
@@ -11127,7 +11145,7 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerScrolled(
-    method: (mouseX: float, mouseY: float, direction: int) => void,
+    method: (mouseX: number, mouseY: number, direction: number) => void,
   ): OnRegularTrigger;
 
   /**
@@ -11178,7 +11196,7 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerStep(method: (elapsed: long) => void): OnStepTrigger;
+  registerStep(method: (elapsed: number) => void): OnStepTrigger;
 
   /**
    * Registers a new trigger that runs before every game tick.
@@ -11192,7 +11210,7 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerTick(method: (elapsed: int) => void): OnRegularTrigger;
+  registerTick(method: (elapsed: number) => void): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs when a tooltip is being rendered.
@@ -11246,7 +11264,7 @@ declare interface ITriggerRegister {
    * @return The trigger for additional modification
    */
   registerPostGuiRender(
-    method: (mouseX: int, mouseY: int, gui: MCGuiScreen) => void,
+    method: (mouseX: number, mouseY: number, gui: MCGuiScreen) => void,
   ): OnRegularTrigger;
 
   /**
@@ -11442,7 +11460,7 @@ declare interface ITriggerRegister {
     method: (
       entity: MCEntity,
       position: Vector3f,
-      partialTicks: float,
+      partialTicks: number,
       event: CancellableEvent,
     ) => void,
   ): OnRegularTrigger;
@@ -11764,7 +11782,7 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerRenderWorld(method: (partialTicks: long) => void): OnRegularTrigger;
+  registerRenderWorld(method: (partialTicks: number) => void): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs before the player breaks a block
@@ -11909,8 +11927,8 @@ declare interface ITriggerRegister {
     method: (
       position: Vector3f,
       name: string,
-      vol: float,
-      pitch: float,
+      vol: number,
+      pitch: number,
       category: MCSoundCategory,
       event: ForgePlaySoundEvent,
     ) => void,
@@ -12099,9 +12117,9 @@ declare interface IRegister {
   (
     triggerType: "clicked",
     method: (
-      mouseX: float,
-      mouseY: float,
-      button: int,
+      mouseX: number,
+      mouseY: number,
+      button: number,
       isButtonDown: boolean,
     ) => void,
   ): OnRegularTrigger;
@@ -12125,11 +12143,11 @@ declare interface IRegister {
   (
     triggerType: "dragged",
     method: (
-      mouseDeltaX: float,
-      mouseDeltaY: float,
-      mouseX: float,
-      mouseY: float,
-      button: int,
+      mouseDeltaX: number,
+      mouseDeltaY: number,
+      mouseX: number,
+      mouseY: number,
+      button: number,
     ) => void,
   ): OnRegularTrigger;
 
@@ -12230,7 +12248,7 @@ declare interface IRegister {
     triggerType: "guiKey",
     method: (
       char: string,
-      keyCode: int,
+      keyCode: number,
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
@@ -12256,9 +12274,9 @@ declare interface IRegister {
   (
     triggerType: "guiMouseClick",
     method: (
-      mouseX: int,
-      mouseY: int,
-      mouseButton: int,
+      mouseX: number,
+      mouseY: number,
+      mouseButton: number,
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
@@ -12284,9 +12302,9 @@ declare interface IRegister {
   (
     triggerType: "guiMouseDrag",
     method: (
-      mouseX: int,
-      mouseY: int,
-      mouseButton: int,
+      mouseX: number,
+      mouseY: number,
+      mouseButton: number,
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
@@ -12312,9 +12330,9 @@ declare interface IRegister {
   (
     triggerType: "guiMouseRelease",
     method: (
-      mouseX: int,
-      mouseY: int,
-      mouseButton: int,
+      mouseX: number,
+      mouseY: number,
+      mouseButton: number,
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
@@ -12353,7 +12371,7 @@ declare interface IRegister {
    */
   (
     triggerType: "guiRender",
-    method: (mouseX: int, mouseY: int, gui: MCGuiScreen) => void,
+    method: (mouseX: number, mouseY: number, gui: MCGuiScreen) => void,
   ): OnRegularTrigger;
 
   /**
@@ -12545,7 +12563,7 @@ declare interface IRegister {
    */
   (
     triggerType: "scrolled",
-    method: (mouseX: float, mouseY: float, direction: int) => void,
+    method: (mouseX: number, mouseY: number, direction: number) => void,
   ): OnRegularTrigger;
 
   /**
@@ -12598,7 +12616,7 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "step", method: (elapsed: long) => void): OnStepTrigger;
+  (triggerType: "step", method: (elapsed: number) => void): OnStepTrigger;
 
   /**
    * Registers a new trigger that runs before every game tick.
@@ -12612,7 +12630,7 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "tick", method: (elapsed: int) => void): OnRegularTrigger;
+  (triggerType: "tick", method: (elapsed: number) => void): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs when a tooltip is being rendered.
@@ -12669,7 +12687,7 @@ declare interface IRegister {
    */
   (
     triggerType: "postGuiRender",
-    method: (mouseX: int, mouseY: int, gui: MCGuiScreen) => void,
+    method: (mouseX: number, mouseY: number, gui: MCGuiScreen) => void,
   ): OnRegularTrigger;
 
   /**
@@ -12875,7 +12893,7 @@ declare interface IRegister {
     method: (
       entity: MCEntity,
       position: Vector3f,
-      partialTicks: float,
+      partialTicks: number,
       event: CancellableEvent,
     ) => void,
   ): OnRegularTrigger;
@@ -13215,7 +13233,7 @@ declare interface IRegister {
    */
   (
     triggerType: "renderWorld",
-    method: (partialTicks: long) => void,
+    method: (partialTicks: number) => void,
   ): OnRegularTrigger;
 
   /**
@@ -13371,8 +13389,8 @@ declare interface IRegister {
     method: (
       position: Vector3f,
       name: string,
-      vol: float,
-      pitch: float,
+      vol: number,
+      pitch: number,
       category: MCSoundCategory,
       event: ForgePlaySoundEvent,
     ) => void,
