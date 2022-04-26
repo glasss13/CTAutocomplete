@@ -7056,141 +7056,151 @@ declare interface Java {
   type: JavaTypePath;
 }
 
+declare class NotFullyTyped {
+  [s: string]: any;
+  static [s: string]: any;
+}
+
 ////////////////////////
 // obfuscated classes //
 ////////////////////////
 //#region
-declare class MCScoreboard {
+declare class MCScoreboard extends NotFullyTyped {
   class: JavaClass<MCScoreboard>;
   static class: JavaClass<typeof MCScoreboard>;
 }
 
-declare class MCScoreObjective {
+declare class MCScore extends NotFullyTyped {
+  class: JavaClass<MCScore>;
+  static class: JavaClass<typeof MCScore>;
+}
+
+declare class MCScoreObjective extends NotFullyTyped {
   class: JavaClass<MCScoreObjective>;
   static class: JavaClass<typeof MCScoreObjective>;
 }
 
-declare class MCScorePlayerTeam {
+declare class MCScorePlayerTeam extends NotFullyTyped {
   class: JavaClass<MCScorePlayerTeam>;
   static class: JavaClass<typeof MCScorePlayerTeam>;
 }
 
-declare class MCTileEntity {
+declare class MCTileEntity extends NotFullyTyped {
   class: JavaClass<MCTileEntity>;
   static class: JavaClass<typeof MCTileEntity>;
 }
 
-declare class MCSlot {
+declare class MCSlot extends NotFullyTyped {
   class: JavaClass<MCSlot>;
   static class: JavaClass<typeof MCSlot>;
 }
 
-declare class MCGuiContainer {
+declare class MCGuiContainer extends NotFullyTyped {
   class: JavaClass<MCGuiContainer>;
   static class: JavaClass<typeof MCGuiContainer>;
 }
 
 // TODO probalby should be extending from base object, need to fix issue with static members
-declare class MCVec3 {
+declare class MCVec3 extends NotFullyTyped {
   class: JavaClass<MCVec3>;
   static class: JavaClass<typeof MCVec3>;
 }
 
-declare class MCGlStateManager {
+declare class MCGlStateManager extends NotFullyTyped {
   class: JavaClass<MCGlStateManager>;
   static class: JavaClass<typeof MCGlStateManager>;
 }
 
-declare class MCBlock {
+declare class MCBlock extends NotFullyTyped {
   class: JavaClass<MCBlock>;
   static class: JavaClass<typeof MCBlock>;
 }
-declare class MCBlockPos {
+declare class MCBlockPos extends NotFullyTyped {
   class: JavaClass<MCBlockPos>;
   static class: JavaClass<typeof MCBlockPos>;
 }
-declare class MCItem {
+declare class MCItem extends NotFullyTyped {
   class: JavaClass<MCItem>;
   static class: JavaClass<typeof MCItem>;
 }
-declare class MCItemStack {
+declare class MCItemStack extends NotFullyTyped {
   class: JavaClass<MCItemStack>;
   static class: JavaClass<typeof MCItemStack>;
 }
-declare class MCEntityItem {
+declare class MCEntityItem extends NotFullyTyped {
   class: JavaClass<MCEntityItem>;
   static class: JavaClass<typeof MCEntityItem>;
 }
-declare class MCIBlockState {
+declare class MCIBlockState extends NotFullyTyped {
   class: JavaClass<MCIBlockState>;
   static class: JavaClass<typeof MCIBlockState>;
 }
-declare class MCIInventory {
+declare class MCIInventory extends NotFullyTyped {
   class: JavaClass<MCIInventory>;
   static class: JavaClass<typeof MCIInventory>;
 }
-declare class MCContainer {
+declare class MCContainer extends NotFullyTyped {
   class: JavaClass<MCContainer>;
   static class: JavaClass<typeof MCContainer>;
 }
-declare class MCEntity {
+declare class MCEntity extends NotFullyTyped {
   class: JavaClass<MCEntity>;
   static class: JavaClass<typeof MCEntity>;
 }
-declare class MCIChatComponent {
+declare class MCIChatComponent extends NotFullyTyped {
   class: JavaClass<MCIChatComponent>;
   static class: JavaClass<typeof MCIChatComponent>;
 }
-declare class MCNBTBase {
+declare class MCNBTBase extends NotFullyTyped {
   class: JavaClass<MCNBTBase>;
   static class: JavaClass<typeof MCNBTBase>;
 }
-declare class MCNBTTagCompound {
+declare class MCNBTTagCompound extends NotFullyTyped {
   class: JavaClass<MCNBTTagCompound>;
   static class: JavaClass<typeof MCNBTTagCompound>;
 }
-declare class MCChunk {
+declare class MCChunk extends NotFullyTyped {
   class: JavaClass<MCChunk>;
   static class: JavaClass<typeof MCChunk>;
 }
 // TODO
-declare class MCEnumFacing {
+declare class MCEnumFacing extends NotFullyTyped {
   class: JavaClass<MCEnumFacing>;
   static class: JavaClass<typeof MCEnumFacing>;
   Axis: any;
 }
-declare class MCNBTTagList {
+declare class MCNBTTagList extends NotFullyTyped {
   class: JavaClass<MCNBTTagList>;
   static class: JavaClass<typeof MCNBTTagList>;
 }
-declare class MCMinecraft {
+declare class MCMinecraft extends NotFullyTyped {
   class: JavaClass<MCMinecraft>;
   static class: JavaClass<typeof MCMinecraft>;
 }
-declare class MCNetHandlerPlayClient {
+declare class MCNetHandlerPlayClient extends NotFullyTyped {
   class: JavaClass<MCNetHandlerPlayClient>;
   static class: JavaClass<typeof MCNetHandlerPlayClient>;
 }
-declare class MCGuiNewChat {
+declare class MCGuiNewChat extends NotFullyTyped {
   class: JavaClass<MCGuiNewChat>;
   static class: JavaClass<typeof MCGuiNewChat>;
 }
-declare class MCGuiPlayerTabOverlay {
+declare class MCGuiPlayerTabOverlay extends NotFullyTyped {
   class: JavaClass<MCGuiPlayerTabOverlay>;
   static class: JavaClass<typeof MCGuiPlayerTabOverlay>;
 }
-declare class MCINetHandler {
+declare class MCINetHandler extends NotFullyTyped {
   class: JavaClass<MCINetHandler>;
   static class: JavaClass<typeof MCINetHandler>;
 }
-declare interface MCPacket<T extends MCINetHandler> {
+declare interface MCPacket<T extends MCINetHandler> extends NotFullyTyped {
   class: JavaClass<MCPacket<T>>;
 }
-declare class MCGuiScreen {
+declare class MCGuiScreen extends NotFullyTyped {
   class: JavaClass<MCGuiScreen>;
   static class: JavaClass<typeof MCGuiScreen>;
 }
-declare class MCGameSettings {
+declare class MCGameSettings extends NotFullyTyped {
   class: JavaClass<MCGameSettings>;
   static class: JavaClass<typeof MCGameSettings>;
 }
@@ -7200,18 +7210,18 @@ declare enum EnumChatVisibility {
   SYSTEM,
   HIDDEN,
 }
-declare class MCEntityPlayer {
+declare class MCEntityPlayer extends NotFullyTyped {
   class: JavaClass<MCEntityPlayer>;
   static class: JavaClass<typeof MCEntityPlayer>;
   EnumChatVisibility: EnumChatVisibility;
 }
 
-declare class MCEntityPlayerSP {
+declare class MCEntityPlayerSP extends NotFullyTyped {
   class: JavaClass<MCEntityPlayerSP>;
   static class: JavaClass<typeof MCEntityPlayerSP>;
 }
 
-declare class MCKeyBinding {
+declare class MCKeyBinding extends NotFullyTyped {
   class: JavaClass<MCKeyBinding>;
   static class: JavaClass<typeof MCKeyBinding>;
 }
@@ -7220,7 +7230,7 @@ declare class MCGuiButton extends MCGuiScreen {
   class: JavaClass<MCGuiButton>;
   static class: JavaClass<typeof MCGuiButton>;
 }
-declare class MCAbstractTexture {
+declare class MCAbstractTexture extends NotFullyTyped {
   class: JavaClass<MCAbstractTexture>;
   static class: JavaClass<typeof MCAbstractTexture>;
 }
@@ -7230,7 +7240,7 @@ declare class MCDynamicTexture extends MCAbstractTexture {
   static class: JavaClass<typeof MCDynamicTexture>;
 }
 
-declare class MCSoundCategory {
+declare class MCSoundCategory extends NotFullyTyped {
   class: JavaClass<MCSoundCategory>;
   static class: JavaClass<typeof MCSoundCategory>;
 
@@ -7245,26 +7255,26 @@ declare class MCSoundCategory {
   static AMBIENT: MCSoundCategory;
 }
 
-declare class MCPotion {
+declare class MCPotion extends NotFullyTyped {
   class: JavaClass<MCPotion>;
   static class: JavaClass<typeof MCPotion>;
 }
 
-declare class MCPotionEffect {
+declare class MCPotionEffect extends NotFullyTyped {
   class: JavaClass<MCSoundCategory>;
   static class: JavaClass<typeof MCSoundCategory>;
 }
-declare class MCWorld {
+declare class MCWorld extends NotFullyTyped {
   class: JavaClass<MCWorld>;
   static class: JavaClass<typeof MCWorld>;
 }
 
-declare class MCEntityFX {
+declare class MCEntityFX extends NotFullyTyped {
   class: JavaClass<MCEntityFX>;
   static class: JavaClass<typeof MCEntityFX>;
 }
 
-declare class MCEnumParticleTypes {
+declare class MCEnumParticleTypes extends NotFullyTyped {
   class: JavaClass<MCEnumParticleTypes>;
   static class: JavaClass<typeof MCEnumParticleTypes>;
 
@@ -7311,22 +7321,22 @@ declare class MCEnumParticleTypes {
   static MOB_APPEARANCE: MCEnumParticleTypes;
 }
 
-declare class MCFontRenderer {
+declare class MCFontRenderer extends NotFullyTyped {
   class: JavaClass<MCFontRenderer>;
   static class: JavaClass<typeof MCFontRenderer>;
 }
 
-declare class MCRenderManager {
+declare class MCRenderManager extends NotFullyTyped {
   class: JavaClass<MCRenderManager>;
   static class: JavaClass<typeof MCRenderManager>;
 }
 
-declare class MCEntityLivingBase {
+declare class MCEntityLivingBase extends NotFullyTyped {
   class: JavaClass<MCEntityLivingBase>;
   static class: JavaClass<typeof MCEntityLivingBase>;
 }
 
-declare class MCWorldClient {
+declare class MCWorldClient extends NotFullyTyped {
   class: JavaClass<MCWorldClient>;
   static class: JavaClass<typeof MCWorldClient>;
 }
@@ -7336,32 +7346,32 @@ declare class MCWorldClient {
 // Forge Classes //
 ///////////////////
 //#region
-declare class FMLNetworkEvent$ClientConnectedToServerEvent {
+declare class FMLNetworkEvent$ClientConnectedToServerEvent extends NotFullyTyped {
   readonly isLocal: boolean;
   readonly connectionType: string;
 }
 
-declare class FMLNetworkEvent$ServerConnectionFromClientEvent {
+declare class FMLNetworkEvent$ServerConnectionFromClientEvent extends NotFullyTyped {
   readonly isLocal: boolean;
 }
 
-declare class FMLNetworkEvent$ServerDisconnectionFromClientEvent {}
+declare class FMLNetworkEvent$ServerDisconnectionFromClientEvent extends NotFullyTyped {}
 
-declare class FMLNetworkEvent$ClientDisconnectionFromServerEvent {}
+declare class FMLNetworkEvent$ClientDisconnectionFromServerEvent extends NotFullyTyped {}
 
-declare class FMLNetworkEvent$CustomPacketRegistrationEvent {}
+declare class FMLNetworkEvent$CustomPacketRegistrationEvent extends NotFullyTyped {}
 
-declare class FMLNetworkEvent$CustomPacketEvent {}
+declare class FMLNetworkEvent$CustomPacketEvent extends NotFullyTyped {}
 
-declare class FMLNetworkEvent$ClientCustomPacketEvent {}
+declare class FMLNetworkEvent$ClientCustomPacketEvent extends NotFullyTyped {}
 
-declare class FMLNetworkEvent$ServerCustomPacketEvent {}
+declare class FMLNetworkEvent$ServerCustomPacketEvent extends NotFullyTyped {}
 
-declare class FMLNetworkEvent$CustomNetworkEvent {
+declare class FMLNetworkEvent$CustomNetworkEvent extends NotFullyTyped {
   readonly wrappedEevent: object;
 }
 
-declare class FMLNetworkEvent {
+declare class FMLNetworkEvent extends NotFullyTyped {
   class: JavaClass<FMLNetworkEvent>;
   static class: JavaClass<typeof FMLNetworkEvent>;
 
@@ -7423,14 +7433,14 @@ declare class FMLNetworkEvent {
   static readonly CustomNetworkEvent: typeof FMLNetworkEvent$CustomNetworkEvent;
 }
 
-declare class ForgeClientChatReceivedEvent {
+declare class ForgeClientChatReceivedEvent extends NotFullyTyped {
   class: JavaClass<ForgeClientChatReceivedEvent>;
   static class: JavaClass<typeof ForgeClientChatReceivedEvent>;
 
   setCanceled(canceled: boolean): void;
 }
 
-declare class ForgeRenderGameOverlayEvent {
+declare class ForgeRenderGameOverlayEvent extends NotFullyTyped {
   class: JavaClass<ForgeRenderGameOverlayEvent>;
   static class: JavaClass<typeof ForgeRenderGameOverlayEvent>;
 }
@@ -7438,18 +7448,18 @@ declare class CancellableEventHelper {
   setCanceled: (cancelable: boolean) => void;
 }
 
-declare class ForgeMouseEvent {
+declare class ForgeMouseEvent extends NotFullyTyped {
   class: JavaClass<ForgeMouseEvent>;
   static class: JavaClass<typeof ForgeMouseEvent>;
 
   setCanceled(canceled: boolean): void;
 }
-declare class ForgePlaySoundEvent {
+declare class ForgePlaySoundEvent extends NotFullyTyped {
   class: JavaClass<ForgePlaySoundEvent>;
   static class: JavaClass<typeof ForgePlaySoundEvent>;
 }
 
-declare class ForgeConfigChangedEvent {
+declare class ForgeConfigChangedEvent extends NotFullyTyped {
   class: JavaClass<ForgeConfigChangedEvent>;
   static class: JavaClass<typeof ForgeConfigChangedEvent>;
 }
@@ -7463,7 +7473,7 @@ declare namespace ForgeConfigChangedEvent {
   }
 }
 
-declare class ForgeTickEvent {
+declare class ForgeTickEvent extends NotFullyTyped {
   class: JavaClass<ForgeTickEvent>;
   static class: JavaClass<typeof ForgeTickEvent>;
 }
@@ -7474,7 +7484,7 @@ declare namespace ForgeTickEvent {
   }
 }
 
-declare class ForgeNoteBlockEvent {
+declare class ForgeNoteBlockEvent extends NotFullyTyped {
   class: JavaClass<ForgeNoteBlockEvent>;
   static class: JavaClass<typeof ForgeNoteBlockEvent>;
 }
@@ -7521,22 +7531,22 @@ declare namespace ForgeNoteBlockEvent {
   }
 }
 
-declare class ForgeDrawBlockHighlightEvent {
+declare class ForgeDrawBlockHighlightEvent extends NotFullyTyped {
   class: JavaClass<ForgeDrawBlockHighlightEvent>;
   static class: JavaClass<typeof ForgeDrawBlockHighlightEvent>;
 }
 
-declare class ForgeGuiOpenEvent {
+declare class ForgeGuiOpenEvent extends NotFullyTyped {
   class: JavaClass<ForgeGuiOpenEvent>;
   static class: JavaClass<typeof ForgeGuiOpenEvent>;
 }
 
-declare class ForgeEntityItemPickupEvent {
+declare class ForgeEntityItemPickupEvent extends NotFullyTyped {
   class: JavaClass<ForgeEntityItemPickupEvent>;
   static class: JavaClass<typeof ForgeEntityItemPickupEvent>;
 }
 
-declare class ForgePlayerInteractEvent {
+declare class ForgePlayerInteractEvent extends NotFullyTyped {
   class: JavaClass<ForgePlayerInteractEvent>;
   static class: JavaClass<typeof ForgePlayerInteractEvent>;
 
@@ -7561,7 +7571,7 @@ declare namespace ForgePlayerInteractEvent {
   }
 }
 
-declare class ForgeGuiScreenEvent {
+declare class ForgeGuiScreenEvent extends NotFullyTyped {
   class: JavaClass<ForgeGuiScreenEvent>;
   static class: JavaClass<typeof ForgeGuiScreenEvent>;
 }
@@ -7604,7 +7614,7 @@ declare namespace ForgeGuiScreenEvent.DrawScreenEvent {
   }
 }
 
-declare class ForgeBlockEvent {
+declare class ForgeBlockEvent extends NotFullyTyped {
   class: JavaClass<ForgeBlockEvent>;
   static class: JavaClass<typeof ForgeBlockEvent>;
 }
@@ -7626,10 +7636,6 @@ declare namespace ForgeBlockEvent {
   }
 }
 
-declare class MCScore {
-  class: JavaClass<MCScore>;
-  static class: JavaClass<typeof MCScore>;
-}
 //#endregion
 
 //////////////////
@@ -7638,7 +7644,7 @@ declare class MCScore {
 //#region
 
 //TODO
-declare class JavaColor {
+declare class JavaColor extends NotFullyTyped {
   /**
    * The color black.
    */
@@ -8115,25 +8121,25 @@ declare class Vector2f {
 
   equals(obj: object): boolean;
 }
-declare class JavaBufferedImage {}
+declare class JavaBufferedImage extends NotFullyTyped {}
 
-declare class JavaGL11 {}
-declare class JavaGL12 {}
-declare class JavaGL13 {}
-declare class JavaGL14 {}
-declare class JavaGL15 {}
-declare class JavaGL20 {}
-declare class JavaGL21 {}
-declare class JavaGL30 {}
-declare class JavaGL31 {}
-declare class JavaGL32 {}
-declare class JavaGL33 {}
-declare class JavaGL40 {}
-declare class JavaGL41 {}
-declare class JavaGL42 {}
-declare class JavaGL43 {}
-declare class JavaGL44 {}
-declare class JavaGL45 {}
+declare class JavaGL11 extends NotFullyTyped {}
+declare class JavaGL12 extends NotFullyTyped {}
+declare class JavaGL13 extends NotFullyTyped {}
+declare class JavaGL14 extends NotFullyTyped {}
+declare class JavaGL15 extends NotFullyTyped {}
+declare class JavaGL20 extends NotFullyTyped {}
+declare class JavaGL21 extends NotFullyTyped {}
+declare class JavaGL30 extends NotFullyTyped {}
+declare class JavaGL31 extends NotFullyTyped {}
+declare class JavaGL32 extends NotFullyTyped {}
+declare class JavaGL33 extends NotFullyTyped {}
+declare class JavaGL40 extends NotFullyTyped {}
+declare class JavaGL41 extends NotFullyTyped {}
+declare class JavaGL42 extends NotFullyTyped {}
+declare class JavaGL43 extends NotFullyTyped {}
+declare class JavaGL44 extends NotFullyTyped {}
+declare class JavaGL45 extends NotFullyTyped {}
 
 declare class JavaThread {
   /**
@@ -8661,7 +8667,7 @@ declare class JavaFile {
 }
 //TODO
 /**An object that may be used to locate a file in a file system. It will typically represent a system dependent file path. */
-declare interface JavaPath {
+declare interface JavaPath extends NotFullyTyped {
   /**
    * Compares two abstract paths lexicographically.
    */
@@ -9304,7 +9310,7 @@ declare class JavaInputStream {
   skip(n: number): number;
 }
 
-declare class JavaURLConnection {}
+declare class JavaURLConnection extends NotFullyTyped {}
 /**
  * This class represents a proxy setting, typically a type (http, socks) and a socket address. A Proxy is an immutable object.
  */
