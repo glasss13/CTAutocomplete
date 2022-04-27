@@ -4406,7 +4406,11 @@ declare global {
 
   class Item {
     readonly item: MCItem;
-    readonly itemStack: MCItemStack;
+    getItem(): MCItem;
+
+    itemStack: MCItemStack;
+    getItemStack(): MCItemStack;
+    setItemStack(itemStack: MCItemStack): void;
 
     constructor(itemStack: MCItemStack);
 
@@ -4465,6 +4469,12 @@ declare global {
      */
     getName(): string;
 
+    /**
+     * Sets the item's name.
+     * @param name the new name
+     */
+    setName(name: string): Item;
+
     getEnchantments(): Map<string, number>;
 
     isEnchantable(): boolean;
@@ -4494,7 +4504,18 @@ declare global {
 
     isDamagable(): boolean;
 
+    /**
+     * Gets the item's name and lore lines.
+     *
+     * @return the item's name and lore lines
+     */
     getLore(): string[];
+
+    /**
+     * Sets the item's lore. Does not set the item's name, use [setName] instead.
+     * @param loreLines the new lore lines
+     */
+    setLore(...loreLines: string[]): Item;
 
     /**
      * Renders the item icon to the client's overlay, with customizable overlay information.
