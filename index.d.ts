@@ -6646,14 +6646,11 @@ declare global {
     getName(): string;
   }
 
-  class Particle {
+  class Particle extends Entity {
     constructor(underlyingEntity: MCEntityFX);
 
     readonly underlyingEntity: MCEntityFX;
-
-    getX(): number;
-    getY(): number;
-    getZ(): number;
+    getUnderlyingEntity(): MCEntityFX;
 
     setX(x: number): Particle;
     setY(y: number): Particle;
@@ -6663,13 +6660,30 @@ declare global {
 
     multiplyVelocity(multiplier: number): Particle;
 
-    setColor(r: number, g: number, b: number): Particle;
+    /**
+     * Sets the color of the particle.
+     * @param red the red value between 0 and 1.
+     * @param green the green value between 0 and 1.
+     * @param blue the blue value between 0 and 1.
+     */
+    setColor(red: number, green: number, blue: number): Particle;
 
-    setColor(r: number, g: number, b: number, a: number): Particle;
+    /**
+     * Sets the color of the particle.
+     * @param red the red value between 0 and 1.
+     * @param green the green value between 0 and 1.
+     * @param blue the blue value between 0 and 1.
+     * @param alpha the alpha value between 0 and 1.
+     */
+    setColor(red: number, green: number, blue: number, alpha: number): Particle;
 
     setColor(color: number): Particle;
 
-    setAlpha(a: number): Particle;
+    /**
+     * Sets the alpha of the particle.
+     * @param alpha the alpha value between 0 and 1.
+     */
+    setAlpha(alpha: number): Particle;
 
     /**
      * Returns the color of the Particle
