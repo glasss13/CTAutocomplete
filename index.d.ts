@@ -5781,10 +5781,25 @@ declare global {
     background?: DisplayHandler.Background;
     align?: DisplayHandler.Align;
     order?: DisplayHandler.Order;
+    minWidth?: number;
+    registerType?: DisplayHandler.RegisterType;
+  }
+
+  interface TextConfig {
+    color?: number;
+    formatted?: boolean;
+    shadow?: boolean;
+    align?: DisplayHandler.Align;
+    x?: number;
+    y?: number;
+    maxLines?: number;
+    scale?: number;
+    maxWidth?: number;
   }
 
   class Text {
     constructor(string: string, x?: number, y?: number);
+    constructor(string: string, config: TextConfig);
 
     getString(): string;
     setString(string: string): Text;
