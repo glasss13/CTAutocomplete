@@ -351,8 +351,13 @@ declare global {
       drawMode?: number,
     ): void;
 
-    drawString(text: string, x: number, y: number): void;
-    static drawString(text: string, x: number, y: number): void;
+    drawString(text: string, x: number, y: number, shadow?: boolean): void;
+    static drawString(
+      text: string,
+      x: number,
+      y: number,
+      shadow?: boolean,
+    ): void;
 
     drawStringWithShadow(text: string, x: number, y: number): void;
     static drawStringWithShadow(text: string, x: number, y: number): void;
