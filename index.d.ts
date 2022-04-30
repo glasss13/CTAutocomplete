@@ -4299,7 +4299,7 @@ declare global {
      * Gets the item in any slot, starting from 0.
      *
      * @param slot the slot index
-     * @return the Item in that slot
+     * @return the [Item] in that slot
      */
     getStackInSlot(slot: number): Item | null;
 
@@ -4362,8 +4362,8 @@ declare global {
     indexOf(id: number): number;
 
     /**
-     * Returns true if this Inventory wraps a Container object
-     * rather than an IInventory object
+     * Returns true if this Inventory wraps a [Container] object
+     * rather than an [IInventory] object
      *
      * @return if this is a container
      */
@@ -5516,18 +5516,14 @@ declare global {
     registerKeyDown(method: Function): KeyBind;
 
     /**
-     * Creates a new key bind, editable in the user's controls.
+     * Creates a new keybind, editable in the user's controls.
      *
+     * @param description what the keybind does
+     * @param keyCode the keycode which the keybind will respond to, see Keyboard below. Ex. Keyboard.KEY_A
      * @param category the keybind category the keybind will be in
-     * @param description what the key bind does
-     * @param keyCode the keycode which the key bind will respond to, see Keyboard below. Ex. Keyboard.KEY_A
-     * @see [Keyboard](http://legacy.lwjgl.org/javadoc/org/lwjgl/input/Keyboard.html)
+     * @see [org.lwjgl.input.Keyboard](http://legacy.lwjgl.org/javadoc/org/lwjgl/input/Keyboard.html)
      */
-    constructor(
-      description: string,
-      keyCode: number | Keyboard,
-      category?: string,
-    );
+    constructor(description: string, keyCode: number, category?: string);
 
     constructor(keyBinding: MCKeyBinding);
 
@@ -5546,6 +5542,13 @@ declare global {
     isPressed(): boolean;
 
     /**
+     * Gets the description of the key.
+     *
+     * @return the description
+     */
+    getDescription(): string;
+
+    /**
      * Gets the key code of the key.
      *
      * @return the integer key code
@@ -5553,11 +5556,24 @@ declare global {
     getKeyCode(): number;
 
     /**
+     * Gets the category of the key.
+     *
+     * @return the category
+     */
+    getCategory(): string;
+
+    /**
      * Sets the state of the key.
      *
      * @param pressed True to press, False to release
      */
     setState(pressed: boolean): void;
+
+    removeKeyBind(keyBind: KeyBind): void;
+    static removeKeyBind(keyBind: KeyBind): void;
+
+    clearKeyBinds(): void;
+    static clearKeyBinds(): void;
   }
 
   class CPS {
@@ -9717,27 +9733,48 @@ declare class Team {
 
 declare class Client {
   /**
-   * Get the [KeyBind] from an already existing
-   * Minecraft KeyBinding, else, return a new one.
+   * Get the [KeyBind] from an already existing Minecraft KeyBinding, otherwise, returns null.
    *
    * @param keyCode the keycode to search for, see Keyboard below. Ex. Keyboard.KEY_A
    * @return the [KeyBind] from a Minecraft KeyBinding, or null if one doesn't exist
-   * @see [Keyboard](http://legacy.lwjgl.org/javadoc/org/lwjgl/input/Keyboard.html)
+   * @see [org.lwjgl.input.Keyboard](http://legacy.lwjgl.org/javadoc/org/lwjgl/input/Keyboard.html)
+   */
+  getKeyBindFromKey(keyCode: number): KeyBind | null;
+
+  /**
+   * Get the [KeyBind] from an already existing Minecraft KeyBinding, else, return a new one.
+   *
+   * @param keyCode the keycode which the keybind will respond to, see Keyboard below. Ex. Keyboard.KEY_A
+   * @param description the description of the keybind
+   * @param category the keybind category the keybind will be in
+   * @return the [KeyBind] from a Minecraft KeyBinding, or a new one if one doesn't exist
+   * @see [org.lwjgl.input.Keyboard](http://legacy.lwjgl.org/javadoc/org/lwjgl/input/Keyboard.html)
    */
   getKeyBindFromKey(
     keyCode: number,
-    description?: string,
-    category?: string,
-  ): KeyBind | undefined;
+    description: string,
+    category: string,
+  ): KeyBind;
+
+  /**
+   * Get the [KeyBind] from an already existing Minecraft KeyBinding, else, return a new one.
+   * This will create the [KeyBind] with the default category "ChatTriggers".
+   *
+   * @param keyCode the keycode to search for, see Keyboard below. Ex. Keyboard.KEY_A
+   * @param description the description of the keybind
+   * @return the [KeyBind] from a Minecraft KeyBinding, or a new one if one doesn't exist
+   * @see [org.lwjgl.input.Keyboard](http://legacy.lwjgl.org/javadoc/org/lwjgl/input/Keyboard.html)
+   */
+  getKeyBindFromKey(keyCode: number, description: string): KeyBind;
 
   /**
    * Get the [KeyBind] from an already existing
-   * Minecraft KeyBinding, else, null.
+   * Minecraft KeyBinding, otherwise, returns null.
    *
-   * @param description the key binding's original description
-   * @return the key bind, or null if one doesn't exist
+   * @param description the description of the keybind
+   * @return the [KeyBind], or null if one doesn't exist
    */
-  getKeyBindFromDescription(description: string): Keyboard | undefined;
+  getKeyBindFromDescription(description: string): Keyboard | null;
 
   static readonly INSTANCE: Client;
   static readonly settings: Settings;
