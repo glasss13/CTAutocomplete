@@ -10522,6 +10522,7 @@ declare class TriggerType {
   static RenderEntity: TriggerType;
   static RenderExperience: TriggerType;
   static RenderFood: TriggerType;
+  static RenderHand: TriggerType;
   static RenderHealth: TriggerType;
   static RenderHelmet: TriggerType;
   static RenderHotbar: TriggerType;
@@ -11601,6 +11602,22 @@ declare interface ITriggerRegister {
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
   ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player's hand is drawn.
+   *
+   * Passes through one argument:
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  registerRenderHand(
+    method: (event: CancellableEvent) => void,
+  ): OnRegularTrigger;
 
   /**
    * Registers a new trigger that runs before the player's health is being drawn.
@@ -13035,6 +13052,23 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
+  ): OnRenderTrigger;
+
+  /**
+   * Registers a new trigger that runs before the player's hand is drawn.
+   *
+   * Passes through one argument:
+   * - The event, which can be cancelled
+   *
+   * Available modifications:
+   * - [OnTrigger.setPriority] Sets the priority
+   *
+   * @param method The method to call when the event is fired
+   * @return The trigger for additional modification
+   */
+  (
+    triggerType: "renderHand",
+    method: (event: CancellableEvent) => void,
   ): OnRenderTrigger;
 
   /**
