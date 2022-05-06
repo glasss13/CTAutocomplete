@@ -6919,16 +6919,17 @@ declare global {
     trigger(args: any[]): void;
   }
 
-  class OnRenderTrigger extends OnTrigger {
+  class OnEventTrigger extends OnTrigger {
     constructor(method: Function, triggerType: TriggerType, loader: ILoader);
 
     /**
-     * Sets if the render trigger should run if the event has already been canceled.
+     * Sets if this trigger should run if the event has already been canceled.
      * True by default.
+     *
      * @param bool Boolean to set
      * @return the trigger object for method chaining
      */
-    triggerIfCanceled(bool: boolean): OnRenderTrigger;
+    triggerIfCanceled(bool: boolean): OnEventTrigger;
 
     trigger(args: any[]): void;
   }
@@ -10743,7 +10744,7 @@ declare interface ITriggerRegister {
    */
   registerAttackEntity(
     method: (entity: Entity, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before a chat message is received.
@@ -10783,7 +10784,7 @@ declare interface ITriggerRegister {
    */
   registerChatComponentClicked(
     method: (component: TextComponent, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever the user hovers over a
@@ -10801,7 +10802,7 @@ declare interface ITriggerRegister {
    */
   registerChatComponentHovered(
     method: (component: TextComponent, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before a mouse button is being pressed or released.
@@ -10871,7 +10872,7 @@ declare interface ITriggerRegister {
    */
   registerDropItem(
     method: (item: Item, player: PlayerMP, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs after the game loads.
@@ -10924,7 +10925,7 @@ declare interface ITriggerRegister {
    */
   registerGuiDrawBackground(
     method: (gui: MCGuiScreen, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a key is typed with a gui open
@@ -10948,7 +10949,7 @@ declare interface ITriggerRegister {
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever the mouse is clicked with a
@@ -10975,7 +10976,7 @@ declare interface ITriggerRegister {
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a mouse button held and dragged
@@ -11002,7 +11003,7 @@ declare interface ITriggerRegister {
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a mouse button is released
@@ -11029,7 +11030,7 @@ declare interface ITriggerRegister {
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs when a new gui is first opened.
@@ -11043,9 +11044,7 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerGuiOpened(
-    method: (event: ForgeGuiOpenEvent) => void,
-  ): OnRegularTrigger;
+  registerGuiOpened(method: (event: ForgeGuiOpenEvent) => void): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs as a gui is rendered
@@ -11083,7 +11082,7 @@ declare interface ITriggerRegister {
    */
   registerHitBlock(
     method: (block: Block, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before a message is sent in chat.
@@ -11100,7 +11099,7 @@ declare interface ITriggerRegister {
    */
   registerMessageSent(
     method: (message: string, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a packet is sent to the client from the server
@@ -11117,7 +11116,7 @@ declare interface ITriggerRegister {
    */
   registerPacketReceived(
     method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a packet is sent from the client to the server
@@ -11134,7 +11133,7 @@ declare interface ITriggerRegister {
    */
   registerPacketSent(
     method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before an item is picked up.
@@ -11160,7 +11159,7 @@ declare interface ITriggerRegister {
       motion: Vector3f,
       event: ForgeEntityItemPickupEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the player interacts.
@@ -11194,7 +11193,7 @@ declare interface ITriggerRegister {
       position: Vector3f,
       event: ForgePlayerInteractEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before a slot is drawn in a container
@@ -11210,7 +11209,7 @@ declare interface ITriggerRegister {
    */
   registerRenderSlot(
     method: (slot: Slot, gui: MCGuiContainer, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before a screenshot is taken.
@@ -11227,7 +11226,7 @@ declare interface ITriggerRegister {
    */
   registerScreenshotTaken(
     method: (name: string, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the mouse is scrolled.
@@ -11261,7 +11260,7 @@ declare interface ITriggerRegister {
    */
   registerServerConnect(
     method: (event: FMLNetworkEvent$ClientConnectedToServerEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever the player disconnects from a server
@@ -11329,7 +11328,7 @@ declare interface ITriggerRegister {
    */
   registerItemTooltip(
     method: (lore: string[], item: Item, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the block highlight box is drawn.
@@ -11346,7 +11345,7 @@ declare interface ITriggerRegister {
    */
   registerDrawBlockHighlight(
     method: (position: Vector3f, event: ForgeDrawBlockHighlightEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs after the current screen is rendered
@@ -11433,7 +11432,7 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -11443,7 +11442,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's armor bar is drawn.
@@ -11452,7 +11451,7 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -11462,7 +11461,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the boss health bar is being drawn.
@@ -11471,7 +11470,7 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -11481,7 +11480,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the chat is drawn.
@@ -11490,7 +11489,7 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -11500,7 +11499,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the crosshair is being drawn.
@@ -11509,7 +11508,7 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -11519,7 +11518,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a trigger that runs before the debug screen is being drawn.
@@ -11528,7 +11527,7 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -11538,7 +11537,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever an entity is rendered
@@ -11572,7 +11571,7 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -11582,7 +11581,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's food is being drawn.
@@ -11591,7 +11590,7 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -11601,7 +11600,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's hand is drawn.
@@ -11615,9 +11614,7 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerRenderHand(
-    method: (event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  registerRenderHand(method: (event: CancellableEvent) => void): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's health is being drawn.
@@ -11626,7 +11623,7 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -11636,7 +11633,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's helmet overlay is drawn.
@@ -11646,7 +11643,7 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -11656,7 +11653,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's hotbar is drawn.
@@ -11665,7 +11662,7 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -11675,7 +11672,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before each item is drawn into a GUI.
@@ -11691,7 +11688,7 @@ declare interface ITriggerRegister {
    */
   registerRenderItemIntoGui(
     method: (item: Item, x: number, y: number, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before each item overlay (stack size and damage bar) is drawn.
@@ -11707,7 +11704,7 @@ declare interface ITriggerRegister {
    */
   registerRenderItemOverlayIntoGui(
     method: (item: Item, x: number, y: number, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the jump bar is drawn.
@@ -11716,7 +11713,7 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -11726,7 +11723,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's mount's health is being drawn.
@@ -11735,7 +11732,7 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -11745,7 +11742,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the overlay is drawn.
@@ -11761,7 +11758,7 @@ declare interface ITriggerRegister {
    */
   registerRenderOverlay(
     method: (event: ForgeRenderGameOverlayEvent) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the player list is being drawn.
@@ -11770,7 +11767,7 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -11780,7 +11777,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the portal effect is drawn.
@@ -11789,7 +11786,7 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -11799,7 +11796,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the scoreboard is drawn.
@@ -11815,7 +11812,7 @@ declare interface ITriggerRegister {
    */
   registerRenderScoreboard(
     method: (event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the hovered slot square is drawn.
@@ -11841,7 +11838,7 @@ declare interface ITriggerRegister {
       gui: MCGuiContainer,
       event: CancellableEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a tile entity is rendered
@@ -11865,7 +11862,7 @@ declare interface ITriggerRegister {
       partialTicks: number,
       event: CancellableEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the title and subtitle are drawn.
@@ -11883,7 +11880,7 @@ declare interface ITriggerRegister {
    */
   registerRenderTitle(
     method: (title: string, subtitle: string, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the world is drawn.
@@ -11960,7 +11957,7 @@ declare interface ITriggerRegister {
       octave: ForgeNoteBlockEvent.Octave,
       event: ForgeNoteBlockEvent.Change,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before a noteblock is played.
@@ -11984,7 +11981,7 @@ declare interface ITriggerRegister {
       octave: ForgeNoteBlockEvent.Octave,
       event: ForgeNoteBlockEvent.Play,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs when a player joins the world.
@@ -12069,7 +12066,7 @@ declare interface ITriggerRegister {
       type: MCEnumParticleTypes,
       event: CancellableEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a trigger that runs before the world loads.
@@ -12151,7 +12148,7 @@ declare interface IRegister {
   (
     triggerType: "attackEntity",
     method: (entity: Entity, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before a chat message is received.
@@ -12193,7 +12190,7 @@ declare interface IRegister {
   (
     triggerType: "chatComponentClicked",
     method: (component: TextComponent, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever the user hovers over a
@@ -12212,7 +12209,7 @@ declare interface IRegister {
   (
     triggerType: "chatComponentHovered",
     method: (component: TextComponent, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before a mouse button is being pressed or released.
@@ -12285,7 +12282,7 @@ declare interface IRegister {
   (
     triggerType: "dropItem",
     method: (item: Item, player: PlayerMP, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs after the game loads.
@@ -12342,7 +12339,7 @@ declare interface IRegister {
   (
     triggerType: "guiDrawBackground",
     method: (gui: MCGuiScreen, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a key is typed with a gui open
@@ -12367,7 +12364,7 @@ declare interface IRegister {
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever the mouse is clicked with a
@@ -12395,7 +12392,7 @@ declare interface IRegister {
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a mouse button held and dragged
@@ -12423,7 +12420,7 @@ declare interface IRegister {
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a mouse button is released
@@ -12451,7 +12448,7 @@ declare interface IRegister {
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs when a new gui is first opened.
@@ -12468,7 +12465,7 @@ declare interface IRegister {
   (
     triggerType: "guiOpened",
     method: (event: ForgeGuiOpenEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs as a gui is rendered
@@ -12508,7 +12505,7 @@ declare interface IRegister {
   (
     triggerType: "hitBlock",
     method: (block: Block, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before a message is sent in chat.
@@ -12526,7 +12523,7 @@ declare interface IRegister {
   (
     triggerType: "messageSent",
     method: (message: string, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a packet is sent to the client from the server
@@ -12544,7 +12541,7 @@ declare interface IRegister {
   (
     triggerType: "packetReceived",
     method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a packet is sent from the client to the server
@@ -12562,7 +12559,7 @@ declare interface IRegister {
   (
     triggerType: "packetSent",
     method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before an item is picked up.
@@ -12589,7 +12586,7 @@ declare interface IRegister {
       motion: Vector3f,
       event: ForgeEntityItemPickupEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the player interacts.
@@ -12625,7 +12622,7 @@ declare interface IRegister {
       position: Vector3f,
       event: ForgePlayerInteractEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before a slot is drawn in a container
@@ -12642,7 +12639,7 @@ declare interface IRegister {
   (
     triggerType: "renderSlot",
     method: (slot: Slot, gui: MCGuiContainer, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before a screenshot is taken.
@@ -12660,7 +12657,7 @@ declare interface IRegister {
   (
     triggerType: "screenshotTaken",
     method: (name: string, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the mouse is scrolled.
@@ -12696,7 +12693,7 @@ declare interface IRegister {
   (
     triggerType: "serverConnect",
     method: (event: FMLNetworkEvent$ClientConnectedToServerEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever the player disconnects from a server
@@ -12766,7 +12763,7 @@ declare interface IRegister {
   (
     triggerType: "itemTooltip",
     method: (lore: string[], item: Item, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the block highlight box is drawn.
@@ -12784,7 +12781,7 @@ declare interface IRegister {
   (
     triggerType: "drawBlockHighlight",
     method: (position: Vector3f, event: ForgeDrawBlockHighlightEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs after the current screen is rendered
@@ -12822,7 +12819,7 @@ declare interface IRegister {
   (
     triggerType: "postRenderEntity",
     method: (entity: Entity, pos: Vector3f, partialTicks: number) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs after a tile entity is rendered
@@ -12875,7 +12872,7 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -12886,7 +12883,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's armor bar is drawn.
@@ -12895,7 +12892,7 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -12906,7 +12903,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the boss health bar is being drawn.
@@ -12915,7 +12912,7 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -12926,7 +12923,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the chat is drawn.
@@ -12935,7 +12932,7 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -12946,7 +12943,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the crosshair is being drawn.
@@ -12955,7 +12952,7 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -12966,7 +12963,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a trigger that runs before the debug screen is being drawn.
@@ -12975,7 +12972,7 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -12986,7 +12983,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever an entity is rendered
@@ -13011,7 +13008,7 @@ declare interface IRegister {
       partialTicks: number,
       event: CancellableEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's experience is being drawn.
@@ -13021,7 +13018,7 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -13032,7 +13029,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's food is being drawn.
@@ -13041,7 +13038,7 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -13052,7 +13049,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's hand is drawn.
@@ -13069,7 +13066,7 @@ declare interface IRegister {
   (
     triggerType: "renderHand",
     method: (event: CancellableEvent) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's health is being drawn.
@@ -13078,7 +13075,7 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -13089,7 +13086,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's helmet overlay is drawn.
@@ -13099,7 +13096,7 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -13110,7 +13107,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's hotbar is drawn.
@@ -13119,7 +13116,7 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -13130,7 +13127,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before each item is drawn into a GUI.
@@ -13147,7 +13144,7 @@ declare interface IRegister {
   (
     triggerType: "renderItemIntoGui",
     method: (item: Item, x: number, y: number, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before each item overlay (stack size and damage bar) is drawn.
@@ -13164,7 +13161,7 @@ declare interface IRegister {
   (
     triggerType: "renderItemOverlayIntoGui",
     method: (item: Item, x: number, y: number, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the jump bar is drawn.
@@ -13173,7 +13170,7 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -13184,7 +13181,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's mount's health is being drawn.
@@ -13193,7 +13190,7 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -13204,7 +13201,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the overlay is drawn.
@@ -13221,7 +13218,7 @@ declare interface IRegister {
   (
     triggerType: "renderOverlay",
     method: (event: ForgeRenderGameOverlayEvent) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the player list is being drawn.
@@ -13230,7 +13227,7 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -13241,7 +13238,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the portal effect is drawn.
@@ -13250,7 +13247,7 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnRenderTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
    * - [OnTrigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
@@ -13261,7 +13258,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnRenderTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the scoreboard is drawn.
@@ -13278,7 +13275,7 @@ declare interface IRegister {
   (
     triggerType: "renderScoreboard",
     method: (event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the hovered slot square is drawn.
@@ -13305,7 +13302,7 @@ declare interface IRegister {
       gui: MCGuiContainer,
       event: CancellableEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a tile entity is rendered
@@ -13330,7 +13327,7 @@ declare interface IRegister {
       partialTicks: number,
       event: CancellableEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the title and subtitle are drawn.
@@ -13349,7 +13346,7 @@ declare interface IRegister {
   (
     triggerType: "renderTitle",
     method: (title: string, subtitle: string, event: CancellableEvent) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before the world is drawn.
@@ -13434,7 +13431,7 @@ declare interface IRegister {
       octave: ForgeNoteBlockEvent.Octave,
       event: ForgeNoteBlockEvent.Change,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs before a noteblock is played.
@@ -13459,7 +13456,7 @@ declare interface IRegister {
       octave: ForgeNoteBlockEvent.Octave,
       event: ForgeNoteBlockEvent.Play,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a new trigger that runs when a player joins the world.
@@ -13549,7 +13546,7 @@ declare interface IRegister {
       type: MCEnumParticleTypes,
       event: CancellableEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): OnEventTrigger;
 
   /**
    * Registers a trigger that runs before the world loads.
