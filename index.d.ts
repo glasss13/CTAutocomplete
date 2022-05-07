@@ -178,7 +178,7 @@ declare global {
 
   function sync(func: Function, lock: any): object;
 
-  function print(toPrint: any): void;
+  function print(toPrint: any, end?: string, color?: JavaColor): void;
 
   function setTimeout(func: () => void, delay: number): void;
 
@@ -186,6 +186,12 @@ declare global {
     easeOut(to: number, speed: number, jump: number): number;
 
     easeColor(to: number, speed: number, jump: number): number;
+  }
+
+  enum LogType {
+    INFO,
+    WARN,
+    ERROR,
   }
 
   class Slot {
@@ -10255,6 +10261,13 @@ declare class Console {
   printStackTrace(error: Error): void;
 
   showConsole(): void;
+
+  println(
+    obj: any,
+    logType?: LogType,
+    end?: string,
+    customColor?: JavaColor,
+  ): void;
 }
 
 declare class console {
