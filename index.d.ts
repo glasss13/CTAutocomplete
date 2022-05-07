@@ -36,6 +36,15 @@ declare global {
   const GL44: JavaGL44;
   const GL45: JavaGL45;
 
+  const OnChatTrigger: typeof ChatTrigger;
+  const OnCommandTrigger: typeof CommandTrigger;
+  const OnRegularTrigger: typeof RegularTrigger;
+  const OnRenderTrigger: typeof EventTrigger;
+  const OnSoundPlayTrigger: typeof SoundPlayTrigger;
+  const OnStepTrigger: typeof StepTrigger;
+  const OnTrigger: typeof Trigger;
+  const Priority: typeof Trigger.Priority;
+
   // obfuscated type types
   type MCTScoreboard = MCScoreboard;
   type MCTScoreObjective = MCScoreObjective;
@@ -5651,15 +5660,15 @@ declare global {
         button: number,
         pressed: boolean,
       ) => void,
-    ): OnRegularTrigger;
+    ): RegularTrigger;
 
     registerHovered(
       method: (mouseX: number, mouseY: number) => void,
-    ): OnRegularTrigger;
+    ): RegularTrigger;
 
     registerMouseLeave(
       method: (mouseX: number, mouseY: number) => void,
-    ): OnRegularTrigger;
+    ): RegularTrigger;
 
     registerDragged(
       method: (
@@ -5669,7 +5678,7 @@ declare global {
         mouseY: number,
         button: number,
       ) => void,
-    ): OnRegularTrigger;
+    ): RegularTrigger;
 
     drawLeft(
       x: number,
@@ -6309,7 +6318,7 @@ declare global {
      */
     registerDraw(
       method: (mouseX: number, mouseY: number, partialTicks: number) => void,
-    ): OnRegularTrigger;
+    ): RegularTrigger;
 
     /**
      * Registers a method to be run while gui is open.
@@ -6324,7 +6333,7 @@ declare global {
      */
     registerClicked(
       method: (mouseX: number, mouseY: number, button: number) => void,
-    ): OnRegularTrigger;
+    ): RegularTrigger;
 
     /**
      * Registers a method to be run while the gui is open.
@@ -6336,7 +6345,7 @@ declare global {
      */
     registerScrolled(
       method: (mouseX: number, mouseY: number, scroll: number) => void,
-    ): OnRegularTrigger;
+    ): RegularTrigger;
 
     /**
      * Registers a method to be run while gui is open.
@@ -6350,7 +6359,7 @@ declare global {
      */
     registerKeyTyped(
       method: (typed: string, key: number) => void,
-    ): OnRegularTrigger;
+    ): RegularTrigger;
 
     /**
      * Registers a method to be run while gui is open.
@@ -6371,7 +6380,7 @@ declare global {
         clickedMouseButton: number,
         timeSinceLastClick: number,
       ) => void,
-    ): OnRegularTrigger;
+    ): RegularTrigger;
 
     /**
      * Registers a method to be run while gui is open.
@@ -6386,7 +6395,7 @@ declare global {
      */
     registerMouseReleased(
       method: (mouseX: number, mouseY: number, button: number) => void,
-    ): OnRegularTrigger;
+    ): RegularTrigger;
 
     /**
      * Registers a method to be run while gui is open.
@@ -6399,7 +6408,7 @@ declare global {
      */
     registerActionPerformed(
       method: (button: MCGuiButton) => void,
-    ): OnRegularTrigger;
+    ): RegularTrigger;
 
     /**
      * Internal method to run trigger. Not meant for public use
@@ -6728,258 +6737,6 @@ declare global {
     remove(): Particle;
 
     toString(): string;
-  }
-  enum Priority {
-    HIGHEST,
-    HIGH,
-    NORMAL,
-    LOW,
-    LOWEST,
-  }
-
-  class OnTrigger {
-    /**
-     * Sets a trigger's priority using [Priority].
-     * Highest runs first.
-     * @param priority the priority of the trigger
-     * @return the trigger for method chaining
-     */
-    setPriority(priority: Priority): OnTrigger;
-
-    /**
-     * Registers a trigger based on its type.
-     * This is done automatically with TriggerRegister.
-     * @return the trigger for method chaining
-     */
-    register(): OnTrigger;
-
-    /**
-     * Unregisters a trigger.
-     * @return the trigger for method chaining
-     */
-    unregister(): OnTrigger;
-
-    compareTo(other: OnTrigger): number;
-  }
-
-  namespace OnTrigger {
-    enum Priority {
-      HIGHEST,
-      HIGH,
-      NORMAL,
-      LOW,
-      LOWEST,
-    }
-  }
-
-  class OnRegularTrigger extends OnTrigger {
-    trigger(args: any[]): void;
-  }
-
-  class OnChatTrigger extends OnTrigger {
-    constructor(method: Function, type: TriggerType, loader: ILoader);
-
-    /**
-     * Sets if the chat trigger should run if the chat event has already been canceled.
-     * True by default.
-     * @param bool Boolean to set
-     * @return the trigger object for method chaining
-     */
-    triggerIfCanceled(bool: boolean): OnChatTrigger;
-
-    /**
-     * Sets the chat criteria for [matchesChatCriteria].
-     * Arguments for the trigger's method can be passed in using ${variable}.
-     * Example: `OnChatTrigger.setChatCriteria("<${name}> ${message}");`
-     * Use ${*} to match a chat message but ignore the pass through.
-     * @param chatCriteria the chat criteria to set
-     * @return the trigger object for method chaining
-     */
-    setChatCriteria(chatCriteria: string | RegExp): OnChatTrigger;
-
-    /**
-     * Alias for [setChatCriteria].
-     * @param chatCriteria the chat criteria to set
-     * @return the trigger object for method chaining
-     */
-    setCriteria(chatCriteria: string | RegExp): OnChatTrigger;
-
-    /**
-     * Sets the chat parameter for [Parameter].
-     * Clears current parameter list.
-     * @param parameter the chat parameter to set
-     * @return the trigger object for method chaining
-     */
-    setParameter(parameter: "contains" | "start" | "end"): OnChatTrigger;
-
-    /**
-     * Sets multiple chat parameters for [Parameter].
-     * Clears current parameter list.
-     * @param parameters the chat parameters to set
-     * @return the trigger object for method chaining
-     */
-    setParameters(
-      ...parameters: ("contains" | "start" | "end")[]
-    ): OnChatTrigger;
-
-    /**
-     * Adds chat parameter for [Parameter].
-     * @param parameter the chat parameter to add
-     * @return the trigger object for method chaining
-     */
-    addParameter(parameter: "contains" | "start" | "end"): OnChatTrigger;
-
-    /**
-     * Adds multiple chat parameters for [Parameter].
-     * @param parameters the chat parameters to add
-     * @return the trigger object for method chaining
-     */
-    addParameters(
-      ...parameters: ("contains" | "start" | "end")[]
-    ): OnChatTrigger;
-
-    /**
-     * Adds the "start" parameter
-     * @return the trigger object for method chaining
-     */
-    setStart(): OnChatTrigger;
-
-    /**
-     * Adds the "contains" parameter
-     * @return the trigger object for method chaining
-     */
-    setContains(): OnChatTrigger;
-
-    /**
-     * Adds the "end" parameter
-     * @return the trigger object for method chaining
-     */
-    setEnd(): OnChatTrigger;
-
-    /**
-     * Makes the trigger match the entire chat message
-     * @return the trigger object for method chaining
-     */
-    setExact(): OnChatTrigger;
-
-    /**
-     * Makes the chat criteria case insensitive
-     * @return the trigger object for method chaining
-     */
-    setCaseInsensitive(): OnChatTrigger;
-
-    /**
-     * Argument 1 (String) The chat message received
-     * Argument 2 (ClientChatReceivedEvent) the chat event fired
-     * @param args list of arguments as described
-     */
-    trigger(args: any[]): void;
-  }
-
-  class OnSoundPlayTrigger extends OnTrigger {
-    constructor(method: Function, loader: ILoader);
-
-    soundNameCriteria: string;
-
-    /**
-     * Sets the sound name criteria.
-     *
-     * @param soundNameCriteria the sound name
-     * @return the trigger for method chaining
-     */
-    setCriteria(soundNameCriteria: string): OnSoundPlayTrigger;
-
-    trigger(args: any[]): void;
-  }
-
-  class OnStepTrigger extends OnTrigger {
-    constructor(method: Function, loader: ILoader);
-
-    /**
-     * Sets the frames per second that the trigger activates.
-     * This has a maximum one step per second.
-     * @param fps the frames per second to set
-     * @return the trigger for method chaining
-     */
-    setFps(fps: number): OnStepTrigger;
-
-    /**
-     * Sets the delay in seconds between the trigger activation.
-     * This has a minimum of one step every second. This will override [setFps].
-     * @param delay The delay in seconds
-     * @return the trigger for method chaining
-     */
-    setDelay(delay: number): OnStepTrigger;
-
-    trigger(args: any[]): void;
-  }
-
-  class OnEventTrigger extends OnTrigger {
-    constructor(method: Function, triggerType: TriggerType, loader: ILoader);
-
-    /**
-     * Sets if this trigger should run if the event has already been canceled.
-     * True by default.
-     *
-     * @param bool Boolean to set
-     * @return the trigger object for method chaining
-     */
-    triggerIfCanceled(bool: boolean): OnEventTrigger;
-
-    trigger(args: any[]): void;
-  }
-
-  class OnCommandTrigger extends OnTrigger {
-    constructor(method: Function, loader: ILoader);
-
-    trigger(args: any[]): void;
-
-    /**
-     * Sets the tab completion options for the command.
-     * This method must be used before setting the command name, otherwise, the tab completions will not be set.
-     *
-     * @param args all the tab completion options.
-     */
-    setTabCompletions(...args: string[]): OnCommandTrigger;
-
-    /**
-     * Sets the tab completion options for the command.
-     * This method must be used before setting the command name, otherwise, the tab completions will not be set.
-     *
-     * @param args all the tab completion options.
-     */
-    setTabCompletions(args: string[]): OnCommandTrigger;
-
-    /**
-     * Sets the aliases for the command.
-     *
-     * @param args all the aliases.
-     */
-    setAliases(...args: string[]): OnCommandTrigger;
-
-    /**
-     * Sets the command name.
-     * Example:
-     * OnCommandTrigger.setCommandName("test")
-     * would result in the command being /test
-     *
-     * @param commandName The command name
-     * @param overrideExisting Whether existing commands with the same name should be overridden
-     * @return the trigger for additional modification
-     */
-    setCommandName(
-      commandName: string,
-      overrideExisting?: boolean,
-    ): OnCommandTrigger;
-
-    /**
-     * Alias for [setCommandName]
-     *
-     * @param commandName The command name
-     * * @param overrideExisting Whether existing commands with the same name should be overridden
-     * @return the trigger for additional modification
-     */
-    setName(commandName: string, overrideExisting?: boolean): OnCommandTrigger;
   }
 }
 
@@ -9862,6 +9619,246 @@ declare class JavaMethod {
 // CT non-included //
 /////////////////////
 //#region
+declare class Trigger {
+  /**
+   * Sets a trigger's priority using [Priority].
+   * Highest runs first.
+   * @param priority the priority of the trigger
+   * @return the trigger for method chaining
+   */
+  setPriority(priority: Trigger.Priority): Trigger;
+
+  /**
+   * Registers a trigger based on its type.
+   * This is done automatically with TriggerRegister.
+   * @return the trigger for method chaining
+   */
+  register(): Trigger;
+
+  /**
+   * Unregisters a trigger.
+   * @return the trigger for method chaining
+   */
+  unregister(): Trigger;
+
+  compareTo(other: Trigger): number;
+}
+declare namespace Trigger {
+  enum Priority {
+    HIGHEST,
+    HIGH,
+    NORMAL,
+    LOW,
+    LOWEST,
+  }
+}
+
+declare class ChatTrigger extends Trigger {
+  constructor(method: Function, type: TriggerType, loader: ILoader);
+
+  /**
+   * Sets if the chat trigger should run if the chat event has already been canceled.
+   * True by default.
+   * @param bool Boolean to set
+   * @return the trigger object for method chaining
+   */
+  triggerIfCanceled(bool: boolean): ChatTrigger;
+
+  /**
+   * Sets the chat criteria for [matchesChatCriteria].
+   * Arguments for the trigger's method can be passed in using ${variable}.
+   * Example: `ChatTrigger.setChatCriteria("<${name}> ${message}");`
+   * Use ${*} to match a chat message but ignore the pass through.
+   * @param chatCriteria the chat criteria to set
+   * @return the trigger object for method chaining
+   */
+  setChatCriteria(chatCriteria: string | RegExp): ChatTrigger;
+
+  /**
+   * Alias for [setChatCriteria].
+   * @param chatCriteria the chat criteria to set
+   * @return the trigger object for method chaining
+   */
+  setCriteria(chatCriteria: string | RegExp): ChatTrigger;
+
+  /**
+   * Sets the chat parameter for [Parameter].
+   * Clears current parameter list.
+   * @param parameter the chat parameter to set
+   * @return the trigger object for method chaining
+   */
+  setParameter(parameter: "contains" | "start" | "end"): ChatTrigger;
+
+  /**
+   * Sets multiple chat parameters for [Parameter].
+   * Clears current parameter list.
+   * @param parameters the chat parameters to set
+   * @return the trigger object for method chaining
+   */
+  setParameters(...parameters: ("contains" | "start" | "end")[]): ChatTrigger;
+
+  /**
+   * Adds chat parameter for [Parameter].
+   * @param parameter the chat parameter to add
+   * @return the trigger object for method chaining
+   */
+  addParameter(parameter: "contains" | "start" | "end"): ChatTrigger;
+
+  /**
+   * Adds multiple chat parameters for [Parameter].
+   * @param parameters the chat parameters to add
+   * @return the trigger object for method chaining
+   */
+  addParameters(...parameters: ("contains" | "start" | "end")[]): ChatTrigger;
+
+  /**
+   * Adds the "start" parameter
+   * @return the trigger object for method chaining
+   */
+  setStart(): ChatTrigger;
+
+  /**
+   * Adds the "contains" parameter
+   * @return the trigger object for method chaining
+   */
+  setContains(): ChatTrigger;
+
+  /**
+   * Adds the "end" parameter
+   * @return the trigger object for method chaining
+   */
+  setEnd(): ChatTrigger;
+
+  /**
+   * Makes the trigger match the entire chat message
+   * @return the trigger object for method chaining
+   */
+  setExact(): ChatTrigger;
+
+  /**
+   * Makes the chat criteria case insensitive
+   * @return the trigger object for method chaining
+   */
+  setCaseInsensitive(): ChatTrigger;
+
+  /**
+   * Argument 1 (String) The chat message received
+   * Argument 2 (ClientChatReceivedEvent) the chat event fired
+   * @param args list of arguments as described
+   */
+  trigger(args: any[]): void;
+}
+
+declare class CommandTrigger extends Trigger {
+  constructor(method: Function, loader: ILoader);
+
+  trigger(args: any[]): void;
+
+  /**
+   * Sets the tab completion options for the command.
+   * This method must be used before setting the command name, otherwise, the tab completions will not be set.
+   *
+   * @param args all the tab completion options.
+   */
+  setTabCompletions(...args: string[]): CommandTrigger;
+
+  /**
+   * Sets the tab completion options for the command.
+   * This method must be used before setting the command name, otherwise, the tab completions will not be set.
+   *
+   * @param args all the tab completion options.
+   */
+  setTabCompletions(args: string[]): CommandTrigger;
+
+  /**
+   * Sets the aliases for the command.
+   *
+   * @param args all the aliases.
+   */
+  setAliases(...args: string[]): CommandTrigger;
+
+  /**
+   * Sets the command name.
+   * Example:
+   * CommandTrigger.setCommandName("test")
+   * would result in the command being /test
+   *
+   * @param commandName The command name
+   * @param overrideExisting Whether existing commands with the same name should be overridden
+   * @return the trigger for additional modification
+   */
+  setCommandName(
+    commandName: string,
+    overrideExisting?: boolean,
+  ): CommandTrigger;
+
+  /**
+   * Alias for [setCommandName]
+   *
+   * @param commandName The command name
+   * * @param overrideExisting Whether existing commands with the same name should be overridden
+   * @return the trigger for additional modification
+   */
+  setName(commandName: string, overrideExisting?: boolean): CommandTrigger;
+}
+
+declare class RegularTrigger extends Trigger {
+  trigger(args: any[]): void;
+}
+
+declare class EventTrigger extends Trigger {
+  constructor(method: Function, triggerType: TriggerType, loader: ILoader);
+
+  /**
+   * Sets if this trigger should run if the event has already been canceled.
+   * True by default.
+   *
+   * @param bool Boolean to set
+   * @return the trigger object for method chaining
+   */
+  triggerIfCanceled(bool: boolean): EventTrigger;
+
+  trigger(args: any[]): void;
+}
+
+declare class SoundPlayTrigger extends Trigger {
+  constructor(method: Function, loader: ILoader);
+
+  soundNameCriteria: string;
+
+  /**
+   * Sets the sound name criteria.
+   *
+   * @param soundNameCriteria the sound name
+   * @return the trigger for method chaining
+   */
+  setCriteria(soundNameCriteria: string): SoundPlayTrigger;
+
+  trigger(args: any[]): void;
+}
+
+declare class StepTrigger extends Trigger {
+  constructor(method: Function, loader: ILoader);
+
+  /**
+   * Sets the frames per second that the trigger activates.
+   * This has a maximum one step per second.
+   * @param fps the frames per second to set
+   * @return the trigger for method chaining
+   */
+  setFps(fps: number): StepTrigger;
+
+  /**
+   * Sets the delay in seconds between the trigger activation.
+   * This has a minimum of one step every second. This will override [setFps].
+   * @param delay The delay in seconds
+   * @return the trigger for method chaining
+   */
+  setDelay(delay: number): StepTrigger;
+
+  trigger(args: any[]): void;
+}
+
 declare class Team {
   constructor(team: MCScorePlayerTeam);
 
@@ -10835,7 +10832,7 @@ declare class Module {
 }
 
 declare interface ILoader {
-  triggers: OnTrigger[];
+  triggers: Trigger[];
 
   /**
    * Performs initial engine setup given a list of jars. Note that
@@ -10880,7 +10877,7 @@ declare interface ILoader {
   /**
    * Adds a trigger to this loader to be activated during the game
    */
-  addTrigger(trigger: OnTrigger): void;
+  addTrigger(trigger: Trigger): void;
 
   /**
    * Removes all triggers
@@ -10895,12 +10892,12 @@ declare interface ILoader {
   /**
    * Actually calls the method for this trigger in this loader
    */
-  trigger(trigger: OnTrigger, method: Function, args: any[]): void;
+  trigger(trigger: Trigger, method: Function, args: any[]): void;
 
   /**
    * Removes a trigger from the current pool
    */
-  removeTrigger(trigger: OnTrigger): void;
+  removeTrigger(trigger: Trigger): void;
 
   /**
    * Save a resource to the OS's filesystem from inside the jar
@@ -10927,10 +10924,10 @@ declare interface ITriggerRegister {
    * - The chat event, which can be cancelled
    *
    * Available modifications:
-   * - [OnChatTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnChatTrigger.setChatCriteria] Sets the chat criteria
-   * - [OnChatTrigger.setParameter] Sets the chat parameter
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [ChatTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [ChatTrigger.setChatCriteria] Sets the chat criteria
+   * - [ChatTrigger.setParameter] Sets the chat parameter
+   * - [Trigger.setPriority] Sets the priority
    *
    * A NOTE ON AUTOCOMPLETE: DUE TO LIMITATIONS WITH REST PARAMETERS, TYPINGS FOR THE PARAMETERS OF THE FUNCTION ARE SLIGHTLY OFF
    *
@@ -10939,7 +10936,7 @@ declare interface ITriggerRegister {
    */
   registerActionBar(
     method: (...params: (string | ForgeClientChatReceivedEvent)[]) => void,
-  ): OnChatTrigger;
+  ): ChatTrigger;
 
   /**
    * Registers a new trigger that runs whenever the player has left clicked on an entity
@@ -10949,14 +10946,14 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerAttackEntity(
     method: (entity: Entity, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before a chat message is received.
@@ -10966,10 +10963,10 @@ declare interface ITriggerRegister {
    * - The chat event, which can be cancelled
    *
    * Available modifications:
-   * - [OnChatTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnChatTrigger.setChatCriteria] Sets the chat criteria
-   * - [OnChatTrigger.setParameter] Sets the chat parameter
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [ChatTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [ChatTrigger.setChatCriteria] Sets the chat criteria
+   * - [ChatTrigger.setParameter] Sets the chat parameter
+   * - [Trigger.setPriority] Sets the priority
    *
    * A NOTE ON AUTOCOMPLETE: DUE TO LIMITATIONS WITH REST PARAMETERS, TYPINGS FOR THE PARAMETERS OF THE FUNCTION ARE SLIGHTLY OFF
    *
@@ -10978,7 +10975,7 @@ declare interface ITriggerRegister {
    */
   registerChat(
     method: (...args: (string | ForgeClientChatReceivedEvent)[]) => void,
-  ): OnChatTrigger;
+  ): ChatTrigger;
 
   /**
    * Registers a new trigger that runs whenever the user clicks on a clickable
@@ -10989,14 +10986,14 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerChatComponentClicked(
     method: (component: TextComponent, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever the user hovers over a
@@ -11007,14 +11004,14 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerChatComponentHovered(
     method: (component: TextComponent, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before a mouse button is being pressed or released.
@@ -11026,7 +11023,7 @@ declare interface ITriggerRegister {
    * - The mouse button state (true if button is pressed, false otherwise)
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11038,7 +11035,7 @@ declare interface ITriggerRegister {
       button: number,
       isButtonDown: boolean,
     ) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs while a mouse button is being held down.
@@ -11051,7 +11048,7 @@ declare interface ITriggerRegister {
    * - The mouse button
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11064,7 +11061,7 @@ declare interface ITriggerRegister {
       mouseY: number,
       button: number,
     ) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before an item is dropped.
@@ -11077,14 +11074,14 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerDropItem(
     method: (item: Item, player: PlayerMP, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs after the game loads.
@@ -11093,12 +11090,12 @@ declare interface ITriggerRegister {
    * loaded and after "/ct load" happens.
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerGameLoad(method: () => void): OnRegularTrigger;
+  registerGameLoad(method: () => void): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before the game unloads.
@@ -11106,12 +11103,12 @@ declare interface ITriggerRegister {
    * This runs before shutdown of the JVM and before "/ct load" happens.
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerGameUnload(method: () => void): OnRegularTrigger;
+  registerGameUnload(method: () => void): RegularTrigger;
 
   /**
    * Registers a new trigger that runs when a gui is closed.
@@ -11120,12 +11117,12 @@ declare interface ITriggerRegister {
    * - The gui that was closed
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerGuiClosed(method: (event: MCGuiScreen) => void): OnRegularTrigger;
+  registerGuiClosed(method: (event: MCGuiScreen) => void): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before the gui background is drawn
@@ -11137,7 +11134,7 @@ declare interface ITriggerRegister {
    */
   registerGuiDrawBackground(
     method: (gui: MCGuiScreen, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a key is typed with a gui open
@@ -11149,7 +11146,7 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11161,7 +11158,7 @@ declare interface ITriggerRegister {
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever the mouse is clicked with a
@@ -11175,7 +11172,7 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11188,7 +11185,7 @@ declare interface ITriggerRegister {
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a mouse button held and dragged
@@ -11202,7 +11199,7 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11215,7 +11212,7 @@ declare interface ITriggerRegister {
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a mouse button is released
@@ -11229,7 +11226,7 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11242,7 +11239,7 @@ declare interface ITriggerRegister {
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs when a new gui is first opened.
@@ -11251,12 +11248,12 @@ declare interface ITriggerRegister {
    * - The gui opened event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerGuiOpened(method: (event: ForgeGuiOpenEvent) => void): OnEventTrigger;
+  registerGuiOpened(method: (event: ForgeGuiOpenEvent) => void): EventTrigger;
 
   /**
    * Registers a new trigger that runs as a gui is rendered
@@ -11267,14 +11264,14 @@ declare interface ITriggerRegister {
    * - The gui
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerGuiRender(
     method: (mouseX: number, mouseY: number, gui: MCGuiScreen) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs whenever a block is left clicked
@@ -11287,14 +11284,14 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerHitBlock(
     method: (block: Block, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before a message is sent in chat.
@@ -11304,14 +11301,14 @@ declare interface ITriggerRegister {
    * - The message event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerMessageSent(
     method: (message: string, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a packet is sent to the client from the server
@@ -11321,14 +11318,14 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerPacketReceived(
     method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a packet is sent from the client to the server
@@ -11338,14 +11335,14 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerPacketSent(
     method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before an item is picked up.
@@ -11358,7 +11355,7 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11371,7 +11368,7 @@ declare interface ITriggerRegister {
       motion: Vector3f,
       event: ForgeEntityItemPickupEvent,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the player interacts.
@@ -11394,7 +11391,7 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11405,7 +11402,7 @@ declare interface ITriggerRegister {
       position: Vector3f,
       event: ForgePlayerInteractEvent,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before a slot is drawn in a container
@@ -11421,7 +11418,7 @@ declare interface ITriggerRegister {
    */
   registerRenderSlot(
     method: (slot: Slot, gui: MCGuiContainer, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before a screenshot is taken.
@@ -11431,14 +11428,14 @@ declare interface ITriggerRegister {
    * - The screenshot event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerScreenshotTaken(
     method: (name: string, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the mouse is scrolled.
@@ -11449,14 +11446,14 @@ declare interface ITriggerRegister {
    * - The scroll direction: 1, -1
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerScrolled(
     method: (mouseX: number, mouseY: number, direction: number) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs whenever the player connects to a server
@@ -11465,14 +11462,14 @@ declare interface ITriggerRegister {
    * - The event, which cannot be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerServerConnect(
     method: (event: FMLNetworkEvent$ClientConnectedToServerEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever the player disconnects from a server
@@ -11481,14 +11478,14 @@ declare interface ITriggerRegister {
    * - The event, which cannot be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerServerDisconnect(
     method: (event: FMLNetworkEvent$ClientDisconnectionFromServerEvent) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs in predictable intervals. (60 per second by default)
@@ -11497,16 +11494,16 @@ declare interface ITriggerRegister {
    * - Steps elapsed
    *
    * Available modifications:
-   * - [OnStepTrigger.setFps] Sets the fps, i.e. how many times this trigger will fire
+   * - [StepTrigger.setFps] Sets the fps, i.e. how many times this trigger will fire
    *      per second
-   * - [OnStepTrigger.setDelay] Sets the delay in seconds, i.e. how many seconds it takes
-   *      to fire. Overrides [OnStepTrigger.setFps].
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [StepTrigger.setDelay] Sets the delay in seconds, i.e. how many seconds it takes
+   *      to fire. Overrides [StepTrigger.setFps].
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerStep(method: (elapsed: number) => void): OnStepTrigger;
+  registerStep(method: (elapsed: number) => void): StepTrigger;
 
   /**
    * Registers a new trigger that runs before every game tick.
@@ -11515,12 +11512,12 @@ declare interface ITriggerRegister {
    * - Ticks elapsed
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerTick(method: (elapsed: number) => void): OnRegularTrigger;
+  registerTick(method: (elapsed: number) => void): RegularTrigger;
 
   /**
    * Registers a new trigger that runs when a tooltip is being rendered.
@@ -11533,14 +11530,14 @@ declare interface ITriggerRegister {
    * - The cancellable event.
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerItemTooltip(
     method: (lore: string[], item: Item, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the block highlight box is drawn.
@@ -11550,14 +11547,14 @@ declare interface ITriggerRegister {
    * - The draw block highlight event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerDrawBlockHighlight(
     method: (position: Vector3f, event: ForgeDrawBlockHighlightEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs after the current screen is rendered
@@ -11568,14 +11565,14 @@ declare interface ITriggerRegister {
    * - The GuiScreen
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerPostGuiRender(
     method: (mouseX: number, mouseY: number, gui: MCGuiScreen) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs after an entity is rendered
@@ -11586,14 +11583,14 @@ declare interface ITriggerRegister {
    * - The partial ticks
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerPostRenderEntity(
     method: (entity: Entity, pos: Vector3f, partialTicks: number) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs after a tile entity is rendered
@@ -11604,14 +11601,14 @@ declare interface ITriggerRegister {
    * - The partial ticks
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerPostRenderTileEntity(
     method: (entity: MCTileEntity, pos: Vector3f, partialTicks: number) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before the items in the gui are drawn
@@ -11623,7 +11620,7 @@ declare interface ITriggerRegister {
    * - The GuiContainer
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11635,7 +11632,7 @@ declare interface ITriggerRegister {
       slot: MCSlot,
       gui: MCGuiContainer,
     ) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before the player's air level is drawn.
@@ -11644,8 +11641,8 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11654,7 +11651,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's armor bar is drawn.
@@ -11663,8 +11660,8 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11673,7 +11670,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the boss health bar is being drawn.
@@ -11682,8 +11679,8 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11692,7 +11689,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the chat is drawn.
@@ -11701,8 +11698,8 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11711,7 +11708,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the crosshair is being drawn.
@@ -11720,8 +11717,8 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11730,7 +11727,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a trigger that runs before the debug screen is being drawn.
@@ -11739,8 +11736,8 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11749,7 +11746,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever an entity is rendered
@@ -11761,7 +11758,7 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11773,7 +11770,7 @@ declare interface ITriggerRegister {
       partialTicks: number,
       event: CancellableEvent,
     ) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before the player's experience is being drawn.
@@ -11783,8 +11780,8 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11793,7 +11790,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's food is being drawn.
@@ -11802,8 +11799,8 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11812,7 +11809,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's hand is drawn.
@@ -11821,12 +11818,12 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerRenderHand(method: (event: CancellableEvent) => void): OnEventTrigger;
+  registerRenderHand(method: (event: CancellableEvent) => void): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's health is being drawn.
@@ -11835,8 +11832,8 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11845,7 +11842,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's helmet overlay is drawn.
@@ -11855,8 +11852,8 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11865,7 +11862,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's hotbar is drawn.
@@ -11874,8 +11871,8 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11884,7 +11881,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before each item is drawn into a GUI.
@@ -11900,7 +11897,7 @@ declare interface ITriggerRegister {
    */
   registerRenderItemIntoGui(
     method: (item: Item, x: number, y: number, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before each item overlay (stack size and damage bar) is drawn.
@@ -11916,7 +11913,7 @@ declare interface ITriggerRegister {
    */
   registerRenderItemOverlayIntoGui(
     method: (item: Item, x: number, y: number, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the jump bar is drawn.
@@ -11925,8 +11922,8 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11935,7 +11932,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's mount's health is being drawn.
@@ -11944,8 +11941,8 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11954,7 +11951,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the overlay is drawn.
@@ -11963,14 +11960,14 @@ declare interface ITriggerRegister {
    * - The render event, which cannot be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerRenderOverlay(
     method: (event: ForgeRenderGameOverlayEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the player list is being drawn.
@@ -11979,8 +11976,8 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11989,7 +11986,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the portal effect is drawn.
@@ -11998,8 +11995,8 @@ declare interface ITriggerRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12008,7 +12005,7 @@ declare interface ITriggerRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the scoreboard is drawn.
@@ -12017,14 +12014,14 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerRenderScoreboard(
     method: (event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the hovered slot square is drawn.
@@ -12037,7 +12034,7 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12050,7 +12047,7 @@ declare interface ITriggerRegister {
       gui: MCGuiContainer,
       event: CancellableEvent,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a tile entity is rendered
@@ -12062,7 +12059,7 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12074,7 +12071,7 @@ declare interface ITriggerRegister {
       partialTicks: number,
       event: CancellableEvent,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the title and subtitle are drawn.
@@ -12085,14 +12082,14 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerRenderTitle(
     method: (title: string, subtitle: string, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the world is drawn.
@@ -12101,12 +12098,12 @@ declare interface ITriggerRegister {
    * - Partial ticks elapsed
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerRenderWorld(method: (partialTicks: number) => void): OnRegularTrigger;
+  registerRenderWorld(method: (partialTicks: number) => void): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before the player breaks a block
@@ -12115,12 +12112,12 @@ declare interface ITriggerRegister {
    * - The block
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerBlockBreak(method: (block: Block) => void): OnRegularTrigger;
+  registerBlockBreak(method: (block: Block) => void): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before an entity is damaged
@@ -12134,7 +12131,7 @@ declare interface ITriggerRegister {
    */
   registerEntityDamage(
     method: (target: Entity, attacker: PlayerMP) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before an entity dies
@@ -12145,7 +12142,7 @@ declare interface ITriggerRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerEntityDeath(method: (entity: Entity) => void): OnRegularTrigger;
+  registerEntityDeath(method: (entity: Entity) => void): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before a noteblock is changed.
@@ -12157,7 +12154,7 @@ declare interface ITriggerRegister {
    * - The note block change event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12169,7 +12166,7 @@ declare interface ITriggerRegister {
       octave: ForgeNoteBlockEvent.Octave,
       event: ForgeNoteBlockEvent.Change,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before a noteblock is played.
@@ -12181,7 +12178,7 @@ declare interface ITriggerRegister {
    * - The note block play event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12193,7 +12190,7 @@ declare interface ITriggerRegister {
       octave: ForgeNoteBlockEvent.Octave,
       event: ForgeNoteBlockEvent.Play,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs when a player joins the world.
@@ -12205,12 +12202,12 @@ declare interface ITriggerRegister {
    * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.PlayerMP] object
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerPlayerJoined(method: (player: PlayerMP) => void): OnRegularTrigger;
+  registerPlayerJoined(method: (player: PlayerMP) => void): RegularTrigger;
 
   /**
    * Registers a new trigger that runs when a player leaves the world.
@@ -12222,12 +12219,12 @@ declare interface ITriggerRegister {
    * - The name of the player that left
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerPlayerLeft(method: (name: string) => void): OnRegularTrigger;
+  registerPlayerLeft(method: (name: string) => void): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before a sound is played.
@@ -12241,8 +12238,8 @@ declare interface ITriggerRegister {
    * - The sound event, which can be cancelled
    *
    * Available modifications:
-   * - [OnSoundPlayTrigger.setCriteria] Sets the sound name criteria
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [SoundPlayTrigger.setCriteria] Sets the sound name criteria
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12256,7 +12253,7 @@ declare interface ITriggerRegister {
       category: MCSoundCategory,
       event: ForgePlaySoundEvent,
     ) => void,
-  ): OnSoundPlayTrigger;
+  ): SoundPlayTrigger;
 
   /**
    * Registers a new trigger that runs whenever a particle is spawned
@@ -12267,7 +12264,7 @@ declare interface ITriggerRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12278,29 +12275,29 @@ declare interface ITriggerRegister {
       type: MCEnumParticleTypes,
       event: CancellableEvent,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a trigger that runs before the world loads.
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerWorldLoad(method: () => void): OnRegularTrigger;
+  registerWorldLoad(method: () => void): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before the world unloads.
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerWorldUnload(method: () => void): OnRegularTrigger;
+  registerWorldUnload(method: () => void): RegularTrigger;
 
   /**
    * Registers a new command that will run the method provided.
@@ -12309,13 +12306,13 @@ declare interface ITriggerRegister {
    * - The arguments supplied to the command by the user
    *
    * Available modifications:
-   * - [OnCommandTrigger.setCommandName] Sets the command name
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [CommandTrigger.setCommandName] Sets the command name
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  registerCommand(method: (...args: string[]) => void): OnCommandTrigger;
+  registerCommand(method: (...args: string[]) => void): CommandTrigger;
 
   register: IRegister;
 }
@@ -12329,10 +12326,10 @@ declare interface IRegister {
    * - The chat event, which can be cancelled
    *
    * Available modifications:
-   * - [OnChatTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnChatTrigger.setChatCriteria] Sets the chat criteria
-   * - [OnChatTrigger.setParameter] Sets the chat parameter
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [ChatTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [ChatTrigger.setChatCriteria] Sets the chat criteria
+   * - [ChatTrigger.setParameter] Sets the chat parameter
+   * - [Trigger.setPriority] Sets the priority
    *
    * A NOTE ON AUTOCOMPLETE: DUE TO LIMITATIONS WITH REST PARAMETERS, TYPINGS FOR THE PARAMETERS OF THE FUNCTION ARE SLIGHTLY OFF
    *
@@ -12342,7 +12339,7 @@ declare interface IRegister {
   (
     triggerType: "actionBar",
     method: (...params: (string | ForgeClientChatReceivedEvent)[]) => void,
-  ): OnChatTrigger;
+  ): ChatTrigger;
 
   /**
    * Registers a new trigger that runs whenever the player has left clicked on an entity
@@ -12352,7 +12349,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12360,7 +12357,7 @@ declare interface IRegister {
   (
     triggerType: "attackEntity",
     method: (entity: Entity, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before a chat message is received.
@@ -12370,10 +12367,10 @@ declare interface IRegister {
    * - The chat event, which can be cancelled
    *
    * Available modifications:
-   * - [OnChatTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnChatTrigger.setChatCriteria] Sets the chat criteria
-   * - [OnChatTrigger.setParameter] Sets the chat parameter
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [ChatTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [ChatTrigger.setChatCriteria] Sets the chat criteria
+   * - [ChatTrigger.setParameter] Sets the chat parameter
+   * - [Trigger.setPriority] Sets the priority
    *
    * A NOTE ON AUTOCOMPLETE: DUE TO LIMITATIONS WITH REST PARAMETERS, TYPINGS FOR THE PARAMETERS OF THE FUNCTION ARE SLIGHTLY OFF
    *
@@ -12383,7 +12380,7 @@ declare interface IRegister {
   (
     triggerType: "chat",
     method: (...args: (string | ForgeClientChatReceivedEvent)[]) => void,
-  ): OnChatTrigger;
+  ): ChatTrigger;
 
   /**
    * Registers a new trigger that runs whenever the user clicks on a clickable
@@ -12394,7 +12391,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12402,7 +12399,7 @@ declare interface IRegister {
   (
     triggerType: "chatComponentClicked",
     method: (component: TextComponent, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever the user hovers over a
@@ -12413,7 +12410,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12421,7 +12418,7 @@ declare interface IRegister {
   (
     triggerType: "chatComponentHovered",
     method: (component: TextComponent, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before a mouse button is being pressed or released.
@@ -12433,7 +12430,7 @@ declare interface IRegister {
    * - The mouse button state (true if button is pressed, false otherwise)
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12446,7 +12443,7 @@ declare interface IRegister {
       button: number,
       isButtonDown: boolean,
     ) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs while a mouse button is being held down.
@@ -12459,7 +12456,7 @@ declare interface IRegister {
    * - The mouse button
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12473,7 +12470,7 @@ declare interface IRegister {
       mouseY: number,
       button: number,
     ) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before an item is dropped.
@@ -12486,7 +12483,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12494,7 +12491,7 @@ declare interface IRegister {
   (
     triggerType: "dropItem",
     method: (item: Item, player: PlayerMP, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs after the game loads.
@@ -12503,12 +12500,12 @@ declare interface IRegister {
    * loaded and after "/ct load" happens.
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "gameLoad", method: () => void): OnRegularTrigger;
+  (triggerType: "gameLoad", method: () => void): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before the game unloads.
@@ -12516,12 +12513,12 @@ declare interface IRegister {
    * This runs before shutdown of the JVM and before "/ct load" happens.
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "gameUnload", method: () => void): OnRegularTrigger;
+  (triggerType: "gameUnload", method: () => void): RegularTrigger;
 
   /**
    * Registers a new trigger that runs when a gui is closed.
@@ -12530,7 +12527,7 @@ declare interface IRegister {
    * - The gui that was closed
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12538,7 +12535,7 @@ declare interface IRegister {
   (
     triggerType: "guiClosed",
     method: (event: MCGuiScreen) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before the gui background is drawn
@@ -12551,7 +12548,7 @@ declare interface IRegister {
   (
     triggerType: "guiDrawBackground",
     method: (gui: MCGuiScreen, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a key is typed with a gui open
@@ -12563,7 +12560,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12576,7 +12573,7 @@ declare interface IRegister {
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever the mouse is clicked with a
@@ -12590,7 +12587,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12604,7 +12601,7 @@ declare interface IRegister {
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a mouse button held and dragged
@@ -12618,7 +12615,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12632,7 +12629,7 @@ declare interface IRegister {
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a mouse button is released
@@ -12646,7 +12643,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12660,7 +12657,7 @@ declare interface IRegister {
       gui: MCGuiScreen,
       event: CancellableEvent,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs when a new gui is first opened.
@@ -12669,7 +12666,7 @@ declare interface IRegister {
    * - The gui opened event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12677,7 +12674,7 @@ declare interface IRegister {
   (
     triggerType: "guiOpened",
     method: (event: ForgeGuiOpenEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs as a gui is rendered
@@ -12688,7 +12685,7 @@ declare interface IRegister {
    * - The gui
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12696,7 +12693,7 @@ declare interface IRegister {
   (
     triggerType: "guiRender",
     method: (mouseX: number, mouseY: number, gui: MCGuiScreen) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs whenever a block is left clicked
@@ -12709,7 +12706,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12717,7 +12714,7 @@ declare interface IRegister {
   (
     triggerType: "hitBlock",
     method: (block: Block, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before a message is sent in chat.
@@ -12727,7 +12724,7 @@ declare interface IRegister {
    * - The message event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12735,7 +12732,7 @@ declare interface IRegister {
   (
     triggerType: "messageSent",
     method: (message: string, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a packet is sent to the client from the server
@@ -12745,7 +12742,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12753,7 +12750,7 @@ declare interface IRegister {
   (
     triggerType: "packetReceived",
     method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a packet is sent from the client to the server
@@ -12763,7 +12760,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12771,7 +12768,7 @@ declare interface IRegister {
   (
     triggerType: "packetSent",
     method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before an item is picked up.
@@ -12784,7 +12781,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12798,7 +12795,7 @@ declare interface IRegister {
       motion: Vector3f,
       event: ForgeEntityItemPickupEvent,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the player interacts.
@@ -12822,7 +12819,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12834,7 +12831,7 @@ declare interface IRegister {
       position: Vector3f,
       event: ForgePlayerInteractEvent,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before a slot is drawn in a container
@@ -12851,7 +12848,7 @@ declare interface IRegister {
   (
     triggerType: "renderSlot",
     method: (slot: Slot, gui: MCGuiContainer, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before a screenshot is taken.
@@ -12861,7 +12858,7 @@ declare interface IRegister {
    * - The screenshot event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12869,7 +12866,7 @@ declare interface IRegister {
   (
     triggerType: "screenshotTaken",
     method: (name: string, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the mouse is scrolled.
@@ -12880,7 +12877,7 @@ declare interface IRegister {
    * - The scroll direction: 1, -1
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12888,7 +12885,7 @@ declare interface IRegister {
   (
     triggerType: "scrolled",
     method: (mouseX: number, mouseY: number, direction: number) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs whenever the player connects to a server
@@ -12897,7 +12894,7 @@ declare interface IRegister {
    * - The event, which cannot be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12905,7 +12902,7 @@ declare interface IRegister {
   (
     triggerType: "serverConnect",
     method: (event: FMLNetworkEvent$ClientConnectedToServerEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever the player disconnects from a server
@@ -12914,7 +12911,7 @@ declare interface IRegister {
    * - The event, which cannot be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12922,7 +12919,7 @@ declare interface IRegister {
   (
     triggerType: "serverDisconnect",
     method: (event: FMLNetworkEvent$ClientDisconnectionFromServerEvent) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs in predictable intervals. (60 per second by default)
@@ -12931,16 +12928,16 @@ declare interface IRegister {
    * - Steps elapsed
    *
    * Available modifications:
-   * - [OnStepTrigger.setFps] Sets the fps, i.e. how many times this trigger will fire
+   * - [StepTrigger.setFps] Sets the fps, i.e. how many times this trigger will fire
    *      per second
-   * - [OnStepTrigger.setDelay] Sets the delay in seconds, i.e how many seconds it takes
-   *      to fire. Overrides [OnStepTrigger.setFps].
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [StepTrigger.setDelay] Sets the delay in seconds, i.e how many seconds it takes
+   *      to fire. Overrides [StepTrigger.setFps].
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "step", method: (elapsed: number) => void): OnStepTrigger;
+  (triggerType: "step", method: (elapsed: number) => void): StepTrigger;
 
   /**
    * Registers a new trigger that runs before every game tick.
@@ -12949,12 +12946,12 @@ declare interface IRegister {
    * - Ticks elapsed
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "tick", method: (elapsed: number) => void): OnRegularTrigger;
+  (triggerType: "tick", method: (elapsed: number) => void): RegularTrigger;
 
   /**
    * Registers a new trigger that runs when a tooltip is being rendered.
@@ -12967,7 +12964,7 @@ declare interface IRegister {
    * - The cancellable event.
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12975,7 +12972,7 @@ declare interface IRegister {
   (
     triggerType: "itemTooltip",
     method: (lore: string[], item: Item, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the block highlight box is drawn.
@@ -12985,7 +12982,7 @@ declare interface IRegister {
    * - The draw block highlight event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12993,7 +12990,7 @@ declare interface IRegister {
   (
     triggerType: "drawBlockHighlight",
     method: (position: Vector3f, event: ForgeDrawBlockHighlightEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs after the current screen is rendered
@@ -13004,7 +13001,7 @@ declare interface IRegister {
    * - The GuiScreen
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13012,7 +13009,7 @@ declare interface IRegister {
   (
     triggerType: "postGuiRender",
     method: (mouseX: number, mouseY: number, gui: MCGuiScreen) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs after an entity is rendered
@@ -13023,7 +13020,7 @@ declare interface IRegister {
    * - The partial ticks
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13031,7 +13028,7 @@ declare interface IRegister {
   (
     triggerType: "postRenderEntity",
     method: (entity: Entity, pos: Vector3f, partialTicks: number) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs after a tile entity is rendered
@@ -13042,7 +13039,7 @@ declare interface IRegister {
    * - The partial ticks
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13050,7 +13047,7 @@ declare interface IRegister {
   (
     triggerType: "postRenderTileEntity",
     method: (entity: MCTileEntity, pos: Vector3f, partialTicks: number) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before the items in the gui are drawn
@@ -13062,7 +13059,7 @@ declare interface IRegister {
    * - The GuiContainer
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13075,7 +13072,7 @@ declare interface IRegister {
       slot: MCSlot,
       gui: MCGuiContainer,
     ) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before the player's air level is drawn.
@@ -13084,8 +13081,8 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13095,7 +13092,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's armor bar is drawn.
@@ -13104,8 +13101,8 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13115,7 +13112,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the boss health bar is being drawn.
@@ -13124,8 +13121,8 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13135,7 +13132,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the chat is drawn.
@@ -13144,8 +13141,8 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13155,7 +13152,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the crosshair is being drawn.
@@ -13164,8 +13161,8 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13175,7 +13172,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a trigger that runs before the debug screen is being drawn.
@@ -13184,8 +13181,8 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13195,7 +13192,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever an entity is rendered
@@ -13207,7 +13204,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13220,7 +13217,7 @@ declare interface IRegister {
       partialTicks: number,
       event: CancellableEvent,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's experience is being drawn.
@@ -13230,8 +13227,8 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13241,7 +13238,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's food is being drawn.
@@ -13250,8 +13247,8 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13261,7 +13258,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's hand is drawn.
@@ -13270,7 +13267,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13278,7 +13275,7 @@ declare interface IRegister {
   (
     triggerType: "renderHand",
     method: (event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's health is being drawn.
@@ -13287,8 +13284,8 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13298,7 +13295,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's helmet overlay is drawn.
@@ -13308,8 +13305,8 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13319,7 +13316,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's hotbar is drawn.
@@ -13328,8 +13325,8 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13339,7 +13336,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before each item is drawn into a GUI.
@@ -13356,7 +13353,7 @@ declare interface IRegister {
   (
     triggerType: "renderItemIntoGui",
     method: (item: Item, x: number, y: number, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before each item overlay (stack size and damage bar) is drawn.
@@ -13373,7 +13370,7 @@ declare interface IRegister {
   (
     triggerType: "renderItemOverlayIntoGui",
     method: (item: Item, x: number, y: number, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the jump bar is drawn.
@@ -13382,8 +13379,8 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13393,7 +13390,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the player's mount's health is being drawn.
@@ -13402,8 +13399,8 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13413,7 +13410,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the overlay is drawn.
@@ -13422,7 +13419,7 @@ declare interface IRegister {
    * - The render event, which cannot be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13430,7 +13427,7 @@ declare interface IRegister {
   (
     triggerType: "renderOverlay",
     method: (event: ForgeRenderGameOverlayEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the player list is being drawn.
@@ -13439,8 +13436,8 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13450,7 +13447,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the portal effect is drawn.
@@ -13459,8 +13456,8 @@ declare interface IRegister {
    * - The render event, which can be cancelled
    *
    * Available modifications:
-   * - [OnEventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [EventTrigger.triggerIfCanceled] Sets if triggered if event is already cancelled
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13470,7 +13467,7 @@ declare interface IRegister {
     method: (
       event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the scoreboard is drawn.
@@ -13479,7 +13476,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13487,7 +13484,7 @@ declare interface IRegister {
   (
     triggerType: "renderScoreboard",
     method: (event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the hovered slot square is drawn.
@@ -13500,7 +13497,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13514,7 +13511,7 @@ declare interface IRegister {
       gui: MCGuiContainer,
       event: CancellableEvent,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs whenever a tile entity is rendered
@@ -13526,7 +13523,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13539,7 +13536,7 @@ declare interface IRegister {
       partialTicks: number,
       event: CancellableEvent,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the title and subtitle are drawn.
@@ -13550,7 +13547,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13558,7 +13555,7 @@ declare interface IRegister {
   (
     triggerType: "renderTitle",
     method: (title: string, subtitle: string, event: CancellableEvent) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before the world is drawn.
@@ -13567,7 +13564,7 @@ declare interface IRegister {
    * - Partial ticks elapsed
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13575,7 +13572,7 @@ declare interface IRegister {
   (
     triggerType: "renderWorld",
     method: (partialTicks: number) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before the player breaks a block
@@ -13584,12 +13581,12 @@ declare interface IRegister {
    * - The block
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "blockBreak", method: (block: Block) => void): OnRegularTrigger;
+  (triggerType: "blockBreak", method: (block: Block) => void): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before an entity is damaged
@@ -13604,7 +13601,7 @@ declare interface IRegister {
   (
     triggerType: "entityDamage",
     method: (target: Entity, attacker: PlayerMP) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before an entity dies
@@ -13618,7 +13615,7 @@ declare interface IRegister {
   (
     triggerType: "entityDeath",
     method: (entity: Entity) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before a noteblock is changed.
@@ -13630,7 +13627,7 @@ declare interface IRegister {
    * - The note block change event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13643,7 +13640,7 @@ declare interface IRegister {
       octave: ForgeNoteBlockEvent.Octave,
       event: ForgeNoteBlockEvent.Change,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs before a noteblock is played.
@@ -13655,7 +13652,7 @@ declare interface IRegister {
    * - The note block play event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13668,7 +13665,7 @@ declare interface IRegister {
       octave: ForgeNoteBlockEvent.Octave,
       event: ForgeNoteBlockEvent.Play,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a new trigger that runs when a player joins the world.
@@ -13680,7 +13677,7 @@ declare interface IRegister {
    * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.PlayerMP] object
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13688,7 +13685,7 @@ declare interface IRegister {
   (
     triggerType: "playerJoined",
     method: (player: PlayerMP) => void,
-  ): OnRegularTrigger;
+  ): RegularTrigger;
 
   /**
    * Registers a new trigger that runs when a player leaves the world.
@@ -13700,12 +13697,12 @@ declare interface IRegister {
    * - The name of the player that left
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "playerLeft", method: (name: string) => void): OnRegularTrigger;
+  (triggerType: "playerLeft", method: (name: string) => void): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before a sound is played.
@@ -13719,8 +13716,8 @@ declare interface IRegister {
    * - The sound event, which can be cancelled
    *
    * Available modifications:
-   * - [OnSoundPlayTrigger.setCriteria] Sets the sound name criteria
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [SoundPlayTrigger.setCriteria] Sets the sound name criteria
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13735,7 +13732,7 @@ declare interface IRegister {
       category: MCSoundCategory,
       event: ForgePlaySoundEvent,
     ) => void,
-  ): OnSoundPlayTrigger;
+  ): SoundPlayTrigger;
 
   /**
    * Registers a new trigger that runs whenever a particle is spawned
@@ -13746,7 +13743,7 @@ declare interface IRegister {
    * - The event, which can be cancelled
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13758,29 +13755,29 @@ declare interface IRegister {
       type: MCEnumParticleTypes,
       event: CancellableEvent,
     ) => void,
-  ): OnEventTrigger;
+  ): EventTrigger;
 
   /**
    * Registers a trigger that runs before the world loads.
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "worldLoad", method: () => void): OnRegularTrigger;
+  (triggerType: "worldLoad", method: () => void): RegularTrigger;
 
   /**
    * Registers a new trigger that runs before the world unloads.
    *
    * Available modifications:
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "worldUnload", method: () => void): OnRegularTrigger;
+  (triggerType: "worldUnload", method: () => void): RegularTrigger;
 
   /**
    * Registers a new command that will run the method provided.
@@ -13789,14 +13786,11 @@ declare interface IRegister {
    * - The arguments supplied to the command by the user
    *
    * Available modifications:
-   * - [OnCommandTrigger.setCommandName] Sets the command name
-   * - [OnTrigger.setPriority] Sets the priority
+   * - [CommandTrigger.setCommandName] Sets the command name
+   * - [Trigger.setPriority] Sets the priority
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (
-    triggerType: "command",
-    method: (...args: string[]) => void,
-  ): OnCommandTrigger;
+  (triggerType: "command", method: (...args: string[]) => void): CommandTrigger;
 }
