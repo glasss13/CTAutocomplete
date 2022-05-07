@@ -2978,7 +2978,7 @@ declare global {
 
     /**
      * Play a record at location x, y, and z.
-     * Use "null" as name in the same location to stop record.
+     * Use null as name in the same location to stop record.
      *
      * @param name the name of the sound/record
      * @param x the x location
@@ -2988,7 +2988,7 @@ declare global {
     playRecord(name: string, x: number, y: number, z: number): void;
     /**
      * Play a record at location x, y, and z.
-     * Use "null" as name in the same location to stop record.
+     * Use null as name in the same location to stop record.
      *
      * @param name the name of the sound/record
      * @param x the x location
@@ -10021,6 +10021,34 @@ declare class Client {
   static getConnection(): MCNetHandlerPlayClient | null;
 
   /**
+   * Schedule's a task to run on Minecraft's main thread in [delay] ticks.
+   * Defaults to the next tick.
+   * @param delay The delay in ticks
+   * @param callback The task to run on the main thread
+   */
+  scheduleTask(delay: number, callback: () => void): void;
+  /**
+   * Schedule's a task to run on Minecraft's main thread in [delay] ticks.
+   * Defaults to the next tick.
+   * @param delay The delay in ticks
+   * @param callback The task to run on the main thread
+   */
+  static scheduleTask(delay: number, callback: () => void): void;
+
+  /**
+   * Schedule's a task to run on Minecraft's main thread in [delay] ticks.
+   * Defaults to the next tick.
+   * @param callback The task to run on the main thread
+   */
+  scheduleTask(callback: () => void): void;
+  /**
+   * Schedule's a task to run on Minecraft's main thread in [delay] ticks.
+   * Defaults to the next tick.
+   * @param callback The task to run on the main thread
+   */
+  static scheduleTask(callback: () => void): void;
+
+  /**
    * Quits the client back to the main menu.
    * This acts just like clicking the "Disconnect" or "Save and quit to title" button.
    */
@@ -10781,6 +10809,8 @@ declare class GuiHandler {
 
 declare class ClientListener {
   static readonly INSTANCE: ClientListener;
+
+  addTask(delay: number, callback: () => void): void;
 
   onReceiveChat(event: ForgeClientChatReceivedEvent): void;
 
