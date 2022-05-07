@@ -10060,6 +10060,17 @@ declare class Client {
   static disconnect(): void;
 
   /**
+   * Connects to the server with the given ip.
+   * @param ip The ip to connect to
+   */
+  connect(ip: string): void;
+  /**
+   * Connects to the server with the given ip.
+   * @param ip The ip to connect to
+   */
+  static connect(ip: string): void;
+
+  /**
    * Gets the Minecraft GuiNewChat object for the chat gui
    *
    * @return The GuiNewChat object for the chat gui
