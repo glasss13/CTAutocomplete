@@ -137,17 +137,10 @@ declare global {
 
   function cancel(
     event:
-      | CancellableEvent
-      | ForgeBlockEvent
-      | (string | ForgeClientChatReceivedEvent)
-      | ForgeClientChatReceivedEvent
-      | ForgeDrawBlockHighlightEvent
-      | ForgeEntityItemPickupEvent
-      | ForgeGuiOpenEvent
-      | ForgeNoteBlockEvent
       | ForgePlaySoundEvent
-      | ForgePlayerInteractEvent
-      | ForgeRenderGameOverlayEvent,
+      | CancellableEvent
+      | ForgeEvent
+      | (string | ForgeClientChatReceivedEvent),
   ): void;
   // extend prototype
   interface String {
@@ -5977,14 +5970,16 @@ declare global {
      * @param event the event to cancel
      * @throws IllegalArgumentException if event can be cancelled "normally"
      */
-    cancel(event: ForgePlaySoundEvent | CancellableEvent): void;
+    cancel(event: ForgePlaySoundEvent | CancellableEvent | ForgeEvent): void;
     /**
      * Cancel an event. Automatically used with `cancel(event)`.
      *
      * @param event the event to cancel
      * @throws IllegalArgumentException if event can be cancelled "normally"
      */
-    static cancel(event: ForgePlaySoundEvent | CancellableEvent): void;
+    static cancel(
+      event: ForgePlaySoundEvent | CancellableEvent | ForgeEvent,
+    ): void;
   }
 
   class FileLib {
@@ -7048,6 +7043,9 @@ declare interface JavaTypePath {
   (path: "net.minecraft.scoreboard.Score"): typeof MCScore;
   // forge paths
   (
+    path: "net.minecraftforge.fml.common.network.FMLNetworkEvent",
+  ): FMLNetworkEventStatic;
+  (
     path: "net.minecraftforge.client.event.ClientChatReceivedEvent",
   ): typeof ForgeClientChatReceivedEvent;
   (
@@ -7418,60 +7416,188 @@ declare class MCWorldClient extends NotFullyTyped {
 // Forge Classes //
 ///////////////////
 //#region
-declare class FMLNetworkEvent$ClientConnectedToServerEvent extends NotFullyTyped {
+declare class ForgeEvent {
+  static readonly Result: typeof ForgeEvent$Result;
+
+  constructor();
+
+  /**
+   * Determine if this function is cancelable at all.
+   * @return If access to setCanceled should be allowed
+   *
+   * Note:
+   * Events with the Cancelable annotation will have this method automatically added to return true.
+   */
+  isCancelable(): boolean;
+
+  /**
+   * Determine if this event is canceled and should stop executing.
+   * @return The current canceled state
+   */
+  isCanceled(): boolean;
+
+  /**
+   * Sets the state of this event, not all events are cancelable, and any attempt to
+   * cancel a event that can't be will result in a IllegalArgumentException.
+   *
+   * The functionality of setting the canceled state is defined on a per-event bases.
+   *
+   * @param cancel The new canceled value
+   */
+  setCanceled(cancel: boolean): void;
+
+  /**
+   * Determines if this event expects a significant result value.
+   *
+   * Note:
+   * Events with the HasResult annotation will have this method automatically added to return true.
+   */
+  hasResult(): boolean;
+
+  /**
+   * Returns the value set as the result of this event
+   */
+  getResult(): ForgeEvent$Result;
+
+  /**
+   * Sets the result value for this event, not all events can have a result set, and any attempt to
+   * set a result for a event that isn't expecting it will result in a IllegalArgumentException.
+   *
+   * The functionality of setting the result is defined on a per-event bases.
+   *
+   * @param value The new result
+   */
+  setResult(value: ForgeEvent$Result): void;
+
+  /**
+   * Called by the base constructor, this is used by ASM generated
+   * event classes to setup various functionality such as the listenerlist.
+   */
+  protected setup(): void;
+
+  /**
+   * Returns a ListenerList object that contains all listeners
+   * that are registered to this event.
+   *
+   * @return Listener List
+   */
+  getListenerList(): NotFullyTyped;
+
+  getPhase(): NotFullyTyped;
+}
+
+declare enum ForgeEvent$Result {
+  DENY,
+  DEFAULT,
+  ALLOW,
+}
+
+declare class FMLNetworkEvent$ClientConnectedToServerEvent extends ForgeEvent {
   readonly isLocal: boolean;
   readonly connectionType: string;
+
+  constructor(manager: any, connectionType: string);
 }
 
-declare class FMLNetworkEvent$ServerConnectionFromClientEvent extends NotFullyTyped {
+declare class FMLNetworkEvent$ServerConnectionFromClientEvent extends ForgeEvent {
   readonly isLocal: boolean;
+  constructor(manager: any);
 }
 
-declare class FMLNetworkEvent$ServerDisconnectionFromClientEvent extends NotFullyTyped {}
+declare class FMLNetworkEvent$ServerDisconnectionFromClientEvent extends ForgeEvent {
+  constructor(manager: any);
+}
 
-declare class FMLNetworkEvent$ClientDisconnectionFromServerEvent extends NotFullyTyped {}
+declare class FMLNetworkEvent$ClientDisconnectionFromServerEvent extends ForgeEvent {
+  constructor(manager: any);
+}
 
-declare class FMLNetworkEvent$CustomPacketRegistrationEvent extends NotFullyTyped {}
+declare class FMLNetworkEvent$CustomPacketRegistrationEvent extends ForgeEvent {
+  readonly registrations: string[];
+  readonly operation: string;
+  readonly side: any;
 
-declare class FMLNetworkEvent$CustomPacketEvent extends NotFullyTyped {}
+  new<T>(
+    manager: any,
+    registrations: string[],
+    operation: string,
+    side: any,
+    type: JavaClass<T>,
+  ): FMLNetworkEvent$CustomPacketRegistrationEvent;
+}
 
-declare class FMLNetworkEvent$ClientCustomPacketEvent extends NotFullyTyped {}
+declare abstract class FMLNetworkEvent$CustomPacketEvent extends ForgeEvent {
+  /**
+   * The packet that generated the event
+   */
+  readonly packet: any;
 
-declare class FMLNetworkEvent$ServerCustomPacketEvent extends NotFullyTyped {}
+  /**
+   * Set this packet to reply to the originator
+   */
+  readonly reply: any;
 
-declare class FMLNetworkEvent$CustomNetworkEvent extends NotFullyTyped {
+  new<T>(
+    thing: T,
+    type: JavaClass<T>,
+    manager: any,
+    packet: any,
+  ): FMLNetworkEvent$CustomPacketEvent;
+
+  abstract side(): any;
+}
+
+declare class FMLNetworkEvent$ClientCustomPacketEvent extends FMLNetworkEvent$CustomPacketEvent {
+  constructor(manager: any, packet: any);
+
+  side(): any;
+}
+
+declare class FMLNetworkEvent$ServerCustomPacketEvent extends FMLNetworkEvent$CustomPacketEvent {
+  constructor(manager: any, packet: any);
+
+  side(): any;
+}
+
+declare class FMLNetworkEvent$CustomNetworkEvent extends ForgeEvent {
   readonly wrappedEevent: object;
+
+  constructor(wrappedEvent: object);
 }
 
-declare class FMLNetworkEvent extends NotFullyTyped {
-  class: JavaClass<FMLNetworkEvent>;
-  static class: JavaClass<typeof FMLNetworkEvent>;
+declare interface FMLNetworkEvent extends ForgeEvent, NotFullyTyped {
+  readonly class: JavaClass<FMLNetworkEvent>;
+}
+declare interface FMLNetworkEventStatic extends NotFullyTyped {
+  readonly class: JavaClass<FMLNetworkEventStatic>;
+
+  new <T>(thing: T, type: JavaClass<T>, manager: any): FMLNetworkEvent;
 
   /**
    * Fired at the client when a client connects to a server
    */
-  static readonly ClientConnectedToServerEvent: typeof FMLNetworkEvent$ClientConnectedToServerEvent;
+  readonly ClientConnectedToServerEvent: typeof FMLNetworkEvent$ClientConnectedToServerEvent;
   /**
    * Fired at the server when a client connects to the server.
    *
    * @author cpw
    *
    */
-  static readonly ServerConnectionFromClientEvent: typeof FMLNetworkEvent$ServerConnectionFromClientEvent;
+  readonly ServerConnectionFromClientEvent: typeof FMLNetworkEvent$ServerConnectionFromClientEvent;
   /**
    * Fired at the server when a client disconnects.
    *
    * @author cpw
    *
    */
-  static readonly ServerDisconnectionFromClientEvent: typeof FMLNetworkEvent$ServerDisconnectionFromClientEvent;
+  readonly ServerDisconnectionFromClientEvent: typeof FMLNetworkEvent$ServerDisconnectionFromClientEvent;
   /**
    * Fired at the client when the client is disconnected from the server.
    *
    * @author cpw
    *
    */
-  static readonly ClientDisconnectionFromServerEvent: typeof FMLNetworkEvent$ClientDisconnectionFromServerEvent;
+  readonly ClientDisconnectionFromServerEvent: typeof FMLNetworkEvent$ClientDisconnectionFromServerEvent;
   /**
    * Fired when the REGISTER/UNREGISTER for custom channels is received.
    *
@@ -7479,89 +7605,133 @@ declare class FMLNetworkEvent extends NotFullyTyped {
    *
    * @param <S> The side
    */
-  static readonly CustomPacketRegistrationEvent: typeof FMLNetworkEvent$CustomPacketRegistrationEvent;
+  readonly CustomPacketRegistrationEvent: typeof FMLNetworkEvent$CustomPacketRegistrationEvent;
 
-  static readonly CustomPacketEvent: typeof FMLNetworkEvent$CustomPacketEvent;
+  readonly CustomPacketEvent: typeof FMLNetworkEvent$CustomPacketEvent;
 
   /**
    * Fired when a custom packet is received on the client for the channel
    * @author cpw
    *
    */
-  static readonly ClientCustomPacketEvent: typeof FMLNetworkEvent$ClientCustomPacketEvent;
+  readonly ClientCustomPacketEvent: typeof FMLNetworkEvent$ClientCustomPacketEvent;
 
   /**
    * Fired when a custom packet is received at the server for the channel
    * @author cpw
    *
    */
-  static readonly ServerCustomPacketEvent: typeof FMLNetworkEvent$ServerCustomPacketEvent;
+  readonly ServerCustomPacketEvent: typeof FMLNetworkEvent$ServerCustomPacketEvent;
   /**
    * Fired when a custom event, such as {@link NetworkHandshakeEstablished} is fired for the channel
    *
    * @author cpw
    *
    */
-  static readonly CustomNetworkEvent: typeof FMLNetworkEvent$CustomNetworkEvent;
+  readonly CustomNetworkEvent: typeof FMLNetworkEvent$CustomNetworkEvent;
 }
 
-declare class ForgeClientChatReceivedEvent extends NotFullyTyped {
+declare class ForgeClientChatReceivedEvent extends ForgeEvent {
   class: JavaClass<ForgeClientChatReceivedEvent>;
   static class: JavaClass<typeof ForgeClientChatReceivedEvent>;
 
-  setCanceled(canceled: boolean): void;
+  /**
+   * Introduced in 1.8:
+   * 0 : Standard Text Message
+   * 1 : 'System' message, displayed as standard text.
+   * 2 : 'Status' message, displayed above action bar, where song notifications are.
+   */
+  type: number;
+  message: MCIChatComponent;
+
+  constructor(type: number, message: MCIChatComponent);
 }
 
-declare class ForgeRenderGameOverlayEvent extends NotFullyTyped {
+declare class ForgeRenderGameOverlayEvent extends ForgeEvent {
   class: JavaClass<ForgeRenderGameOverlayEvent>;
   static class: JavaClass<typeof ForgeRenderGameOverlayEvent>;
+
+  // TODO
+  [s: string]: any;
+  static [s: string]: any;
 }
 declare class CancellableEventHelper {
   setCanceled: (cancelable: boolean) => void;
 }
 
-declare class ForgeMouseEvent extends NotFullyTyped {
+declare class ForgeMouseEvent extends ForgeEvent {
   class: JavaClass<ForgeMouseEvent>;
   static class: JavaClass<typeof ForgeMouseEvent>;
 
-  setCanceled(canceled: boolean): void;
+  readonly x: number;
+  readonly y: number;
+  readonly dx: number;
+  readonly dy: number;
+  readonly dwheel: number;
+  readonly button: number;
+  readonly buttonstate: boolean;
+  readonly nanoseconds: number;
+
+  constructor();
 }
-declare class ForgePlaySoundEvent extends NotFullyTyped {
+
+/***
+ * Raised when the SoundManager tries to play a normal sound.
+ *
+ * If you return null from this function it will prevent the sound from being played,
+ * you can return a different entry if you want to change the sound being played.
+ */
+declare class ForgePlaySoundEvent extends ForgeEvent {
   class: JavaClass<ForgePlaySoundEvent>;
   static class: JavaClass<typeof ForgePlaySoundEvent>;
+
+  // TODO
+  [s: string]: any;
+  static [s: string]: any;
 }
 
-declare class ForgeConfigChangedEvent extends NotFullyTyped {
+declare class ForgeConfigChangedEvent extends ForgeEvent {
   class: JavaClass<ForgeConfigChangedEvent>;
   static class: JavaClass<typeof ForgeConfigChangedEvent>;
+
+  // TODO
+  [s: string]: any;
+  static [s: string]: any;
 }
 
-declare namespace ForgeConfigChangedEvent {
-  class OnConfigChangedEvent extends ForgeConfigChangedEvent {
-    class: JavaClass<ForgeConfigChangedEvent.OnConfigChangedEvent>;
-    static class: JavaClass<
-      typeof ForgeConfigChangedEvent.OnConfigChangedEvent
-    >;
-  }
-}
-
-declare class ForgeTickEvent extends NotFullyTyped {
+declare class ForgeTickEvent extends ForgeEvent {
   class: JavaClass<ForgeTickEvent>;
   static class: JavaClass<typeof ForgeTickEvent>;
+
+  // TODO
+  [s: string]: any;
+  static [s: string]: any;
 }
 declare namespace ForgeTickEvent {
-  class ClientTickEvent {
+  class ClientTickEvent extends ForgeTickEvent {
     class: JavaClass<ForgeTickEvent.ClientTickEvent>;
     static class: JavaClass<typeof ForgeTickEvent.ClientTickEvent>;
+
+    // TODO
+    [s: string]: any;
+    static [s: string]: any;
   }
 }
 
-declare class ForgeNoteBlockEvent extends NotFullyTyped {
+// TODO extend the right class
+declare class ForgeNoteBlockEvent extends ForgeEvent {
   class: JavaClass<ForgeNoteBlockEvent>;
   static class: JavaClass<typeof ForgeNoteBlockEvent>;
+
+  // TODO
+  [s: string]: any;
+  static [s: string]: any;
 }
 declare namespace ForgeNoteBlockEvent {
   class Octave {
+    // TODO
+    [s: string]: any;
+    static [s: string]: any;
     static LOW: ForgeNoteBlockEvent.Octave;
     static MID: ForgeNoteBlockEvent.Octave;
     static HIGH: ForgeNoteBlockEvent.Octave;
@@ -7571,6 +7741,9 @@ declare namespace ForgeNoteBlockEvent {
     static class: JavaClass<typeof ForgeNoteBlockEvent.Octave>;
   }
   class Note {
+    // TODO
+    [s: string]: any;
+    static [s: string]: any;
     static F_SHARP: ForgeNoteBlockEvent.Note;
     static G: ForgeNoteBlockEvent.Note;
     static G_SHARP: ForgeNoteBlockEvent.Note;
@@ -7589,11 +7762,17 @@ declare namespace ForgeNoteBlockEvent {
     static fromId(id: number): ForgeNoteBlockEvent.Note;
   }
   class Play extends ForgeNoteBlockEvent {
+    // TODO
+    [s: string]: any;
+    static [s: string]: any;
     setCanceled(canceled: boolean): void;
     class: JavaClass<ForgeNoteBlockEvent.Play>;
     static class: JavaClass<typeof ForgeNoteBlockEvent.Play>;
   }
   class Change extends ForgeNoteBlockEvent {
+    // TODO
+    [s: string]: any;
+    static [s: string]: any;
     setCanceled(canceled: boolean): void;
     class: JavaClass<ForgeNoteBlockEvent.Change>;
     static class: JavaClass<typeof ForgeNoteBlockEvent.Change>;
@@ -7603,24 +7782,45 @@ declare namespace ForgeNoteBlockEvent {
   }
 }
 
-declare class ForgeDrawBlockHighlightEvent extends NotFullyTyped {
+declare class ForgeDrawBlockHighlightEvent extends ForgeEvent {
   class: JavaClass<ForgeDrawBlockHighlightEvent>;
   static class: JavaClass<typeof ForgeDrawBlockHighlightEvent>;
+
+  // TODO
+  [s: string]: any;
+  static [s: string]: any;
 }
 
-declare class ForgeGuiOpenEvent extends NotFullyTyped {
+declare class ForgeGuiOpenEvent extends ForgeEvent {
   class: JavaClass<ForgeGuiOpenEvent>;
   static class: JavaClass<typeof ForgeGuiOpenEvent>;
+
+  gui: MCGuiScreen;
+  constructor(gui: MCGuiScreen);
 }
 
-declare class ForgeEntityItemPickupEvent extends NotFullyTyped {
+// TODO: extend the right class
+declare class ForgeEntityItemPickupEvent extends ForgeEvent {
   class: JavaClass<ForgeEntityItemPickupEvent>;
   static class: JavaClass<typeof ForgeEntityItemPickupEvent>;
+
+  readonly item: MCEntityItem;
+
+  constructor(player: MCEntityPlayer, item: MCEntityItem);
+
+  // TODO
+  [s: string]: any;
+  static [s: string]: any;
 }
 
-declare class ForgePlayerInteractEvent extends NotFullyTyped {
+// TODO extend the right class
+declare class ForgePlayerInteractEvent extends ForgeEvent {
   class: JavaClass<ForgePlayerInteractEvent>;
   static class: JavaClass<typeof ForgePlayerInteractEvent>;
+
+  // TODO
+  [s: string]: any;
+  static [s: string]: any;
 
   readonly action: ForgePlayerInteractEvent.Action;
   readonly world: MCWorld;
@@ -7643,9 +7843,17 @@ declare namespace ForgePlayerInteractEvent {
   }
 }
 
-declare class ForgeGuiScreenEvent extends NotFullyTyped {
+declare class ForgeGuiScreenEvent extends ForgeEvent {
   class: JavaClass<ForgeGuiScreenEvent>;
   static class: JavaClass<typeof ForgeGuiScreenEvent>;
+
+  readonly gui: MCGuiScreen;
+
+  constructor(gui: MCGuiScreen);
+
+  // TODO
+  [s: string]: any;
+  static [s: string]: any;
 }
 
 declare namespace ForgeGuiScreenEvent {
@@ -7686,9 +7894,13 @@ declare namespace ForgeGuiScreenEvent.DrawScreenEvent {
   }
 }
 
-declare class ForgeBlockEvent extends NotFullyTyped {
+declare class ForgeBlockEvent extends ForgeEvent {
   class: JavaClass<ForgeBlockEvent>;
   static class: JavaClass<typeof ForgeBlockEvent>;
+
+  // TODO
+  [s: string]: any;
+  static [s: string]: any;
 }
 
 declare namespace ForgeBlockEvent {
