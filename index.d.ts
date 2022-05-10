@@ -5788,7 +5788,11 @@ declare global {
      *      postGuiRenderEvent: post gui render
      */
     setRegisterType(
-      registerType: string | DisplayHandler.RegisterType,
+      registerType:
+        | "RENDER_OVERLAY_EVENT"
+        | "POST_GUI_RENDER_EVENT"
+        | DisplayHandler.RegisterType
+        | any,
     ): Display;
 
     render(): void;
