@@ -5751,6 +5751,8 @@ declare global {
 
     addLines(...lines: string[] | DisplayLine[]): void;
 
+    removeLine(index: number): Display;
+
     clearLines(): Display;
 
     getRenderX(): number;
@@ -5763,6 +5765,10 @@ declare global {
 
     getShouldRender(): boolean;
     setShouldRender(shouldRender: boolean): Display;
+
+    show(): Display;
+
+    hide(): Display;
 
     getWidth(): number;
     getHeight(): number;
