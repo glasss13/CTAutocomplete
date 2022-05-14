@@ -9781,6 +9781,29 @@ declare class CommandTrigger extends Trigger {
   setTabCompletions(args: string[]): CommandTrigger;
 
   /**
+   * This sets the possible tab completions for the command.
+   * This method must be used before setting the command name, otherwise, the tab completions will not be set.
+   *
+   * @param callback the callback that returns the tab completion options.
+   *
+   * For example:
+   * ```js
+   * register("command", () => {
+   *
+   * }).setTabCompletions((args) => {
+   *      return ["option1", "option2"];
+   * }).setName("test");
+   *```
+   * The `args` parameter of the callback are the arguments currently passed to the command.
+   * For instance, if you want to not show the options after the user tabs the first time, just add a check
+   * for the length of the arguments and return an empty array.
+   *
+   * The return value of the callback **must be an array of strings**, and in this case will always return the 2
+   * options in the array.
+   */
+  setTabCompletions(callback: (args: string[]) => string[]): CommandTrigger;
+
+  /**
    * Sets the aliases for the command.
    *
    * @param args all the aliases.
