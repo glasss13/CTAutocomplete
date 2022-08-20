@@ -6625,8 +6625,15 @@ declare global {
 
     readonly image: JavaBufferedImage;
 
-    constructor(name: string, url: string);
+    /**
+     * @deprecated API is ambiguous, especially when called from JavaScript, and is relative to the assets directory.
+     * Instead use Image.fromFile() or Image.fromURL().
+     */
+    constructor(name: string, url?: string);
 
+    /**
+     * @deprecated Use static method for consistency: Image.fromFile().
+     */
     constructor(file: JavaFile);
 
     getTextureWidth(): number;
@@ -6644,6 +6651,50 @@ declare global {
     onRender(event: ForgeRenderGameOverlayEvent): void;
 
     draw(x: number, y: number, width: number, height: number): Image;
+
+    /**
+     * Create an image object from a java.io.File object. Throws an exception
+     * if the file cannot be found.
+     */
+    fromFile(file: JavaFile): Image;
+    /**
+     * Create an image object from a java.io.File object. Throws an exception
+     * if the file cannot be found.
+     */
+    static fromFile(file: JavaFile): Image;
+
+    /**
+     * Create an image object from a file path. Throws an exception
+     * if the file cannot be found.
+     */
+    fromFile(file: string): Image;
+    /**
+     * Create an image object from a file path. Throws an exception
+     * if the file cannot be found.
+     */
+    static fromFile(file: string): Image;
+
+    /**
+     * Create an image object from a file path, relative to the ChatTriggers
+     * assets directory. Throws an exception if the file cannot be found.
+     */
+    fromAsset(name: string): Image;
+    /**
+     * Create an image object from a file path, relative to the ChatTriggers
+     * assets directory. Throws an exception if the file cannot be found.
+     */
+    static fromAsset(name: string): Image;
+
+    /**
+     * Creates an image object from a URL. Throws an exception if an image
+     * cannot be created from the URL.
+     */
+    fromUrl(url: string): Image;
+    /**
+     * Creates an image object from a URL. Throws an exception if an image
+     * cannot be created from the URL.
+     */
+    static fromUrl(url: string): Image;
   }
 
   class PlayerMP extends EntityLivingBase {
