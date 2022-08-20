@@ -6625,7 +6625,9 @@ declare global {
 
     readonly image: JavaBufferedImage;
 
-    constructor(name: string, url?: string);
+    constructor(name: string, url: string);
+
+    constructor(file: JavaFile);
 
     getTextureWidth(): number;
 
