@@ -9845,6 +9845,26 @@ declare class RegularTrigger extends Trigger {
   trigger(args: any[]): void;
 }
 
+declare class PacketTrigger extends Trigger {
+  constructor(method: Function, triggerType: TriggerType, loader: ILoader);
+
+  /**
+   * Alias for `setPacketClasses([class_])`
+   */
+  setPacketClass<T>(class_: JavaClass<T>): PacketTrigger;
+
+  /**
+   * Sets which classes this trigger should run for. If the list is empty, it runs
+   * for every packet class.
+   *
+   * @param classes The classes for which this trigger should run for
+   * @return This trigger object for packet chaining
+   */
+  setPacketClasses(classes: JavaClass<any>[]): PacketTrigger;
+
+  trigger(args: any[]): void;
+}
+
 declare class EventTrigger extends Trigger {
   constructor(method: Function, triggerType: TriggerType, loader: ILoader);
 
@@ -11406,13 +11426,15 @@ declare interface ITriggerRegister {
    *
    * Available modifications:
    * - [Trigger.setPriority] Sets the priority
+   * - [PacketTrigger.setPacketClasses] Sets the packet classes which this trigger
+   *   gets fired for
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerPacketReceived(
     method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
-  ): EventTrigger;
+  ): PacketTrigger;
 
   /**
    * Registers a new trigger that runs whenever a packet is sent from the client to the server
@@ -11423,13 +11445,15 @@ declare interface ITriggerRegister {
    *
    * Available modifications:
    * - [Trigger.setPriority] Sets the priority
+   * - [PacketTrigger.setPacketClasses] Sets the packet classes which this trigger
+   *   gets fired for
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerPacketSent(
     method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
-  ): EventTrigger;
+  ): PacketTrigger;
 
   /**
    * Registers a new trigger that runs before an item is picked up.
@@ -12830,6 +12854,8 @@ declare interface IRegister {
    *
    * Available modifications:
    * - [Trigger.setPriority] Sets the priority
+   * - [PacketTrigger.setPacketClasses] Sets the packet classes which this trigger
+   *   gets fired for
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12837,7 +12863,7 @@ declare interface IRegister {
   (
     triggerType: "packetReceived",
     method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
-  ): EventTrigger;
+  ): PacketTrigger;
 
   /**
    * Registers a new trigger that runs whenever a packet is sent from the client to the server
@@ -12848,6 +12874,8 @@ declare interface IRegister {
    *
    * Available modifications:
    * - [Trigger.setPriority] Sets the priority
+   * - [PacketTrigger.setPacketClasses] Sets the packet classes which this trigger
+   *   gets fired for
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12855,7 +12883,7 @@ declare interface IRegister {
   (
     triggerType: "packetSent",
     method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
-  ): EventTrigger;
+  ): PacketTrigger;
 
   /**
    * Registers a new trigger that runs before an item is picked up.
