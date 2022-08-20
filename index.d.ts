@@ -6635,6 +6635,12 @@ declare global {
 
     getTexture(): MCDynamicTexture;
 
+    /**
+     * Clears the image from GPU memory and removes its references CT side
+     * that way it can be garbage collected if not referenced in js code.
+     */
+    destroy(): void;
+
     onRender(event: ForgeRenderGameOverlayEvent): void;
 
     draw(x: number, y: number, width: number, height: number): Image;
