@@ -6675,24 +6675,24 @@ declare global {
     static fromFile(file: string): Image;
 
     /**
-     * Create an image object from a file path, relative to the ChatTriggers
-     * assets directory. Throws an exception if the file cannot be found.
+     * Create an image object from a file path, relative to the assets directory.
+     * Throws an exception if the file cannot be found.
      */
     fromAsset(name: string): Image;
     /**
-     * Create an image object from a file path, relative to the ChatTriggers
-     * assets directory. Throws an exception if the file cannot be found.
+     * Create an image object from a file path, relative to the assets directory.
+     * Throws an exception if the file cannot be found.
      */
     static fromAsset(name: string): Image;
 
     /**
      * Creates an image object from a URL. Throws an exception if an image
-     * cannot be created from the URL.
+     * cannot be created from the URL. Will cache the image in the assets
      */
     fromUrl(url: string): Image;
     /**
      * Creates an image object from a URL. Throws an exception if an image
-     * cannot be created from the URL.
+     * cannot be created from the URL. Will cache the image in the assets
      */
     static fromUrl(url: string): Image;
   }
