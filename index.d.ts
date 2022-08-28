@@ -6427,6 +6427,26 @@ declare global {
     ): RegularTrigger;
 
     /**
+     * Registers a method to be run when the gui is opened.
+     * Arguments passed through to method:
+     * - the guithat is opened
+     *
+     * @param method the method to run
+     * @return the trigger
+     */
+    registerOpened(method: (gui: Gui) => void): RegularTrigger;
+
+    /**
+     * Registers a method to be run when the gui is closed.
+     * Arguments passed through to method:
+     * - the gui that is closed
+     *
+     * @param method the method to run
+     * @return the trigger
+     */
+    registerClosed(method: (gui: Gui) => void): RegularTrigger;
+
+    /**
      * Internal method to run trigger. Not meant for public use
      */
     mouseClicked(mouseX: number, mouseY: number, button: number): void;
