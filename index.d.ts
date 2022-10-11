@@ -1729,6 +1729,9 @@ declare global {
      */
     static getLightLevel(): number;
 
+    isMoving(): boolean;
+    static isMoving(): boolean;
+
     isSneaking(): boolean;
     static isSneaking(): boolean;
 
