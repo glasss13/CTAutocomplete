@@ -9947,6 +9947,24 @@ declare class PacketTrigger extends Trigger {
   trigger(args: any[]): void;
 }
 
+declare class EntityRenderTrigger extends Trigger {
+  constructor(method: Function, triggerType: TriggerType, loader: ILoader);
+
+  /**
+   * Alias for `setEntityClasses([class_])`
+   */
+  setEntityClass<T>(class_: JavaClass<T>): EntityRenderTrigger;
+
+  /**
+   * Sets which classes this Trigger should run for. If the list is empty, it runs
+   * for every entity class.
+   *
+   * @param classes The classes for which this trigger should run for
+   * @return This trigger object for entity chaining
+   */
+  setEntityClasses(classes: JavaClass<any>[]): EntityRenderTrigger;
+}
+
 declare class EventTrigger extends Trigger {
   constructor(method: Function, triggerType: TriggerType, loader: ILoader);
 
@@ -11777,13 +11795,15 @@ declare interface ITriggerRegister {
    *
    * Available modifications:
    * - [Trigger.setPriority] Sets the priority
+   * - [EntityRenderTrigger.setEntityClasses] Sets the entity classes which this trigger
+   *   gets fired for
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerPostRenderEntity(
     method: (entity: Entity, pos: Vector3f, partialTicks: number) => void,
-  ): RegularTrigger;
+  ): EntityRenderTrigger;
 
   /**
    * Registers a new trigger that runs after a tile entity is rendered
@@ -11952,6 +11972,8 @@ declare interface ITriggerRegister {
    *
    * Available modifications:
    * - [Trigger.setPriority] Sets the priority
+   * - [EntityRenderTrigger.setEntityClasses] Sets the entity classes which this trigger
+   *   gets fired for
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -11963,7 +11985,7 @@ declare interface ITriggerRegister {
       partialTicks: number,
       event: CancellableEvent,
     ) => void,
-  ): RegularTrigger;
+  ): EntityRenderTrigger;
 
   /**
    * Registers a new trigger that runs before the player's experience is being drawn.
@@ -13218,6 +13240,8 @@ declare interface IRegister {
    *
    * Available modifications:
    * - [Trigger.setPriority] Sets the priority
+   * - [EntityRenderTrigger.setEntityClasses] Sets the entity classes which this trigger
+   *   gets fired for
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13225,7 +13249,7 @@ declare interface IRegister {
   (
     triggerType: "postRenderEntity",
     method: (entity: Entity, pos: Vector3f, partialTicks: number) => void,
-  ): EventTrigger;
+  ): EntityRenderTrigger;
 
   /**
    * Registers a new trigger that runs after a tile entity is rendered
@@ -13402,6 +13426,8 @@ declare interface IRegister {
    *
    * Available modifications:
    * - [Trigger.setPriority] Sets the priority
+   * - [EntityRenderTrigger.setEntityClasses] Sets the entity classes which this trigger
+   *   gets fired for
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13414,7 +13440,7 @@ declare interface IRegister {
       partialTicks: number,
       event: CancellableEvent,
     ) => void,
-  ): EventTrigger;
+  ): EntityRenderTrigger;
 
   /**
    * Registers a new trigger that runs before the player's experience is being drawn.
