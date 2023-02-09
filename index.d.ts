@@ -12553,8 +12553,8 @@ declare interface IRegister {
    */
   (
     triggerType: "actionBar",
-    method: (...params: (string | ForgeClientChatReceivedEvent)[]) => void,
-  ): ChatTrigger;
+    method: Parameters<ITriggerRegister["registerActionBar"]>[0],
+  ): ReturnType<ITriggerRegister["registerActionBar"]>;
 
   /**
    * Registers a new trigger that runs whenever the player has left clicked on an entity
@@ -12571,8 +12571,8 @@ declare interface IRegister {
    */
   (
     triggerType: "attackEntity",
-    method: (entity: Entity, event: CancellableEvent) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerAttackEntity"]>[0],
+  ): ReturnType<ITriggerRegister["registerAttackEntity"]>;
 
   /**
    * Registers a new trigger that runs before a chat message is received.
@@ -12594,9 +12594,8 @@ declare interface IRegister {
    */
   (
     triggerType: "chat",
-    method: (...args: (string | ForgeClientChatReceivedEvent)[]) => void,
-  ): ChatTrigger;
-
+    method: Parameters<ITriggerRegister["registerChat"]>[0],
+  ): ReturnType<ITriggerRegister["registerChat"]>;
   /**
    * Registers a new trigger that runs whenever the user clicks on a clickable
    * chat component
@@ -12613,8 +12612,8 @@ declare interface IRegister {
    */
   (
     triggerType: "chatComponentClicked",
-    method: (component: TextComponent, event: CancellableEvent) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerChatComponentClicked"]>[0],
+  ): ReturnType<ITriggerRegister["registerChatComponentClicked"]>;
 
   /**
    * Registers a new trigger that runs whenever the user hovers over a
@@ -12632,8 +12631,8 @@ declare interface IRegister {
    */
   (
     triggerType: "chatComponentHovered",
-    method: (component: TextComponent, event: CancellableEvent) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerChatComponentHovered"]>[0],
+  ): ReturnType<ITriggerRegister["registerChatComponentHovered"]>;
 
   /**
    * Registers a new trigger that runs before a mouse button is being pressed or released.
@@ -12652,13 +12651,8 @@ declare interface IRegister {
    */
   (
     triggerType: "clicked",
-    method: (
-      mouseX: number,
-      mouseY: number,
-      button: number,
-      isButtonDown: boolean,
-    ) => void,
-  ): RegularTrigger;
+    method: Parameters<ITriggerRegister["registerClicked"]>[0],
+  ): ReturnType<ITriggerRegister["registerClicked"]>;
 
   /**
    * Registers a new trigger that runs while a mouse button is being held down.
@@ -12678,14 +12672,8 @@ declare interface IRegister {
    */
   (
     triggerType: "dragged",
-    method: (
-      mouseDeltaX: number,
-      mouseDeltaY: number,
-      mouseX: number,
-      mouseY: number,
-      button: number,
-    ) => void,
-  ): RegularTrigger;
+    method: Parameters<ITriggerRegister["registerDragged"]>[0],
+  ): ReturnType<ITriggerRegister["registerDragged"]>;
 
   /**
    * Registers a new trigger that runs before an item is dropped.
@@ -12705,8 +12693,8 @@ declare interface IRegister {
    */
   (
     triggerType: "dropItem",
-    method: (item: Item, player: PlayerMP, event: CancellableEvent) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerDropItem"]>[0],
+  ): ReturnType<ITriggerRegister["registerDropItem"]>;
 
   /**
    * Registers a new trigger that runs after the game loads.
@@ -12720,7 +12708,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "gameLoad", method: () => void): RegularTrigger;
+  (
+    triggerType: "gameLoad",
+    method: Parameters<ITriggerRegister["registerGameLoad"]>[0],
+  ): ReturnType<ITriggerRegister["registerGameLoad"]>;
 
   /**
    * Registers a new trigger that runs before the game unloads.
@@ -12733,7 +12724,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "gameUnload", method: () => void): RegularTrigger;
+  (
+    triggerType: "gameUnload",
+    method: Parameters<ITriggerRegister["registerGameUnload"]>[0],
+  ): ReturnType<ITriggerRegister["registerGameUnload"]>;
 
   /**
    * Registers a new trigger that runs when a gui is closed.
@@ -12749,8 +12743,8 @@ declare interface IRegister {
    */
   (
     triggerType: "guiClosed",
-    method: (event: MCGuiScreen) => void,
-  ): RegularTrigger;
+    method: Parameters<ITriggerRegister["registerGuiClosed"]>[0],
+  ): ReturnType<ITriggerRegister["registerGuiClosed"]>;
 
   /**
    * Registers a new trigger that runs before the gui background is drawn
@@ -12762,8 +12756,8 @@ declare interface IRegister {
    */
   (
     triggerType: "guiDrawBackground",
-    method: (gui: MCGuiScreen, event: CancellableEvent) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerGuiDrawBackground"]>[0],
+  ): ReturnType<ITriggerRegister["registerGuiDrawBackground"]>;
 
   /**
    * Registers a new trigger that runs whenever a key is typed with a gui open
@@ -12782,13 +12776,8 @@ declare interface IRegister {
    */
   (
     triggerType: "guiKey",
-    method: (
-      char: string,
-      keyCode: number,
-      gui: MCGuiScreen,
-      event: CancellableEvent,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerGuiKey"]>[0],
+  ): ReturnType<ITriggerRegister["registerGuiKey"]>;
 
   /**
    * Registers a new trigger that runs whenever the mouse is clicked with a
@@ -12809,14 +12798,8 @@ declare interface IRegister {
    */
   (
     triggerType: "guiMouseClick",
-    method: (
-      mouseX: number,
-      mouseY: number,
-      mouseButton: number,
-      gui: MCGuiScreen,
-      event: CancellableEvent,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerGuiMouseClick"]>[0],
+  ): ReturnType<ITriggerRegister["registerGuiMouseClick"]>;
 
   /**
    * Registers a new trigger that runs whenever a mouse button held and dragged
@@ -12837,14 +12820,8 @@ declare interface IRegister {
    */
   (
     triggerType: "guiMouseDrag",
-    method: (
-      mouseX: number,
-      mouseY: number,
-      mouseButton: number,
-      gui: MCGuiScreen,
-      event: CancellableEvent,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerGuiMouseDrag"]>[0],
+  ): ReturnType<ITriggerRegister["registerGuiMouseDrag"]>;
 
   /**
    * Registers a new trigger that runs whenever a mouse button is released
@@ -12865,14 +12842,8 @@ declare interface IRegister {
    */
   (
     triggerType: "guiMouseRelease",
-    method: (
-      mouseX: number,
-      mouseY: number,
-      mouseButton: number,
-      gui: MCGuiScreen,
-      event: CancellableEvent,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerGuiMouseRelease"]>[0],
+  ): ReturnType<ITriggerRegister["registerGuiMouseRelease"]>;
 
   /**
    * Registers a new trigger that runs when a new gui is first opened.
@@ -12888,8 +12859,8 @@ declare interface IRegister {
    */
   (
     triggerType: "guiOpened",
-    method: (event: ForgeGuiOpenEvent) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerGuiOpened"]>[0],
+  ): ReturnType<ITriggerRegister["registerGuiOpened"]>;
 
   /**
    * Registers a new trigger that runs as a gui is rendered
@@ -12907,8 +12878,8 @@ declare interface IRegister {
    */
   (
     triggerType: "guiRender",
-    method: (mouseX: number, mouseY: number, gui: MCGuiScreen) => void,
-  ): RegularTrigger;
+    method: Parameters<ITriggerRegister["registerGuiRender"]>[0],
+  ): ReturnType<ITriggerRegister["registerGuiRender"]>;
 
   /**
    * Registers a new trigger that runs whenever a block is left clicked
@@ -12928,8 +12899,8 @@ declare interface IRegister {
    */
   (
     triggerType: "hitBlock",
-    method: (block: Block, event: CancellableEvent) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerHitBlock"]>[0],
+  ): ReturnType<ITriggerRegister["registerHitBlock"]>;
 
   /**
    * Registers a new trigger that runs before a message is sent in chat.
@@ -12946,8 +12917,8 @@ declare interface IRegister {
    */
   (
     triggerType: "messageSent",
-    method: (message: string, event: CancellableEvent) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerMessageSent"]>[0],
+  ): ReturnType<ITriggerRegister["registerMessageSent"]>;
 
   /**
    * Registers a new trigger that runs whenever a packet is sent to the client from the server
@@ -12966,8 +12937,8 @@ declare interface IRegister {
    */
   (
     triggerType: "packetReceived",
-    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
-  ): PacketTrigger;
+    method: Parameters<ITriggerRegister["registerPacketReceived"]>[0],
+  ): ReturnType<ITriggerRegister["registerPacketReceived"]>;
 
   /**
    * Registers a new trigger that runs whenever a packet is sent from the client to the server
@@ -12986,8 +12957,8 @@ declare interface IRegister {
    */
   (
     triggerType: "packetSent",
-    method: (packet: MCPacket<MCINetHandler>, event: CancellableEvent) => void,
-  ): PacketTrigger;
+    method: Parameters<ITriggerRegister["registerPacketSent"]>[0],
+  ): ReturnType<ITriggerRegister["registerPacketSent"]>;
 
   /**
    * Registers a new trigger that runs before an item is picked up.
@@ -13007,14 +12978,8 @@ declare interface IRegister {
    */
   (
     triggerType: "pickupItem",
-    method: (
-      item: Item,
-      player: PlayerMP,
-      position: Vector3f,
-      motion: Vector3f,
-      event: ForgeEntityItemPickupEvent,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerPickupItem"]>[0],
+  ): ReturnType<ITriggerRegister["registerPickupItem"]>;
 
   /**
    * Registers a new trigger that runs before the player interacts.
@@ -13045,13 +13010,8 @@ declare interface IRegister {
    */
   (
     triggerType: "playerInteract",
-    method: (
-      action: ClientListener.PlayerInteractAction,
-      position: Vector3f,
-      event: ForgePlayerInteractEvent,
-    ) => void,
-  ): EventTrigger;
-
+    method: Parameters<ITriggerRegister["registerPlayerInteract"]>[0],
+  ): ReturnType<ITriggerRegister["registerPlayerInteract"]>;
   /**
    * Registers a new trigger that runs before a slot is drawn in a container
    * This is useful for hiding "background" items in containers used as GUIs.
@@ -13066,8 +13026,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderSlot",
-    method: (slot: Slot, gui: MCGuiContainer, event: CancellableEvent) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderSlot"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderSlot"]>;
 
   /**
    * Registers a new trigger that runs before a screenshot is taken.
@@ -13084,8 +13044,8 @@ declare interface IRegister {
    */
   (
     triggerType: "screenshotTaken",
-    method: (name: string, event: CancellableEvent) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerScreenshotTaken"]>[0],
+  ): ReturnType<ITriggerRegister["registerScreenshotTaken"]>;
 
   /**
    * Registers a new trigger that runs before the mouse is scrolled.
@@ -13103,8 +13063,8 @@ declare interface IRegister {
    */
   (
     triggerType: "scrolled",
-    method: (mouseX: number, mouseY: number, direction: number) => void,
-  ): RegularTrigger;
+    method: Parameters<ITriggerRegister["registerScrolled"]>[0],
+  ): ReturnType<ITriggerRegister["registerScrolled"]>;
 
   /**
    * Registers a new trigger that runs whenever the player connects to a server
@@ -13120,8 +13080,8 @@ declare interface IRegister {
    */
   (
     triggerType: "serverConnect",
-    method: (event: FMLNetworkEvent$ClientConnectedToServerEvent) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerServerConnect"]>[0],
+  ): ReturnType<ITriggerRegister["registerServerConnect"]>;
 
   /**
    * Registers a new trigger that runs whenever the player disconnects from a server
@@ -13137,8 +13097,8 @@ declare interface IRegister {
    */
   (
     triggerType: "serverDisconnect",
-    method: (event: FMLNetworkEvent$ClientDisconnectionFromServerEvent) => void,
-  ): RegularTrigger;
+    method: Parameters<ITriggerRegister["registerServerDisconnect"]>[0],
+  ): ReturnType<ITriggerRegister["registerServerDisconnect"]>;
 
   /**
    * Registers a new trigger that runs in predictable intervals. (60 per second by default)
@@ -13156,7 +13116,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "step", method: (elapsed: number) => void): StepTrigger;
+  (
+    triggerType: "step",
+    method: Parameters<ITriggerRegister["registerStep"]>[0],
+  ): ReturnType<ITriggerRegister["registerStep"]>;
 
   /**
    * Registers a new trigger that runs before every game tick.
@@ -13170,7 +13133,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "tick", method: (elapsed: number) => void): RegularTrigger;
+  (
+    triggerType: "tick",
+    method: Parameters<ITriggerRegister["registerTick"]>[0],
+  ): ReturnType<ITriggerRegister["registerTick"]>;
 
   /**
    * Registers a new trigger that runs when a tooltip is being rendered.
@@ -13190,8 +13156,8 @@ declare interface IRegister {
    */
   (
     triggerType: "itemTooltip",
-    method: (lore: string[], item: Item, event: CancellableEvent) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerItemTooltip"]>[0],
+  ): ReturnType<ITriggerRegister["registerItemTooltip"]>;
 
   /**
    * Registers a new trigger that runs before the block highlight box is drawn.
@@ -13208,8 +13174,8 @@ declare interface IRegister {
    */
   (
     triggerType: "drawBlockHighlight",
-    method: (position: Vector3f, event: ForgeDrawBlockHighlightEvent) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerDrawBlockHighlight"]>[0],
+  ): ReturnType<ITriggerRegister["registerDrawBlockHighlight"]>;
 
   /**
    * Registers a new trigger that runs after the current screen is rendered
@@ -13227,8 +13193,8 @@ declare interface IRegister {
    */
   (
     triggerType: "postGuiRender",
-    method: (mouseX: number, mouseY: number, gui: MCGuiScreen) => void,
-  ): RegularTrigger;
+    method: Parameters<ITriggerRegister["registerPostGuiRender"]>[0],
+  ): ReturnType<ITriggerRegister["registerPostGuiRender"]>;
 
   /**
    * Registers a new trigger that runs after an entity is rendered
@@ -13248,8 +13214,8 @@ declare interface IRegister {
    */
   (
     triggerType: "postRenderEntity",
-    method: (entity: Entity, pos: Vector3f, partialTicks: number) => void,
-  ): EntityRenderTrigger;
+    method: Parameters<ITriggerRegister["registerPostRenderEntity"]>[0],
+  ): ReturnType<ITriggerRegister["registerPostRenderEntity"]>;
 
   /**
    * Registers a new trigger that runs after a tile entity is rendered
@@ -13267,8 +13233,8 @@ declare interface IRegister {
    */
   (
     triggerType: "postRenderTileEntity",
-    method: (entity: MCTileEntity, pos: Vector3f, partialTicks: number) => void,
-  ): RegularTrigger;
+    method: Parameters<ITriggerRegister["registerPostRenderTileEntity"]>[0],
+  ): ReturnType<ITriggerRegister["registerPostRenderTileEntity"]>;
 
   /**
    * Registers a new trigger that runs before the items in the gui are drawn
@@ -13287,14 +13253,8 @@ declare interface IRegister {
    */
   (
     triggerType: "preItemRender",
-    method: (
-      mouseX: number,
-      mouseY: number,
-      slot: MCSlot,
-      gui: MCGuiContainer,
-    ) => void,
-  ): RegularTrigger;
-
+    method: Parameters<ITriggerRegister["registerPreItemRender"]>[0],
+  ): ReturnType<ITriggerRegister["registerPreItemRender"]>;
   /**
    * Registers a new trigger that runs before the player's air level is drawn.
    *
@@ -13310,10 +13270,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderAir",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderAir"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderAir"]>;
 
   /**
    * Registers a new trigger that runs before the player's armor bar is drawn.
@@ -13330,10 +13288,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderArmor",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderArmor"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderArmor"]>;
 
   /**
    * Registers a new trigger that runs before the boss health bar is being drawn.
@@ -13350,10 +13306,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderBossHealth",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderBossHealth"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderBossHealth"]>;
 
   /**
    * Registers a new trigger that runs before the chat is drawn.
@@ -13370,10 +13324,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderChat",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderChat"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderChat"]>;
 
   /**
    * Registers a new trigger that runs before the crosshair is being drawn.
@@ -13390,10 +13342,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderCrosshair",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderCrosshair"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderCrosshair"]>;
 
   /**
    * Registers a trigger that runs before the debug screen is being drawn.
@@ -13410,10 +13360,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderDebug",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderDebug"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderDebug"]>;
 
   /**
    * Registers a new trigger that runs whenever an entity is rendered
@@ -13434,13 +13382,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderEntity",
-    method: (
-      entity: MCEntity,
-      position: Vector3f,
-      partialTicks: number,
-      event: CancellableEvent,
-    ) => void,
-  ): EntityRenderTrigger;
+    method: Parameters<ITriggerRegister["registerRenderEntity"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderEntity"]>;
 
   /**
    * Registers a new trigger that runs before the player's experience is being drawn.
@@ -13458,10 +13401,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderExperience",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderExperience"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderExperience"]>;
 
   /**
    * Registers a new trigger that runs before the player's food is being drawn.
@@ -13478,10 +13419,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderFood",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderFood"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderFood"]>;
 
   /**
    * Registers a new trigger that runs before the player's hand is drawn.
@@ -13497,8 +13436,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderHand",
-    method: (event: CancellableEvent) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderHand"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderHand"]>;
 
   /**
    * Registers a new trigger that runs before the player's health is being drawn.
@@ -13515,10 +13454,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderHealth",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderHealth"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderHealth"]>;
 
   /**
    * Registers a new trigger that runs before the player's helmet overlay is drawn.
@@ -13536,10 +13473,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderHelmet",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderHelmet"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderHelmet"]>;
 
   /**
    * Registers a new trigger that runs before the player's hotbar is drawn.
@@ -13556,10 +13491,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderHotbar",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderHotbar"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderHotbar"]>;
 
   /**
    * Registers a new trigger that runs before each item is drawn into a GUI.
@@ -13575,8 +13508,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderItemIntoGui",
-    method: (item: Item, x: number, y: number, event: CancellableEvent) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderItemIntoGui"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderItemIntoGui"]>;
 
   /**
    * Registers a new trigger that runs before each item overlay (stack size and damage bar) is drawn.
@@ -13592,8 +13525,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderItemOverlayIntoGui",
-    method: (item: Item, x: number, y: number, event: CancellableEvent) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderItemOverlayIntoGui"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderItemOverlayIntoGui"]>;
 
   /**
    * Registers a new trigger that runs before the jump bar is drawn.
@@ -13610,10 +13543,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderJumpBar",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderJumpBar"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderJumpBar"]>;
 
   /**
    * Registers a new trigger that runs before the player's mount's health is being drawn.
@@ -13630,10 +13561,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderMountHealth",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderMountHealth"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderMountHealth"]>;
 
   /**
    * Registers a new trigger that runs before the overlay is drawn.
@@ -13649,8 +13578,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderOverlay",
-    method: (event: ForgeRenderGameOverlayEvent) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderOverlay"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderOverlay"]>;
 
   /**
    * Registers a new trigger that runs before the player list is being drawn.
@@ -13667,10 +13596,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderPlayerList",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderPlayerList"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderPlayerList"]>;
 
   /**
    * Registers a new trigger that runs before the portal effect is drawn.
@@ -13687,10 +13614,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderPortal",
-    method: (
-      event: ForgeRenderGameOverlayEvent & CancellableEventHelper,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderPortal"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderPortal"]>;
 
   /**
    * Registers a new trigger that runs before the scoreboard is drawn.
@@ -13706,8 +13631,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderScoreboard",
-    method: (event: CancellableEvent) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderScoreboard"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderScoreboard"]>;
 
   /**
    * Registers a new trigger that runs before the hovered slot square is drawn.
@@ -13727,14 +13652,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderSlotHighlight",
-    method: (
-      mouseX: number,
-      mouseY: number,
-      slot: MCSlot,
-      gui: MCGuiContainer,
-      event: CancellableEvent,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderSlotHighlight"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderSlotHighlight"]>;
 
   /**
    * Registers a new trigger that runs whenever a tile entity is rendered
@@ -13753,13 +13672,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderTileEntity",
-    method: (
-      entity: MCTileEntity,
-      pos: Vector3f,
-      partialTicks: number,
-      event: CancellableEvent,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderTileEntity"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderTileEntity"]>;
 
   /**
    * Registers a new trigger that runs before the title and subtitle are drawn.
@@ -13777,8 +13691,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderTitle",
-    method: (title: string, subtitle: string, event: CancellableEvent) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerRenderTitle"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderTitle"]>;
 
   /**
    * Registers a new trigger that runs before the world is drawn.
@@ -13794,8 +13708,8 @@ declare interface IRegister {
    */
   (
     triggerType: "renderWorld",
-    method: (partialTicks: number) => void,
-  ): RegularTrigger;
+    method: Parameters<ITriggerRegister["registerRenderWorld"]>[0],
+  ): ReturnType<ITriggerRegister["registerRenderWorld"]>;
 
   /**
    * Registers a new trigger that runs before the player breaks a block
@@ -13809,7 +13723,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "blockBreak", method: (block: Block) => void): RegularTrigger;
+  (
+    triggerType: "blockBreak",
+    method: Parameters<ITriggerRegister["registerBlockBreak"]>[0],
+  ): ReturnType<ITriggerRegister["registerBlockBreak"]>;
 
   /**
    * Registers a new trigger that runs before an entity is damaged
@@ -13823,8 +13740,8 @@ declare interface IRegister {
    */
   (
     triggerType: "entityDamage",
-    method: (target: Entity, attacker: PlayerMP) => void,
-  ): RegularTrigger;
+    method: Parameters<ITriggerRegister["registerEntityDamage"]>[0],
+  ): ReturnType<ITriggerRegister["registerEntityDamage"]>;
 
   /**
    * Registers a new trigger that runs before an entity dies
@@ -13837,8 +13754,8 @@ declare interface IRegister {
    */
   (
     triggerType: "entityDeath",
-    method: (entity: Entity) => void,
-  ): RegularTrigger;
+    method: Parameters<ITriggerRegister["registerEntityDeath"]>[0],
+  ): ReturnType<ITriggerRegister["registerEntityDeath"]>;
 
   /**
    * Registers a new trigger that runs before a noteblock is changed.
@@ -13857,13 +13774,8 @@ declare interface IRegister {
    */
   (
     triggerType: "noteBlockChange",
-    method: (
-      position: Vector3f,
-      name: string,
-      octave: ForgeNoteBlockEvent.Octave,
-      event: ForgeNoteBlockEvent.Change,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerNoteBlockChange"]>[0],
+  ): ReturnType<ITriggerRegister["registerNoteBlockChange"]>;
 
   /**
    * Registers a new trigger that runs before a noteblock is played.
@@ -13882,13 +13794,8 @@ declare interface IRegister {
    */
   (
     triggerType: "noteBlockPlay",
-    method: (
-      position: Vector3f,
-      name: string,
-      octave: ForgeNoteBlockEvent.Octave,
-      event: ForgeNoteBlockEvent.Play,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerNoteBlockPlay"]>[0],
+  ): ReturnType<ITriggerRegister["registerNoteBlockPlay"]>;
 
   /**
    * Registers a new trigger that runs when a player joins the world.
@@ -13907,8 +13814,8 @@ declare interface IRegister {
    */
   (
     triggerType: "playerJoined",
-    method: (player: PlayerMP) => void,
-  ): RegularTrigger;
+    method: Parameters<ITriggerRegister["registerPlayerJoined"]>[0],
+  ): ReturnType<ITriggerRegister["registerPlayerJoined"]>;
 
   /**
    * Registers a new trigger that runs when a player leaves the world.
@@ -13925,7 +13832,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "playerLeft", method: (name: string) => void): RegularTrigger;
+  (
+    triggerType: "playerLeft",
+    method: Parameters<ITriggerRegister["registerPlayerLeft"]>[0],
+  ): ReturnType<ITriggerRegister["registerPlayerLeft"]>;
 
   /**
    * Registers a new trigger that runs before a sound is played.
@@ -13947,15 +13857,8 @@ declare interface IRegister {
    */
   (
     triggerType: "soundPlay",
-    method: (
-      position: Vector3f,
-      name: string,
-      vol: number,
-      pitch: number,
-      category: MCSoundCategory,
-      event: ForgePlaySoundEvent,
-    ) => void,
-  ): SoundPlayTrigger;
+    method: Parameters<ITriggerRegister["registerSoundPlay"]>[0],
+  ): ReturnType<ITriggerRegister["registerSoundPlay"]>;
 
   /**
    * Registers a new trigger that runs whenever a particle is spawned
@@ -13973,12 +13876,8 @@ declare interface IRegister {
    */
   (
     triggerType: "spawnParticle",
-    method: (
-      particle: Particle,
-      type: MCEnumParticleTypes,
-      event: CancellableEvent,
-    ) => void,
-  ): EventTrigger;
+    method: Parameters<ITriggerRegister["registerSpawnParticle"]>[0],
+  ): ReturnType<ITriggerRegister["registerSpawnParticle"]>;
 
   /**
    * Registers a trigger that runs before the world loads.
@@ -13989,7 +13888,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "worldLoad", method: () => void): RegularTrigger;
+  (
+    triggerType: "worldLoad",
+    method: Parameters<ITriggerRegister["registerWorldLoad"]>[0],
+  ): ReturnType<ITriggerRegister["registerWorldLoad"]>;
 
   /**
    * Registers a new trigger that runs before the world unloads.
@@ -14000,7 +13902,10 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "worldUnload", method: () => void): RegularTrigger;
+  (
+    triggerType: "worldUnload",
+    method: Parameters<ITriggerRegister["registerWorldUnload"]>[0],
+  ): ReturnType<ITriggerRegister["registerWorldUnload"]>;
 
   /**
    * Registers a new command that will run the method provided.
@@ -14015,5 +13920,8 @@ declare interface IRegister {
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
-  (triggerType: "command", method: (...args: string[]) => void): CommandTrigger;
+  (
+    triggerType: "command",
+    method: Parameters<ITriggerRegister["registerCommand"]>[0],
+  ): ReturnType<ITriggerRegister["registerCommand"]>;
 }
