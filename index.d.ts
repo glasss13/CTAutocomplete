@@ -177,7 +177,7 @@ declare global {
     jump: number,
   ): number;
 
-  function sync(func: Function, lock: any): object;
+  function sync(func: Function, lock: any): any;
 
   function print(toPrint: any, end?: string, color?: JavaColor): void;
 
@@ -7421,9 +7421,9 @@ declare class FMLNetworkEvent$ServerCustomPacketEvent extends FMLNetworkEvent$Cu
 }
 
 declare class FMLNetworkEvent$CustomNetworkEvent extends ForgeEvent {
-  readonly wrappedEevent: object;
+  readonly wrappedEevent: any;
 
-  constructor(wrappedEvent: object);
+  constructor(wrappedEvent: any);
 }
 
 declare interface FMLNetworkEvent extends ForgeEvent, NotFullyTyped {
@@ -7943,7 +7943,7 @@ declare class JavaColor extends NotFullyTyped {
   /**
    * Determines whether another object is equal to this Color.
    */
-  equals(obj: object): boolean;
+  equals(obj: any): boolean;
 
   /**
    * Returns the alpha component in the range 0-255.
@@ -8144,7 +8144,7 @@ declare class Vector3f {
   setZ(z: number): void;
   getZ(): number;
 
-  equals(obj: object): boolean;
+  equals(obj: any): boolean;
 }
 
 declare class Vector2f {
@@ -8264,7 +8264,7 @@ declare class Vector2f {
    */
   setY(y: number): void;
 
-  equals(obj: object): boolean;
+  equals(obj: any): boolean;
 }
 declare class JavaBufferedImage extends NotFullyTyped {}
 
@@ -8355,7 +8355,7 @@ declare class JavaThread {
   /**
    * Returns true if and only if the current thread holds the monitor lock on the specified object.
    */
-  static holdsLock(obj: object): boolean;
+  static holdsLock(obj: any): boolean;
 
   /**
    * Interrupts this thread.
@@ -8481,7 +8481,7 @@ declare class JavaUUID {
   /**
    * Compares this object to the specified object.
    */
-  equals(obj: object): boolean;
+  equals(obj: any): boolean;
   /**
    * Returns the least significant 64 bits of this UUID's 128 bit value.
    */
@@ -8613,7 +8613,7 @@ declare class JavaFile {
   /**
    * Tests this abstract pathname for equality with the given object.
    */
-  equals(obj: object): boolean;
+  equals(obj: any): boolean;
 
   /**
    * Tests whether the file or directory denoted by this abstract pathname exists.
@@ -8831,7 +8831,7 @@ declare interface JavaPath extends NotFullyTyped {
   /**
    * Tests this path for equality with the given object.
    */
-  equals(other: object): boolean;
+  equals(other: any): boolean;
 
   /**
    * Returns the name of the file or directory denoted by this path as a Path object.
@@ -8855,7 +8855,7 @@ declare class JavaClass<T> {
   /**
    * Casts an object to the class or interface represented by this Class object.
    */
-  cast(obj: object): T;
+  cast(obj: any): T;
 
   /**
    * Returns the assertion status that would be assigned to this class if it were to be initialized at the time this method is invoked.
@@ -8978,7 +8978,7 @@ declare class JavaClass<T> {
   /**
    * Gets the signers of this class.
    */
-  getSigners(): object[];
+  getSigners(): any[] | null;
 
   /**
    * Returns the simple name of the underlying class as given in the source code.
@@ -9023,7 +9023,7 @@ declare class JavaClass<T> {
   /**
    * Determines if the specified Object is assignment-compatible with the object represented by this Class.
    */
-  isInstance(obj: object): boolean;
+  isInstance(obj: any): boolean;
 
   /**
    * Determines if the specified Class object represents an interface type.
@@ -9106,7 +9106,7 @@ declare class JavaURL {
   /**
    * Compares this URL for equality with another object.
    */
-  equals(obj: object): boolean;
+  equals(obj: any): boolean;
 
   /**
    * Gets the authority part of this URL.
@@ -9116,12 +9116,12 @@ declare class JavaURL {
   /**
    * Gets the contents of this URL.
    */
-  getContent(): object;
+  getContent(): any;
 
   /**
    * Gets the contents of this URL.
    */
-  getContent(classes: JavaClass<any>[]): object;
+  getContent(classes: JavaClass<any>[]): any;
 
   /**
    * Gets the default port number of the protocol associated with this URL.
@@ -9267,7 +9267,7 @@ declare class JavaURI {
   /**
    * Tests this URI for equality with another object.
    */
-  equals(obj: object): boolean;
+  equals(obj: any): boolean;
 
   /**
    * Returns the decoded authority component of this URI.
@@ -9477,7 +9477,7 @@ declare class JavaProxy {
   /**
    * Compares this object against the specified object.
    */
-  equals(obj: object): boolean;
+  equals(obj: any): boolean;
 
   /**
    * Returns a hashcode for this Proxy.
@@ -9528,27 +9528,27 @@ declare class JavaField {
   /**
    * Compares this Field against the specified object.
    */
-  equals(obj: object): boolean;
+  equals(obj: any): boolean;
 
   /**
    * Returns the value of the field represented by this Field, on the specified object.
    */
-  get(obj: object): object;
+  get(obj: any): any;
 
   /**
    * Gets the value of a static or instance boolean field.
    */
-  getBoolean(obj: object): boolean;
+  getBoolean(obj: any): boolean;
 
   /**
    * Gets the value of a static or instance byte field.
    */
-  getByte(obj: object): number;
+  getByte(obj: any): number;
 
   /**
    * Gets the value of a static or instance field of type char or of another primitive type convertible to type char via a widening conversion.
    */
-  getChar(obj: object): number;
+  getChar(obj: any): number;
 
   /**
    * Returns the Class object representing the class or interface that declares the field represented by this Field object.
@@ -9558,65 +9558,65 @@ declare class JavaField {
   /**
    * Gets the value of a static or instance field of type double or of another primitive type convertible to type double via a widening conversion.
    */
-  getDouble(obj: object): number;
+  getDouble(obj: any): number;
 
   /**
    * Gets the value of a static or instance field of type float or of another primitive type convertible to type float via a widening conversion.
    */
-  getFloat(obj: object): number;
+  getFloat(obj: any): number;
   /**
    *Gets the value of a static or instance field of type int or of another primitive type convertible to type int via a widening conversion.
    */
-  getInt(obj: object): number;
+  getInt(obj: any): number;
 
   /**
    * Gets the value of a static or instance field of type long or of another primitive type convertible to type long via a widening conversion.
    */
-  getLong(obj: object): number;
+  getLong(obj: any): number;
 
   /**
    * Sets the field represented by this Field object on the specified object argument to the specified new value.
    */
-  set(obj: object, value: object): void;
+  set(obj: any, value: any): void;
   /**
    * Sets the value of a field as a boolean on the specified object.
    */
-  setBoolean(obj: object, z: boolean): void;
+  setBoolean(obj: any, z: boolean): void;
 
   /**
    * Sets the value of a field as a byte on the specified object.
    */
-  setByte(obj: object, b: number): void;
+  setByte(obj: any, b: number): void;
 
   /**
    * Sets the value of a field as a char on the specified object.
    */
-  setChar(obj: object, c: number): void;
+  setChar(obj: any, c: number): void;
 
   /**
    * Sets the value of a field as a double on the specified object.
    */
-  setDouble(obj: object, d: number): void;
+  setDouble(obj: any, d: number): void;
 
   /**
    * Sets the value of a field as a float on the specified object.
    */
-  setFloat(obj: object, f: number): void;
+  setFloat(obj: any, f: number): void;
 
   /**
    * Sets the value of a field as an int on the specified object.
    */
-  setInt(obj: object, i: number): void;
+  setInt(obj: any, i: number): void;
 
   /**
    * Sets the value of a field as a long on the specified object.
    */
-  setLong(obj: object, l: number): void;
+  setLong(obj: any, l: number): void;
 
   /**
    * Sets the value of a field as a short on the specified object.
    */
-  setShort(obj: object, s: number): void;
+  setShort(obj: any, s: number): void;
 
   /**
    * Returns a string describing this Field, including its generic type.
@@ -9635,7 +9635,7 @@ declare class JavaMethod {
   /**
    * Compares this Method against the specified object.
    */
-  equals(obj: object): boolean;
+  equals(obj: any): boolean;
 
   /**
    * Returns the Class object representing the class or interface that declares the executable represented by this object.
@@ -9645,7 +9645,7 @@ declare class JavaMethod {
   /**
    * Returns the default value for the annotation member represented by this Method instance.
    */
-  getDefaultValue(): object;
+  getDefaultValue(): any;
 
   /**
    * Returns an array of Class objects that represent the types of exceptions declared to be thrown by the underlying executable represented by this object.
@@ -9685,7 +9685,7 @@ declare class JavaMethod {
   /**
    * Invokes the underlying method represented by this Method object, on the specified object with the specified parameters.
    */
-  invoke(obj: object, ...args: object[]): object;
+  invoke(obj: any, ...args: any[]): any;
 
   /**
    * Returns true if this method is a bridge method; returns false otherwise.
@@ -11079,7 +11079,7 @@ declare namespace ClientListener {
 }
 
 declare class Module {
-  constructor(name: string, metadata: object, folder: JavaFile);
+  constructor(name: string, metadata: any, folder: JavaFile);
 
   readonly name: string;
   readonly metadata: any;
@@ -11121,7 +11121,7 @@ declare interface ILoader {
    *
    * @return a [MethodHandle] with type (Object[])Object
    */
-  asmInvokeLookup(module: Module, functionURI: JavaURI): object;
+  asmInvokeLookup(module: Module, functionURI: JavaURI): any;
 
   /**
    * Tells the loader that it should activate all triggers
@@ -11147,7 +11147,7 @@ declare interface ILoader {
   /**
    * Returns the names of this specific loader's implemented languages
    */
-  getLanguage(): object;
+  getLanguage(): any;
 
   /**
    * Actually calls the method for this trigger in this loader
