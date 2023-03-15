@@ -1352,7 +1352,7 @@ declare global {
     hasNoTags(): boolean;
     hasTags(): boolean;
 
-    equals(other: object): boolean;
+    equals(other: any): boolean;
 
     hashCode(): number;
 
@@ -3724,7 +3724,7 @@ declare global {
     start(): void;
   }
 
-  class ArrayList {
+  class ArrayList<T> {
     /**Constructs an empty list with an initial capacity of ten. */
     constructor();
     /**Constructs an empty list with the specified initial capacity. */
@@ -3733,12 +3733,12 @@ declare global {
     /**
      * Appends the specified element to the end of this list
      */
-    add(e: object): boolean;
+    add(e: T): boolean;
 
     /**
      * Inserts the specified element at the specified position in this list.
      */
-    add(index: number, element: object): boolean;
+    add(index: number, element: T): boolean;
 
     /**
      * Removes all of the elements from this list.
@@ -3748,12 +3748,12 @@ declare global {
     /**
      * Returns a shallow copy of this ArrayList instance.
      */
-    clone(): object;
+    clone(): ArrayList<T>;
 
     /**
      * Returns true if this list contains the specified element.
      */
-    contains(o: object): boolean;
+    contains(o: T): boolean;
 
     /**
      * Increases the capacity of this ArrayList instance, if necessary, to ensure that it can hold at least the number of elements specified by the minimum capacity argument.
@@ -3763,12 +3763,12 @@ declare global {
     /**
      * Returns the element at the specified position in this list.
      */
-    get(index: number): object;
+    get(index: number): T;
 
     /**
      * Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
      */
-    indexOf(o: object): number;
+    indexOf(o: T): number;
 
     /**
      * Returns true if this list contains no elements.
@@ -3778,22 +3778,22 @@ declare global {
     /**
      * Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element.
      */
-    lastIndexOf(o: object): number;
+    lastIndexOf(o: T): number;
 
     /**
      * Removes the element at the specified position in this list.
      */
-    remove(index: number): object;
+    remove(index: number): T;
 
     /**
      * Removes the first occurrence of the specified element from this list, if it is present.
      */
-    remove(o: object): boolean;
+    remove(o: T): boolean;
 
     /**
      * Replaces the element at the specified position in this list with the specified element.
      */
-    set(index: number, element: object): object;
+    set(index: number, element: T): T;
 
     /**
      * Returns the number of elements in this list.
@@ -3803,17 +3803,17 @@ declare global {
     /**
      * Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.
      */
-    subList(fromIndex: number, toIndex: number): object[];
+    subList(fromIndex: number, toIndex: number): T[];
 
     /**
      * Returns an array containing all of the elements in this list in proper sequence (from first to last element).
      */
-    toArray(): object[];
+    toArray(): T[];
 
     /**
      * Returns an array containing all of the elements in this list in proper sequence (from first to last element); the runtime type of the returned array is that of the specified array.
      */
-    toArray(a: object[]): object[];
+    toArray(a: T[]): T[];
 
     /**
      * Trims the capacity of this ArrayList instance to be the list's current size.
