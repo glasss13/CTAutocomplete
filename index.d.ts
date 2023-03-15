@@ -10569,7 +10569,12 @@ declare interface IConsoleConfig {
   showMessageType: boolean;
   showTimeStamp: boolean;
   useColors: boolean;
-  colorsByLogLevel: object;
+  colorsByLogLevel: {
+    error: string;
+    log: string;
+    info: string;
+    warn: string;
+  };
 }
 
 declare class Config {
