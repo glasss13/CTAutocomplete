@@ -3821,7 +3821,7 @@ declare global {
     trimToSize(): void;
   }
 
-  class HashMap {
+  class HashMap<K, V> {
     /**
      * Constructs an empty HashMap with the default initial capacity (16) and the default load factor (0.75).
      */
@@ -3840,7 +3840,7 @@ declare global {
     /**
      * Constructs a new HashMap with the same mappings as the specified Map.
      */
-    constructor(m: Map<any, any>);
+    constructor(m: Map<K, V>);
 
     /**
      * Removes all of the mappings from this map.
@@ -3850,7 +3850,7 @@ declare global {
     /**
      * Returns a shallow copy of this HashMap instance: the keys and values themselves are not cloned.
      */
-    clone(): object;
+    clone(): HashMap<K, V>;
 
     /**
      * Attempts to compute a mapping for the specified key and its current mapped value (or null if there is no current mapping).
@@ -3873,12 +3873,12 @@ declare global {
     /**
      * Returns true if this map contains a mapping for the specified key.
      */
-    containsKey(key: object): boolean;
+    containsKey(key: K): boolean;
 
     /**
      * Returns true if this map maps one or more keys to the specified value.
      */
-    containsValue(value: object): boolean;
+    containsValue(value: V): boolean;
 
     /**
      * Returns a Set view of the mappings contained in this map.
@@ -3893,12 +3893,12 @@ declare global {
     /**
      * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
      */
-    get(key: object): any;
+    get(key: K): V;
 
     /**
      * Returns the value to which the specified key is mapped, or defaultValue if this map contains no mapping for the key.
      */
-    getOrDefault(key: object, defaultValue: any): any;
+    getOrDefault(key: K, defaultValue: V): V;
 
     /**
      * Returns true if this map contains no key-value mappings.
@@ -3908,55 +3908,51 @@ declare global {
     /**
      * Returns a Set view of the keys contained in this map.
      */
-    keySet(): Set<any>;
+    keySet(): Set<K>;
 
     /**
      * If the specified key is not already associated with a value or is associated with null, associates it with the given non-null value.
      */
-    merge(
-      key: any,
-      value: any,
-      remappingFunction: (arg1: any, arg2: any) => any,
-    ): any;
+    merge(key: K, value: V, remappingFunction: (arg1: V, arg2: V) => V): V;
 
     /**
      * Associates the specified value with the specified key in this map.
      */
-    put(key: any, value: any): any;
+    put(key: K, value: V): V;
 
     /**
      * Copies all of the mappings from the specified map to this map.
      */
-    putAll(m: Map<any, any>): void;
+    putAll(m: Map<K, V>): void;
     /**
      * If the specified key is not already associated with a value (or is mapped to null) associates it with the given value and returns null, else returns the current value.
      */
-    putIfAbsent(key: any, value: any): any;
+    putIfAbsent(key: K, value: V): V;
 
     /**
      * Removes the mapping for the specified key from this map if present.
      */
-    remove(key: object): any;
+    remove(key: K): any;
 
     /**
      * Removes the entry for the specified key only if it is currently mapped to the specified value.
      */
-    remove(key: object, value: object): boolean;
+    remove(key: K, value: V): boolean;
 
     /**
      * Replaces the entry for the specified key only if it is currently mapped to some value.
      */
-    replace(key: any, value: any): any;
+    replace(key: K, value: V): any;
 
     /**
      * Replaces the entry for the specified key only if currently mapped to the specified value.
      */
-    replace(key: any, oldValue: any, newValue: any): boolean;
+    replace(key: K, oldValue: V, newValue: V): boolean;
 
     /**
      * Replaces each entry's value with the result of invoking the given function on that entry until all entries have been processed or the function throws an exception.
      */
-    replaceAll(func: (arg1: any, arg2: any) => any): void;
+    replaceAll(func: (arg1: K, arg2: V) => V): void;
 
     /**
      * Returns the number of key-value mappings in this map.
