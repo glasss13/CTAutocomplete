@@ -14,6 +14,7 @@ declare global {
   const InteractAction: typeof ForgePlayerInteractEvent.Action;
   const Console: Console;
   const Client: Client;
+  const NBT: NBT;
   const Config: Config;
   const ChatTriggers: Reference;
   const console: console;
@@ -1418,7 +1419,7 @@ declare global {
 
     removeTag(key: string): NBTTagCompound;
 
-    toObject(): object;
+    toObject(): NBTType;
   }
 
   class NBTTagList extends NBTBase {
@@ -1458,6 +1459,8 @@ declare global {
       index: number,
       type: NBTTagCompound["NBTDataType"],
     ): number | string | number[] | MCNBTTagCompound | NBTBase;
+
+    toArray(): NBTType[];
   }
 
   class Player {
@@ -6986,6 +6989,13 @@ declare class NotFullyTyped {
   static [s: string]: any;
 }
 
+type NBTType =
+  | string
+  | number
+  | number[]
+  | { [key: string]: NBTType }
+  | NBTType[];
+
 ////////////////////////
 // obfuscated classes //
 ////////////////////////
@@ -10098,6 +10108,48 @@ declare class Team {
     | "never"
     | "hideForOtherTeams"
     | "hideForOwnTeam";
+}
+
+declare interface NBT {
+  /**
+   * Creates a new [NBTBase] from the given [nbt]
+   *
+   * @param nbt the value to convert to NBT
+   * @param options optional argument to allow refinement of the NBT data.
+   * Possible options include:
+   * - coerceNumericStrings: Boolean, default false.
+   * E.g. "10b" as a byte, "20s" as a short, "30f" as a float, "40d" as a double,
+   * "50l" as a long
+   * - preferArraysOverLists: Boolean, default false
+   * E.g. a list with all bytes or integers will be converted to an NBTTagByteArray or
+   * NBTTagIntArray accordingly
+   *
+   * @throws [NBTException] if [nbt] can not be parsed as valid NBT
+   *
+   * @return [NBTTagCompound] if [nbt] is an object, [NBTTagList] if [nbt]
+   * is an array and preferArraysOverLists is false, or [NBTBase] otherwise.
+   */
+  parse(
+    nbt: any,
+    options?: {
+      /**
+       * Default false.
+       * E.g. "10b" as a byte, "20s" as a short, "30f" as a float, "40d" as a double,
+       * "50l" as a long
+       */
+      coerceNumericStrings?: boolean;
+      /**
+       * Default false.
+       * E.g. a list with all bytes or integers will be converted to an NBTTagByteArray or
+       * NBTTagIntArray accordingly
+       */
+      preferArraysOverLists?: boolean;
+    },
+  ): NBTBase;
+
+  toObject(nbt: NBTTagCompound): NBTType;
+
+  toArray(nbt: NBTTagList): NBTType[];
 }
 
 declare class Client {
