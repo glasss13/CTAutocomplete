@@ -5521,9 +5521,9 @@ declare global {
   }
 
   class KeyBind {
-    registerKeyPress(method: Function): KeyBind;
-    registerKeyRelease(method: Function): KeyBind;
-    registerKeyDown(method: Function): KeyBind;
+    registerKeyPress(method: Function): RegularTrigger;
+    registerKeyRelease(method: Function): RegularTrigger;
+    registerKeyDown(method: Function): RegularTrigger;
 
     /**
      * Creates a new keybind, editable in the user's controls.
@@ -5668,15 +5668,13 @@ declare global {
         button: number,
         pressed: boolean,
       ) => void,
-    ): RegularTrigger;
+    ): Trigger;
 
-    registerHovered(
-      method: (mouseX: number, mouseY: number) => void,
-    ): RegularTrigger;
+    registerHovered(method: (mouseX: number, mouseY: number) => void): Trigger;
 
     registerMouseLeave(
       method: (mouseX: number, mouseY: number) => void,
-    ): RegularTrigger;
+    ): Trigger;
 
     registerDragged(
       method: (
@@ -5686,7 +5684,7 @@ declare global {
         mouseY: number,
         button: number,
       ) => void,
-    ): RegularTrigger;
+    ): Trigger;
 
     drawLeft(
       x: number,
