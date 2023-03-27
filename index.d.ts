@@ -1268,11 +1268,11 @@ declare global {
     constructor(item: Item);
 
     /**
-     * Returns a PlacedBlock based on this block and the
+     * Returns a Block based on this block and the
      * provided BlockPos
      *
      * @param blockPos the block position
-     * @return a PlacedBlock object
+     * @return a Block object
      */
     withBlockPos(blockPos: BlockPos): Block;
 
@@ -1795,20 +1795,20 @@ declare global {
 
     /**
      * Gets the current object that the player is looking at,
-     * whether that be a block or an entity. Returns an air block when not looking
+     * whether that be a block or an entity. Returns an air [BlockType] when not looking
      * at anything.
      *
-     * @return the [Block], [Sign], or [Entity] being looked at
+     * @return the [Block], [Entity], [Sign], or [BlockType] being looked at
      */
-    lookingAt(): Block | Sign | Entity;
+    lookingAt(): Block | Sign | Entity | BlockType;
     /**
      * Gets the current object that the player is looking at,
-     * whether that be a block or an entity. Returns an air block when not looking
+     * whether that be a block or an entity. Returns an air [BlockType] when not looking
      * at anything.
      *
-     * @return the [Block], [Sign], or [Entity] being looked at
+     * @return the [Block], [Entity], [Sign], or [BlockType] being looked at
      */
-    static lookingAt(): Block | Sign | Entity;
+    static lookingAt(): Block | Sign | Entity | BlockType;
 
     getHeldItem(): Item | null;
     static getHeldItem(): Item | null;
@@ -3048,12 +3048,12 @@ declare global {
       | "default_1_1";
 
     /**
-     * Gets the [BlockType] at a location in the world.
+     * Gets the [Block] at a location in the world.
      *
      * @param x the x position
      * @param y the y position
      * @param z the z position
-     * @return the [BlockType] at the location
+     * @return the [Block] at the location
      */
     getBlockAt(x: number, y: number, z: number): Block;
     /**
@@ -3067,17 +3067,17 @@ declare global {
     static getBlockAt(x: number, y: number, z: number): Block;
 
     /**
-     * Gets the [BlockType] at a location in the world.
+     * Gets the [Block] at a location in the world.
      *
      * @param pos The block position
-     * @return the [BlockType] at the location
+     * @return the [Block] at the location
      */
     getBlockAt(pos: BlockPos): Block;
     /**
-     * Gets the [BlockType] at a location in the world.
+     * Gets the [Block] at a location in the world.
      *
      * @param pos The block position
-     * @return the [BlockType] at the location
+     * @return the [Block] at the location
      */
     static getBlockAt(pos: BlockPos): Block;
 
@@ -3085,14 +3085,14 @@ declare global {
      * Gets the [IBlockState] at a location in the world.
      *
      * @param pos The block position
-     * @return the [BlockType] at the location
+     * @return the [IBlockState] at the location
      */
     getBlockStateAt(pos: BlockPos): MCIBlockState;
     /**
      * Gets the [IBlockState] at a location in the world.
      *
      * @param pos The block position
-     * @return the [BlockType] at the location
+     * @return the [IBlockState] at the location
      */
     static getBlockStateAt(pos: BlockPos): MCIBlockState;
 
