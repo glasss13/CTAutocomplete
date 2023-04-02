@@ -5521,10 +5521,6 @@ declare global {
   }
 
   class KeyBind {
-    registerKeyPress(method: Function): RegularTrigger;
-    registerKeyRelease(method: Function): RegularTrigger;
-    registerKeyDown(method: Function): RegularTrigger;
-
     /**
      * Creates a new keybind, editable in the user's controls.
      *
@@ -5536,6 +5532,14 @@ declare global {
     constructor(description: string, keyCode: number, category?: string);
 
     constructor(keyBinding: MCKeyBinding);
+
+    registerKeyPress(method: Function): RegularTrigger;
+    registerKeyRelease(method: Function): RegularTrigger;
+    registerKeyDown(method: Function): RegularTrigger;
+
+    unregisterKeyPress(): KeyBind;
+    unregisterKeyRelease(): KeyBind;
+    unregisterKeyDown(): KeyBind;
 
     /**
      * Returns true if the key is pressed (used for continuous querying).
