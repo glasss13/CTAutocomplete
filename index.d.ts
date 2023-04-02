@@ -9,6 +9,21 @@ export {}; // this line converts this into a module, allowing for importing and 
 declare global {
   const GuiHandler: GuiHandler;
   const Java: Java;
+  /**
+   * Helper method register a trigger.
+   *
+   * Called by taking the original name of the method, i.e. `registerChat`,
+   * removing the word register, and comparing it case-insensitively with
+   * the methods below.
+   *
+   * Can also be passed a class of type
+   * {@link ForgeEvent net.minecraftforge.fml.common.eventhandler.Event} as the first parameter
+   * to register functions for arbitrary forge events.
+   *
+   * @param triggerType the type of trigger
+   * @param method The name of the method or the actual method to callback when the event is fired
+   * @return The trigger for additional modification
+   */
   const register: IRegister;
   const TriggerRegister: ITriggerRegister;
   const InteractAction: typeof ForgePlayerInteractEvent.Action;
@@ -10041,6 +10056,10 @@ declare class StepTrigger extends Trigger {
   trigger(args: any[]): void;
 }
 
+declare class ForgeTrigger extends Trigger {
+  constructor(method: Function, eventClass: JavaClass<any>, loader: ILoader);
+}
+
 declare class Team {
   constructor(team: MCScorePlayerTeam);
 
@@ -11038,6 +11057,7 @@ declare class TriggerType {
   static WorldUnload: TriggerType;
 
   // misc
+  static Forge: TriggerType;
   static Command: TriggerType;
   static Other: TriggerType;
 
@@ -13998,4 +14018,6 @@ declare interface IRegister {
     triggerType: "command",
     method: Parameters<ITriggerRegister["registerCommand"]>[0],
   ): ReturnType<ITriggerRegister["registerCommand"]>;
+
+  <T>(triggerType: JavaClass<T>, method: Function): ForgeTrigger;
 }
