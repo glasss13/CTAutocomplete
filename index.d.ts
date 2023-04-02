@@ -5672,13 +5672,15 @@ declare global {
         button: number,
         pressed: boolean,
       ) => void,
-    ): Trigger;
+    ): RegularTrigger;
 
-    registerHovered(method: (mouseX: number, mouseY: number) => void): Trigger;
+    registerHovered(
+      method: (mouseX: number, mouseY: number) => void,
+    ): RegularTrigger;
 
     registerMouseLeave(
       method: (mouseX: number, mouseY: number) => void,
-    ): Trigger;
+    ): RegularTrigger;
 
     registerDragged(
       method: (
@@ -5688,7 +5690,12 @@ declare global {
         mouseY: number,
         button: number,
       ) => void,
-    ): Trigger;
+    ): RegularTrigger;
+
+    unregisterClicked(): DisplayLine;
+    unregisterHovered(): DisplayLine;
+    unregisterMouseLeave(): DisplayLine;
+    unregisterDragged(): DisplayLine;
 
     drawLeft(
       x: number,
