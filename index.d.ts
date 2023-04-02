@@ -9935,42 +9935,50 @@ declare class RegularTrigger extends Trigger {
   trigger(args: any[]): void;
 }
 
-declare class PacketTrigger extends Trigger {
+declare abstract class ClassFilterTrigger extends Trigger {
   constructor(method: Function, triggerType: TriggerType, loader: ILoader);
 
+  readonly triggerType: TriggerType;
+
   /**
-   * Alias for `setPacketClasses([class_])`
+   * @deprecated Prefer `setFilteredClass(MyClass.class)` instead
    */
-  setPacketClass<T>(class_: JavaClass<T>): PacketTrigger;
+  setPacketClass<T>(clazz: JavaClass<T>): this;
+
+  /**
+   * @deprecated Prefer `setFilteredClasses([A.class, B.class, C.class])` instead
+   */
+  setPacketClasses(classes: JavaClass<any>[]): this;
+
+  /**
+   * Alias for `setClasses([A.class, B.class])`
+   *
+   * @param clazz The class for which this trigger should run for
+   */
+  setFilteredClass<T>(clazz: JavaClass<T>): this;
 
   /**
    * Sets which classes this trigger should run for. If the list is empty, it runs
-   * for every packet class.
+   * for every class.
    *
    * @param classes The classes for which this trigger should run for
-   * @return This trigger object for packet chaining
+   * @return This trigger object for chaining
    */
-  setPacketClasses(classes: JavaClass<any>[]): PacketTrigger;
+  setFilteredClasses(classes: JavaClass<any>[]): this;
 
-  trigger(args: any[]): void;
+  abstract evalTriggerType(args: any[]): any;
 }
 
-declare class EntityRenderTrigger extends Trigger {
-  constructor(method: Function, triggerType: TriggerType, loader: ILoader);
+declare class RenderEntityTrigger extends ClassFilterTrigger {
+  evalTriggerType(args: any[]): MCEntity;
+}
 
-  /**
-   * Alias for `setEntityClasses([class_])`
-   */
-  setEntityClass<T>(class_: JavaClass<T>): EntityRenderTrigger;
+declare class RenderTileEntityTrigger extends ClassFilterTrigger {
+  evalTriggerType(args: any[]): MCTileEntity;
+}
 
-  /**
-   * Sets which classes this Trigger should run for. If the list is empty, it runs
-   * for every entity class.
-   *
-   * @param classes The classes for which this trigger should run for
-   * @return This trigger object for entity chaining
-   */
-  setEntityClasses(classes: JavaClass<any>[]): EntityRenderTrigger;
+declare class PacketTrigger extends ClassFilterTrigger {
+  evalTriggerType(args: any[]): MCPacket<any>;
 }
 
 declare class EventTrigger extends Trigger {
@@ -11581,7 +11589,7 @@ declare interface ITriggerRegister {
    *
    * Available modifications:
    * - {@link Trigger.setPriority} Sets the priority
-   * - {@link PacketTrigger.setPacketClasses} Sets the packet classes which this trigger
+   * - {@link ClassFilterTrigger.setFilteredClasses} Sets the packet classes which this trigger
    *   gets fired for
    *
    * @param method The method to call when the event is fired
@@ -11600,7 +11608,7 @@ declare interface ITriggerRegister {
    *
    * Available modifications:
    * - {@link Trigger.setPriority} Sets the priority
-   * - {@link PacketTrigger.setPacketClasses} Sets the packet classes which this trigger
+   * - {@link ClassFilterTrigger.setFilteredClasses} Sets the packet classes which this trigger
    *   gets fired for
    *
    * @param method The method to call when the event is fired
@@ -11850,7 +11858,7 @@ declare interface ITriggerRegister {
    *
    * Available modifications:
    * - {@link Trigger.setPriority} Sets the priority
-   * - {@link EntityRenderTrigger.setEntityClasses} Sets the entity classes which this trigger
+   * - {@link ClassFilterTrigger.setFilteredClasses} Sets the entity classes which this trigger
    *   gets fired for
    *
    * @param method The method to call when the event is fired
@@ -11858,7 +11866,7 @@ declare interface ITriggerRegister {
    */
   registerPostRenderEntity(
     method: (entity: Entity, pos: Vector3f, partialTicks: number) => void,
-  ): EntityRenderTrigger;
+  ): RenderEntityTrigger;
 
   /**
    * Registers a new trigger that runs after a tile entity is rendered
@@ -11870,13 +11878,14 @@ declare interface ITriggerRegister {
    *
    * Available modifications:
    * - {@link Trigger.setPriority} Sets the priority
+   * - {@link ClassFilterTrigger.setFilteredClasses} Sets the tile entity classes which this trigger gets fired for
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
    */
   registerPostRenderTileEntity(
     method: (entity: MCTileEntity, pos: Vector3f, partialTicks: number) => void,
-  ): RegularTrigger;
+  ): RenderTileEntityTrigger;
 
   /**
    * Registers a new trigger that runs before the items in the gui are drawn
@@ -12027,7 +12036,7 @@ declare interface ITriggerRegister {
    *
    * Available modifications:
    * - {@link Trigger.setPriority} Sets the priority
-   * - {@link EntityRenderTrigger.setEntityClasses} Sets the entity classes which this trigger
+   * - {@link ClassFilterTrigger.setFilteredClasses} Sets the entity classes which this trigger
    *   gets fired for
    *
    * @param method The method to call when the event is fired
@@ -12040,7 +12049,7 @@ declare interface ITriggerRegister {
       partialTicks: number,
       event: CancellableEvent,
     ) => void,
-  ): EntityRenderTrigger;
+  ): RenderEntityTrigger;
 
   /**
    * Registers a new trigger that runs before the player's experience is being drawn.
@@ -12330,6 +12339,7 @@ declare interface ITriggerRegister {
    *
    * Available modifications:
    * - {@link Trigger.setPriority} Sets the priority
+   * - {@link ClassFilterTrigger.setFilteredClasses} Sets the tile entity classes which this trigger gets fired for
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -12341,7 +12351,7 @@ declare interface ITriggerRegister {
       partialTicks: number,
       event: CancellableEvent,
     ) => void,
-  ): EventTrigger;
+  ): RenderTileEntityTrigger;
 
   /**
    * Registers a new trigger that runs before the title and subtitle are drawn.
@@ -12984,7 +12994,7 @@ declare interface IRegister {
    *
    * Available modifications:
    * - {@link Trigger.setPriority} Sets the priority
-   * - {@link PacketTrigger.setPacketClasses} Sets the packet classes which this trigger
+   * - {@link ClassFilterTrigger.setFilteredClasses} Sets the packet classes which this trigger
    *   gets fired for
    *
    * @param method The method to call when the event is fired
@@ -13004,7 +13014,7 @@ declare interface IRegister {
    *
    * Available modifications:
    * - {@link Trigger.setPriority} Sets the priority
-   * - {@link PacketTrigger.setPacketClasses} Sets the packet classes which this trigger
+   * - {@link ClassFilterTrigger.setFilteredClasses} Sets the packet classes which this trigger
    *   gets fired for
    *
    * @param method The method to call when the event is fired
@@ -13261,7 +13271,7 @@ declare interface IRegister {
    *
    * Available modifications:
    * - {@link Trigger.setPriority} Sets the priority
-   * - {@link EntityRenderTrigger.setEntityClasses} Sets the entity classes which this trigger
+   * - {@link ClassFilterTrigger.setFilteredClasses} Sets the entity classes which this trigger
    *   gets fired for
    *
    * @param method The method to call when the event is fired
@@ -13282,6 +13292,7 @@ declare interface IRegister {
    *
    * Available modifications:
    * - {@link Trigger.setPriority} Sets the priority
+   * - {@link ClassFilterTrigger.setFilteredClasses} Sets the tile entity classes which this trigger gets fired for
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
@@ -13429,7 +13440,7 @@ declare interface IRegister {
    *
    * Available modifications:
    * - {@link Trigger.setPriority} Sets the priority
-   * - {@link EntityRenderTrigger.setEntityClasses} Sets the entity classes which this trigger
+   * - {@link ClassFilterTrigger.setFilteredClasses} Sets the entity classes which this trigger
    *   gets fired for
    *
    * @param method The method to call when the event is fired
@@ -13721,6 +13732,7 @@ declare interface IRegister {
    *
    * Available modifications:
    * - {@link Trigger.setPriority} Sets the priority
+   * - {@link ClassFilterTrigger.setFilteredClasses} Sets the tile entity classes which this trigger gets fired for
    *
    * @param method The method to call when the event is fired
    * @return The trigger for additional modification
