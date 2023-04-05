@@ -6123,6 +6123,36 @@ declare global {
     static append(fileLocation: string, toAppend: string): void;
 
     /**
+     * Encodes a string to a base64 string
+     *
+     * @param toEncode string to encode
+     * @return base64 encoded string
+     */
+    encodeBase64(toEncode: string): string;
+    /**
+     * Encodes a string to a base64 string
+     *
+     * @param toEncode string to encode
+     * @return base64 encoded string
+     */
+    static encodeBase64(toEncode: string): string;
+
+    /**
+     * Decodes a base64 string to a string
+     *
+     * @param toDecode base64 encoded string to decode
+     * @return decoded string
+     */
+    decodeBase64(toDecode: string): string;
+    /**
+     * Decodes a base64 string to a string
+     *
+     * @param toDecode base64 encoded string to decode
+     * @return decoded string
+     */
+    static decodeBase64(toDecode: string): string;
+
+    /**
      * Reads a file from folder in modules.
      * Returns an empty string if file is not found.
      *
