@@ -3980,7 +3980,7 @@ declare global {
     /**
      * The special character meaning that no character was translated for the event.
      */
-    static readonly CHAR_NONEL: number;
+    static readonly CHAR_NONE: number;
     /**
      * Internal use - event size in bytes
      */
